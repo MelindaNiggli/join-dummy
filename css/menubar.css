@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  display:flex;
 }
 
 #menubar {
@@ -85,8 +86,8 @@ header {
   box-sizing: border-box;
   padding:20px 40px 20px 116px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1) ;
-  margin-left: 232px;
   height:96px;
+  width:100%;
 }
 
 header span {
