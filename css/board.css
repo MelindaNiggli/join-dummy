@@ -1,0 +1,25 @@
+#boardheader {
+  height: 220px;
+  width: 100%;
+}
+#board {
+  height: calc(100% - 220px);
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  justify-content: center;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.wide {
+    width:70%;
+}
