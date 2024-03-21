@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="menubar.css">
+    <link rel="stylesheet" href="../css/menubar.css">
+    <script src="../js/menubar.js"></script>
 </head>
 <body>
     <div id="menubar">
-        <img src="./img/logo.png" alt="logo" id="menulogo">
+        <img src="../img/logo.png" alt="logo" id="menulogo">
         <div id="menucontent">
           <nav>
-              <a href="#"><img src="./img/summary.png" alt="">Summary</a>
-              <a href="#"><img src="./img/addtask.png" alt="">Add Task</a>
-              <a href="#"><img src="./img/board.png" alt="">Board</a>
-              <a href="#"><img src="./img/contacts.png" alt="">Contacts</a>
+              <a href="#" id="summary" onclick= "menuSelected(id)"><img src="../img/summary.png" alt="">Summary</a>
+              <a href="#" id="addTask" onclick= "menuSelected(id)"><img src="../img/addtask.png" alt="">Add Task</a>
+              <a href="#" id="board" onclick= "menuSelected(id)"><img src="../img/board.png" alt="">Board</a>
+              <a href="#" id="contacts" onclick= "menuSelected(id)"><img src="../img/contacts.png" alt="">Contacts</a>
           </nav>
           <div id="policies">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Legal notice</a>
+              <a href="#" id="privacy" onclick= "menuSelected(id)">Privacy Policy</a>
+              <a href="#" id="legal" onclick= "menuSelected(id)">Legal notice</a>
           </div>
         </div>
 
