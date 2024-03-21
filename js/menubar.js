@@ -1,7 +1,6 @@
-/**
- * Function to remove selectedMenu / selectedImg effects from the non selected menu element
+/** 
  * Adding selectedMenu / selectedImg effects to the selected menu element
- * @param {string} menuitem using the id to adress the item
+ * @param {string} menuitem using the docTitle and giving it to the function to know what page is active
  */
 function menuSelected(menuitem) {  
   let menupoint = document.getElementById(menuitem);
@@ -12,6 +11,11 @@ function menuSelected(menuitem) {
     menupoint.firstChild.classList.add("selectedImg");
   }
 }
+
+/**
+ * Loading in the templates of the sidemenu and the header
+ * After that calling the menuSelected function to change the appearance of the clicked menu item
+ */
 
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[include-html]");

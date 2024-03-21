@@ -1,9 +1,11 @@
 body {
-  margin: 0;
-  display:flex;
+  margin: 0;  
 }
 
 #menubar {
+  position:fixed;
+  top:0;
+  left:0;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -84,10 +86,11 @@ header, #headend, #headeruser {
 header {
   justify-content: space-between;
   box-sizing: border-box;
+  margin-left:232px;
   padding:20px 40px 20px 116px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1) ;
   height:96px;
-  width:100%;
+  width:calc(100% - 232px);
 }
 
 header span {
@@ -120,4 +123,11 @@ header span {
 #headend img:hover {
   transform:scale(1.2);
   cursor: pointer;
+}
+
+main {
+  margin-left:232px;
+  width:calc(100% - 232px);
+  height:calc(100% - 96px);
+  background-color: yellow;  
 }
