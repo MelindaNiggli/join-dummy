@@ -8,10 +8,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  width: 232px;
+  width:  232px;
   height: 100vh;
   padding: 64px 0px 64px 0px;
   background-color: #2a3647;
+  position: fixed;
+  top: 0;
 }
 
 #menulogo {
