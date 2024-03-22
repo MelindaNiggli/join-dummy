@@ -31,7 +31,7 @@
       </div>
       <div id="board">
         <div class="taskpit flex">
-          <div class="flex between wide">
+          <div class="flex between wide columnhead">
             <span class="taskhead">To do</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
@@ -41,8 +41,8 @@
             </div>            
           </div>
         </div>
-        <div class="taskpit flex">
-          <div class="flex between wide">
+        <div class="taskpit flex wrapper">
+          <div class="flex between wide columnhead">
             <span class="taskhead">In progress</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
@@ -50,8 +50,8 @@
             <div class="taskbox">
               <div class="userstory flex center">User Story</div>
               <div class="flex column gap-ss">
-                <h3>HTML Base Template Creation</h3>
-                <p>Create reusable HTML base templates...</p>
+                <h3 class="start">HTML Base Template Creation</h3>
+                <p class="start">Create reusable HTML base templates...</p>
               </div>
               <div class="barbox">
                 <div class="barcontainer">
@@ -68,28 +68,94 @@
                 <img src="./img/urgent.png" alt="priority">
               </div>              
             </div>
+            <div class="taskbox">
+              <div class="technical flex center">Technical</div>
+              <div class="flex column gap-ss">
+                <h3 class="start">WORK on Join all Night</h3>
+                <p class="start">Try to coordinate work on big project...</p>
+              </div>              
+              <div class="flex between">
+                <div class="flex wrapper">
+                  <div class="usertag flex center" id="ut1">AM</div>
+                  <div class="usertag flex center" id="ut2">EM</div>
+                  <div class="usertag flex center" id="ut3">MB</div>
+                </div>
+                <img src="./img/medium.png" alt="priority">
+              </div>                         
+            </div>           
           </div>
         </div>
         <div class="taskpit flex">
-          <div class="flex between wide">
-            <span class="taskhead">Await feedback</span>
+          <div class="flex between wide columnhead">
+            <span class="taskhead">Await&nbspfeedback</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
           <div id="task_feedback" class="flex column gap-s wide">
-            <div class="emptybox flex center">
-              <span>No tasks to do</span>
-            </div>
+            <div class="taskbox">
+              <div class="technical flex center">Technical</div>
+              <div class="flex column gap-ss">
+                <h3 class="start">Get a job in IT asap</h3>
+                <p class="start">Try to write enough applications...</p>
+              </div>              
+              <div class="flex between">
+                <div class="flex wrapper">
+                  <div class="usertag flex center" id="ut1">AM</div>
+                  <div class="usertag flex center" id="ut2">EM</div>
+                  <div class="usertag flex center" id="ut3">MB</div>
+                </div>
+                <img src="./img/low.png" alt="priority">
+              </div>                         
+            </div>  
           </div>
         </div>
         <div class="taskpit flex">
-          <div class="flex between wide">
+          <div class="flex between wide columnhead">
             <span class="taskhead">Done</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
           <div id="task_done" class="flex column gap-s wide">
-            <div class="emptybox flex center">
-              <span>No tasks to do</span>
+            <div class="taskbox">
+              <div class="userstory flex center">User Story</div>
+              <div class="flex column gap-ss">
+                <h3 class="start">Going to the cinema</h3>
+                <p class="start">Try to have fun with family at least once a week...</p>
+              </div>
+              <div class="barbox">
+                <div class="barcontainer">
+                  <div class="bar"></div>
+                </div>
+                <span>1/2Subtasks</span>
+              </div>
+              <div class="flex between">
+                <div class="flex wrapper">
+                  <div class="usertag flex center" id="ut1">AM</div>
+                  <div class="usertag flex center" id="ut2">EM</div>
+                  <div class="usertag flex center" id="ut3">MB</div>
+                </div>
+                <img src="./img/medium.png" alt="priority">
+              </div>              
             </div>
+            <div class="taskbox">
+              <div class="userstory flex center">User Story</div>
+              <div class="flex column gap-ss">
+                <h3 class="start">Continue learning every day</h3>
+                <p class="start">Follow Confucius on the exciting path to encounter new things...</p>
+              </div>
+              <div class="barbox">
+                <div class="barcontainer">
+                  <div class="bar"></div>
+                </div>
+                <span>1/2Subtasks</span>
+              </div>
+              <div class="flex between">
+                <div class="flex wrapper">
+                  <div class="usertag flex center" id="ut1">AM</div>
+                  <div class="usertag flex center" id="ut2">EM</div>
+                  <div class="usertag flex center" id="ut3">MB</div>
+                </div>
+                <img src="./img/urgent.png" alt="priority">
+              </div>              
+            </div>                     
           </div>
         </div>
       </div>
