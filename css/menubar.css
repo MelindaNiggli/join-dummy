@@ -155,7 +155,6 @@ header span {
 }
 
 main {
-  /* margin-top:4px; */
   margin-left:232px;  
   width:calc(100vw - 232px);
   height:calc(100vh - 96px);  
