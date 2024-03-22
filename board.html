@@ -16,15 +16,59 @@
         <div class="flex between wide">
             <h1>Board</h1>
             <div class="flex between gap">
-              <div class="search-wrapper">
+              <div class="wrapper">
                 <input type="text" placeholder="Find Task">
-                <img src="./img/search.png" alt="search">
+                <div class="flex between searchimg">
+                  <img src="./img/vertbar.png" alt="bar">
+                    <div id="searchcontainer" class="flex center">
+                      <img src="./img/search.png" alt="search">
+                    </div>
+                </div>                
+                
               </div>
               <button>Add&nbsptask<span>+</span></button>              
             </div>
         </div>
       </div>
-      <div id="board"></div>
+      <div id="board">
+        <div class="taskpit">
+          <div>
+            <span>To do</span>
+            <img src="./img/addblack.png" alt="add">
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div class="taskpit">
+          <div>
+            <span>In progress</span>
+            <img src="./img/addblack.png" alt="add">
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div class="taskpit">
+          <div>
+            <span>Await feedback</span>
+            <img src="./img/addblack.png" alt="add">
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div class="taskpit">
+          <div>
+            <span>Done</span>
+            <img src="./img/addblack.png" alt="add">
+          </div>
+          <div>
+
+          </div>
+        </div>
+
+      </div>
     
     </main>       
 </body>

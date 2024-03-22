@@ -47,10 +47,14 @@ button {
   background-color: #2a3647;
   border: 1px solid #2a3647;
   border-radius: 10px;
+  transition: all 0.1s ease-in-out;
 }
 
 button:hover {
   cursor: pointer;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #29abe2;
+  border:none;
 }
 
 button span {
@@ -62,7 +66,7 @@ input {
   box-sizing: border-box;
   width: 312px;
   height: 48px;
-  padding: 8px 16px 8px 16px;
+  padding: 8px 67px 8px 16px;
   gap: 10px;
   font-size: 24px;
   border-radius: 10px;
@@ -70,22 +74,31 @@ input {
 }
 
 input:focus {
-  outline:none;
-  border:1px solid #94D5F0; 
+  outline: none;
+  border: 1px solid #94d5f0;
 }
 
 input::placeholder {
-  color: #D1D1D1;
+  color: #d1d1d1;
 }
 
-.search-wrapper {
+.wrapper {
   position: relative;
 }
 
-.search-wrapper img {
+.searchimg {
   position: absolute;
+  gap: 16px;
   top: 8px;
   right: 16px;
 }
 
+#searchcontainer {
+  transition: all 0.1s ease-in-out;
+}
 
+#searchcontainer:hover {
+  border-radius: 50%;
+  background-color: #eeeeee;
+  cursor: pointer;
+}
