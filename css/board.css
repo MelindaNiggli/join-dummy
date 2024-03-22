@@ -47,6 +47,10 @@ h1 {
   gap: 16px;
 }
 
+.gap-ss {
+  gap: 8px;
+}
+
 button {
   display: flex;
   align-items: center;
@@ -155,13 +159,99 @@ input::placeholder {
 }
 
 .taskbox {
+  display:flex;
+  flex-direction: column;
+  gap:24px;
   width:100%;
   background-color: white;
   border-radius:24px;
   padding:16px;
-
   box-shadow: 0px 0px 10px 3px #00000014;
-
-
-
 }
+
+.taskbox h3 {
+  margin:0;
+  font-size:16px;
+  color:#2a3647;
+  font-weight: 700;
+}
+
+.taskbox p {
+  margin:0;
+  font-size:16px;
+  font-weight: 400;
+  color: #A8A8A8;
+}
+
+.userstory {
+  height:27px;
+  width:113px;
+  color:white;
+  font-size:16px;
+  background-color: #0038FF;  
+  border-radius: 8px;
+}
+
+.technical {
+  height:27px;
+  width:113px;
+  color:white;
+  font-size:16px;
+  background-color: #1FD7C1;  
+  border-radius: 8px;
+}
+
+.barbox {
+  display:flex;
+  align-items: center;
+  gap:11px;
+}
+
+.barcontainer {
+  width:128px;
+  height:8px;
+  background-color: #F4F4F4;
+  border-radius: 8px;
+}
+
+.bar {
+  height:8px;
+  width:50%;
+  background-color:#4589FF;
+  border-radius: 8px;
+}
+
+
+.barbox span {
+  font-size: 14px;
+}
+
+.usertag {
+  position: absolute;  
+  border-radius:50%;
+  border:2px solid white;  
+  color: white;
+  width:32px;
+  height:32px;
+  font-size:12px;
+}
+
+#ut1 {
+  background-color: #FF7A00;
+  z-index: 0;
+  
+}
+
+#ut2 {
+  background-color: #9327FF;
+  z-index: 1;
+  left:24px;
+}
+
+#ut3 {
+  background-color: #1FD7C1;
+  z-index: 2;
+  left:48px;
+}
+
+
