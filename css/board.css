@@ -17,9 +17,58 @@
 }
 
 .between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .wide {
-    width:70%;
+  width: 80%;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 61px;
+}
+
+.gap {
+  gap: 32px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  width: 160px;
+  padding: 8px 16px 8px 16px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  background-color: #2a3647;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button span {
+  font-weight: 400;
+  font-size: 38px;
+}
+
+input {
+  box-sizing: border-box;
+  width: 312px;
+  height: 48px;
+  padding: 8px 16px 8px 16px;
+  gap: 10px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: 1px solid #a8a8a8;
+}
+
+input::placeholder {
+  color: #D1D1D1;
 }

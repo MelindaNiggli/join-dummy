@@ -1,5 +1,30 @@
+@font-face {
+  font-display: swap; 
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inter-v13-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/inter-v13-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/inter-v13-latin-900.woff2') format('woff2');
+}
+
 body {
   margin: 0;  
+  font-family: 'Inter', sans-serif;
 }
 
 #menubar {
@@ -88,9 +113,11 @@ header, #headend, #headeruser {
 header {
   justify-content: space-between;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
   margin-left:232px;
   padding:20px 40px 20px 116px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1) ;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   height:96px;
   width:calc(100% - 232px);
 }
@@ -128,7 +155,9 @@ header span {
 }
 
 main {
-  margin-left:232px;
+  /* margin-top:4px; */
+  margin-left:232px;  
   width:calc(100vw - 232px);
   height:calc(100vh - 96px);  
+  background-color: #F6F7F8;
 }
