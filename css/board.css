@@ -5,7 +5,7 @@
 #boardheader {
   height: 220px;
   width: 100%;
-  padding: 0px 104px 0px 64px;
+  padding: 0px 104px 0px 8%;
 }
 
 .flex {
@@ -27,6 +27,7 @@
 
 .wide {
   width: 100%;
+  max-width: 1150px;
 }
 
 h1 {
@@ -118,7 +119,7 @@ input::placeholder {
   align-items: flex-start;
   height: calc(100% - 220px);
   width: 100%;
-  padding: 0px 64px;
+  padding: 0px 64px 0px 8%;
   gap: 26px;
 }
 

@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join-Board</title>
-    <link rel="stylesheet" href="./css/menubar.css">
-    <link rel="stylesheet" href="./css/board.css">
+    <link rel="stylesheet" href="./css/menubar.css" />
+    <link rel="stylesheet" href="./css/board.css" />
     <script src="./js/menubar.js"></script>
-</head>
-<body onload="includeHTML()">
-    <div include-html="./templates/menubar.html"></div>    
+  </head>
+  <body onload="includeHTML()">
+    <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>
     <main>
-      <div id="boardheader" class="flex center">
+      <div id="boardheader" class="flex">
         <div class="flex between wide">
-            <h1>Board</h1>
-            <div class="flex between gap">
-              <div class="wrapper">
-                <input type="text" placeholder="Find Task">
-                <div class="flex between searchimg">
-                  <img src="./img/vertbar.png" alt="bar">
-                    <div id="searchcontainer" class="flex center">
-                      <img src="./img/search.png" alt="search">
-                    </div>
-                </div>                
-                
+          <h1>Board</h1>
+          <div class="flex between gap">
+            <div class="wrapper">
+              <input type="text" placeholder="Find Task" />
+              <div class="flex between searchimg">
+                <img src="./img/vertbar.png" alt="bar" />
+                <div id="searchcontainer" class="flex center">
+                  <img src="./img/search.png" alt="search" />
+                </div>
               </div>
-              <button>Add&nbsptask<span>+</span></button>              
             </div>
+            <button>Add&nbsptask<span>+</span></button>
+          </div>
         </div>
       </div>
       <div id="board">
         <div class="taskpit flex">
           <div class="flex between wide">
             <span class="taskhead">To do</span>
-            <img src="./img/addblack.png" alt="add">
+            <img src="./img/addblack.png" alt="add" />
           </div>
           <div id="task_todo" class="flex column gap-s wide">
             <div class="taskbox flex center">
@@ -48,7 +47,7 @@
         <div class="taskpit flex">
           <div class="flex between wide">
             <span class="taskhead">In progress</span>
-            <img src="./img/addblack.png" alt="add">
+            <img src="./img/addblack.png" alt="add" />
           </div>
           <div id="task_progress" class="flex column gap-s wide">
             <div class="taskbox flex center">
@@ -59,28 +58,26 @@
         <div class="taskpit flex">
           <div class="flex between wide">
             <span class="taskhead">Await feedback</span>
-            <img src="./img/addblack.png" alt="add">
+            <img src="./img/addblack.png" alt="add" />
           </div>
           <div id="task_feedback" class="flex column gap-s wide">
-              <div class="taskbox flex center">
-                <span>No tasks to do</span>
-              </div>
+            <div class="taskbox flex center">
+              <span>No tasks to do</span>
+            </div>
           </div>
         </div>
         <div class="taskpit flex">
           <div class="flex between wide">
             <span class="taskhead">Done</span>
-            <img src="./img/addblack.png" alt="add">
+            <img src="./img/addblack.png" alt="add" />
           </div>
           <div id="task_done" class="flex column gap-s wide">
-              <div class="taskbox flex center">
-                <span>No tasks to do</span>
-              </div>
+            <div class="taskbox flex center">
+              <span>No tasks to do</span>
+            </div>
           </div>
         </div>
-
       </div>
-    
-    </main>       
-</body>
+    </main>
+  </body>
 </html>
