@@ -9,7 +9,7 @@ h1, #board span {
 #boardheader {
   height: 180px;
   width: 100%;
-  padding: 0px 104px 0px 8%;
+  padding: 0px 104px 0px calc(8% + 8px);
 }
 
 .flex {
@@ -235,8 +235,7 @@ input::placeholder {
 }
 
 .bar {
-  height:8px;
-  width:50%;
+  height:8px;  
   background-color:#4589FF;
   border-radius: 8px;
 }
@@ -244,6 +243,11 @@ input::placeholder {
 
 .barbox span {
   font-size: 14px;
+}
+
+.userbox {
+  height:32px;
+  width:136px;
 }
 
 .usertag {
