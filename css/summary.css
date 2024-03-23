@@ -11,8 +11,10 @@
 }
 
 .line {
-    border-bottom: 3px solid rgba(41, 171, 226, 1); 
-    height: 0; 
+    width: 3px; 
+    height: 59px;
+    display: block;
+    background-color: rgba(41, 171, 226, 1);
 }
 
 .headline-text {
@@ -29,9 +31,126 @@
     gap: 0px;
     opacity: 0px;
     font-family: Inter;
-    font-size: 61px;
+    font-size: 60px;
     font-weight: 700;
     line-height: 73.2px;
     text-align: left;
     color: rgba(0, 0, 0, 1);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.summary-board-container {
+    position: absolute;
+    width: 560px;
+    height: 562px;
+    top: 335px;
+    left: 328px;
+    gap: 28px;
+}
+
+.summary-greet-container {
+    position: absolute;
+    width: 385px;
+    height: 136px;
+    top: 547.5px;
+    left: 968px;
+    gap: 3px;
+    opacity: 0px;
+    margin-left: 30px;
+}
+
+.summary-name {
+    font-family: Inter;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+    text-align: left;
+    color: rgba(41, 171, 226, 1);
+}
+
+.summary-greet {
+    font-family: Inter;
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    text-align: left;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: space-between;
+    width: 560px;
+    gap: 32px;
+    opacity: 0px;
+}
+
+.to-do {
+    display: flex; /* Flexbox verwenden */
+    justify-content: space-between; /* Platz zwischen den Containern */
+    gap: 32px
+  }
+
+.to-do-left {
+    display: flex; /* Flexbox verwenden */
+    justify-content: center;
+    align-items: center; /* Zentriere Elemente vertikal */
+    width: 264px;
+    height: 168px;
+    padding: 38px 19px 38px 19px;
+    gap: 18px;
+    border-radius: 30px 30px 30px 30px;
+    border-style: solid 1px lightgray;
+    opacity: 0px;
+    background-color: rgba(255, 255, 255, 1);
+
+}
+
+.to-do-right {
+    display: flex; /* Flexbox verwenden */
+    align-items: center; /* Zentriere Elemente vertikal */
+    justify-content: center;
+    width: 264px;
+    height: 168px;
+    left: 296px;
+    padding-top: 38px;
+    padding-left: 38px;
+    padding-bottom: 38px;
+    gap: 18px;
+    border-radius: 30px 30px 30px 30px;
+    border-style: solid 1px lightgray;
+    opacity: 0px;
+    background-color:  rgba(255, 255, 255, 1);
+
+    
+}
+
+.date-container {
+    background-color: lightblue;
+    height: 168px;
+    top: 196px;
+    gap: 32px;
+}
+
+.task-container {
+    background-color: lightcoral;
+    width: 560px;
+    height: 170px;
+    top: 392px;
+    padding: 1px 0px 1px 0px;
+    gap: 32px;
+    opacity: 0px;
+}
+
+.number {
+    color: rgba(0, 0, 0, 1);
+    font-family: Inter;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+    text-align: center;
 }
