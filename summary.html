@@ -4,10 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join-Summary</title>
-    <link rel="stylesheet" href="css/root.css">
-    <link rel="stylesheet" href="css/summary.css" />
+    <link rel="stylesheet" href="./css/root.css" />
+    <link rel="stylesheet" href="./css/summary.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
-    <link rel="stylesheet" href="./css/root.css">
     <script src="./js/menubar.js"></script>
   </head>
   <body onload="includeHTML()">
@@ -26,7 +25,8 @@
             <div class="to-do-left">
               <img src="img/pencil.png" alt="pencil" />
               <div>
-                <div class="number">1</div> <br />
+                <div class="number">1</div>
+                <br />
                 <div>To-do</div>
               </div>
             </div>
@@ -34,7 +34,8 @@
               <div class="to-do-right">
                 <img src="img/check.png" alt="check" />
                 <div>
-                  <div class="number">1</div> <br />
+                  <div class="number">1</div>
+                  <br />
                   <div>Done</div>
                 </div>
               </div>
@@ -44,16 +45,32 @@
         <div class="date-container">
           <div class="date-left">
             <img src="img/redurgent.png" alt="" />
-            <div>1</div> <br />
-            <div>Urgent</div>
+            <div>
+              <div class="number">1</div>
+              <br />
+              <div>Urgent</div>
+            </div>
           </div>
           <div class="date-line"></div>
           <div class="date-right">
-              <div>October 16, 2022</div>
-              <div>Upcoming Deadline</div>
+            <div class="actual-date">October 16, 2022</div>
+            <div class="date-text">Upcoming Deadline</div>
           </div>
         </div>
-        <div class="task-container"></div>
+        <div class="task-container">
+          <div class="task">
+            <div class="number">5</div>
+            <div>Tasks in Board</div>
+          </div>
+          <div class="task">
+            <div class="number">2</div>
+            <div>Tasks in Progress</div>
+          </div>
+          <div class="task">
+            <div class="number">2</div>
+            <div>Awaiting Feedback</div>
+          </div>
+        </div>
       </div>
 
       <div class="summary-greet-container">
