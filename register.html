@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/login.css">
+
+    <title>Sign In</title>
+</head>
+<body onload="init()">
+    <img class="join-logo" src="./img/join-logo.svg" alt="">
+    <form id="registration" onsubmit="addUser(); return false;">
+        <a href="./login.html"><img class="back" src="./img/arrow-left-line.svg" alt="arrow left"></a>
+        <div class="wrapper-heading">
+            <h1>Sign up</h1>
+            <span class="linie"></span>
+        </div>
+        <div class="wrapper-input-field">
+            <div class="wrapper-input">
+                <input type="text" placeholder="Name" id="nameUser" required>
+                <img src="./img/person.svg" alt="Person Icon" req>
+            </div>
+            <div class="wrapper-input">
+                <input type="email" placeholder="Email" id="email" required>
+                <img src="./img/mail.svg" alt="Email Icon">
+            </div>
+            <div class="wrapper-input">
+                <input type="password" placeholder="Password" id="password" required>
+                <img src="./img/lock.svg" alt="Schloss Icon">
+            </div>
+            <div class="wrapper-input">
+                <input type="password" placeholder="Confirm Password" id="passwordAgain" required>
+                <img src="./img/lock.svg" alt="Schloss Icon">
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">I accept the <span>Privacy policy</span> </label>
+            </div>
+            <div class="wrapper-button">
+                <button id="registerBTN" class="BT-Black" type="submit">Sign in</button>
+            </div>
+        </div>  
+    </form>
+
+
+    <script src="./js/storage.js"></script>
+    <script src="./js/register.js"></script>
+    <footer>
+        <a href="./privacy.html">Privacy Policy</a>
+        <a href="./legal.html">Legal Notice</a>
+    </footer>
+</body>
+</html>

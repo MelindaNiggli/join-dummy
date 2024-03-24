@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 * {
   box-sizing: border-box;
 }
@@ -6,6 +8,7 @@ h1, #board span {
   cursor:default;
 }
 
+>>>>>>> c15a3f16b712fbba3ebf163e0cb8102bbd22f23a
 #boardheader {
   height: 180px;
   width: 100%;
@@ -71,8 +74,8 @@ button {
   color: white;
   font-size: 24px;
   font-weight: 700;
-  background-color: #2a3647;
-  border: 1px solid #2a3647;
+  background-color: var(--join-black);
+  border: 1px solid var(--join-black);
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
 }
@@ -80,7 +83,7 @@ button {
 button:hover {
   cursor: pointer;
   box-shadow: 0px 4px 4px 0px #00000040;
-  background-color: #29abe2;
+  background-color: var(--join-blue);
   border: none;
 }
 
