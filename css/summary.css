@@ -51,6 +51,8 @@ main {
     top: 335px;
     left: 328px;
     gap: 28px;
+    display: flex;
+    flex-direction: column; /* Elemente untereinander anordnen */
 }
 
 .summary-greet-container {
@@ -130,10 +132,19 @@ main {
 }
 
 .date-container {
-    background-color: lightblue;
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    background-color: rgba(255, 255, 255, 1);
     height: 168px;
     top: 196px;
     gap: 32px;
+    border-radius: 30px 30px 30px 30px;
+    border-style: solid 1px lightgray;
+}
+
+.date-container img {
+    
 }
 
 .task-container {
@@ -153,4 +164,11 @@ main {
     font-weight: 600;
     line-height: 76.8px;
     text-align: center;
+}
+
+.date-line {
+    width: 2px;
+    height: 102.02px;
+    display: block;
+    background-color: rgba(209, 209, 209, 1);
 }
