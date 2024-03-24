@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,3 +17,55 @@
     </main> 
 </body>
 </html>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join-Summary</title>
+    <link rel="stylesheet" href="css/summary.css" />
+    <link rel="stylesheet" href="./css/menubar.css" />
+    <script src="./js/menubar.js"></script>
+  </head>
+  <body onload="includeHTML()">
+    <div include-html="./templates/menubar.html"></div>
+    <header include-html="./templates/header.html"></header>
+    <main>
+      <div class="headline-container">
+        <h1 class="summary-headline">Join 360</h1>
+        <div class="line"></div>
+        <p class="headline-text">Key Metrics at a Glance</p>
+      </div>
+
+      <div class="summary-board-container">
+        <div class="todo-container">
+          <div class="to-do">
+            <div class="to-do-left">
+              <img src="img/pencil.png" alt="pencil" />
+              <div>
+                <span class="number">1</span> <br>
+                <span>To-do</span>
+              </div>
+            </div>
+            <div>
+              <div class="to-do-right">
+                <img src="img/check.png" alt="check" />
+                <div>
+                    <span class="number">1</span> <br>
+                    <span>Done</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="date-container"></div>
+        <div class="task-container"></div>
+      </div>
+
+      <div class="summary-greet-container">
+        <h2 class="summary-greet">Good moring,</h2>
+        <h2 class="summary-name">Sofia Müller</h2>
+      </div>
+    </main>
+  </body>
+</html>
+>>>>>>> c15a3f16b712fbba3ebf163e0cb8102bbd22f23a
