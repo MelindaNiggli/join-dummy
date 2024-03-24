@@ -51,6 +51,8 @@ let tasks = [
     }
 ];
 
+let columns = ['todo','progress','feedback','done'];
+
 function Task(category, label, title, description, date, subtasks, priority, assigned) {
     this.category = category,
     this.label = label,    
@@ -63,11 +65,32 @@ function Task(category, label, title, description, date, subtasks, priority, ass
 }
 
 function updateTasks() {
-  let container = document.getElementById('task_todo');
-  container.innerHTML += renderTaskHTML(tasks[0],0);  
-  showAssigned(tasks[0].assigned,0);
-  container.innerHTML += renderTaskHTML(tasks[2],2);  
-  showAssigned(tasks[2].assigned,2);  
+  emptyColumns();
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    let container = document.getElementById(`task_${task.category}`);
+    container.innerHTML += renderTaskHTML(task,i);
+    showAssigned(task.assigned,i);
+  }   
+} 
+
+function emptyColumns() {
+  let columns = ['todo','progress','feedback','done'];
+  for (let i = 0; i < columns.length; i++) {
+    const column = columns[i];
+    document.getElementById(`task_${column}`).innerHTML = '';    
+  }
+}
+
+function renderTaskColumns(column) {
+  let filtered = tasks.filter(t => t['category'] == column);
+  let container = document.getElementById(`task_${column}`);
+  container.innerHTML = '';
+  for (let i = 0; i < filtered.length; i++) {
+    const task = filtered[i];
+    container.innerHTML += renderTaskHTML(task,i);
+    showAssigned(task.assigned,i);    
+  }
 }
 
 function renderTaskHTML(task,index) {
@@ -95,7 +118,8 @@ function renderTaskHTML(task,index) {
 
 function getInitials(user) {
   let names = user.split(' ');
-  return (names[0].charAt(0).toUpperCase()) + (names[1].charAt(0).toUpperCase());
+  let firstletter = names[0].charAt(0).toUpperCase();  
+  return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
 }
 
 function calcBar(task) {
