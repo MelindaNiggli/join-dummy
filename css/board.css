@@ -105,6 +105,22 @@ input:focus {
   border: 1px solid #94d5f0;
 }
 
+input::-webkit-input-placeholder {
+  color: #d1d1d1;
+}
+
+input::-moz-placeholder {
+  color: #d1d1d1;
+}
+
+input:-ms-input-placeholder {
+  color: #d1d1d1;
+}
+
+input::-ms-input-placeholder {
+  color: #d1d1d1;
+}
+
 input::placeholder {
   color: #d1d1d1;
 }
