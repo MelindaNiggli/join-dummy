@@ -11,12 +11,11 @@
 }
 
 .line {
-    border-bottom: 3px solid rgba(41, 171, 226, 1); 
+    border-bottom: 3px solid var(--join-blue); 
     height: 0; 
 }
 
 .headline-text {
-    font-family: Inter;
     font-size: 27px;
     font-weight: 400;
     line-height: 32.4px;
@@ -28,7 +27,6 @@
     height: 73px;
     gap: 0px;
     opacity: 0px;
-    font-family: Inter;
     font-size: 61px;
     font-weight: 700;
     line-height: 73.2px;
