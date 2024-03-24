@@ -11,15 +11,10 @@
 }
 
 .line {
-<<<<<<< HEAD
-    border-bottom: 3px solid var(--join-blue); 
-    height: 0; 
-=======
     width: 3px; 
     height: 59px;
     display: block;
     background-color: rgba(41, 171, 226, 1);
->>>>>>> c15a3f16b712fbba3ebf163e0cb8102bbd22f23a
 }
 
 .headline-text {
@@ -34,12 +29,8 @@
     height: 73px;
     gap: 0px;
     opacity: 0px;
-<<<<<<< HEAD
-    font-size: 61px;
-=======
     font-family: Inter;
     font-size: 60px;
->>>>>>> c15a3f16b712fbba3ebf163e0cb8102bbd22f23a
     font-weight: 700;
     line-height: 73.2px;
     text-align: left;
@@ -152,7 +143,7 @@ main {
 }
 
 .date-container img {
-    
+
 }
 
 .task-container {

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 @font-face {
   font-display: swap; 
   font-family: 'Inter';
@@ -29,7 +27,6 @@ body {
   font-family: 'Inter', sans-serif; 
 }
 
->>>>>>> c15a3f16b712fbba3ebf163e0cb8102bbd22f23a
 #menubar {
   position:fixed;
   top:0;
