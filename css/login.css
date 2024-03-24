@@ -1,0 +1,189 @@
+body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+a{
+    text-decoration: none;
+}
+body {
+    background: var(--bg);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+.join-logo {
+    width: 100.03px;
+    position: absolute;
+    top: 80px;
+    left: 77px;
+}
+.wrapper-sing-up{
+    position: absolute;
+    top: 67px;
+    right: 122px;
+    display: flex;
+    align-items: center
+}
+.wrapper-sing-up  a {
+    background: var(--join-black);
+    padding: 15px 16px;
+    font-size: 16px;
+    color: var(--white);
+    border-radius: 8px;
+    margin-left: 35px;
+}
+h1 {
+    font-size: var(--h1);
+    text-align: center;
+}
+.linie {
+    margin-top: 16px;
+    width: 150px;
+    height: 3px;
+    background: var(--join-blue);
+    display: inline-block
+}
+
+form {
+    background-color: var(--white);
+    max-width: 652px;
+    height: 493px;
+    border-radius: 30px;
+    padding: 48px 115px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.03);
+}
+.wrapper-input {
+    display: flex;
+    margin-bottom: 24px;
+}
+.wrapper-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.wrapper-input {
+    min-width: 400px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 12px ;
+    
+}
+form img{
+    width: 24px;
+    height: 24px;
+}
+input{
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 20px;   
+}
+.wrapper-input:first-child
+{
+    margin-bottom: 32px;
+}
+.wrapper-input:last-child
+{
+    margin-bottom: 8px;
+}
+.wrapper-input-field{
+    margin-bottom: 20px;
+}
+input::placeholder{
+    color: #D1D1D1;
+}
+.wrapper-button button {
+    padding: 10px;
+    font-size: 21px;
+    border-radius: 8px;
+    border: 1px solid var(--join-black);
+    padding: 11.5px 24px;
+}
+.wrapper-button button:first-child, .BT-Black  {
+    background: var(--join-black) !important;
+    color: var(--white) !important;
+    margin-right: 35px;
+}
+.wrapper-button button:last-child{
+    color: var(--join-black);
+    background: var(--white)
+}
+footer a {
+    padding: 8px;
+    font-size: 16px;
+    color: var(--join-black)
+}
+
+/* Checkmark */
+.checkbox input[type="checkbox"] {
+    display: none; /* Verstecke das natürliche Checkbox-Element */
+}
+.checkbox input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 30px; 
+    cursor: pointer;
+}
+.checkbox input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--join-black);
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.checkbox input[type="checkbox"] + label::before {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 20px;
+    text-align: center;
+    border: 2px solid var(--join-black);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px; /* Größe des Hackens anpassen */
+    color: var(--join-black); /* Farbe des Hackens */
+}
+.checkbox input[type="checkbox"]:checked + label::before {
+    content: "\2713"; /* Unicode für ein Häkchen (check mark) */
+}
+
+
+/* Sign up */
+.checkbox span {
+    color: var(--join-blue);
+}
+.checkbox {
+     color: #A8A8A8;
+}
+
+.back {
+    position: absolute;
+    top: 64px;
+    left: 48px;
+    width: 32px;
+    height: 32px;
+}
+#registration  {
+    position: relative !important;
+  }
+
+#registration {
+    height: 630px !important;
+  }
+
+  

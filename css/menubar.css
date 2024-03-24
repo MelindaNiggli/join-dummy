@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 @font-face {
   font-display: swap; 
   font-family: 'Inter';
@@ -27,6 +29,7 @@ body {
   font-family: 'Inter', sans-serif; 
 }
 
+>>>>>>> c15a3f16b712fbba3ebf163e0cb8102bbd22f23a
 #menubar {
   position:fixed;
   top:0;
@@ -90,13 +93,13 @@ nav a {
 
 #policies a {
   &:not(.selectedMenu):hover {
-    color: #29abe2 !important;
+    color: var(--join-blue)!important;
     font-weight: bold;
   }
 }
 
 .selectedMenu {
-  color: white;
+  color: var(--white);
   background-color: #091931;
   cursor: default;
 }
@@ -134,7 +137,7 @@ header span {
   height:56px;
   width:56px;
   border-radius: 50%;
-  border: solid 3px #2A3647;
+  border: solid 3px var(--join-black);
   justify-content: center;
 }
 
@@ -158,5 +161,5 @@ main {
   margin-left:232px;  
   width:calc(100vw - 232px);
   height:calc(100vh - 96px);  
-  background-color: #F6F7F8;
+  background-color: var(--bg);
 }

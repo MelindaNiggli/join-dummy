@@ -7,7 +7,7 @@ let tasks = [
         "date": "2024-04-10",
         "subtasks": [1, "Benutzeranmeldung erstellen", "Profilseiten-Layout gestalten"],
         "priority": "medium",
-        "assigned": [["Max Mustermann", "#ff0000"], ["Anna Müller", "#00ff00"], ["Lisa Wagner", "#0000ff"]]
+        "assigned": [["Max Mustermann", "#ff0000"], ["Anna Müller", "#00ff00"], ["Lisa Wagner", "#0000ff"], ]
     },
     {
         "category": "progress",
@@ -64,10 +64,13 @@ function Task(category, label, title, description, date, subtasks, priority, ass
 
 function updateTasks() {
   let container = document.getElementById('task_todo');
-  container.innerHTML += renderTaskHTML(tasks[0]);  
+  container.innerHTML += renderTaskHTML(tasks[0],0);  
+  showAssigned(tasks[0].assigned,0);
+  container.innerHTML += renderTaskHTML(tasks[2],2);  
+  showAssigned(tasks[2].assigned,2);  
 }
 
-function renderTaskHTML(task) {
+function renderTaskHTML(task,index) {
     return `
     <div class="taskbox">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
@@ -82,15 +85,13 @@ function renderTaskHTML(task) {
         <span>${task.subtasks[0]}/${task.subtasks.length - 1}&nbspSubtasks</span>
       </div>
       <div class="flex between">
-        <div class="flex wrapper">
-        
+        <div class="flex wrapper" id="userbox${index}">        
         </div>
       <img src="./img/${task.priority}.png" alt="priority">
       </div>              
     </div> 
     `;
 }
-/* ${showAssigned(task.assigned)} */
 
 function getInitials(user) {
   let names = user.split(' ');
@@ -103,28 +104,18 @@ function calcBar(task) {
   return (subtasks === 0) ? 0 : ((done / subtasks) * 100);
 }
 
-function showAssigned(assigned) {
-  let i = 0;
-  assigned.forEach(element => {
+function showAssigned(assigned,index) {
+  let container = document.getElementById(`userbox${index}`);
+  let length = (assigned.length > 5) ? 5 : assigned.length;
+  let left = 0;
+  for (let i = 0; i < length; i++) {
     const user = assigned[i];
     let id = getInitials(user[0]);
-    return `<div class="usertag flex center" style="background-color:${color};z-index:${zIndex}">${id}</div>`;
-    /* renderAssigned(id, user[1], i);  */
-    i++;  
-  });
+    container.innerHTML += renderAssigned(id, user[1], i, left); 
+    left += 24;  
+  }    
+};
 
-
-  /* for (let i = 0; i < assigned.length; i++) {
-    const user = assigned[i];
-    let id = getInitials(user[0]);
-    renderAssigned(id, user[1], i);   
-  } */
+function renderAssigned(id, color, zIndex, left) {
+  return `<div class="usertag flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
 }
-
-function renderAssigned(id, color, zIndex) {
-  return `<div class="usertag flex center" style="background-color:${color};z-index:${zIndex}">${id}</div>`;
-}
-
-{/* <div class="usertag flex center" id="ut1">AM</div>
-          <div class="usertag flex center" id="ut2">EM</div>
-          <div class="usertag flex center" id="ut3">MB</div> */}
