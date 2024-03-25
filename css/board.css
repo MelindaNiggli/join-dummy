@@ -294,6 +294,12 @@ input::placeholder {
   left:48px;
 }
 
+.drag-area-highlight {
+  background-color: white;
+  border: 1px dashed #A8A8A8;  
+  box-shadow: 0px 0px 4px 0px #00000029;  
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

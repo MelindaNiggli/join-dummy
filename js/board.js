@@ -95,7 +95,7 @@ function renderTaskColumns(column) {
 
 function renderTaskHTML(task,index) {
     return `
-    <div class="taskbox">
+    <div class="taskbox" draggable="true" ondragstart="dragStart(${index})">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -142,4 +142,25 @@ function showAssigned(assigned,index) {
 
 function renderAssigned(id, color, zIndex, left) {
   return `<div class="usertag flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
+}
+
+function dragTo(category) {
+  tasks[draggedElement]['category'] = category;
+  updateTasks();
+}
+
+function dragStart(id) {
+  draggedElement = id;
+}
+
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function highlight(id) {
+  document.getElementById(id).classList.add('drag-area-highlight');
+}
+
+function removeHighlight(id) {
+  document.getElementById(id).classList.remove('drag-area-highlight');
 }

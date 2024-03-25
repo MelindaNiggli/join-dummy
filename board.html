@@ -37,7 +37,7 @@
             <span class="taskhead">To do</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_todo" class="flex column gap-s wide">
+          <div id="task_todo" class="flex column gap-s wide" ondrop="dragTo('task_todo')" ondragleave="removeHighlight('task_todo')" ondragover="allowDrop(event); highlight('task_todo')">
             <div class="emptybox flex center">
               <span>No tasks to do</span>
             </div>            
@@ -48,7 +48,7 @@
             <span class="taskhead">In progress</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_progress" class="flex column gap-s wide">            
+          <div id="task_progress" class="flex column gap-s wide" ondrop="dragTo('task_progress')" ondragleave="removeHighlight('task_progress')" ondragover="allowDrop(event); highlight('task_progress')">            
           </div>
         </div>
         <div class="taskpit flex">
@@ -56,7 +56,7 @@
             <span class="taskhead">Await&nbspfeedback</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_feedback" class="flex column gap-s wide">           
+          <div id="task_feedback" class="flex column gap-s wide" ondrop="dragTo('task_feedback')" ondragleave="removeHighlight('task_feedback')" ondragover="allowDrop(event); highlight('task_feedback')">           
           </div>
         </div>
         <div class="taskpit flex">
@@ -64,7 +64,7 @@
             <span class="taskhead">Done</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_done" class="flex column gap-s wide">              
+          <div id="task_done" class="flex column gap-s wide" ondrop="dragTo('task_done')" ondragleave="removeHighlight('task_done')" ondragover="allowDrop(event); highlight('task_done')">              
           </div>
         </div>
       </div>
