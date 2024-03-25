@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join-Board</title>
-    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/root.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
-    <link rel="stylesheet" href="./css/board.css" />    
+    <link rel="stylesheet" href="./css/board.css" />
     <script src="./js/board.js"></script>
     <script src="./js/menubar.js"></script>
   </head>
@@ -37,10 +37,16 @@
             <span class="taskhead">To do</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_todo" class="flex column gap-s wide" ondrop="dragTo('task_todo')" ondragleave="removeHighlight('task_todo')" ondragover="allowDrop(event); highlight('task_todo')">
+          <div
+            id="task_todo"
+            class="flex column gap-s wide"
+            ondrop="dragTo('todo');removeHighlight('task_todo')"
+            ondragleave="removeHighlight('task_todo')"
+            ondragover="allowDrop(event); highlight('task_todo')"
+          >
             <div class="emptybox flex center">
               <span>No tasks to do</span>
-            </div>            
+            </div>
           </div>
         </div>
         <div class="taskpit flex wrapper">
@@ -48,24 +54,39 @@
             <span class="taskhead">In progress</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_progress" class="flex column gap-s wide" ondrop="dragTo('task_progress')" ondragleave="removeHighlight('task_progress')" ondragover="allowDrop(event); highlight('task_progress')">            
-          </div>
+          <div
+            id="task_progress"
+            class="flex column gap-s wide"
+            ondrop="dragTo('progress');removeHighlight('task_progress')"
+            ondragleave="removeHighlight('task_progress')"
+            ondragover="allowDrop(event); highlight('task_progress')"
+          ></div>
         </div>
         <div class="taskpit flex">
           <div class="flex between wide columnhead">
             <span class="taskhead">Await&nbspfeedback</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_feedback" class="flex column gap-s wide" ondrop="dragTo('task_feedback')" ondragleave="removeHighlight('task_feedback')" ondragover="allowDrop(event); highlight('task_feedback')">           
-          </div>
+          <div
+            id="task_feedback"
+            class="flex column gap-s wide"
+            ondrop="dragTo('feedback');removeHighlight('task_feedback')"
+            ondragleave="removeHighlight('task_feedback')"
+            ondragover="allowDrop(event); highlight('task_feedback')"
+          ></div>
         </div>
         <div class="taskpit flex">
           <div class="flex between wide columnhead">
             <span class="taskhead">Done</span>
             <img src="./img/addblack.png" alt="add" />
           </div>
-          <div id="task_done" class="flex column gap-s wide" ondrop="dragTo('task_done')" ondragleave="removeHighlight('task_done')" ondragover="allowDrop(event); highlight('task_done')">              
-          </div>
+          <div
+            id="task_done"
+            class="flex column gap-s wide"
+            ondrop="dragTo('done');removeHighlight('task_done')"
+            ondragleave="removeHighlight('task_done')"
+            ondragover="allowDrop(event); highlight('task_done')"
+          ></div>
         </div>
       </div>
     </main>

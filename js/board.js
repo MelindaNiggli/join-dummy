@@ -82,17 +82,6 @@ function emptyColumns() {
   }
 }
 
-function renderTaskColumns(column) {
-  let filtered = tasks.filter(t => t['category'] == column);
-  let container = document.getElementById(`task_${column}`);
-  container.innerHTML = '';
-  for (let i = 0; i < filtered.length; i++) {
-    const task = filtered[i];
-    container.innerHTML += renderTaskHTML(task,i);
-    showAssigned(task.assigned,i);    
-  }
-}
-
 function renderTaskHTML(task,index) {
     return `
     <div class="taskbox" draggable="true" ondragstart="dragStart(${index})">

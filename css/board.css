@@ -171,6 +171,7 @@ input::placeholder {
 #task_todo, #task_progress, #task_feedback, #task_done {
   overflow-y: auto;
   padding:8px;
+  min-height:calc(100% - 37px);
   
 }
 
