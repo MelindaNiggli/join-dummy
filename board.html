@@ -19,7 +19,7 @@
           <h1>Board</h1>
           <div class="flex between gap">
             <div class="wrapper">
-              <input type="text" placeholder="Find Task" />
+              <input type="text" placeholder="Find Task" id="findtask" onkeyup="filterTasks()"/>
               <div class="flex between searchimg">
                 <img src="./img/vertbar.png" alt="bar" />
                 <div id="searchcontainer" class="flex center">
@@ -43,11 +43,7 @@
             ondrop="dragTo('todo');removeHighlight('task_todo')"
             ondragleave="removeHighlight('task_todo')"
             ondragover="allowDrop(event); highlight('task_todo')"
-          >
-            <div class="emptybox flex center">
-              <span>No tasks to do</span>
-            </div>
-          </div>
+          ></div>
         </div>
         <div class="taskpit flex wrapper">
           <div class="flex between wide columnhead">
