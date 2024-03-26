@@ -6,6 +6,7 @@
     <title>Join-Add-Task</title>
     <link rel="stylesheet" href="./css/menubar.css">
     <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/addtask.css">
     <script src="./js/menubar.js"></script>
 
 </head>
@@ -14,8 +15,33 @@
     <header include-html="./templates/header.html"></header>  
     <main>
       <h1>Add Task</h1>
-      <div></div>
-      <div></div>
+      <div id="maincontent" class="flex a-center">
+        <div class="flex column left-add">
+          <span>Title*</span>
+          <input type="text">
+          <span>Description</span>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <span>Assigned to</span>
+          <select name="users" id="dropusers">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+        <div class="divider"></div>
+        <div class="flex column right-add">
+          <span>Due date*</span>
+          <input type="date">
+        </div>
+      </div>
+      <div id="foot" class="flex between">
+        <span>*This field is required</span>
+        <div>
+          <button>Clear X</button>
+          <button>Create Task <img src="" alt="check"></button>
+        </div>
+      </div>
     </main>   
 </body>
 </html>
