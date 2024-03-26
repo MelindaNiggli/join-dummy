@@ -3,11 +3,15 @@ main {
 }
 
 .flex {
- display:flex;
+  display: flex;
 }
 
 .a-center {
   align-items: center;
+}
+
+.a-start {
+  align-items: flex-start;
 }
 
 .j-center {
@@ -23,7 +27,7 @@ main {
 }
 
 h1 {
-  margin:0;
+  margin: 0;
 }
 
 #maincontent {
@@ -31,26 +35,35 @@ h1 {
   margin-bottom: 138px;
 }
 
-.left-add {
+.taskbranch {
+  display:flex;
+  flex-direction: column;
   align-items: flex-start;
+  gap:8px;
 }
 
-input {
- width:440px;
- height:48px;
+.left-add {
+  align-items: flex-start;
+  gap:16px;
+}
+
+input, #category, #dropusers {
+  width: 440px;
+  height: 48px;
 }
 
 .divider {
-  height:424px;
-  width: 1px;
-  background-color: #D1D1D1;
+  height: 424px;
+  min-width: 1px;
+  background-color: #d1d1d1;
   margin: 0px 48px;
 }
 
 .right-add {
   align-items: flex-start;
+  gap:24px;
 }
 
 #foot {
-  width:977px;
+  width: 977px;
 }
