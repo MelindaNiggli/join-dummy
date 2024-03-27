@@ -15,15 +15,15 @@
     <header include-html="./templates/header.html"></header>  
     <main>
       <h1>Add Task</h1>
-      <div id="maincontent" class="flex a-center">
+      <div id="maincontent" class="flex a-start">
         <div class="flex column left-add">
           <div class="taskbranch">
             <span>Title<span class="required">*</span></span>
-            <input type="text" id="title" placeholder="Enter a title">
+            <input type="text" id="title" placeholder="Enter a title" maxlength="40">
           </div>
           <div class="taskbranch">
             <span>Description</span>
-            <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description"></textarea>
+            <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description" maxlength="105"></textarea>
           </div>
           <div class="taskbranch">
             <span>Assigned to</span>
@@ -39,19 +39,19 @@
         <div class="flex column right-add">
           <div class="taskbranch">
             <span>Due date<span class="required">*</span></span>
-            <input type="date" id="duedate" placeholder="dd/mm/yyyy">
+            <input type="date" id="duedate">
           </div>
           <div class="taskbranch">
             <span>Prio</span>
-            <div>
-              <button>Urgent <img src="./img/urgent.png" alt="urgent"></button>
-              <button>Medium <img src="./img/medium.png" alt="medium"></button>
-              <button>Low <img src="./img/low.png" alt="low"></button>
+            <div class="buttonbox">
+              <button class="priobutton">Urgent <img src="./img/urgent.png" alt="urgent"></button>
+              <button class="priobutton">Medium <img src="./img/medium.png" alt="medium"></button>
+              <button class="priobutton">Low <img src="./img/low.png" alt="low"></button>
             </div>
           </div>
           <div class="taskbranch">
             <span>Category<span class="required">*</span></span>
-            <select name="category" id="category">
+            <select name="category" id="category" class="decorated">
             <option value="technical">Technical</option>
             <option value="userstory">User Story</option>
             </select>
@@ -65,8 +65,8 @@
       <div id="foot" class="flex between">
         <span class="requiredspan"><span class="requiredspan required">*</span>This field is required</span>
         <div>
-          <button>Clear X</button>
-          <button>Create Task <img src="" alt="check"></button>
+          <button class="clear">Clear <img src="./img/x.png" alt="x"></button>
+          <button class="createtask">Create&nbspTask <img src="./img/checkinbutton.png" alt="check"></button>
         </div>
       </div>
     </main>   
