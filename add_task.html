@@ -18,12 +18,12 @@
       <div id="maincontent" class="flex a-center">
         <div class="flex column left-add">
           <div class="taskbranch">
-            <span>Title*</span>
-            <input type="text">
+            <span>Title<span class="required">*</span></span>
+            <input type="text" id="title" placeholder="Enter a title">
           </div>
           <div class="taskbranch">
             <span>Description</span>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description"></textarea>
           </div>
           <div class="taskbranch">
             <span>Assigned to</span>
@@ -38,8 +38,8 @@
         <div class="divider"></div>
         <div class="flex column right-add">
           <div class="taskbranch">
-            <span>Due date*</span>
-            <input type="date">
+            <span>Due date<span class="required">*</span></span>
+            <input type="date" id="duedate" placeholder="dd/mm/yyyy">
           </div>
           <div class="taskbranch">
             <span>Prio</span>
@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="taskbranch">
-            <span>Category*</span>
+            <span>Category<span class="required">*</span></span>
             <select name="category" id="category">
             <option value="technical">Technical</option>
             <option value="userstory">User Story</option>
@@ -58,12 +58,12 @@
           </div>
           <div class="taskbranch">
             <span>Subtasks</span>
-            <input type="text">
+            <input type="text" id="subtasks" placeholder="Add new subtask">
           </div>
         </div>
       </div>
       <div id="foot" class="flex between">
-        <span>*This field is required</span>
+        <span class="requiredspan"><span class="requiredspan required">*</span>This field is required</span>
         <div>
           <button>Clear X</button>
           <button>Create Task <img src="" alt="check"></button>

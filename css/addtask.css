@@ -28,6 +28,13 @@ main {
 
 h1 {
   margin: 0;
+  font-size:61px;
+  cursor: default;
+}
+
+span {
+  cursor: default;
+  font-size: 20px;
 }
 
 #maincontent {
@@ -47,10 +54,30 @@ h1 {
   gap:16px;
 }
 
+.required {
+  color: #FF8190;
+}
+
+.requiredspan {
+  font-size: 16px;
+}
+
 input, #category, #dropusers {
   width: 440px;
   height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;  
+  font-size: 20px;
 }
+
+::placeholder {
+  color: #d1d1d1;  
+}
+
+
+
+
+
 
 .divider {
   height: 424px;
