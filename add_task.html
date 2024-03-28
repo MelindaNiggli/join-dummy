@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/addtask.css">
     <script src="./js/menubar.js"></script>
+    <script src="./js/addtask.js"></script>
 
 </head>
 <body onload="includeHTML()">
@@ -27,12 +28,11 @@
           </div>
           <div class="taskbranch">
             <span>Assigned to</span>
-            <select name="users" id="dropusers">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
+            <div>
+              <input type="text" >
+              <div><img src="" alt="arrow"></div>
+              <div></div>
+            </div>
           </div>
         </div>
         <div class="divider"></div>
@@ -44,9 +44,9 @@
           <div class="taskbranch">
             <span>Prio</span>
             <div class="buttonbox">
-              <button class="priobutton">Urgent <img src="./img/urgent.png" alt="urgent"></button>
-              <button class="priobutton">Medium <img src="./img/medium.png" alt="medium"></button>
-              <button class="priobutton">Low <img src="./img/low.png" alt="low"></button>
+              <button class="priobutton" id="urgent" onclick="selectPrio(id)">Urgent <img src="./img/urgent.png" alt="urgent"></button>
+              <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id)">Medium <img src="./img/medium.png" alt="medium"></button>
+              <button class="priobutton" id="low" onclick="selectPrio(id)">Low <img src="./img/low.png" alt="low"></button>
             </div>
           </div>
           <div class="taskbranch">
