@@ -28,11 +28,17 @@
           </div>
           <div class="taskbranch">
             <span>Assigned to</span>
-            <div>
-              <input type="text" >
-              <div><img src="" alt="arrow"></div>
-              <div></div>
+            <div class="wrapper">
+              <input type="text" id="assignedinput">
+              <div class="roundicon" onclick="toggleAssignedDrop()"><img src="./img/arrowdown.png" alt="arrow" id="arrowassigned"></div>
+              <div class="assignedcontainer absolute" id="assigned-drop-menu">
+                <div class="flex a-center">
+                  <div class="usertag flex a-center j-center" style="background-color:#00ffff">MM</div>
+                  <span>Max Mustermann</span>
+                </div>
+              </div>
             </div>
+            <div id="tag-container"></div>
           </div>
         </div>
         <div class="divider"></div>

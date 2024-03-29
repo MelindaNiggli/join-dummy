@@ -3,3 +3,7 @@ function selectPrio(prio) {
   document.getElementById(prio).classList.add(`${prio}select`);
 }
 
+function toggleAssignedDrop() {
+  document.getElementById('arrowassigned').classList.toggle('rotate');
+  document.getElementById('assigned-drop-menu').classList.toggle('invis');
+}

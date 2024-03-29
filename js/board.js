@@ -162,7 +162,7 @@ function filterTasks() {
 }
 
 function renderAssigned(id, color, zIndex, left) {
-  return `<div class="usertag flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
+  return `<div class="usertag absolute flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
 }
 
 function dragTo(category) {
