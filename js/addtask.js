@@ -3,11 +3,17 @@ function selectPrio(prio) {
   document.getElementById(prio).classList.add(`${prio}select`);
 }
 
-function toggleAssignedDrop() {
-  document.getElementById('arrowassigned').classList.toggle('rotate');
-  document.getElementById('assigned-drop-menu').classList.toggle('invis');
+function toggleDrop(id) {
+  let container = document.getElementById(`${id}`);
+  container.firstElementChild.classList.toggle('rotate');
+  container.nextElementSibling.classList.toggle('invis');  
 }
 
 function checkUser(id) {
   document.getElementById(`${id}`).lastElementChild.classList.toggle('assigned-checked');
+}
+
+function selectCategory(category) {
+  toggleDrop('arrowcategory');
+  document.getElementById('category-input').value = category;
 }
