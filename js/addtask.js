@@ -7,3 +7,7 @@ function toggleAssignedDrop() {
   document.getElementById('arrowassigned').classList.toggle('rotate');
   document.getElementById('assigned-drop-menu').classList.toggle('invis');
 }
+
+function checkUser(id) {
+  document.getElementById(`${id}`).lastElementChild.classList.toggle('assigned-checked');
+}

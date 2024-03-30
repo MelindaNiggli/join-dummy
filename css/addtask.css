@@ -45,7 +45,7 @@ span {
 .taskbranch {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  
+  align-items: flex-start;
   gap: 8px;
   width: 440px;
 }
@@ -76,7 +76,8 @@ input:not([type="checkbox"]) {
   padding: 12px 21px;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border: 1px solid var(--join-blue);
   outline: none;
 }
@@ -90,12 +91,13 @@ input:focus, textarea:focus {
   color: black;
 }
 
-input:not(#assigned-input)::placeholder, textarea::placeholder {  
+input:not(#assigned-input)::placeholder,
+textarea::placeholder {
   color: #d1d1d1;
 }
 
 #assigned-input::placeholder {
-  color:black;
+  color: black;
 }
 
 textarea {
@@ -205,26 +207,45 @@ textarea {
   background-color: white;
   border-radius: 10px;
   top: 35px;
-  width: 440px;  
+  width: 440px;
   max-height: 248px;
-  overflow-y:auto;
+  overflow-y: auto;
   padding-top: 24px;
 }
 
 .assignedbox {
-  height:56px;
+  height: 56px;
   width: 100%;
   padding: 0px 16px 0px 16px;
   border-radius: 10px;
 }
 
+.assignedbox span {
+  cursor: pointer;
+}
+
 #assigned-input {
-  position:relative;
+  position: relative;
   z-index: 2;
 }
 
 .assignedbox:hover {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+.assigned-check {
+  background-image: url('../img/checkbox.png');
+  width:24px;
+  height:24px; 
+}
+
+.assigned-checked {
+  background-image: url('../img/checkedbox.png'); 
+  position:relative;
+  top:-1px;
+  width:24px;
+  height:24px;
 }
 
 .clear {

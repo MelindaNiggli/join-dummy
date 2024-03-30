@@ -32,40 +32,40 @@
               <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
               <div class="roundicon wrapper" onclick="toggleAssignedDrop()"><img src="./img/arrowdown.png" alt="arrow" id="arrowassigned"></div>
               <div class="invis absolute" id="assigned-drop-menu">
-                <div class="flex a-center between assignedbox">
+                <div class="flex a-center between assignedbox" id="c1" onclick="checkUser(id)">
                   <div class="flex a-center gap-s">
                     <div class="usertag flex a-center j-center" style="background-color:#00ffff">MM</div>
                     <span>Max Mustermann</span>
                   </div> 
-                  <input type="checkbox">                 
+                  <div class="assigned-check"> </div>                 
                 </div>
-                <div class="flex a-center between assignedbox">
+                <div class="flex a-center between assignedbox" id="c2" onclick="checkUser(id)">
                   <div class="flex a-center gap-s">
                     <div class="usertag flex a-center j-center" style="background-color:#9900ff">LL</div>
                     <span>Louise Lukas</span>
                   </div> 
-                  <input type="checkbox">                 
+                  <div class="assigned-check"></div>                 
                 </div> 
-                <div class="flex a-center between assignedbox">
+                <div class="flex a-center between assignedbox" id="c3" onclick="checkUser(id)">
                   <div class="flex a-center gap-s">
                     <div class="usertag flex a-center j-center" style="background-color:#ff00ff">PP</div>
                     <span>Peter Pan</span>
                   </div> 
-                  <input type="checkbox">                 
+                  <div class="assigned-check"></div>                 
                 </div>  
-                <div class="flex a-center between assignedbox">
+                <div class="flex a-center between assignedbox" id="c4" onclick="checkUser(id)">
                   <div class="flex a-center gap-s">
                     <div class="usertag flex a-center j-center" style="background-color:#ff5055">OR</div>
                     <span>Oliver Rittierodt</span>
                   </div> 
-                  <input type="checkbox">                 
+                  <div class="assigned-check"></div>                 
                 </div> 
-                <div class="flex a-center between assignedbox">
+                <div class="flex a-center between assignedbox" id="c5" onclick="checkUser(id)">
                   <div class="flex a-center gap-s">
                     <div class="usertag flex a-center j-center" style="background-color:#dddd55">TB</div>
                     <span>Test Ballon</span>
                   </div> 
-                  <input type="checkbox">                 
+                  <div class="assigned-check"></div>                 
                 </div>                          
               </div>   
             </div>                     
