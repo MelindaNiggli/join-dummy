@@ -1,8 +1,25 @@
+function loadAmount(){
+  const todoCount = countTodoTasks();
+  const progressCount = countTodoProgress();
+  
+  const todoAmountContainer = document.getElementById('toDoAmount');
+  const progressAmountContainer = document.getElementById('progressAmount');
+  
+  todoAmountContainer.innerHTML = `${todoCount}`;
+  progressAmountContainer.innerHTML = `${progressCount}`;
+};
+
+function showTasks() {
+  const todoTasks = countTodoTasks();
+  const showAmount = document.getElementById('toDoAmount');
+  showAmount.innerHTML += `${todoTasks}`;
+}
+
 function updateGreeting() {
   const now = new Date();
   const hour = now.getHours();
 
-  let greetingText; // Declare variable to hold the greeting text
+  let greetingText;
 
   if (hour < 12) {
     greetingText = "Good morning";
@@ -12,15 +29,16 @@ function updateGreeting() {
     greetingText = "Good evening";
   }
 
-  // Access and update the element's text content
   const greetElement = document.getElementById('greet');
-  if (greetElement) { // Check if element exists before accessing
+  if (greetElement) { 
     greetElement.textContent = greetingText;
   } else {
-    console.error("Element with ID 'greet' not found!"); // Handle missing element
+    console.error("Element with ID 'greet' not found!");
   }
 }
- 
+loadAmount();
 updateGreeting();
-setInterval(updateGreeting, 1000); // Update every second
+setInterval(updateGreeting, 1000);
+
+
 

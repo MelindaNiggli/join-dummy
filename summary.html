@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/summary.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
     <script src="./js/menubar.js"></script>
+    <script src="./js/board.js"></script>
   </head>
   <body onload="includeHTML()">
     <div include-html="./templates/menubar.html"></div>
@@ -34,7 +35,7 @@
               <a href="board.html" class="to-do-right">
                 <img class="to-do-img" src="img/check.png" alt="check" />
                 <div>
-                  <div class="number">1</div>
+                  <div id="progressAmount" class="number"></div>
                   <br />
                   <div>Done</div>
                 </div>
@@ -78,7 +79,6 @@
         <h2 class="summary-name">Sofia Müller</h2>
       </div>
     </main>
-
     <script src="./js/summary.js"></script>
   </body>
 </html>

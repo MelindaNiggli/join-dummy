@@ -187,6 +187,20 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
+function countTodoTasks() {
+  const todoContainer = document.getElementById('task_todo');
+  const todoTasks = todoContainer.getElementsByClassName('taskbox');
+  const countTasks = todoTasks.length;
+  return countTasks;
+}
+
+function countTodoProgress() {
+  const progressContainer = document.getElementById('task_progress');
+  const todoProgress = progressContainer.getElementsByClassName('taskbox');
+  const countProgress = todoProgress.length;
+  return countProgress;
+}
+
 
 
 
