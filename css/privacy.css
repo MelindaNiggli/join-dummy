@@ -1,0 +1,64 @@
+.privacy-main {
+    background-color: rgba(246, 247, 248, 1);
+    overflow: scroll;
+    height: calc(100vh - 206px);
+    padding-left: 100px;
+    padding-top: 105px;
+    padding-right: 64px;
+}
+
+.privacy-headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.headline {
+    width: 419px;
+    height: 73px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Inter;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: left;
+}
+
+.arrow {
+    width: 37px;
+    height: 37px;
+    top: 225px;
+    left: 1307px;
+    padding: 3px 2.5px 2px 2.5px;
+    gap: 0px;
+    opacity: 0px;
+    cursor: pointer;
+}
+
+.main-content p {
+    color: rgba(0, 0, 0, 1);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+}
+
+.main-content ul {
+    padding-left: 20px;
+}
+
+.responsible {
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 32.4px;
+    padding-bottom: 8px;
+    padding-top: 16px;
+}
+
+.privacy-mail {
+   display: inline-block;
+   padding: 0;
+}
