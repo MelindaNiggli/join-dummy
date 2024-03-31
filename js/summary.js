@@ -1,9 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const todoCount = countTodoTasks();
-  const todoAmountContainer = document.getElementById('toDoAmount');
-  
-  todoAmountContainer.innerHTML = `${todoCount}`;
-});
+function updateSummaryCounts() {
+  // Überprüfen, ob die Elemente im HTML gefunden wurden
+  const toDoAmountElement = document.getElementById("toDoAmount");
+  const progressAmountElement = document.getElementById("progressAmount");
+  const feedbackAmountElement = document.getElementById("feedbackAmount");
+  const doneAmountElement = document.getElementById("doneAmount");
+
+  // Falls ein oder mehrere Elemente nicht gefunden wurden, brechen wir hier ab
+  if (!toDoAmountElement || !progressAmountElement || !feedbackAmountElement || !doneAmountElement) {
+    return;
+  }
+
+  // Aufruf der countTasksByCategory() Funktion, um die aktuellen Zahlen zu erhalten
+  const counts = countTasksByCategory();
+
+  // Aktualisieren der Elemente im HTML mit den neuen Zahlen
+  toDoAmountElement.textContent = counts.todo || 0;
+  progressAmountElement.textContent = counts.progress || 0;
+  feedbackAmountElement.textContent = counts.feedback || 0;
+  doneAmountElement.textContent = counts.done || 0;
+  console.log("Aktuelle Taskzählungen:", counts);
+}
+ 
 
 function showTasks() {
   const todoTasks = countTodoTasks();
@@ -28,13 +45,13 @@ function updateGreeting() {
   const greetElement = document.getElementById('greet');
   if (greetElement) { 
     greetElement.textContent = greetingText;
-  } else {
-    console.error("Element with ID 'greet' not found!");
   }
 }
-loadAmount();
 updateGreeting();
-setInterval(updateGreeting, 1000);
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateSummaryCounts();
+});
 
 
 

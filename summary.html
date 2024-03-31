@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="./css/summary.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
     <script src="./js/script.js"></script>
-    <script src="./js/board.js"></script>
     <script src="./js/summary.js"></script>
+    <script src="./js/board.js"></script>
+    
   </head>
   <body onload="includeHTML()">
     <div include-html="./templates/menubar.html"></div>
@@ -36,7 +37,7 @@
               <a href="board.html" class="to-do-right">
                 <img class="to-do-img" src="img/check.png" alt="check" />
                 <div>
-                  <div id="progressAmount" class="number"></div>
+                  <div id="doneAmount" class="number"></div>
                   <br />
                   <div>Done</div>
                 </div>
@@ -65,11 +66,11 @@
             <div>Tasks in Board</div>
           </a>
           <a href="board.html" class="task">
-            <div class="number">2</div>
+            <div id="progressAmount" class="number">2</div>
             <div>Tasks in Progress</div>
           </a>
           <a href="board.html" class="task">
-            <div class="number">2</div>
+            <div id="feedbackAmount" class="number">2</div>
             <div>Awaiting Feedback</div>
           </a>
         </div>

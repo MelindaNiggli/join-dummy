@@ -20,6 +20,7 @@ function updateTasks() {
     showAssigned(task,task.assigned,i);
   }  
   setNoTaskBox(); 
+  updateSummaryCounts();
 }
 
 function setNoTaskBox() {
@@ -134,17 +135,22 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-function countTodoTasks() {
-  const todoTasks = tasks.filter(task => task.category === 'todo');
-  return todoTasks.length;
-}
+function countTasksByCategory() {
+  const taskCounts = {};
 
-function countTodoProgress() {
-  const progressContainer = document.getElementById('task_progress');
-  const todoProgress = progressContainer.getElementsByClassName('taskbox');
-  const countProgress = todoProgress.length;
-  return countProgress;
+  for (const column of columns) {
+    taskCounts[column] = 0;
+  }
+
+  for (const task of tasks) {
+    const category = task.category;
+    taskCounts[category]++;
+  }
+
+  return taskCounts; // Rückgabe des Objekts statt Ausgabe in der Konsole
 }
+countTasksByCategory();
+
 
 
 
