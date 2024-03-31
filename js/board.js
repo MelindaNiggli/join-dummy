@@ -188,10 +188,8 @@ function removeHighlight(id) {
 }
 
 function countTodoTasks() {
-  const todoContainer = document.getElementById('task_todo');
-  const todoTasks = todoContainer.getElementsByClassName('taskbox');
-  const countTasks = todoTasks.length;
-  return countTasks;
+  const todoTasks = tasks.filter(task => task.category === 'todo');
+  return todoTasks.length;
 }
 
 function countTodoProgress() {

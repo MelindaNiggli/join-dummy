@@ -1,13 +1,9 @@
-function loadAmount(){
+document.addEventListener('DOMContentLoaded', function() {
   const todoCount = countTodoTasks();
-  const progressCount = countTodoProgress();
-  
   const todoAmountContainer = document.getElementById('toDoAmount');
-  const progressAmountContainer = document.getElementById('progressAmount');
   
   todoAmountContainer.innerHTML = `${todoCount}`;
-  progressAmountContainer.innerHTML = `${progressCount}`;
-};
+});
 
 function showTasks() {
   const todoTasks = countTodoTasks();
