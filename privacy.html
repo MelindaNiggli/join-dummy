@@ -16,7 +16,7 @@
     <main class="privacy-main">
         <div class="privacy-headline">
             <h1 class="headline">Privacy Policy</h1>
-            <img class="arrow" src="./img/arrow-left-line.svg" alt="arrow-left">
+            <img onclick="goback()" class="arrow" src="./img/arrow-left-line.svg" alt="arrow-left">
         </div>
         <div class="main-content">
             <h3 class="responsible">Verantwortlicher</h3>
@@ -72,6 +72,12 @@
                 third parties, such as payment service providers, is necessary for the performance of a contract pursuant to Art. 6(1)(b) GDPR), if you 
                 have consented, if a legal obligation provides for it, or based on our legitimate interests (e.g., when using agents, web hosts, etc.).</p>
         </div>
-    </main>   
+    </main> 
+    
+    <script>
+        function goback() {
+            history.back();
+        }
+    </script>
 </body>
 </html>
