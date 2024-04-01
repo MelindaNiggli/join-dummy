@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/menubar.css">
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/addtask.css">
-    <script src="./js/menubar.js"></script>
+    <script src="./js/script.js"></script>
     <script src="./js/addtask.js"></script>
 
 </head>
@@ -28,11 +28,48 @@
           </div>
           <div class="taskbranch">
             <span>Assigned to</span>
-            <div>
-              <input type="text" >
-              <div><img src="" alt="arrow"></div>
-              <div></div>
-            </div>
+            <div class="wrapper">
+              <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
+              <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrowdown.png" alt="arrow"></div>
+              <div class="invis absolute" id="drop-menu">
+                <div class="flex a-center between dropbox" id="c1" onclick="checkUser(id)">
+                  <div class="flex a-center gap-s">
+                    <div class="usertag flex a-center j-center" style="background-color:#00ffff">MM</div>
+                    <span>Max Mustermann</span>
+                  </div> 
+                  <div class="assigned-check"> </div>                 
+                </div>
+                <div class="flex a-center between dropbox" id="c2" onclick="checkUser(id)">
+                  <div class="flex a-center gap-s">
+                    <div class="usertag flex a-center j-center" style="background-color:#9900ff">LL</div>
+                    <span>Louise Lukas</span>
+                  </div> 
+                  <div class="assigned-check"></div>                 
+                </div> 
+                <div class="flex a-center between dropbox" id="c3" onclick="checkUser(id)">
+                  <div class="flex a-center gap-s">
+                    <div class="usertag flex a-center j-center" style="background-color:#ff00ff">PP</div>
+                    <span>Peter Pan</span>
+                  </div> 
+                  <div class="assigned-check"></div>                 
+                </div>  
+                <div class="flex a-center between dropbox" id="c4" onclick="checkUser(id)">
+                  <div class="flex a-center gap-s">
+                    <div class="usertag flex a-center j-center" style="background-color:#ff5055">OR</div>
+                    <span>Oliver Rittierodt</span>
+                  </div> 
+                  <div class="assigned-check"></div>                 
+                </div> 
+                <div class="flex a-center between dropbox" id="c5" onclick="checkUser(id)">
+                  <div class="flex a-center gap-s">
+                    <div class="usertag flex a-center j-center" style="background-color:#dddd55">TB</div>
+                    <span>Test Ballon</span>
+                  </div> 
+                  <div class="assigned-check"></div>                 
+                </div>                          
+              </div>   
+            </div>                     
+            <div id="tag-container"></div>
           </div>
         </div>
         <div class="divider"></div>
@@ -51,14 +88,30 @@
           </div>
           <div class="taskbranch">
             <span>Category<span class="required">*</span></span>
-            <select name="category" id="category" class="decorated">
-            <option value="technical">Technical</option>
-            <option value="userstory">User Story</option>
+            <div class="wrapper">
+              <input type="text" id="category-input" class="wrapper" placeholder="Select task category" disabled="disabled">
+              <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowcategory"><img src="./img/arrowdown.png" alt="arrow"></div>
+              <div class="invis absolute" id="drop-menu">
+                <div class="flex a-center between dropbox" onclick="selectCategory('Technical Task')">
+                  <div class="flex a-center">                    
+                    <span>Technical Task</span>
+                  </div>                                   
+                </div>
+                <div class="flex a-center between dropbox" onclick="selectCategory('User Story')">
+                  <div class="flex a-center">                    
+                    <span>User Story</span>
+                  </div>                                   
+                </div>                         
+              </div>   
+            </div>
             </select>
           </div>
           <div class="taskbranch">
             <span>Subtasks</span>
-            <input type="text" id="subtasks" placeholder="Add new subtask">
+            <div class="relative">
+              <input type="text" id="subtasks" placeholder="Add new subtask" disabled="disabled">
+              <div class="roundicon"><img src="./img/plusblack.png" alt="plus"></div>
+            </div>
           </div>
         </div>
       </div>

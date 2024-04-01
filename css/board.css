@@ -274,8 +274,7 @@ input::placeholder {
   width:136px;
 }
 
-.usertag {
-  position: absolute;  
+.usertag {    
   border-radius:50%;
   border:2px solid white;  
   color: white;

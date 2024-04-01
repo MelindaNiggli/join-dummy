@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="./css/root.css" />
     <link rel="stylesheet" href="./css/summary.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
-    <script src="./js/menubar.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/summary.js"></script>
+    <script src="./js/board.js"></script>
+    
   </head>
   <body onload="includeHTML()">
     <div include-html="./templates/menubar.html"></div>
@@ -22,27 +25,27 @@
       <div class="summary-board-container">
         <div class="todo-container">
           <div class="to-do">
-            <div class="to-do-left">
+            <a href="board.html" class="to-do-left">
               <img src="img/pencil.png" alt="pencil" />
               <div>
-                <div class="number">1</div>
+                <div id="toDoAmount"class="number"></div>
                 <br />
                 <div>To-do</div>
               </div>
-            </div>
+            </a>
             <div>
-              <div class="to-do-right">
+              <a href="board.html" class="to-do-right">
                 <img class="to-do-img" src="img/check.png" alt="check" />
                 <div>
-                  <div class="number">1</div>
+                  <div id="doneAmount" class="number"></div>
                   <br />
                   <div>Done</div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
-        <div class="date-container">
+        <a href="board.html" class="date-container">
           <div class="date-left">
             <img src="img/redurgent.png" alt="" />
             <div>
@@ -56,27 +59,28 @@
             <div class="actual-date">October 16, 2022</div>
             <div class="date-text">Upcoming Deadline</div>
           </div>
-        </div>
+        </a>
         <div class="task-container">
-          <div class="task">
+          <a href="board.html" class="task">
             <div class="number">5</div>
             <div>Tasks in Board</div>
-          </div>
-          <div class="task">
-            <div class="number">2</div>
+          </a>
+          <a href="board.html" class="task">
+            <div id="progressAmount" class="number">2</div>
             <div>Tasks in Progress</div>
-          </div>
-          <div class="task">
-            <div class="number">2</div>
+          </a>
+          <a href="board.html" class="task">
+            <div id="feedbackAmount" class="number">2</div>
             <div>Awaiting Feedback</div>
-          </div>
+          </a>
         </div>
       </div>
 
       <div class="summary-greet-container">
-        <h2 class="summary-greet">Good moring,</h2>
+        <h2 id="greet" class="summary-greet"></h2>
         <h2 class="summary-name">Sofia Müller</h2>
       </div>
     </main>
+    <script src="./js/summary.js"></script>
   </body>
 </html>

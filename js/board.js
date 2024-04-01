@@ -1,56 +1,3 @@
-let tasks = [
-    {
-        "category": "todo",
-        "label": "User Story",
-        "title": "Einführung neuer Funktionen",
-        "description": "Implementierung von Benutzeranmeldefunktionen und Profilseiten",
-        "date": "2024-04-10",
-        "subtasks": [1, "Benutzeranmeldung erstellen", "Profilseiten-Layout gestalten"],
-        "priority": "medium",
-        "assigned": [["Max Mustermann", "#ff0000"], ["Anna Müller", "#00ff00"], ["Lisa Wagner", "#0000ff"], ]
-    },
-    {
-        "category": "progress",
-        "label": "Technical",
-        "title": "Datenbankoptimierung",
-        "description": "Optimierung der Datenbankabfragen für verbesserte Leistung",
-        "date": "2024-04-15",
-        "subtasks": [2,"Indizes hinzufügen", "Abfragen überprüfen und optimieren", "Backup-Routinen überprüfen"],
-        "priority": "urgent",
-        "assigned": [["John Doe", "#ffff00"], ["Sarah Schmidt", "#ff00ff"]]
-    },
-    {
-        "category": "feedback",
-        "label": "User Story",
-        "title": "Benutzerfreundlichkeit verbessern",
-        "description": "Verbesserung der Benutzeroberfläche für eine bessere Benutzererfahrung",
-        "date": "2024-04-20",
-        "subtasks": [0],
-        "priority": "low",
-        "assigned": [["Michaela Maier", "#00ffff"]]
-    },
-    {
-        "category": "done",
-        "label": "Technical",
-        "title": "Sicherheitspatching",
-        "description": "Installation von Sicherheitsupdates und Patches zur Behebung von Sicherheitslücken",
-        "date": "2024-03-28",
-        "subtasks": [2, "Update auf neueste Softwareversion", "Überprüfung der Sicherheitskonfiguration"],
-        "priority": "medium",
-        "assigned": [["Emily Smith", "#ff8800"], ["David Becker", "#888888"]]
-    },
-    {
-        "category": "todo",
-        "label": "User Story",
-        "title": "Integration von Zahlungsgateways",
-        "description": "Integration von PayPal und Kreditkartenzahlungen in die Plattform",
-        "date": "2024-04-05",
-        "subtasks": [0, "PayPal-API integrieren", "Kreditkartenverarbeitung implementieren", "Fehlerbehandlung hinzufügen"],
-        "priority": "urgent",
-        "assigned": [["Daniel Johnson", "#00ff88"], ["Sophie Müller", "#ff0088"]]
-    }
-];
-
 let columns = ['todo','progress','feedback','done'];
 
 function Task(category, label, title, description, date, subtasks, priority, assigned) {
@@ -73,6 +20,7 @@ function updateTasks() {
     showAssigned(task,task.assigned,i);
   }  
   setNoTaskBox(); 
+  updateSummaryCounts();
 }
 
 function setNoTaskBox() {
@@ -162,7 +110,7 @@ function filterTasks() {
 }
 
 function renderAssigned(id, color, zIndex, left) {
-  return `<div class="usertag flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
+  return `<div class="usertag absolute flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
 }
 
 function dragTo(category) {
@@ -186,3 +134,24 @@ function highlight(id) {
 function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
+
+function countTasksByCategory() {
+  const taskCounts = {};
+
+  for (const column of columns) {
+    taskCounts[column] = 0;
+  }
+
+  for (const task of tasks) {
+    const category = task.category;
+    taskCounts[category]++;
+  }
+
+  return taskCounts; // Rückgabe des Objekts statt Ausgabe in der Konsole
+}
+countTasksByCategory();
+
+
+
+
+
