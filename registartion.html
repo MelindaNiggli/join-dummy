@@ -9,14 +9,10 @@
     <title>Sign In</title>
 </head>
 <body onload="init()">
-
-    <img id="logo" class="join-logo" src="./img/join-logo.svg" alt="">
-
-
-
-
+    <img class="join-logo-footer" src="./img/join-logo.svg" alt="">
+    <div id="messageBox"></div>
     <form id="registration" onsubmit="addUser(); return false;">
-        <a href="./login.html"><img class="back" src="./img/arrow-left-line.svg" alt="arrow left"></a>
+        <a  href="./login.html"><img class="back" src="./img/arrow-left-line.svg" alt="arrow left"></a>
         <div class="wrapper-heading">
             <h1>Sign up</h1>
             <span class="linie"></span>
@@ -49,6 +45,7 @@
     </form>
     <script src="./js/storage.js"></script>
     <script src="./js/register.js"></script>
+    <script src="./js/login.js"></script>
     <footer>
         <a href="./privacy.html">Privacy Policy</a>
         <a href="./legal.html">Legal Notice</a>

@@ -1,5 +1,3 @@
-
-
 let users = [];
 const colors = [
     '#0038FF',
@@ -31,30 +29,98 @@ async function loadUsers(){
     }
 }
 
+// Zufällige Farbe auswählen
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
-
-// Zufällige Farbe auswählen
 let color = getRandomColor();
-
 let registerBtn = document.getElementById('registerBTN')
-async function addUser() {
 
-    registerBtn.disabled = true;
-    users.push({
-        name: nameUser.value,
-        email: email.value,
-        password: password.value,
-        passwordAgain: passwordAgain.value,
-        color: color
-    });
-    await setItem('users', JSON.stringify(users));
-    resetForm();
-    window.location.href = 'login.html?msg=You Signed Up successfully';
+
+// Das Passwort hashen
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
 }
 
+// Fehlermeldungen
+
+//RED
+function red(){
+    const msg =  document.getElementById('messageBox');
+    msg.style.background = 'red';
+    msg.style.padding = '25px';
+    msg.style.borderRadius = '20px';
+    msg.style.color = 'white';
+    msg.style.fontSize ='20px'
+}
+
+function messageRedPasswort(){
+    const msg =  document.getElementById('messageBox');
+    msg.innerHTML = `It's not the same Password, please try again !`;
+    red();
+}
+
+function messageRedCheckbox(){
+    const msg =  document.getElementById('messageBox');
+    msg.innerHTML = `Please agree the Checkbox before proceeding!`;
+    red();
+}
+
+function messageSuccessfully(){
+    const msg =  document.getElementById('messageBox')
+    msg.innerHTML = `You Signed Up successfully`
+    msg.style.background = 'var(--join-black)';
+    msg.style.padding = '25px';
+    msg.style.borderRadius = '20px';
+    msg.style.color = 'white';
+    msg.style.fontSize ='20px'
+}
+function messageEmailRegistered(){
+    const msg =  document.getElementById('messageBox')
+    msg.innerHTML = `Email Address Already Registered`
+    red();
+}
+
+// Add user
+async function addUser() {
+    let checkbox = document.getElementById('remember-me');
+    const hashedPassword = await hashPassword(password.value);
+    const hashedPasswordAgain = await hashPassword(passwordAgain.value);
+    
+    // Überprüfen, ob die Checkbox angeklickt wurde und die E-Mail-Adresse bereits registriert ist
+    const isEmailRegistered = users.some(user => user.email === email.value);
+    
+    if (password.value === passwordAgain.value && !checkbox.checked == false && !isEmailRegistered) {
+        users.push({
+            name: nameUser.value,
+            email: email.value,
+            password: hashedPassword,
+            passwordAgain: hashedPasswordAgain,
+            color: color
+        });
+        await setItem('users', JSON.stringify(users));
+        resetForm();
+        messageSuccessfully(); // Positive Meldung zur Registrierung
+    } else { 
+        if (!checkbox.checked == true && !isEmailRegistered) {
+            messageRedCheckbox(); // Fehlermeldung Checkbox
+        } 
+        if (isEmailRegistered) {
+            messageEmailRegistered(); // Fehlermeldung E-Mail bereits registriert
+        }
+        if (password.value !== passwordAgain.value) {
+            messageRedPasswort(); // Fehlermeldung Passwort
+        }  
+    }
+}
+
+// Formulat zurücksenden
 function resetForm() {
     nameUser.value = '';
     email.value = '';

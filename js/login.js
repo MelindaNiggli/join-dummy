@@ -5,9 +5,10 @@ function loadAnimation() {
         // Verstecke den Loader
         logo.style.width = '100.03px';
         logo.style.position = 'absolute';
-        logo.style.top = '80px';
+        logo.style.top = '100px';
         logo.style.left = '77px';
         logo.style.transition = '1s ease-in'
+        logo.style.transform = ''
     
         // Rufe deine JavaScript-Funktion auf
 
@@ -16,17 +17,20 @@ function loadAnimation() {
     }, 500); // 1000 Millisekunden = 1 Sekunde
     setTimeout(function() {
         ContentLogin();
-    }, 1700); // 1000 Millisekunden = 1 Sekunde
+    }, 1000); // 1000 Millisekunden = 1 Sekunde
 }
 
 function ContentLogin(){
-    let content= document.getElementById('wrapperLogin').innerHTML += 
+
+    let content = document.getElementById('wrapperLogin');
+
+    content.innerHTML += 
     `
     <div class="wrapper-sing-up"> 
         <p>Not a Join user?</p>
         <a href="./registartion.html">Sign up</a>
     </div>
-    <form style="trasnition: 8s ease-in" onsubmit="login(); return false">
+    <form id="formLogin" onsubmit="login(); return false">
         <div class="wrapper-heading">
             <h1>Log in</h1>
             <span class="linie"></span>
@@ -49,15 +53,14 @@ function ContentLogin(){
             <button onclick="">Log in</button>
             <button>Guest Log in</button>
         </div>
-    </form>
-    
-    <div id="messageBox"></div>
-    
+    </form>    
     <footer>
         <a href="./privacy.html">Privacy Policy</a>
         <a href="./legal.html">Legal Notice</a>
     </footer>
     `;
+ 
+ 
 
 }
 
@@ -73,15 +76,6 @@ async function loadUsers(){
         console.error('Loading error:', e);
     }
 }
-
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
-const messageBox = document.getElementById('messageBox'); 
-
-if (msg) {
-    messageBox.innerHTML = msg; 
-}
-
 
 
 function login(){

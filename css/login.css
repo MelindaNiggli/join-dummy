@@ -1,10 +1,15 @@
 body {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    position: relative;
   }
   
 a{
     text-decoration: none;
+}
+button{
+    cursor: pointer;
 }
 body {
     background: var(--bg);
@@ -13,10 +18,18 @@ body {
     align-items: center;
     height: 100vh;
 }
+#wrapperLogin {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .join-logo {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 100;
     width: 200px;
     transition:  1s ease-in;
@@ -24,6 +37,10 @@ body {
     -moz-transition:  1s ease-in;
     -ms-transition:  1s ease-in;
     -o-transition:  1s ease-in;
+    -webkit-transform:;
+    -moz-transform:;
+    -ms-transform:;
+    -o-transform:;
 }
 .wrapper-sing-up{
     position: absolute;
@@ -41,7 +58,7 @@ body {
     margin-left: 35px;
 }
 h1 {
-    
+
     font-size: var(--h1);
     text-align: center;
 }
@@ -64,6 +81,15 @@ form {
     align-items: center;
     justify-content: space-around;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.03);
+    transition: 2s ease-in;
+    -webkit-transform:;
+    -moz-transform:;
+    -ms-transform:;
+    -o-transform:;
+    -webkit-transition: 2s ease-in;
+    -moz-transition: 2s ease-in;
+    -ms-transition: 2s ease-in;
+    -o-transition: 2s ease-in;
 }
 .wrapper-input {
     display: flex;
@@ -124,6 +150,10 @@ input::placeholder{
     color: var(--join-black);
     background: var(--white)
 }
+footer {
+	position: absolute;
+	bottom: 35px;
+}
 footer a {
     padding: 8px;
     font-size: 16px;
@@ -171,11 +201,28 @@ footer a {
 
 
 /* Sign up */
+
+.join-logo-footer {
+    position: absolute!important;
+    width: 100.03px!important;
+    top: 100px!important;
+    left: 77px!important;
+}
 .checkbox span {
     color: var(--join-blue);
 }
 .checkbox {
-     color: #A8A8A8;
+	color: #A8A8A8;
+	text-align: center;
+}
+#registration .wrapper-button {
+	display: flex;
+	justify-content: center;
+}
+#messageBox {
+	top: 100px;
+	right: 77px;
+	position: absolute;
 }
 
 .back {
@@ -193,4 +240,8 @@ footer a {
     height: 630px !important;
   }
 
+
+  #registerBTN {
+    margin-top: 34.3px;
+  }
   
