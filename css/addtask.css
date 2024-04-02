@@ -181,6 +181,16 @@ textarea {
   }
 }
 
+.iconcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;  
+  gap:1px;
+  top: 8px;
+  right: 16px; 
+}
+
 .roundicon {
   display: flex;
   align-items: center;
@@ -193,10 +203,19 @@ textarea {
   transition: all 0.1s ease-in-out;
 }
 
-.roundicon:hover {
+.roundicon:hover,.x-icon:hover {
   border-radius: 50%;
   background-color: #eeeeee;
   cursor: pointer;
+}
+
+.x-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  padding: 4px;
+  gap: 16px;  
+  transition: all 0.1s ease-in-out;
 }
 
 .rotate {

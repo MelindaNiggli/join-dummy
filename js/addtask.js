@@ -17,3 +17,8 @@ function selectCategory(category) {
   toggleDrop('arrowcategory');
   document.getElementById('category-input').value = category;
 }
+
+function enableSubtasksInput() {
+  let field = document.getElementById('subtasks');
+  
+}
