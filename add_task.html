@@ -108,18 +108,19 @@
           </div>
           <div class="taskbranch">
             <span>Subtasks</span>
-            <div class="relative">
-              <input type="text" id="subtasks" placeholder="Add new subtask" disabled="disabled" onclick="enableSubtasksInput()">
+            <div class="relative">             
+               <input type="text" id="subtasks" placeholder="Add new subtask" disabled>             
               <div class="iconcontainer">
-                <div class="x-icon"><img src="./img/x.png" alt="x"></div>                
-                <img src="./img/vertbar.png" alt="divider">
-                <div class="x-icon"><img src="./img/checksmall.png" alt="check"></div>                
-                <div class="x-icon"><img src="./img/plusblack.png" alt="plus"></div>
+                <div class="invis" id="subtask-active-icons">
+                  <div class="x-icon flex" onclick="clearInput()"><img src="./img/x.png" alt="x"></div>                
+                  <img src="./img/vertbar.png" alt="divider">
+                  <div class="x-icon flex" onclick="clearInput()"><img src="./img/checksmall.png" alt="check"></div>
+                </div>
+                <div class="x-icon flex" onclick="enableSubtasksInput()"><img src="./img/plusblack.png" alt="plus"></div>
               </div>
               <div id="createdsubtasks">
 
               </div>
-
             </div>
           </div>
         </div>

@@ -210,12 +210,15 @@ textarea {
 }
 
 .x-icon {
-  display: flex;
   align-items: center;
   justify-content: center;  
   padding: 4px;
   gap: 16px;  
   transition: all 0.1s ease-in-out;
+}
+
+#subtask-active-icons {  
+  gap:2px;
 }
 
 .rotate {
