@@ -55,3 +55,11 @@ h4 {
     text-align: left;
     color: rgba(0, 0, 0, 1);
 }
+
+.first-how-to {
+    margin-bottom: 16px;
+}
+
+.text-block {
+    padding-left: 32px;
+}
