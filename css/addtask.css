@@ -40,6 +40,7 @@ span {
 #maincontent {
   margin-top: 48px;
   margin-bottom: 100px;
+  max-height:424px;
 }
 
 .taskbranch {
@@ -65,7 +66,7 @@ span {
   align-self: flex-end;
 }
 
-input:not([type="checkbox"]) {
+input:not([type="checkbox"],.created-subtasks-input) {
   width: 440px;
   height: 48px;
   border-radius: 10px;
@@ -75,7 +76,7 @@ input:not([type="checkbox"]) {
   color: black;
 }
 
-input:focus,
+input:focus:not(.created-subtasks-input),
 textarea:focus {
   border: 1px solid var(--join-blue);
   outline: none;
@@ -276,6 +277,43 @@ textarea {
   top:-1px;
   width:24px;
   height:24px;
+}
+
+.subtasks-iconbox {  
+  gap:2px;
+}
+
+#created-subtasks-container {
+  max-height:112px;
+  overflow-y: auto;
+}
+
+.created-subtasks-input {
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  border-bottom: 1px solid var(--join-blue);
+  border-radius: 0px;
+  margin-top:4px;
+  margin-bottom:4px;
+  width: 440px;
+  height: 40px;  
+  font-size: 20px;
+  padding: 12px 21px;
+  color: black;
+}
+
+.created-subtasks-input:focus {
+  outline:none;
+}
+
+.created-subtasks-input:disabled {
+  border-bottom:none;  
+}
+
+.created-subtasks-input:disabled:hover {
+  border-radius:10px;
+  background-color: #EEEEEE;
 }
 
 .clear {

@@ -120,20 +120,36 @@
               </div>
               <div id="created-subtasks-container">
                 <div class="relative">
-                  <input type="text">
+                  <input type="text" class="created-subtasks-input" id="subtasks-input-c0">
                   <div class="iconcontainer">
-                    <div id="created-subtasks-iconbox">
-                      <div><img src="./img/littlepen.png" alt="pen"></div>
+                    <div id="created-subtasks-iconbox0" class="subtasks-iconbox invis">                      
+                        <div class="x-icon flex" onclick="editSubtask(0)"><img src="./img/littlepen.png" alt="pen"></div>
+                        <img src="./img/vertbar.png" alt="divider">
+                        <div class="x-icon flex" onclick="deleteSubtask(0)"><img src="./img/trash.png" alt="trash"></div>
+                      </div>
+                      <div class="subtasks-iconbox flex">
+                        <div class="x-icon flex" onclick="deleteSubtask(0)"><img src="./img/trash.png" alt="trash"></div>
+                        <img src="./img/vertbar.png" alt="divider">
+                        <div class="x-icon flex" onclick="checkSubtask(0)"><img src="./img/checksmall.png" alt="check"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="text" class="created-subtasks-input" id="subtasks-input-c1" disabled="disabled">
+                  <div class="iconcontainer">
+                    <div id="created-subtasks-iconbox1" class="subtasks-iconbox flex">
+                      <div class="x-icon flex" onclick="editSubtask(1)"><img src="./img/littlepen.png" alt="pen"></div>
                       <img src="./img/vertbar.png" alt="divider">
-                      <div><img src="./img/trash.png" alt="trash"></div>
+                      <div class="x-icon flex" onclick="deleteSubtask(1)"><img src="./img/trash.png" alt="trash"></div>
                     </div>
-                    <div>
-                      <div><img src="./img/trash" alt="trash"></div>
+                    <div class="subtasks-iconbox invis">
+                      <div class="x-icon flex" onclick="deleteSubtask(1)"><img src="./img/trash.png" alt="trash"></div>
                       <img src="./img/vertbar.png" alt="divider">
-                      <div><img src="./img/checksmall.png" alt="check"></div>
+                      <div class="x-icon flex" onclick="checkSubtask(1)"><img src="./img/checksmall.png" alt="check"></div>
                     </div>
                   </div>
                 </div>
+               
               </div>
             </div>
           </div>
