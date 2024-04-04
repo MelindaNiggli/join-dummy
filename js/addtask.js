@@ -88,3 +88,12 @@ function animateCreatedTask() {
     window.location.href = "board.html";
   }, 1500);
 }
+
+function clearAddTask() {
+  document.getElementById('title').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('duedate').value = '';
+  document.getElementById('category-input').value = '';
+  document.getElementById('subtasks').value = '';  
+  selectPrio("medium");
+}
