@@ -16,7 +16,7 @@
     <header include-html="./templates/header.html"></header>  
     <main>
       <h1>Add Task</h1>
-      <div id="maincontent" class="flex a-start">
+      <div id="maincontent" class="flex a-start relative">
         <div class="flex column left-add">
           <div class="taskbranch">
             <span>Title<span class="required">*</span></span>
@@ -148,18 +148,18 @@
                       <div class="x-icon flex" onclick="checkSubtask(1)"><img src="./img/checksmall.png" alt="check"></div>
                     </div>
                   </div>
-                </div>
-               
+                </div>                       
               </div>
             </div>
           </div>
         </div>
+        <div id="added-to-board-box"><span>Task added to board</span><img src="./img/boardwhite.png" alt="miniboard"></div>
       </div>
       <div id="foot" class="flex between">
         <span class="requiredspan"><span class="requiredspan required">*</span>This field is required</span>
         <div>
           <button class="clear">Clear <img src="./img/x.png" alt="x"></button>
-          <button class="createtask">Create&nbspTask <img src="./img/checkinbutton.png" alt="check"></button>
+          <button class="createtask" onclick="animateCreatedTask()">Create&nbspTask <img src="./img/checkinbutton.png" alt="check"></button>
         </div>
       </div>
     </main>   

@@ -76,3 +76,15 @@ function deleteSubtask(id) {
   iconboxcheck.classList.toggle('invis');
   iconboxcheck.classList.toggle('flex'); 
 }
+
+function createTask() {
+  animateCreatedTask();
+} 
+
+function animateCreatedTask() {
+  let addedbox = document.getElementById('added-to-board-box');
+  addedbox.style.top = '30%';
+  setTimeout(() => {
+    window.location.href = "board.html";
+  }, 1500);
+}

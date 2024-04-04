@@ -39,8 +39,9 @@ span {
 
 #maincontent {
   margin-top: 48px;
-  margin-bottom: 100px;
-  max-height:424px;
+  /* margin-bottom: 20px; */
+  height:524px;
+  overflow: hidden;
 }
 
 .taskbranch {
@@ -235,7 +236,7 @@ textarea {
   border-radius: 10px;
   top: 35px;
   width: 440px;
-  max-height: 248px;
+  max-height: 178px;
   overflow-y: auto;
   padding-top: 24px;
 }
@@ -284,7 +285,7 @@ textarea {
 }
 
 #created-subtasks-container {
-  max-height:112px;
+  max-height:100px;
   overflow-y: auto;
 }
 
@@ -367,6 +368,29 @@ img {
   box-shadow: 0px 4px 4px 0px #00000040;
   background-color: var(--join-blue);
   border: none;
+}
+
+#added-to-board-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:150%;
+  left:30%;
+  gap:32px;
+  width:326px;
+  height:74px;
+  border-radius: 15px;
+  padding:22px 30.5px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+  background-color: var(--join-black);
+  color:white;
+  transition: all 0.1s ease-in-out;
+}
+
+#added-to-board-box img {
+  width:30px;
+  height:30px;
 }
 
 #foot {
