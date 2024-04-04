@@ -16,7 +16,7 @@
         <div class="help-main">
             <div class="help-headline">
                 <h1 class="headline">Help</h1>
-                <img onclick="goback()" src="./img/arrow-left-line.svg" alt="previous page">
+                <img class="arrow" onclick="goback()" src="./img/arrow-left-line.svg" alt="previous page">
             </div>
 
             <div class="help-content">
@@ -94,6 +94,10 @@
             </div>
         </div>
     </main>
-    
+    <script>
+        function goback() {
+          history.back();
+        } 
+      </script>
 </body>
 </html>

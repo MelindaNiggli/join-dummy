@@ -63,3 +63,14 @@ h4 {
 .text-block {
     padding-left: 32px;
 }
+
+.arrow {
+    width: 37px;
+    height: 37px;
+    top: 225px;
+    left: 1307px;
+    padding: 3px 2.5px 2px 2.5px;
+    gap: 0px;
+    opacity: 0px;
+    cursor: pointer;
+}

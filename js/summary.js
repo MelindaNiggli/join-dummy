@@ -1,26 +1,19 @@
+
+
 function updateSummaryCounts() {
-  // Überprüfen, ob die Elemente im HTML gefunden wurden
-  const toDoAmountElement = document.getElementById("toDoAmount");
-  const progressAmountElement = document.getElementById("progressAmount");
-  const feedbackAmountElement = document.getElementById("feedbackAmount");
-  const doneAmountElement = document.getElementById("doneAmount");
-
-  // Falls ein oder mehrere Elemente nicht gefunden wurden, brechen wir hier ab
-  if (!toDoAmountElement || !progressAmountElement || !feedbackAmountElement || !doneAmountElement) {
-    return;
-  }
-
-  // Aufruf der countTasksByCategory() Funktion, um die aktuellen Zahlen zu erhalten
-  const counts = countTasksByCategory();
-
-  // Aktualisieren der Elemente im HTML mit den neuen Zahlen
-  toDoAmountElement.textContent = counts.todo || 0;
-  progressAmountElement.textContent = counts.progress || 0;
-  feedbackAmountElement.textContent = counts.feedback || 0;
-  doneAmountElement.textContent = counts.done || 0;
-  console.log("Aktuelle Taskzählungen:", counts);
+  // Filtern der Aufgaben nach Kategorie
+  const todoTasks = tasks.filter(task => task.category === 'todo');
+  const progressTasks = tasks.filter(task => task.category === 'progress');
+  const feedbackTasks = tasks.filter(task => task.category === 'feedback');
+  const doneTasks = tasks.filter(task => task.category === 'done');
+  const urgentTasks = tasks.filter(task => task.priority === 'urgent');
+  // Aktualisieren der Anzeige für die jeweiligen Kategorien
+  document.getElementById("toDoAmount").textContent = todoTasks.length;
+  document.getElementById("progressAmount").textContent = progressTasks.length;
+  document.getElementById("feedbackAmount").textContent = feedbackTasks.length;
+  document.getElementById("doneAmount").textContent = doneTasks.length;
+  document.getElementById("urgentAmount").textContent = urgentTasks.length;
 }
- 
 
 function showTasks() {
   const todoTasks = countTodoTasks();
@@ -49,9 +42,6 @@ function updateGreeting() {
 }
 updateGreeting();
 
-document.addEventListener('DOMContentLoaded', function() {
-  updateSummaryCounts();
-});
 
 
 
