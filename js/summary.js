@@ -1,5 +1,3 @@
-
-
 function updateSummaryCounts() {
   // Filtern der Aufgaben nach Kategorie
   const todoTasks = tasks.filter(task => task.category === 'todo');
@@ -41,6 +39,17 @@ function updateGreeting() {
   }
 }
 updateGreeting();
+
+function displayCurrentDate() {
+  const currentDate = new Date();
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+  document.getElementById("currentDate").textContent = formattedDate;
+}
+
+
 
 
 

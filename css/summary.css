@@ -43,6 +43,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--join-black);
+    color: inherit;
+}
+
+main * {
+    color: inherit;
 }
 
 .summary-board-container {
@@ -193,6 +199,7 @@ main {
 }
 
 .date-text {
+    color: var(--join-black);
     width: 148px;
     height: 19px;
     font-family: Inter;
@@ -200,6 +207,10 @@ main {
     font-weight: 400;
     line-height: 19.2px;
     text-align: left;
+}
+
+.textColor {
+    color: var(--join-black);
 }
 
 .task-container {

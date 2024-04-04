@@ -84,4 +84,5 @@ function menuSelected(menuitem) {
     }
     menuSelected(document.title);
     updateSummaryCounts();
+    displayCurrentDate();
   }
