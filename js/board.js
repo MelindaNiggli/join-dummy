@@ -69,12 +69,6 @@ function renderTaskHTML(task,index) {
     `;
 }
 
-function getInitials(user) {
-  let names = user.split(' ');
-  let firstletter = names[0].charAt(0).toUpperCase();  
-  return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
-}
-
 function calcBar(task) {
   let subtasks = task.subtasks.length - 1;  
   let done = task.subtasks[0];

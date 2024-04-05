@@ -86,3 +86,9 @@ function menuSelected(menuitem) {
     updateSummaryCounts();
     displayCurrentDate();
   }
+
+  function getInitials(user) {
+    let names = user.split(' ');
+    let firstletter = names[0].charAt(0).toUpperCase();  
+    return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
+  }

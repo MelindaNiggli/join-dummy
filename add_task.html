@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/addtask.css">
     <script src="./js/script.js"></script>
     <script src="./js/addtask.js"></script>
+    <script src="./js/register.js"></script>
 
 </head>
 <body onload="includeHTML()">
@@ -69,7 +70,7 @@
                 </div>                          
               </div>   
             </div>                     
-            <div id="tag-container"></div>
+            <div id="tag-container" class="flex gap-ss"></div>
           </div>
         </div>
         <div class="divider"></div>
@@ -114,12 +115,12 @@
                 <div class="invis" id="subtask-active-icons">
                   <div class="x-icon flex" onclick="clearInput()"><img src="./img/x.png" alt="x"></div>                
                   <img src="./img/vertbar.png" alt="divider">
-                  <div class="x-icon flex" onclick="clearInput()"><img src="./img/checksmall.png" alt="check"></div>
+                  <div class="x-icon flex" onclick="assignSubtask(), clearInput()"><img src="./img/checksmall.png" alt="check"></div>
                 </div>
-                <div class="x-icon flex" onclick="enableSubtasksInput()"><img src="./img/plusblack.png" alt="plus"></div>
+                <div class="x-icon flex" onclick="toggleSubtasksInput()"><img src="./img/plusblack.png" alt="plus"></div>
               </div>
               <div id="created-subtasks-container">
-                <div class="relative">
+                <!-- <div class="relative">
                   <input type="text" class="created-subtasks-input" id="subtasks-input-c0">
                   <div class="iconcontainer">
                     <div id="created-subtasks-iconbox0" class="subtasks-iconbox invis">                      
@@ -148,7 +149,7 @@
                       <div class="x-icon flex" onclick="checkSubtask(1)"><img src="./img/checksmall.png" alt="check"></div>
                     </div>
                   </div>
-                </div>                       
+                </div>          -->              
               </div>
             </div>
           </div>
