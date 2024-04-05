@@ -1,3 +1,5 @@
+let assigned = [];
+
 function selectPrio(prio) {
   document
     .querySelectorAll(".priobutton")
@@ -14,9 +16,15 @@ function toggleDrop(id) {
 }
 
 function checkUser(id) {
-  document
-    .getElementById(`${id}`)
-    .lastElementChild.classList.toggle("assigned-checked");
+  let container = document.getElementById(`${id}`);
+  let checkeduser = container.firstElementChild.lastElementChild.innerHTML;   
+  let index = assigned.indexOf(checkeduser);
+  if (container.lastElementChild.classList.contains("assigned-checked")) {
+    assigned.splice(index,1);
+  } else {
+    assigned.push(checkeduser); 
+  }
+  container.lastElementChild.classList.toggle("assigned-checked");
 }
 
 function selectCategory(category) {
