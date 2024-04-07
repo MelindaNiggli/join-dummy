@@ -6,13 +6,37 @@
     <title>Join-Contacts</title>
     <link rel="stylesheet" href="./css/menubar.css">
     <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/contact.css">
     <script src="./js/script.js"></script>
+
+
 </head>
-<body onload="includeHTML()">
+<body id="contacts" onload="includeHTML()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>   
-    <main>
-    
-    </main>  
+   
+<main>
+<section id="contactList">
+    <button>Add new contact
+        <img src="./img/person_add.svg" alt="">
+    </button>
+    <p id="A">A</p>
+    <span class="linie"></span>
+    <div class="contactUser">
+        <div id="ProfileBadge"><p>AM</p></div>
+        <div id="userInfo">
+            <p id="name">Anton Mayer</p>
+            <p id="email">antom@gmail.com</p>
+        </div>
+
+    </div>
+</section>
+<div class="heading">
+    <h1>Contacts</h1>
+    <span class="linie"></span>
+    <p>Better with a team</p>
+</div>
+</main>
+
 </body>
 </html>

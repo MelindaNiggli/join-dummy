@@ -23,25 +23,39 @@ body {
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
+    z-index: 1;
 }
 
-.join-logo {
+#logoImg  {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    width: 200px;
     transition:  1s ease-in;
     -webkit-transition:  1s ease-in;
     -moz-transition:  1s ease-in;
     -ms-transition:  1s ease-in;
     -o-transition:  1s ease-in;
-    -webkit-transform:;
-    -moz-transform:;
-    -ms-transform:;
-    -o-transform:;
+    transform: 1s ease-in ;
+    -webkit-transform: 1s ease-in ;
+    -moz-transform: 1s ease-in ;
+    -ms-transform: 1s ease-in ;
+    -o-transform: 1s ease-in ;
+    background-image: url(../img/join-logo.svg);
+width: 200px;
+height: 200px;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    background-position: center;
 }
+
+
+
 .wrapper-sing-up{
     position: absolute;
     top: 67px;
@@ -81,15 +95,6 @@ form {
     align-items: center;
     justify-content: space-around;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.03);
-    transition: 2s ease-in;
-    -webkit-transform:;
-    -moz-transform:;
-    -ms-transform:;
-    -o-transform:;
-    -webkit-transition: 2s ease-in;
-    -moz-transition: 2s ease-in;
-    -ms-transition: 2s ease-in;
-    -o-transition: 2s ease-in;
 }
 .wrapper-input {
     display: flex;
@@ -103,7 +108,7 @@ form {
     margin-bottom: 16px;
 }
 .wrapper-input {
-    min-width: 400px;
+    width: 422px;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     padding: 12px ;
@@ -153,11 +158,12 @@ input::placeholder{
 footer {
 	position: absolute;
 	bottom: 35px;
+
 }
 footer a {
     padding: 8px;
     font-size: 16px;
-    color: var(--join-black)
+    color: #A8A8A8;
 }
 
 /* Checkmark */
@@ -202,7 +208,7 @@ footer a {
 
 /* Sign up */
 
-.join-logo-footer {
+.join-logo-signup{
     position: absolute!important;
     width: 100.03px!important;
     top: 100px!important;
@@ -244,4 +250,88 @@ footer a {
   #registerBTN {
     margin-top: 34.3px;
   }
+
+
+  @media only screen and (max-width: 767px) {
+
+    #logoImg  {
+ background-image: url(../img/join-logo-weiss.svg);
+        width: 64px !important;
+    height: 64px;
+    }
+
+    #registration button {
+        width: 180px;
+    }
+
+    #registration .wrapper-button {
+        align-items: center;
+    }
+
+    .join-logo-signup {
+        top: 37px !important;
+        left: 38px !important;
+  width: 64px !important;
+  height: 64px; }
+
+  .back {
+margin-right: 39.5px;
+left: 24px;
+  }
+form {
+    max-width: 396px!important;
+    padding: 32px 16px;
+    radius: 30px;
+}
+
+body {
+	align-items: center;
+    padding: 16px;
+
+}
+button, .wrapper-sing-up a{
+    font-size: 16px !important;
+    font-weight: 700;
+    border-radius: 8px ;
+    -webkit-border-radius: 8px ;
+    -moz-border-radius: 8px ;
+    -ms-border-radius: 8px ;
+    -o-border-radius: 8px ;
+}
+.checkbox{
+    text-align: left;
+}
+.wrapper-button {
+	display: flex;
+	flex-direction: column;
+}
+.wrapper-button button:first-child {
+     margin-bottom: 21px;
+}
+.wrapper-sing-up {
+    margin-top: 57.5px;
+    position: static;
+}
+
+.wrapper-button button {
+    width: 100%;
+}
+.wrapper-input{
+    width: 100%!important;
+}
+h1 {
+    font-size: 47px;
+}
+
+    #logo {
+        background: var(--join-black);
+        width: 100vw !important;
+        height: 100vh !important;
+        position: absolute;
+
+}
+
+
+  }
+  
   
