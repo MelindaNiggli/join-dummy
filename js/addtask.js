@@ -68,13 +68,14 @@ function clearInput() {
   toggleSubtasksInput();
 }
 
-function editSubtask(id) {
+function editSubtask(task,id) {
   let field = document.getElementById(`subtasks-input-c${id}`);
   let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
   let iconboxcheck = document.getElementById(
     `created-subtasks-iconbox${id}`
   ).nextElementSibling;
   field.disabled = false;
+  field.value = task;
   field.focus();
   iconboxedit.classList.toggle("invis");
   iconboxedit.classList.toggle("flex");
@@ -88,6 +89,8 @@ function checkSubtask(id) {
   let iconboxcheck = document.getElementById(
     `created-subtasks-iconbox${id}`
   ).nextElementSibling;
+  subtasks[id] = field.value;
+  field.value = `• ${field.value}`;  
   field.disabled = true;
   iconboxedit.classList.toggle("invis");
   iconboxedit.classList.toggle("flex");
@@ -96,17 +99,8 @@ function checkSubtask(id) {
 }
 
 function deleteSubtask(id) {
-  let field = document.getElementById(`subtasks-input-c${id}`);
-  let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
-  let iconboxcheck = document.getElementById(
-    `created-subtasks-iconbox${id}`
-  ).nextElementSibling;
-  field.disabled = true;
-  field.focus();
-  iconboxedit.classList.toggle("invis");
-  iconboxedit.classList.toggle("flex");
-  iconboxcheck.classList.toggle("invis");
-  iconboxcheck.classList.toggle("flex");
+  subtasks.splice(id,1);
+  renderSubtasks();
 }
 
 function createTask() {
@@ -128,9 +122,10 @@ function clearAddTask() {
   document.getElementById("category-input").value = "";
   document.getElementById("subtasks").value = "";
   document.getElementById("tag-container").innerHTML = "";
-  document
-    .querySelectorAll(".assigned-checked")
-    .forEach((c) => c.classList.remove("assigned-checked"));
+  document.querySelectorAll(".assigned-checked").forEach((c) => c.classList.remove("assigned-checked"));
+  assigned = [];
+  subtasks = [];
+  renderSubtasks();
   selectPrio("medium");
 }
 
@@ -155,8 +150,8 @@ function displaySubtask(task, index) {
   <div class="relative">
     <input type="text" class="created-subtasks-input" id="subtasks-input-c${index}" value="• ${task}"disabled="disabled">
     <div class="iconcontainer">
-      <div id="created-subtasks-iconbox1" class="subtasks-iconbox flex">
-        <div class="x-icon flex" onclick="editSubtask(${index})"><img src="./img/littlepen.png" alt="pen"></div>
+      <div id="created-subtasks-iconbox${index}" class="subtasks-iconbox flex">
+        <div class="x-icon flex" onclick="editSubtask('${task}',${index})"><img src="./img/littlepen.png" alt="pen"></div>
         <img src="./img/vertbar.png" alt="divider">
         <div class="x-icon flex" onclick="deleteSubtask(${index})"><img src="./img/trash.png" alt="trash"></div>
       </div>
