@@ -1,17 +1,6 @@
 let columns = ['todo','progress','feedback','done'];
 let taskCounts = [];
 
-function Task(category, label, title, description, date, subtasks, priority, assigned) {
-    this.category = category,
-    this.label = label,    
-    this.title = title,
-    this.description = description,
-    this.date = date,
-    this.subtasks = subtasks,
-    this.priority = priority,
-    this.assigned = assigned  
-}
-
 function updateTasks() {
   emptyColumns();
   for (let i = 0; i < tasks.length; i++) {

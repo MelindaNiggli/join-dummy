@@ -1,5 +1,6 @@
 let assigned = [];
 let subtasks = [];
+let priority = "medium";
 
 function selectPrio(prio) {
   document
@@ -8,6 +9,7 @@ function selectPrio(prio) {
       b.classList.remove("urgentselect", "mediumselect", "lowselect")
     );
   document.getElementById(prio).classList.add(`${prio}select`);
+  priority = prio;
 }
 
 function toggleDrop(id) {
@@ -101,8 +103,18 @@ function deleteSubtask(id) {
   renderSubtasks();
 }
 
-function createTask() {
-  animateCreatedTask();
+async function createTask() {
+  let category = "todo";
+  let label = document.getElementById('category-input').value;
+  let title = document.getElementById('title').value;
+  let description = document.getElementById('description').value;
+  let date = document.getElementById('duedate').value;
+  let newsubtasks = subtasks.unshift(0);
+  
+  let tasktoadd = new Task (category, label, title, description, date, newsubtasks, priority, assigned);  
+  tasks.push(tasktoadd);  
+  await setItem('taskobject',JSON.stringify(tasks));
+  /* animateCreatedTask(); */
 }
 
 function animateCreatedTask() {

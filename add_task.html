@@ -10,7 +10,7 @@
     <script src="./js/script.js"></script>
     <script src="./js/addtask.js"></script>
     <script src="./js/register.js"></script>
-
+    <script src="./js/storage.js"></script>
 </head>
 <body onload="includeHTML()">
     <div include-html="./templates/menubar.html"></div>
@@ -160,7 +160,7 @@
         <span class="requiredspan"><span class="requiredspan required">*</span>This field is required</span>
         <div>
           <button class="clear" onclick="clearAddTask()">Clear <img src="./img/x.png" alt="x"></button>
-          <button class="createtask" onclick="animateCreatedTask()">Create&nbspTask <img src="./img/checkinbutton.png" alt="check"></button>
+          <button class="createtask" onclick="createTask()">Create&nbspTask <img src="./img/checkinbutton.png" alt="check"></button>
         </div>
       </div>
     </main>   

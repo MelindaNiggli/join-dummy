@@ -92,3 +92,14 @@ function menuSelected(menuitem) {
     let firstletter = names[0].charAt(0).toUpperCase();  
     return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
   }
+
+  function Task(category, label, title, description, date, subtasks, priority, assigned) {
+    this.category = category,
+    this.label = label,    
+    this.title = title,
+    this.description = description,
+    this.date = date,
+    this.subtasks = subtasks,
+    this.priority = priority,
+    this.assigned = assigned  
+}
