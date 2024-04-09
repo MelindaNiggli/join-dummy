@@ -109,12 +109,11 @@ async function createTask() {
   let title = document.getElementById('title').value;
   let description = document.getElementById('description').value;
   let date = document.getElementById('duedate').value;
-  let newsubtasks = subtasks.unshift(0);
-  
-  let tasktoadd = new Task (category, label, title, description, date, newsubtasks, priority, assigned);  
-  tasks.push(tasktoadd);  
-  await setItem('taskobject',JSON.stringify(tasks));
-  animateCreatedTask();
+  subtasks.unshift(0);  
+  let tasktoadd = new Task (category, label, title, description, date, subtasks, priority, assigned);  
+  tasks.push(tasktoadd);   
+  await setItem('taskobject',JSON.stringify(tasks));  
+  /* animateCreatedTask(); */
 }
 
 function animateCreatedTask() {

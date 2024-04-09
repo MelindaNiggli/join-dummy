@@ -17,21 +17,6 @@ const colors = [
     '#FFE62B'
 ];
 
-
-async function init(){
-    loadUsers();
-}
-
-
-async function loadUsers(){
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch(e){
-        console.error('Loading error:', e);
-    }
-}
-
-
 // Zufällige Farbe auswählen
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);

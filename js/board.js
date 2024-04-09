@@ -2,7 +2,7 @@ let columns = ['todo','progress','feedback','done'];
 let taskCounts = [];
 
 async function updateTasks() {
-  tasks = await JSON.parse(getItem('tasksobject'));
+  await loadTasks();
   emptyColumns();
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -11,7 +11,7 @@ async function updateTasks() {
     showAssigned(task,task.assigned,i);
   }  
   setNoTaskBox(); 
-  updateSummaryCounts();
+  /* updateSummaryCounts(); */
 }
 
 function setNoTaskBox() {
@@ -29,7 +29,6 @@ function setNoTaskBox() {
 }
 
 function emptyColumns() {
-  let columns = ['todo','progress','feedback','done'];
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
     document.getElementById(`task_${column}`).innerHTML = '';    
