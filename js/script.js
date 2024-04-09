@@ -11,7 +11,7 @@ let tasks = [
     },
     {
         "category": "progress",
-        "label": "Technical",
+        "label": "Technical Task",
         "title": "Datenbankoptimierung",
         "description": "Optimierung der Datenbankabfragen für verbesserte Leistung",
         "date": "2024-04-15",
@@ -31,7 +31,7 @@ let tasks = [
     },
     {
         "category": "done",
-        "label": "Technical",
+        "label": "Technical Task",
         "title": "Sicherheitspatching",
         "description": "Installation von Sicherheitsupdates und Patches zur Behebung von Sicherheitslücken",
         "date": "2024-03-28",

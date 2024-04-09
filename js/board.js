@@ -1,7 +1,8 @@
 let columns = ['todo','progress','feedback','done'];
 let taskCounts = [];
 
-function updateTasks() {
+async function updateTasks() {
+  tasks = await JSON.parse(getItem('tasksobject'));
   emptyColumns();
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -49,7 +50,7 @@ function renderTaskHTML(task,index) {
         </div>
         <span>${task.subtasks[0]}/${task.subtasks.length - 1}&nbspSubtasks</span>
       </div>
-      <div class="flex between">
+      <div class="flex between wide">
         <div class="flex wrapper" id="userbox${index}">        
         </div>
       <img src="./img/${task.priority}.png" alt="priority">
@@ -97,8 +98,9 @@ function renderAssigned(id, color, zIndex, left) {
   return `<div class="usertag absolute flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
 }
 
-function dragTo(category) {
+async function dragTo(category) {
   tasks[draggedElement]['category'] = category;
+  await setItem('taskobject',JSON.stringify(tasks));
   updateTasks();
 }
 

@@ -114,7 +114,7 @@ async function createTask() {
   let tasktoadd = new Task (category, label, title, description, date, newsubtasks, priority, assigned);  
   tasks.push(tasktoadd);  
   await setItem('taskobject',JSON.stringify(tasks));
-  /* animateCreatedTask(); */
+  animateCreatedTask();
 }
 
 function animateCreatedTask() {
