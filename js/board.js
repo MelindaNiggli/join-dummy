@@ -48,7 +48,7 @@ function emptyColumns() {
 
 function renderTaskHTML(task,index) {
     return `
-    <div id="id${index}" class="taskbox" draggable="true" ondragstart="dragStart(${index})" ondragover="">
+    <div onclick="openTaskInfo(${index})" id="id${index}" class="taskbox" draggable="true" ondragstart="dragStart(${index})" ondragover="">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -160,8 +160,34 @@ function updateAllTasks() {
   updateFeedbackTasks();
   updateDoneTasks();
 
-  // Nachdem die Aufgaben aktualisiert wurden, rufe die Funktion zur Anzeige der Zusammenfassung auf
   displayTaskSummary();
+}
+
+function openTaskInfo(index) {
+  let task = tasks[index];
+  let taskDetailsContainer = document.createElement('div'); // Neuen Container erstellen
+  taskDetailsContainer.classList.add('task-details-container');
+
+  let taskDetailsHTML = `
+    <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
+      <div class="task-details">
+        <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
+        <h2>${task.title}</h2>
+        <p>${task.description}</p>
+      </div>
+    </div>
+  `;
+  
+  taskDetailsContainer.innerHTML = '';
+  taskDetailsContainer.innerHTML = taskDetailsHTML;
+
+  // Den neuen Container dem Dokument hinzufügen
+  document.body.appendChild(taskDetailsContainer);
+}
+
+function hideDetailsContainer() {
+  document.getElementById('detailsContainer').classList.add('d-none');
+  document.getElementById('detailsContainer').innerHTML = '';
 }
 
 

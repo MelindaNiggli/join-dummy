@@ -1,6 +1,9 @@
 body {
   margin: 0;  
   font-family: 'Inter', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #menubar {
@@ -130,11 +133,16 @@ header span {
   cursor: pointer;
 }
 
+.headerlogo {
+  height: 48px;
+  width: 48px;
+  display: none;
+}
+
 main {
+  flex-grow: 1;
   margin-left:232px;  
   width:calc(100vw - 232px);
   height:calc(100vh - 96px);  
   background-color: var(--bg);
 }
-
-
