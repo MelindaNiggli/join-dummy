@@ -203,6 +203,7 @@ input::placeholder {
 .taskbox {
   display:flex;
   flex-direction: column;  
+  align-items: flex-start;
   gap:24px;
   width:260px;
   background-color: white;
@@ -229,16 +230,16 @@ input::placeholder {
 
 .userstory {
   height:27px;
-  width:113px;
+  padding: 0px 16px;
   color:white;
   font-size:16px;
   background-color: #0038FF;  
   border-radius: 8px;
 }
 
-.technical {
+.technicaltask {
   height:27px;
-  width:113px;
+  padding: 0px 16px;
   color:white;
   font-size:16px;
   background-color: #1FD7C1;  

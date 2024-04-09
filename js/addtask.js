@@ -1,5 +1,6 @@
 let assigned = [];
 let subtasks = [];
+let priority = "medium";
 
 function selectPrio(prio) {
   document
@@ -8,6 +9,7 @@ function selectPrio(prio) {
       b.classList.remove("urgentselect", "mediumselect", "lowselect")
     );
   document.getElementById(prio).classList.add(`${prio}select`);
+  priority = prio;
 }
 
 function toggleDrop(id) {
@@ -71,9 +73,8 @@ function clearInput() {
 function editSubtask(id) {
   let field = document.getElementById(`subtasks-input-c${id}`);
   let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
-  let iconboxcheck = document.getElementById(
-    `created-subtasks-iconbox${id}`
-  ).nextElementSibling;
+  let iconboxcheck = document.getElementById(`created-subtasks-iconbox${id}`).nextElementSibling; 
+  field.value = field.value.split('').splice(2).join(''); 
   field.disabled = false;
   field.focus();
   iconboxedit.classList.toggle("invis");
@@ -88,6 +89,8 @@ function checkSubtask(id) {
   let iconboxcheck = document.getElementById(
     `created-subtasks-iconbox${id}`
   ).nextElementSibling;
+  subtasks[id] = field.value;
+  field.value = `• ${field.value}`;  
   field.disabled = true;
   iconboxedit.classList.toggle("invis");
   iconboxedit.classList.toggle("flex");
@@ -96,20 +99,21 @@ function checkSubtask(id) {
 }
 
 function deleteSubtask(id) {
-  let field = document.getElementById(`subtasks-input-c${id}`);
-  let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
-  let iconboxcheck = document.getElementById(
-    `created-subtasks-iconbox${id}`
-  ).nextElementSibling;
-  field.disabled = true;
-  field.focus();
-  iconboxedit.classList.toggle("invis");
-  iconboxedit.classList.toggle("flex");
-  iconboxcheck.classList.toggle("invis");
-  iconboxcheck.classList.toggle("flex");
+  subtasks.splice(id,1);
+  renderSubtasks();
 }
 
-function createTask() {
+async function createTask() {
+  let category = "todo";
+  let label = document.getElementById('category-input').value;
+  let title = document.getElementById('title').value;
+  let description = document.getElementById('description').value;
+  let date = document.getElementById('duedate').value;
+  let newsubtasks = subtasks.unshift(0);
+  
+  let tasktoadd = new Task (category, label, title, description, date, newsubtasks, priority, assigned);  
+  tasks.push(tasktoadd);  
+  await setItem('taskobject',JSON.stringify(tasks));
   animateCreatedTask();
 }
 
@@ -128,9 +132,10 @@ function clearAddTask() {
   document.getElementById("category-input").value = "";
   document.getElementById("subtasks").value = "";
   document.getElementById("tag-container").innerHTML = "";
-  document
-    .querySelectorAll(".assigned-checked")
-    .forEach((c) => c.classList.remove("assigned-checked"));
+  document.querySelectorAll(".assigned-checked").forEach((c) => c.classList.remove("assigned-checked"));
+  assigned = [];
+  subtasks = [];
+  renderSubtasks();
   selectPrio("medium");
 }
 
@@ -155,7 +160,7 @@ function displaySubtask(task, index) {
   <div class="relative">
     <input type="text" class="created-subtasks-input" id="subtasks-input-c${index}" value="• ${task}"disabled="disabled">
     <div class="iconcontainer">
-      <div id="created-subtasks-iconbox1" class="subtasks-iconbox flex">
+      <div id="created-subtasks-iconbox${index}" class="subtasks-iconbox flex">
         <div class="x-icon flex" onclick="editSubtask(${index})"><img src="./img/littlepen.png" alt="pen"></div>
         <img src="./img/vertbar.png" alt="divider">
         <div class="x-icon flex" onclick="deleteSubtask(${index})"><img src="./img/trash.png" alt="trash"></div>

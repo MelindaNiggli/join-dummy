@@ -1,0 +1,212 @@
+main {
+	margin-left: 232px;
+	width: calc(100vw - 232px);
+	height: calc(100vh - 96px);
+	background-color: var(--bg);
+	display: flex;
+	/* justify-content: ; */
+	align-items: start;
+}
+#contactList {
+	width: 456px;
+	background: white;
+	height: 100%;
+	overflow: scroll;
+    padding: 28px;
+    box-shadow: 4px 0px 6px 0px #00000014;
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 21px;
+	font-weight: 700;
+	background: var(--join-black);
+	border-radius: 10px;
+	padding: 12px 0px 12px 0px;
+	border: none;
+}
+
+button img {
+    margin-left: 16px;
+}
+
+.heading{
+    margin-top: 110px;
+    margin-left: 55px;
+    display: flex;
+    align-items: center;
+}
+.heading p {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+span.linie {
+    background: var(--join-blue);
+    height: 59px;
+    width: 3px;
+    display: inline-block;
+    margin: 0 30px;
+}
+
+.Buchstabe{
+	padding: 17px 36px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+}
+#contactList  span.linie{
+    width: 100% !important;
+    height: 1px !important;
+    background-color: #D1D1D1 !important;
+    margin: 10px 0 10px 0 !important ;
+}
+
+#ProfileBadge {
+    height: 42px;
+    width: 42px;
+    font-size: 12px;
+    background-color: #FF7A00;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 35px;
+}
+#userInfo #name {
+    font-size: 20px;
+    font-weight: 400;
+}
+#userInfo #email {
+    font-size: 16px;
+    color: #007CEE;
+    font-weight: 400;
+}
+.contactUser {
+	display: flex;
+	width: 100%;
+	padding: 15px 24px 15px 24px;
+}
+
+
+/* ADD CONTACT  */
+.wrapper-left {
+	background: var(--join-black);
+	color: white;
+	padding: 48px;
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+	justify-content: center;
+    border-radius: 30px 0 0 30px;
+}
+.wrapper-left img {
+	width: 55.6px !important;
+    height: 66.48px!important;
+    margin-bottom: 12px;
+}
+
+.wrapper-left .text {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper-left .text p {
+    font-size: 27px;
+    font-weight: 400;
+}
+.wrapper-left .linie {
+    height: 3px;
+    background: var(--join-blue);
+    width: 90px;
+    margin: 16px 0;
+}
+.wrapper-right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+    margin-right: 48px;
+}
+.cancle {
+    background: white;
+    border: 1px solid var(--join-black);
+    font-size: 20px;
+    color: var(--join-black);
+    width: 126px;
+    margin-right: 24px;
+    padding: 16px;
+}
+
+#saveUser {
+     Width: 422px;
+}
+#saveUser input {
+    width: 100%;
+    border: none;
+    font-size: 20px;
+
+}
+.wrapper-input {
+    padding: 8px;
+    border: 1px solid var(--join-grey);
+    border-radius: 10px;
+    display: flex;
+    margin-bottom: 45px;
+}
+
+.badge {
+	background-color: var(--join-grey);
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    margin-right: 83px;
+}
+.wrapper-right  .wrapper-button {
+	display: flex;
+}
+.wrapper-right  .BT-Black {
+	width: 214px !important;
+}
+
+.overlay {
+	position: static;
+	background-color: rgba(0, 0, 0, 0.094);
+	top: 0;
+	right: 0;
+	overflow: hidden;
+	min-height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#addContact {
+    position: relative;
+    width: 1212px;
+    height: 592px;
+    border-radius: 30px;
+    background: white;
+    display: none;
+    justify-content: space-between;
+    transform: translateX(0px); /* Startposition */
+    transition: transform 0.5s ease-in; /* Übergangseffekt */
+}
+
+.close {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+}

@@ -17,9 +17,11 @@ const colors = [
     '#FFE62B'
 ];
 
+
 async function init(){
     loadUsers();
 }
+
 
 async function loadUsers(){
     try {
@@ -29,13 +31,16 @@ async function loadUsers(){
     }
 }
 
+
 // Zufällige Farbe auswählen
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
+
+
 let color = getRandomColor();
-let registerBtn = document.getElementById('registerBTN')
+let registerBtn = document.getElementById('registerBTN').disabled
 
 
 // Das Passwort hashen
@@ -48,17 +53,18 @@ async function hashPassword(password) {
     return hashHex;
 }
 
-// Fehlermeldungen
 
+// Fehlermeldungen
 //RED
 function red(){
     const msg =  document.getElementById('messageBox');
-    msg.style.background = 'red';
+    msg.style.backgroundColor= '#29abe2';
     msg.style.padding = '25px';
     msg.style.borderRadius = '20px';
     msg.style.color = 'white';
     msg.style.fontSize ='20px'
 }
+
 
 function messageRedPasswort(){
     const msg =  document.getElementById('messageBox');
@@ -66,11 +72,13 @@ function messageRedPasswort(){
     red();
 }
 
+
 function messageRedCheckbox(){
     const msg =  document.getElementById('messageBox');
     msg.innerHTML = `Please agree the Checkbox before proceeding!`;
     red();
 }
+
 
 function messageSuccessfully(){
     const msg =  document.getElementById('messageBox')
@@ -81,11 +89,14 @@ function messageSuccessfully(){
     msg.style.color = 'white';
     msg.style.fontSize ='20px'
 }
+
+
 function messageEmailRegistered(){
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `Email Address Already Registered`
     red();
 }
+
 
 // Add user
 async function addUser() {
@@ -119,6 +130,7 @@ async function addUser() {
         }  
     }
 }
+
 
 // Formulat zurücksenden
 function resetForm() {

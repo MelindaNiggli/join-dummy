@@ -11,7 +11,7 @@ let tasks = [
     },
     {
         "category": "progress",
-        "label": "Technical",
+        "label": "Technical Task",
         "title": "Datenbankoptimierung",
         "description": "Optimierung der Datenbankabfragen für verbesserte Leistung",
         "date": "2024-04-15",
@@ -31,7 +31,7 @@ let tasks = [
     },
     {
         "category": "done",
-        "label": "Technical",
+        "label": "Technical Task",
         "title": "Sicherheitspatching",
         "description": "Installation von Sicherheitsupdates und Patches zur Behebung von Sicherheitslücken",
         "date": "2024-03-28",
@@ -92,3 +92,14 @@ function menuSelected(menuitem) {
     let firstletter = names[0].charAt(0).toUpperCase();  
     return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
   }
+
+  function Task(category, label, title, description, date, subtasks, priority, assigned) {
+    this.category = category,
+    this.label = label,    
+    this.title = title,
+    this.description = description,
+    this.date = date,
+    this.subtasks = subtasks,
+    this.priority = priority,
+    this.assigned = assigned  
+}

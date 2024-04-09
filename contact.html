@@ -6,13 +6,131 @@
     <title>Join-Contacts</title>
     <link rel="stylesheet" href="./css/menubar.css">
     <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/contact.css">
     <script src="./js/script.js"></script>
+    <script src="./js/contact.js"></script>
 </head>
-<body onload="includeHTML()">
+
+
+<body id="contacts" onload="includeHTML()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>   
-    <main>
-    
-    </main>  
+   
+<main>
+    <section id="contactList">
+        <button onclick="showContact()">Add new contact
+            <img src="./img/person_add.svg" alt="">
+        </button>
+        <p class="Buchstabe">A</p>
+        <span class="linie"></span>
+        <div class="contactUser">
+            <div id="ProfileBadge"><p>AM</p></div>
+            <div id="userInfo">
+                <p id="name">Anton Mayer</p>
+                <p id="email">antom@gmail.com</p>
+            </div>
+        </div>
+            <p class="Buchstabe">B</p>
+            <span class="linie" ></span>
+            <p class="Buchstabe">C</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">D</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">E</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">F</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">G</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">H</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">I</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">J</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">K</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">L</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">M</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">N</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">O</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">P</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">Q</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">R</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">S</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">T</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">U</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">V</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">W</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">X</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">Y</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">Z</p>
+            <span class="linie"></span>
+            <p class="Buchstabe">X</p>
+            <span class="linie"></span>
+    </section>
+    <div class="heading">
+        <h1>Contacts</h1>
+        <span class="linie"></span>
+        <p>Better with a team</p>
+    </div>
+</main>
+
+    <!-- ADD CONTACT OVERLAY -->
+    <div class="overlay" id="overlay">
+        <div id="addContact">
+            <div class="wrapper-left">
+                <img src="./img/join-logo-weiss.svg" alt="logo">
+                <div class="text">
+                    <h1>Add Contact</h1>
+                    <p>Tasks are better with a team!</p>
+                    <span class="linie"></span>
+                </div>
+            </div>
+            <div class="wrapper-right">
+                <img  class="close" src="./img/close.svg" alt="close" onclick="closeContact()">
+                <div class="badge">
+                    <img src="./img/person(1).svg" alt="person">
+                </div>
+                <form id="saveUser" onsubmit="saveUser()">
+                    <div class="wrapper-input-field">
+                        <div class="wrapper-input">
+                            <input type="text" placeholder="Name" id="nameUser" required>
+                            <img src="./img/person.svg" alt="Person Icon" req>
+                        </div>
+                        <div class="wrapper-input">
+                            <input type="email" placeholder="Email" id="email" required>
+                            <img src="./img/mail.svg" alt="Email Icon">
+                        </div>
+                        <div class="wrapper-input">
+                            <input type="phone" placeholder="Phone" id="phone" required>
+                            <img src="./img/call.svg" alt="Email Icon">
+                        </div>
+                    
+                        <div class="wrapper-button">
+                            <button class="cancle">Cancel <img src="./img/iconoir_cancel.svg" alt="cancle"></button>
+                            <button class="BT-Black" type="submit">Sign in</button>
+                        </div>
+                    </div>  
+                </form>
+            </div>
+        
+        </div>
+    </div>
+</div>
 </body>
 </html>

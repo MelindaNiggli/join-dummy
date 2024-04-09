@@ -1,22 +1,35 @@
-
 function loadAnimation() {
-    let logo = document.getElementById('logo');
+    let logo = document.getElementById('logoImg');
+    let logoWrapper = document.getElementById('logo');
+
     setTimeout(function() {
-        // Verstecke den Loader
-        logo.style.width = '100.03px';
         logo.style.position = 'absolute';
         logo.style.top = '100px';
         logo.style.left = '77px';
-        logo.style.transition = '1s ease-in'
-        logo.style.transform = ''
-    
+        logo.style.transition = 'top 1s ease-in, left 1s ease-in, width 1s ease-in';
+        logo.style.width = '100.03px';
+        logo.style.transform = '';
+
+        // Überprüfen Sie die Bildschirmbreite, um zu entscheiden, ob es sich um eine mobile Ansicht handelt
+        if (window.innerWidth <= 767) {
+            // Ändern Sie den Hintergrund des logoWrapper-Elements während der Animation, wenn die Bildschirmbreite mobil ist
+            logoWrapper.style.background = 'var(--join-black)'; // Hintergrundfarbe während der Animation
+        }
+
         // Rufe deine JavaScript-Funktion auf
-
         init();
+    }, 800); // 1000 Millisekunden = 1 Sekunde
 
-    }, 500); // 1000 Millisekunden = 1 Sekunde
     setTimeout(function() {
         ContentLogin();
+       
+        // Überprüfen Sie die Bildschirmbreite, um zu entscheiden, ob es sich um eine mobile Ansicht handelt
+        if (window.innerWidth <= 767) {
+            // Ändern Sie das Hintergrundbild des logoWrapper-Elements während der Animation, wenn die Bildschirmbreite mobil ist
+            logo.style.backgroundImage = 'url(img/join-logo.svg)'; // Pfad zum neuen Hintergrundbild
+            // Ändern Sie den Hintergrund des logoWrapper-Elements während der Animation, wenn die Bildschirmbreite mobil ist
+            logoWrapper.style.background = 'transparent'; // Hintergrundfarbe während der Animation
+        }
     }, 1000); // 1000 Millisekunden = 1 Sekunde
 }
 
@@ -26,10 +39,7 @@ function ContentLogin(){
 
     content.innerHTML += 
     `
-    <div class="wrapper-sing-up"> 
-        <p>Not a Join user?</p>
-        <a href="./registartion.html">Sign up</a>
-    </div>
+
     <form id="formLogin" onsubmit="login(); return false">
         <div class="wrapper-heading">
             <h1>Log in</h1>
@@ -54,6 +64,10 @@ function ContentLogin(){
             <button>Guest Log in</button>
         </div>
     </form>    
+    <div class="wrapper-sing-up"> 
+    <p>Not a Join user?</p>
+    <a href="./registartion.html">Sign up</a>
+</div>
     <footer>
         <a href="./privacy.html">Privacy Policy</a>
         <a href="./legal.html">Legal Notice</a>
