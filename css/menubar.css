@@ -146,3 +146,20 @@ main {
   height:calc(100vh - 96px);  
   background-color: var(--bg);
 }
+
+.hidden {
+  display: none;
+}
+
+#burger-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.menu-column {
+  margin-bottom: 10px;
+}
