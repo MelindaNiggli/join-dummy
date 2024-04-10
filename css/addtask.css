@@ -231,7 +231,7 @@ textarea {
   position:relative;
 }
 
-#drop-menu {  
+.drop-menu {  
   background-color: white;
   border-radius: 10px;
   top: 35px;

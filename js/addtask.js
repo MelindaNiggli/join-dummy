@@ -2,6 +2,27 @@ let assigned = [];
 let subtasks = [];
 let priority = "medium";
 
+function displayUserMenu() {
+  let dropbox = document.getElementById('drop-menu-assigned');
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i].name;
+    const color = users[i].color;
+    dropbox.innerHTML += renderDropboxUser(user,color,i);
+  }
+}
+
+function renderDropboxUser(user,color,index) {
+  return `
+    <div class="flex a-center between dropbox" id="c${index}" onclick="checkUser(${index})">
+      <div class="flex a-center gap-s">
+        <div class="usertag flex a-center j-center" style="background-color:${color}">${getInitials(user)}</div>
+        <span>${user}</span>
+      </div> 
+   <div class="assigned-check"> </div>                 
+   </div>
+  `;
+}
+
 function selectPrio(prio) {
   document
     .querySelectorAll(".priobutton")

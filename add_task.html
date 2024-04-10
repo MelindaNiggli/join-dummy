@@ -12,7 +12,7 @@
     <script src="./js/register.js"></script>
     <script src="./js/storage.js"></script>
 </head>
-<body onload="includeHTML();init()">
+<body onload="includeHTML();init();displayUserMenu()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>  
     <main>
@@ -32,42 +32,7 @@
             <div class="wrapper">
               <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
               <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrowdown.png" alt="arrow"></div>
-              <div class="invis absolute" id="drop-menu">
-                <div class="flex a-center between dropbox" id="c1" onclick="checkUser(id)">
-                  <div class="flex a-center gap-s">
-                    <div class="usertag flex a-center j-center" style="background-color:#00ffff">MM</div>
-                    <span>Max Mustermann</span>
-                  </div> 
-                  <div class="assigned-check"> </div>                 
-                </div>
-                <div class="flex a-center between dropbox" id="c2" onclick="checkUser(id)">
-                  <div class="flex a-center gap-s">
-                    <div class="usertag flex a-center j-center" style="background-color:#9900ff">LL</div>
-                    <span>Louise Lukas</span>
-                  </div> 
-                  <div class="assigned-check"></div>                 
-                </div> 
-                <div class="flex a-center between dropbox" id="c3" onclick="checkUser(id)">
-                  <div class="flex a-center gap-s">
-                    <div class="usertag flex a-center j-center" style="background-color:#ff00ff">PP</div>
-                    <span>Peter Pan</span>
-                  </div> 
-                  <div class="assigned-check"></div>                 
-                </div>  
-                <div class="flex a-center between dropbox" id="c4" onclick="checkUser(id)">
-                  <div class="flex a-center gap-s">
-                    <div class="usertag flex a-center j-center" style="background-color:#ff5055">OR</div>
-                    <span>Oliver Rittierodt</span>
-                  </div> 
-                  <div class="assigned-check"></div>                 
-                </div> 
-                <div class="flex a-center between dropbox" id="c5" onclick="checkUser(id)">
-                  <div class="flex a-center gap-s">
-                    <div class="usertag flex a-center j-center" style="background-color:#dddd55">TB</div>
-                    <span>Test Ballon</span>
-                  </div> 
-                  <div class="assigned-check"></div>                 
-                </div>                          
+              <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
               </div>   
             </div>                     
             <div id="tag-container" class="flex gap-ss"></div>
@@ -92,7 +57,7 @@
             <div class="wrapper">
               <input type="text" id="category-input" class="wrapper" placeholder="Select task category" disabled="disabled">
               <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowcategory"><img src="./img/arrowdown.png" alt="arrow"></div>
-              <div class="invis absolute" id="drop-menu">
+              <div class="invis absolute drop-menu" id="drop-menu-category">
                 <div class="flex a-center between dropbox" onclick="selectCategory('Technical Task')">
                   <div class="flex a-center">                    
                     <span>Technical Task</span>
