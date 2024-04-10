@@ -1,4 +1,3 @@
-let users = [];
 const colors = [
     '#0038FF',
     '#00BEE8',

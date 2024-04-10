@@ -2,7 +2,9 @@ let assigned = [];
 let subtasks = [];
 let priority = "medium";
 
-function displayUserMenu() {
+async function displayUserMenu() {  
+  await loadUsers();
+  await loadTasks();
   let dropbox = document.getElementById('drop-menu-assigned');
   for (let i = 0; i < users.length; i++) {
     const user = users[i].name;
@@ -40,13 +42,14 @@ function toggleDrop(id) {
 }
 
 function checkUser(id) {
-  let container = document.getElementById(`${id}`);
-  let checkeduser = container.firstElementChild.lastElementChild.innerHTML;
+  let container = document.getElementById(`c${id}`);
+  let checkeduser = users[id].name;
+  let checkedusercolor = users[id].color;
   let index = assigned.indexOf(checkeduser);
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
   } else {
-    assigned.push(checkeduser);
+    assigned.push([checkeduser,checkedusercolor]);
   }
   container.lastElementChild.classList.toggle("assigned-checked");
   renderAssignedUsers();
@@ -57,11 +60,10 @@ function renderAssignedUsers() {
   container.innerHTML = "";
   let length = assigned.length > 10 ? 10 : assigned.length;
   for (let i = 0; i < length; i++) {
-    const user = assigned[i];
+    const user = assigned[i][0];
+    const usercolor = assigned[i][1];
     container.innerHTML += `
-    <div class="usertag flex a-center j-center" style="background-color:#dddd55">${getInitials(
-      user
-    )}</div>
+    <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(user)}</div>
     `;
   }
 }
@@ -145,7 +147,7 @@ function animateCreatedTask() {
   }, 1500);
 }
 
-function clearAddTask() {
+async function clearAddTask() {
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("duedate").value = "";
@@ -155,6 +157,10 @@ function clearAddTask() {
   document.querySelectorAll(".assigned-checked").forEach((c) => c.classList.remove("assigned-checked"));
   assigned = [];
   subtasks = [];
+  /* users = [];
+  await setItem('users', JSON.stringify(users));
+  tasks = [];
+  await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
   selectPrio("medium");
 }
