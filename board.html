@@ -6,12 +6,14 @@
     <title>Join-Board</title>
     <link rel="stylesheet" href="./css/root.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
-    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/board.css" />    
     <script src="./js/summary.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/addtask.js"></script>
   </head>
-  <body onload="includeHTML();updateTasks()">
+  <body onload="includeHTML();init();updateTasks()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>
     <main>
@@ -20,7 +22,12 @@
           <h1>Board</h1>
           <div class="flex between gap">
             <div class="wrapper">
-              <input type="text" placeholder="Find Task" id="findtask" onkeyup="filterTasks()"/>
+              <input
+                type="text"
+                placeholder="Find Task"
+                id="findtask"
+                onkeyup="filterTasks()"
+              />
               <div class="flex between searchimg">
                 <img src="./img/vertbar.png" alt="bar" />
                 <div id="searchcontainer" class="flex center">
@@ -28,7 +35,9 @@
                 </div>
               </div>
             </div>
-            <button>Add&nbsptask<span>+</span></button>
+            <button onclick="toggleFloatingAddTask()">
+              Add&nbsptask<span>+</span>
+            </button>
           </div>
         </div>
       </div>
@@ -86,6 +95,7 @@
           ></div>
         </div>
       </div>
+      <div include-html="./templates/add_task_template.html" id="add-task-container"></div>
     </main>
   </body>
 </html>

@@ -1,13 +1,39 @@
 let assigned = [];
 let subtasks = [];
+let priority = "medium";
 
-function selectPrio(prio) {
+async function displayUserMenu() {  
+  await loadUsers();
+  await loadTasks();
+  let dropbox = document.getElementById('drop-menu-assigned');
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i].name;
+    const color = users[i].color;
+    dropbox.innerHTML += renderDropboxUser(user,color,i);
+  }
+}
+
+function renderDropboxUser(user,color,index) {
+  return `
+    <div class="flex a-center between dropbox" id="c${index}" onclick="checkUser(${index})">
+      <div class="flex a-center gap-s">
+        <div class="usertag flex a-center j-center" style="background-color:${color}">${getInitials(user)}</div>
+        <span>${user}</span>
+      </div> 
+   <div class="assigned-check"> </div>                 
+   </div>
+  `;
+}
+
+function selectPrio(prio, event) {
+  event.preventDefault();
   document
     .querySelectorAll(".priobutton")
     .forEach((b) =>
       b.classList.remove("urgentselect", "mediumselect", "lowselect")
     );
   document.getElementById(prio).classList.add(`${prio}select`);
+  priority = prio;
 }
 
 function toggleDrop(id) {
@@ -17,13 +43,14 @@ function toggleDrop(id) {
 }
 
 function checkUser(id) {
-  let container = document.getElementById(`${id}`);
-  let checkeduser = container.firstElementChild.lastElementChild.innerHTML;
+  let container = document.getElementById(`c${id}`);
+  let checkeduser = users[id].name;
+  let checkedusercolor = users[id].color;
   let index = assigned.indexOf(checkeduser);
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
   } else {
-    assigned.push(checkeduser);
+    assigned.push([checkeduser,checkedusercolor]);
   }
   container.lastElementChild.classList.toggle("assigned-checked");
   renderAssignedUsers();
@@ -34,11 +61,10 @@ function renderAssignedUsers() {
   container.innerHTML = "";
   let length = assigned.length > 10 ? 10 : assigned.length;
   for (let i = 0; i < length; i++) {
-    const user = assigned[i];
+    const user = assigned[i][0];
+    const usercolor = assigned[i][1];
     container.innerHTML += `
-    <div class="usertag flex a-center j-center" style="background-color:#dddd55">${getInitials(
-      user
-    )}</div>
+    <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(user)}</div>
     `;
   }
 }
@@ -71,9 +97,8 @@ function clearInput() {
 function editSubtask(id) {
   let field = document.getElementById(`subtasks-input-c${id}`);
   let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
-  let iconboxcheck = document.getElementById(
-    `created-subtasks-iconbox${id}`
-  ).nextElementSibling;
+  let iconboxcheck = document.getElementById(`created-subtasks-iconbox${id}`).nextElementSibling; 
+  field.value = field.value.split('').splice(2).join(''); 
   field.disabled = false;
   field.focus();
   iconboxedit.classList.toggle("invis");
@@ -88,6 +113,8 @@ function checkSubtask(id) {
   let iconboxcheck = document.getElementById(
     `created-subtasks-iconbox${id}`
   ).nextElementSibling;
+  subtasks[id] = field.value;
+  field.value = `• ${field.value}`;  
   field.disabled = true;
   iconboxedit.classList.toggle("invis");
   iconboxedit.classList.toggle("flex");
@@ -96,20 +123,30 @@ function checkSubtask(id) {
 }
 
 function deleteSubtask(id) {
-  let field = document.getElementById(`subtasks-input-c${id}`);
-  let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
-  let iconboxcheck = document.getElementById(
-    `created-subtasks-iconbox${id}`
-  ).nextElementSibling;
-  field.disabled = true;
-  field.focus();
-  iconboxedit.classList.toggle("invis");
-  iconboxedit.classList.toggle("flex");
-  iconboxcheck.classList.toggle("invis");
-  iconboxcheck.classList.toggle("flex");
+  subtasks.splice(id,1);
+  renderSubtasks();
 }
 
-function createTask() {
+function checkRequired() {
+  let category = document.getElementById('category-input');
+  if (category.value == "") {
+    category.style.borderColor = "red";
+    category.style.borderWidth = "2px";
+  } else {
+    createTask();
+  }
+}
+
+async function createTask() {
+  let category = "todo";
+  let label = document.getElementById('category-input').value;
+  let title = document.getElementById('title').value;
+  let description = document.getElementById('description').value;
+  let date = document.getElementById('duedate').value;
+  subtasks.unshift(0);  
+  let tasktoadd = new Task (category, label, title, description, date, subtasks, priority, assigned);  
+  tasks.push(tasktoadd);   
+  await setItem('taskobject',JSON.stringify(tasks));  
   animateCreatedTask();
 }
 
@@ -121,17 +158,23 @@ function animateCreatedTask() {
   }, 1500);
 }
 
-function clearAddTask() {
+async function clearAddTask(event) {
+  event.preventDefault();
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("duedate").value = "";
   document.getElementById("category-input").value = "";
   document.getElementById("subtasks").value = "";
   document.getElementById("tag-container").innerHTML = "";
-  document
-    .querySelectorAll(".assigned-checked")
-    .forEach((c) => c.classList.remove("assigned-checked"));
-  selectPrio("medium");
+  document.querySelectorAll(".assigned-checked").forEach((c) => c.classList.remove("assigned-checked"));
+  assigned = [];
+  subtasks = [];
+  /* users = [];
+  await setItem('users', JSON.stringify(users)); */
+  tasks = []; 
+  await setItem('taskobject', JSON.stringify(tasks));
+  renderSubtasks();
+  selectPrio("medium", event);
 }
 
 function assignSubtask() {
@@ -155,7 +198,7 @@ function displaySubtask(task, index) {
   <div class="relative">
     <input type="text" class="created-subtasks-input" id="subtasks-input-c${index}" value="• ${task}"disabled="disabled">
     <div class="iconcontainer">
-      <div id="created-subtasks-iconbox1" class="subtasks-iconbox flex">
+      <div id="created-subtasks-iconbox${index}" class="subtasks-iconbox flex">
         <div class="x-icon flex" onclick="editSubtask(${index})"><img src="./img/littlepen.png" alt="pen"></div>
         <img src="./img/vertbar.png" alt="divider">
         <div class="x-icon flex" onclick="deleteSubtask(${index})"><img src="./img/trash.png" alt="trash"></div>

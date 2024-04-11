@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 h1, #board span {
   cursor:default;
 }
@@ -203,6 +207,7 @@ input::placeholder {
 .taskbox {
   display:flex;
   flex-direction: column;  
+  align-items: flex-start;
   gap:24px;
   width:260px;
   background-color: white;
@@ -229,16 +234,16 @@ input::placeholder {
 
 .userstory {
   height:27px;
-  width:113px;
+  padding: 0px 16px;
   color:white;
   font-size:16px;
   background-color: #0038FF;  
   border-radius: 8px;
 }
 
-.technical {
+.technicaltask {
   height:27px;
-  width:113px;
+  padding: 0px 16px;
   color:white;
   font-size:16px;
   background-color: #1FD7C1;  
@@ -320,6 +325,44 @@ input::placeholder {
 ::-webkit-scrollbar-thumb {
   background: rgb(104, 106, 112);
   border-radius: 10px;
+}
+
+.details {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-details {
+  position: fixed; /* Fixierte Positionierung, um den Container über dem anderen Inhalt zu halten */
+  top: 50%; /* Zentrieren vertikal */
+  left: 50%; /* Zentrieren horizontal */
+  z-index: 9999; /* Stellen Sie sicher, dass der Container über anderem Inhalt liegt */
+  background-color: #ffffff; /* Weiße Hintergrundfarbe */
+  padding: 20px; /* Platz um den Inhalt herum */
+  border-radius: 8px; /* Runde Ecken */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Schatten für visuellen Effekt */
+}
+
+.d-none {
+  display: none;
+}
+
+#add-task-container {
+  position:absolute;
+  background-color: white;
+  z-index: 10;
+  top:13%;
+  left:300%;
+  padding: 30px 74px;
+  border-radius:30px;
 }
 
 

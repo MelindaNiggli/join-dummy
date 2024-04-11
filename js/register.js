@@ -1,4 +1,3 @@
-let users = [];
 const colors = [
     '#0038FF',
     '#00BEE8',
@@ -16,21 +15,6 @@ const colors = [
     '#FFC701',
     '#FFE62B'
 ];
-
-
-async function init(){
-    loadUsers();
-}
-
-
-async function loadUsers(){
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch(e){
-        console.error('Loading error:', e);
-    }
-}
-
 
 // Zufällige Farbe auswählen
 function getRandomColor() {

@@ -1,55 +1,5 @@
-let tasks = [
-    {
-        "category": "todo",
-        "label": "User Story",
-        "title": "Einführung neuer Funktionen",
-        "description": "Implementierung von Benutzeranmeldefunktionen und Profilseiten",
-        "date": "2024-04-10",
-        "subtasks": [1, "Benutzeranmeldung erstellen", "Profilseiten-Layout gestalten"],
-        "priority": "medium",
-        "assigned": [["Max Mustermann", "#ff0000"], ["Anna Müller", "#00ff00"], ["Lisa Wagner", "#0000ff"], ]
-    },
-    {
-        "category": "progress",
-        "label": "Technical",
-        "title": "Datenbankoptimierung",
-        "description": "Optimierung der Datenbankabfragen für verbesserte Leistung",
-        "date": "2024-04-15",
-        "subtasks": [2,"Indizes hinzufügen", "Abfragen überprüfen und optimieren", "Backup-Routinen überprüfen"],
-        "priority": "urgent",
-        "assigned": [["John Doe", "#ffff00"], ["Sarah Schmidt", "#ff00ff"]]
-    },
-    {
-        "category": "feedback",
-        "label": "User Story",
-        "title": "Benutzerfreundlichkeit verbessern",
-        "description": "Verbesserung der Benutzeroberfläche für eine bessere Benutzererfahrung",
-        "date": "2024-04-20",
-        "subtasks": [0],
-        "priority": "low",
-        "assigned": [["Michaela Maier", "#00ffff"]]
-    },
-    {
-        "category": "done",
-        "label": "Technical",
-        "title": "Sicherheitspatching",
-        "description": "Installation von Sicherheitsupdates und Patches zur Behebung von Sicherheitslücken",
-        "date": "2024-03-28",
-        "subtasks": [2, "Update auf neueste Softwareversion", "Überprüfung der Sicherheitskonfiguration"],
-        "priority": "medium",
-        "assigned": [["Emily Smith", "#ff8800"], ["David Becker", "#888888"]]
-    },
-    {
-        "category": "todo",
-        "label": "User Story",
-        "title": "Integration von Zahlungsgateways",
-        "description": "Integration von PayPal und Kreditkartenzahlungen in die Plattform",
-        "date": "2024-04-05",
-        "subtasks": [0, "PayPal-API integrieren", "Kreditkartenverarbeitung implementieren", "Fehlerbehandlung hinzufügen"],
-        "priority": "urgent",
-        "assigned": [["Daniel Johnson", "#00ff88"], ["Sophie Müller", "#ff0088"]]
-    }
-];
+let users = [];
+let tasks = [];
 
 /** 
  * Adding selectedMenu / selectedImg effects to the selected menu element
@@ -83,8 +33,8 @@ function menuSelected(menuitem) {
       }
     }
     menuSelected(document.title);
-    updateSummaryCounts();
-    displayCurrentDate();
+    /* updateSummaryCounts(); */
+    /* displayCurrentDate(); */
   }
 
   function getInitials(user) {
@@ -92,3 +42,35 @@ function menuSelected(menuitem) {
     let firstletter = names[0].charAt(0).toUpperCase();  
     return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
   }
+
+  function Task(category, label, title, description, date, subtasks, priority, assigned) {
+    this.category = category,
+    this.label = label,    
+    this.title = title,
+    this.description = description,
+    this.date = date,
+    this.subtasks = subtasks,
+    this.priority = priority,
+    this.assigned = assigned  
+}
+
+async function init(){
+  loadUsers();
+  loadTasks();
+}
+
+async function loadTasks() {  
+  try {
+    tasks = JSON.parse(await getItem('taskobject'));
+  } catch(e){
+    console.error('Loading error:', e);
+  }
+}
+
+async function loadUsers(){
+  try {
+      users = JSON.parse(await getItem('users'));
+  } catch(e){
+      console.error('Loading error:', e);
+  }
+}

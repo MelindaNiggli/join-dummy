@@ -1,18 +1,8 @@
 let columns = ['todo','progress','feedback','done'];
 let taskCounts = [];
 
-function Task(category, label, title, description, date, subtasks, priority, assigned) {
-    this.category = category,
-    this.label = label,    
-    this.title = title,
-    this.description = description,
-    this.date = date,
-    this.subtasks = subtasks,
-    this.priority = priority,
-    this.assigned = assigned  
-}
-
-function updateTasks() {
+async function updateTasks() {
+  await loadTasks();
   emptyColumns();
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -21,7 +11,7 @@ function updateTasks() {
     showAssigned(task,task.assigned,i);
   }  
   setNoTaskBox(); 
-  updateSummaryCounts();
+  /* updateSummaryCounts(); */
 }
 
 function setNoTaskBox() {
@@ -39,7 +29,6 @@ function setNoTaskBox() {
 }
 
 function emptyColumns() {
-  let columns = ['todo','progress','feedback','done'];
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
     document.getElementById(`task_${column}`).innerHTML = '';    
@@ -48,7 +37,7 @@ function emptyColumns() {
 
 function renderTaskHTML(task,index) {
     return `
-    <div id="id${index}" class="taskbox" draggable="true" ondragstart="dragStart(${index})" ondragover="">
+    <div onclick="openTaskInfo(${index})" id="id${index}" class="taskbox" draggable="true" ondragstart="dragStart(${index})" ondragover="">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -60,7 +49,7 @@ function renderTaskHTML(task,index) {
         </div>
         <span>${task.subtasks[0]}/${task.subtasks.length - 1}&nbspSubtasks</span>
       </div>
-      <div class="flex between">
+      <div class="flex between wide">
         <div class="flex wrapper" id="userbox${index}">        
         </div>
       <img src="./img/${task.priority}.png" alt="priority">
@@ -108,8 +97,9 @@ function renderAssigned(id, color, zIndex, left) {
   return `<div class="usertag absolute flex center" style="background-color:${color};z-index:${zIndex};left:${left}px">${id}</div>`;
 }
 
-function dragTo(category) {
+async function dragTo(category) {
   tasks[draggedElement]['category'] = category;
+  await setItem('taskobject',JSON.stringify(tasks));
   updateTasks();
 }
 
@@ -160,8 +150,34 @@ function updateAllTasks() {
   updateFeedbackTasks();
   updateDoneTasks();
 
-  // Nachdem die Aufgaben aktualisiert wurden, rufe die Funktion zur Anzeige der Zusammenfassung auf
   displayTaskSummary();
+}
+
+function openTaskInfo(index) {
+  let task = tasks[index];
+  let taskDetailsContainer = document.createElement('div'); // Neuen Container erstellen
+  taskDetailsContainer.classList.add('task-details-container');
+
+  let taskDetailsHTML = `
+    <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
+      <div class="task-details">
+        <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
+        <h2>${task.title}</h2>
+        <p>${task.description}</p>
+      </div>
+    </div>
+  `;
+  
+  taskDetailsContainer.innerHTML = '';
+  taskDetailsContainer.innerHTML = taskDetailsHTML;
+
+  // Den neuen Container dem Dokument hinzufügen
+  document.body.appendChild(taskDetailsContainer);
+}
+
+function hideDetailsContainer() {
+  document.getElementById('detailsContainer').classList.add('d-none');
+  document.getElementById('detailsContainer').innerHTML = '';
 }
 
 

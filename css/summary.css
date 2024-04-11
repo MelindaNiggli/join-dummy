@@ -254,13 +254,20 @@ main * {
 .date-line:hover {
     border: 2px solid #D1D1D1;
 }
+
 .to-do-left:hover .number,
 .to-do-right:hover .number,
 .date-container:hover .number,
-.task:hover .number {
+.task:hover .number,
+.to-do-left:hover .textColor,
+.to-do-right:hover .textColor,
+.date-container:hover .textColor,
+.date-container:hover .date-text,
+.task:hover .textColor {
   color: var(--white);
 }
 
 .date-container:hover .actual-date {
-    color: var(--white); /* Change the color to your desired value */
-  }
+  color: var(--white);
+}
+
