@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 h1, #board span {
   cursor:default;
 }
@@ -349,6 +353,16 @@ input::placeholder {
 
 .d-none {
   display: none;
+}
+
+#add-task-container {
+  position:absolute;
+  background-color: white;
+  z-index: 10;
+  top:13%;
+  left:300%;
+  padding: 30px 74px;
+  border-radius:30px;
 }
 
 
