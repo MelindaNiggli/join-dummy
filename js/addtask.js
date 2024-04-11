@@ -25,7 +25,8 @@ function renderDropboxUser(user,color,index) {
   `;
 }
 
-function selectPrio(prio) {
+function selectPrio(prio, event) {
+  event.preventDefault();
   document
     .querySelectorAll(".priobutton")
     .forEach((b) =>
@@ -126,6 +127,16 @@ function deleteSubtask(id) {
   renderSubtasks();
 }
 
+function checkRequired() {
+  let category = document.getElementById('category-input');
+  if (category.value == "") {
+    category.style.borderColor = "red";
+    category.style.borderWidth = "2px";
+  } else {
+    createTask();
+  }
+}
+
 async function createTask() {
   let category = "todo";
   let label = document.getElementById('category-input').value;
@@ -147,7 +158,8 @@ function animateCreatedTask() {
   }, 1500);
 }
 
-async function clearAddTask() {
+async function clearAddTask(event) {
+  event.preventDefault();
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("duedate").value = "";
@@ -158,11 +170,11 @@ async function clearAddTask() {
   assigned = [];
   subtasks = [];
   /* users = [];
-  await setItem('users', JSON.stringify(users));
-  tasks = [];
-  await setItem('taskobject', JSON.stringify(tasks)); */
+  await setItem('users', JSON.stringify(users)); */
+  tasks = []; 
+  await setItem('taskobject', JSON.stringify(tasks));
   renderSubtasks();
-  selectPrio("medium");
+  selectPrio("medium", event);
 }
 
 function assignSubtask() {
