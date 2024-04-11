@@ -10,9 +10,7 @@ function loadAnimation() {
         logo.style.width = '100.03px';
         logo.style.transform = '';
 
-        // Überprüfen Sie die Bildschirmbreite, um zu entscheiden, ob es sich um eine mobile Ansicht handelt
         if (window.innerWidth <= 767) {
-            // Ändern Sie den Hintergrund des logoWrapper-Elements während der Animation, wenn die Bildschirmbreite mobil ist
             logoWrapper.style.background = 'var(--join-black)'; // Hintergrundfarbe während der Animation
         }
 
@@ -23,11 +21,8 @@ function loadAnimation() {
     setTimeout(function() {
         ContentLogin();
        
-        // Überprüfen Sie die Bildschirmbreite, um zu entscheiden, ob es sich um eine mobile Ansicht handelt
         if (window.innerWidth <= 767) {
-            // Ändern Sie das Hintergrundbild des logoWrapper-Elements während der Animation, wenn die Bildschirmbreite mobil ist
             logo.style.backgroundImage = 'url(img/join-logo.svg)'; // Pfad zum neuen Hintergrundbild
-            // Ändern Sie den Hintergrund des logoWrapper-Elements während der Animation, wenn die Bildschirmbreite mobil ist
             logoWrapper.style.background = 'transparent'; // Hintergrundfarbe während der Animation
         }
     }, 1000); // 1000 Millisekunden = 1 Sekunde

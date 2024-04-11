@@ -42,7 +42,7 @@ nav {
   width: 100%;
 }
 
-a:not(#headend a) {
+#menubar  a:not(#headend a) {
   text-decoration: none;
   color: #cdcdcd;
   display: flex;
@@ -115,7 +115,7 @@ header span {
 }
 
 #headeruser span {
-  font-size:24px;
+  font-size: 18px;
   color:#29ABE2;
   font-weight: bold;
 }

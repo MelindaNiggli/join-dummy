@@ -69,11 +69,10 @@ span.linie {
     margin: 10px 0 10px 0 !important ;
 }
 
-#ProfileBadge {
+.profileBadge {
     height: 42px;
     width: 42px;
     font-size: 12px;
-    background-color: #FF7A00;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -186,7 +185,6 @@ span.linie {
 	top: 0;
 	right: 0;
 	overflow: hidden;
-	min-height: 100vh;
 	width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -209,4 +207,64 @@ span.linie {
     position: absolute;
     top: 35px;
     right: 35px;
+}
+
+/*Aside info*/
+.profileBadge.big {
+	width: 126px;
+	height: 126px;
+    border: 3px solid white;
+    margin-right: 54px;
+    margin-bottom: 21px;
+    font-size: 47px;
+}
+
+.editeDeleteWrapper{
+    display: flex;
+}
+.edit,.delete{
+    display: flex;
+    align-items: center;
+}
+.edit {
+    margin-right: 16px;
+}
+.edit img {
+    margin-right: 10.72px;
+}
+#userInfoSide {
+	display: flex;
+	align-items: center;
+}
+
+#userInfoDetails{
+    margin-left: 55px;
+    margin-top: 32px;
+}
+
+.nameAside{
+    font-size: 47px;
+}
+
+.contactInfo {
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 59px;
+    margin-bottom: 59px;
+}
+
+.wrapperE, .wrapperP{
+    font-size: 16px;
+}
+.wrapperE a, .wrapperP a{
+    margin-top: 16px;
+    color: var(--join-link);
+    display: block;
+}
+.wrapperE{
+    margin-bottom: 22px;
+}
+.wrapperE p:first-child, .wrapperP p:first-child{
+    font-weight: 700;
+
 }
