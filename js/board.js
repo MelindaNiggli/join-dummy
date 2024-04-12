@@ -120,6 +120,10 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
+function toggleFloatingAddTask() {
+  
+}
+
 function updateTodoTasks() {
   const count = document.getElementById('task_todo').children.length;
   taskCounts['todo'] = count;

@@ -3,7 +3,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 h1, #board span {
@@ -359,10 +359,11 @@ input::placeholder {
   position:absolute;
   background-color: white;
   z-index: 10;
-  top:13%;
-  left:300%;
+  top:9%;
+  left:200%;   /* 13% toggle */
   padding: 30px 74px;
   border-radius:30px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 
