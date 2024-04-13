@@ -121,7 +121,14 @@ function removeHighlight(id) {
 }
 
 function toggleFloatingAddTask() {
-  
+  let container = document.getElementById('blockcontainer');  
+  let floatingcontainer = document.getElementById('add-task-container');  
+  container.classList.toggle('d-none');  
+  if (!container.classList.contains('d-none')) {
+    floatingcontainer.style.left = '16%';
+  } else {
+    floatingcontainer.style.left = '200%'; 
+  }
 }
 
 function updateTodoTasks() {

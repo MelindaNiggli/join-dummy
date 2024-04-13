@@ -94,8 +94,10 @@
             ondragover="allowDrop(event); highlight('task_done')"
           ></div>
         </div>
-      </div>
-      <div include-html="./templates/add_task_template.html" id="add-task-container"></div>
+      </div>      
     </main>
+    <div id="blockcontainer" class="details d-none" onclick="toggleFloatingAddTask()">
+      <div include-html="./templates/add_task_template.html" id="add-task-container"></div>
+    </div>    
   </body>
 </html>

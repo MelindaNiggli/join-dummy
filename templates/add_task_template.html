@@ -22,7 +22,7 @@
           <span>Assigned to</span>
           <div class="wrapper">
             <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
-            <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/downTask.svg" alt="arrow"></div>
+            <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
             <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
             </div>   
           </div>                     
@@ -39,7 +39,7 @@
           <span>Prio</span>
           <div class="buttonbox">
             <button class="priobutton" id="urgent" onclick="selectPrio(id, event)">Urgent <img src="./img/upTask.svg" alt="urgent"></button>
-            <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id, event)">Medium <img src="./img/sameTask.svg" alt="medium"></button>
+            <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id, event)">Medium <img src="./img/medium.svg" alt="medium"></button>
             <button class="priobutton" id="low" onclick="selectPrio(id, event)">Low <img src="./img/downTask.svg" alt="low"></button>
           </div>
         </div>
@@ -73,7 +73,7 @@
                 <img src="./img/vertbar.png" alt="divider">
                 <div class="x-icon flex" onclick="assignSubtask(), clearInput()"><img src="./img/checksmall.png" alt="check"></div>
               </div>
-              <div class="x-icon flex" onclick="toggleSubtasksInput()"><img src="./img/add.svg" alt="plus"></div>
+              <div class="x-icon flex" onclick="toggleSubtasksInput()"><img src="./img/add.png" alt="plus"></div>
             </div>
             <div id="created-subtasks-container">                           
             </div>
@@ -85,7 +85,7 @@
     <div id="foot" class="flex between">
       <span class="requiredspan"><span class="requiredspan required">*</span>This field is required</span>
       <div>
-        <button class="clear" onclick="clearAddTask(event)">Clear <img src="./img/cross.svg" alt="x"></button>
+        <button class="clear" onclick="clearAddTask(event)">Clear&nbsp<img src="./img/cross.svg" alt="x"></button>
         <button type="submit"  class="createtask">Create&nbspTask <img src="./img/check.svg" alt="check"></button>
       </div>
     </div>
