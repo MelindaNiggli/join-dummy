@@ -171,8 +171,8 @@ async function clearAddTask(event) {
   subtasks = [];
   /* users = [];
   await setItem('users', JSON.stringify(users)); */
-  tasks = []; 
-  await setItem('taskobject', JSON.stringify(tasks));
+  /* tasks = []; 
+  await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
   selectPrio("medium", event);
 }

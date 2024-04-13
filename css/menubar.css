@@ -75,7 +75,7 @@ nav a {
 }
 
 .selectedMenu {
-  color: var(--white);
+  color: white !important;  
   background-color: #091931;
   cursor: default;
 }
