@@ -9,7 +9,7 @@ function showContact() {
 
     setTimeout(function() {
         container.style.transform = 'translateX(0px)';
-    }, 1); 
+    }, 0); 
 }
 
 function closeContact() {
@@ -103,6 +103,28 @@ async function loadContactUsers() {
 }
 
 function showUserInfo(name, email,color,index) {
+    const container = document.getElementById('userInfoDetails');
+
+    // Prüfe, ob der Container bereits sichtbar ist
+    if (container.style.transform === 'translateX(0px)') {
+        // Schließe den aktuellen Kontakt, indem du ihn von links nach rechts bewegst
+        container.style.transform = 'translateX(1100px)';
+        
+        // Warte auf das Schließen des aktuellen Kontakts und öffne dann den neuen Kontakt von rechts nach links
+        setTimeout(function() {
+            container.style.transform = 'translateX(0px)';
+        }, 500); // Ändere die Zeit, falls nötig, um die Schließanimation abzuschließen
+    } else {
+        // Der Container ist nicht sichtbar, also öffne den neuen Kontakt von rechts nach links direkt
+        container.style.display = 'block';
+        container.style.transform = 'translateX(1100px)';
+        
+        // Warte kurz und öffne den neuen Kontakt von rechts nach links
+        setTimeout(function() {
+            container.style.transform = 'translateX(0px)';
+        }, 1);
+    }
+
     console.log(name);
     console.log(email);
     console.log(color);
@@ -117,9 +139,6 @@ function showUserInfo(name, email,color,index) {
     const capitalizedWord = firstLetter + restOfWord;
     
 
-
-
-    const container = document.getElementById('userInfoDetails');
 
     container.innerHTML = `
 

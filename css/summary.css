@@ -14,13 +14,25 @@ body {
     gap: 30px;
 }
 
-.line {
-    display: block;
-    width: 3px;
-    height: 59px;
-    background-color: var(--join-blue)
+
+.to-do-left, .to-do-right, .date-container, .task {
+	box-shadow: 0px 0px 4px #0000001A;
+}
+.to-do-left, .to-do-right, .task{
+    font-size: 20px;
+    font-weight: 400;
 }
 
+.task {
+    text-align: center;
+}
+.line {
+	display: block;
+	width: 3px;
+	height: 59px;
+	background-color: var(--join-blue);
+	border-radius: 10px;
+}
 .headline-text {
     font-size: 27px;
     font-weight: 400;
@@ -178,6 +190,11 @@ main * {
     height: 102.02px;
     display: block;
     background-color: rgba(209, 209, 209, 1);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .date-right {
