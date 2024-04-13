@@ -81,7 +81,7 @@ function login(){
     console.log(user);
     if(user){
         window.location.href = 'summary.html';
-    }
+    }   
 
 }
 

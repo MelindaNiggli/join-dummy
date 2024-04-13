@@ -57,6 +57,7 @@ function menuSelected(menuitem) {
 async function init(){
   loadUsers();
   loadTasks();
+
 }
 
 async function loadTasks() {  

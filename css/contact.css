@@ -305,3 +305,9 @@ span.linie {
     font-weight: 700;
 
 }
+
+#messageBox {
+	top: 100px;
+	right: 77px;
+	position: absolute;
+}
