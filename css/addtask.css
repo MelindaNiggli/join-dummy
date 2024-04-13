@@ -1,4 +1,9 @@
-main {
+#main {
+  flex-grow: 1;
+  margin-left:232px;  
+  width:calc(100vw - 232px);
+  height:calc(100vh - 96px);  
+  background-color: var(--bg);
   padding: 70px 185px 79px 10%;
 }
 
