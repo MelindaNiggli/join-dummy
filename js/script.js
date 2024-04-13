@@ -33,8 +33,8 @@ function menuSelected(menuitem) {
       }
     }
     menuSelected(document.title);
-    /* updateSummaryCounts(); */
-    /* displayCurrentDate(); */
+    updateSummaryCounts();
+    displayCurrentDate();
   }
 
   function getInitials(user) {
