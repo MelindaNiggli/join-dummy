@@ -118,6 +118,50 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
+function toggleFloatingAddTask() {
+  let container = document.getElementById('blockcontainer');  
+  let floatingcontainer = document.getElementById('add-task-container');  
+  container.classList.toggle('d-none');  
+  if (!container.classList.contains('d-none')) {
+    floatingcontainer.style.left = '16%';
+  } else {
+    floatingcontainer.style.left = '200%'; 
+  }
+}
+
+function updateTodoTasks() {
+  const count = document.getElementById('task_todo').children.length;
+  taskCounts['todo'] = count;
+  console.log(`todo has ${count} tasks.`);
+}
+
+function updateProgressTasks() {
+  const count = document.getElementById('task_progress').children.length;
+  taskCounts['progress'] = count;
+  console.log(`progress has ${count} tasks.`);
+}
+
+function updateFeedbackTasks() {
+  const count = document.getElementById('task_feedback').children.length;
+  taskCounts['feedback'] = count;
+  console.log(`feedback has ${count} tasks.`);
+}
+
+function updateDoneTasks() {
+  const count = document.getElementById('task_done').children.length;
+  taskCounts['done'] = count;
+  console.log(`done has ${count} tasks.`);
+}
+
+function updateAllTasks() {
+  updateTodoTasks();
+  updateProgressTasks();
+  updateFeedbackTasks();
+  updateDoneTasks();
+
+  displayTaskSummary();
+}
+
 function openTaskInfo(index) {
   let task = tasks[index];
   let details = document.getElementById('task-details-container');

@@ -34,6 +34,8 @@ function menuSelected(menuitem) {
     }
     menuSelected(document.title);
     displayCurrentDate(); 
+    updateSummaryCounts();
+    displayCurrentDate();
   }
 
   function getInitials(user) {
@@ -53,7 +55,11 @@ function menuSelected(menuitem) {
     this.assigned = assigned  
 }
 
+async function init(){
+  loadUsers();
+  loadTasks();
 
+}
 
 async function loadTasks() {  
   try {

@@ -1,4 +1,9 @@
-main {
+#main {
+  flex-grow: 1;
+  margin-left:232px;  
+  width:calc(100vw - 232px);
+  height:calc(100vh - 96px);  
+  background-color: var(--bg);
   padding: 70px 185px 79px 10%;
 }
 
@@ -101,16 +106,16 @@ textarea::placeholder {
   color: black;
 }
 
-
 textarea {
-  width: 440px;
-  height: 120px;
-  border-radius: 10px;
-  padding: 18px 16px;
-  border-color: #d1d1d1;
-  font-family: "inter", sans-serif;
-  font-size: 20px;
-  resize: none;
+	width: 440px;
+	height: 120px;
+	border-radius: 10px;
+	padding: 18px 16px;
+	border-color: #d1d1d1;
+	font-family: "inter", sans-serif;
+	font-size: 20px;
+	resize: none;
+	border: 1px solid #d1d1d1;
 }
 
 .divider {
@@ -198,7 +203,7 @@ textarea {
   align-items: center;
   justify-content: center;
   position: absolute;
-  padding: 4px;
+  padding: 14px;
   gap: 16px;
   top: 8px;
   right: 16px;
