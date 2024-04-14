@@ -33,8 +33,7 @@ function menuSelected(menuitem) {
       }
     }
     menuSelected(document.title);
-    /* updateSummaryCounts(); */
-    /* displayCurrentDate(); */
+    displayCurrentDate(); 
   }
 
   function getInitials(user) {
@@ -54,10 +53,7 @@ function menuSelected(menuitem) {
     this.assigned = assigned  
 }
 
-async function init(){
-  loadUsers();
-  loadTasks();
-}
+
 
 async function loadTasks() {  
   try {
@@ -73,4 +69,12 @@ async function loadUsers(){
   } catch(e){
       console.error('Loading error:', e);
   }
+}
+
+async function init(){
+  await includeHTML();
+  await loadUsers();
+  await loadTasks();
+  updateTaskCounts(tasks);
+  countUrgentTasks(tasks)
 }

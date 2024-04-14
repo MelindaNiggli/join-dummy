@@ -32,8 +32,8 @@
 
 .imprint-mail {
     display: inline-block;
-    padding: 0;
-    color: var(--join-blue)
+    padding: 0 !important;
+    color: var(--join-blue) !important;
 }
 
 .main-content ul {

@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="./css/summary.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
     <script src="./js/script.js"></script>
-    <script src="./js/summary.js"></script>
+    <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/summary.js"></script>
     
   </head>
   <body onload="includeHTML();init()">
@@ -62,7 +63,7 @@
         </a>
         <div class="task-container">
           <a href="board.html" class="task">
-            <div class="number">5</div>
+            <div id="taskAmount" class="number">0</div>
             <div class="textColor">Tasks in Board</div>
           </a>
           <a href="board.html" class="task">
@@ -78,7 +79,7 @@
 
       <div class="summary-greet-container">
         <h2 id="greet" class="summary-greet"></h2>
-        <h2 class="summary-name">Sofia Müller</h2>
+        <h2 id="summaryName" class="summary-name"></h2>
       </div>
     </main>
     <script src="./js/summary.js"></script>

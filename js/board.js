@@ -1,5 +1,4 @@
 let columns = ['todo','progress','feedback','done'];
-let taskCounts = [];
 
 async function updateTasks() {
   await loadTasks();
@@ -11,7 +10,6 @@ async function updateTasks() {
     showAssigned(task,task.assigned,i);
   }  
   setNoTaskBox(); 
-  /* updateSummaryCounts(); */
 }
 
 function setNoTaskBox() {
@@ -37,7 +35,7 @@ function emptyColumns() {
 
 function renderTaskHTML(task,index) {
     return `
-    <div onclick="openTaskInfo(${index})" id="id${index}" class="taskbox" draggable="true" ondragstart="dragStart(${index})" ondragover="">
+    <div onclick="openTaskInfo(${index})" id="id${index}" class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -120,59 +118,28 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-function updateTodoTasks() {
-  const count = document.getElementById('task_todo').children.length;
-  taskCounts['todo'] = count;
-  console.log(`todo has ${count} tasks.`);
-}
-
-function updateProgressTasks() {
-  const count = document.getElementById('task_progress').children.length;
-  taskCounts['progress'] = count;
-  console.log(`progress has ${count} tasks.`);
-}
-
-function updateFeedbackTasks() {
-  const count = document.getElementById('task_feedback').children.length;
-  taskCounts['feedback'] = count;
-  console.log(`feedback has ${count} tasks.`);
-}
-
-function updateDoneTasks() {
-  const count = document.getElementById('task_done').children.length;
-  taskCounts['done'] = count;
-  console.log(`done has ${count} tasks.`);
-}
-
-function updateAllTasks() {
-  updateTodoTasks();
-  updateProgressTasks();
-  updateFeedbackTasks();
-  updateDoneTasks();
-
-  displayTaskSummary();
-}
-
 function openTaskInfo(index) {
   let task = tasks[index];
-  let taskDetailsContainer = document.createElement('div'); // Neuen Container erstellen
-  taskDetailsContainer.classList.add('task-details-container');
+  let details = document.getElementById('task-details-container');
+  details.innerHTML = '';
 
-  let taskDetailsHTML = `
+  details.innerHTML = `
     <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
       <div class="task-details">
-        <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
-        <h2>${task.title}</h2>
-        <p>${task.description}</p>
+        <div class="task-and-close-container">
+          <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
+          <img src="./img/x.png" class="close-task">
+        </div>
+        <h2 class="task-details-header">${task.title}</h2>
+        <p class="task-details-text">${task.description}</p>
+        <p class="task-date">Due Date: 6/16/2024</p>
+        <p>Priority: Urgent <img src="./img/${task.priority}.png" alt="priority">
+        <div>
+          <p>Assigned to: </p>
+        </div>
       </div>
     </div>
   `;
-  
-  taskDetailsContainer.innerHTML = '';
-  taskDetailsContainer.innerHTML = taskDetailsHTML;
-
-  // Den neuen Container dem Dokument hinzufügen
-  document.body.appendChild(taskDetailsContainer);
 }
 
 function hideDetailsContainer() {

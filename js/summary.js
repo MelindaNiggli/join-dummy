@@ -1,17 +1,35 @@
-function updateSummaryCounts() {
-  // Filtern der Aufgaben nach Kategorie
-  const todoTasks = tasks.filter(task => task.category === 'todo');
-  const progressTasks = tasks.filter(task => task.category === 'progress');
-  const feedbackTasks = tasks.filter(task => task.category === 'feedback');
-  const doneTasks = tasks.filter(task => task.category === 'done');
-  const urgentTasks = tasks.filter(task => task.priority === 'urgent');
-  // Aktualisieren der Anzeige für die jeweiligen Kategorien
-  document.getElementById("toDoAmount").textContent = todoTasks.length;
-  document.getElementById("progressAmount").textContent = progressTasks.length;
-  document.getElementById("feedbackAmount").textContent = feedbackTasks.length;
-  document.getElementById("doneAmount").textContent = doneTasks.length;
-  document.getElementById("urgentAmount").textContent = urgentTasks.length;
+function updateTaskCounts(tasks) {
+  const counts = {todo: 0, progress: 0, feedback: 0, done: 0};
+  const taskAmount = tasks.length;
+  tasks.forEach(task => {
+    if (task.category === 'todo') counts.todo++;
+    else if (task.category === 'progress') counts.progress++;
+    else if (task.category === 'feedback') counts.feedback++;
+    else if (task.category === 'done') counts.done++;
+  });
+
+  console.log('Task Counts:', counts);
+
+  document.getElementById("toDoAmount").textContent = counts.todo;
+  document.getElementById("progressAmount").textContent = counts.progress;
+  document.getElementById("feedbackAmount").textContent = counts.feedback;
+  document.getElementById("doneAmount").textContent = counts.done;
+  document.getElementById("taskAmount").textContent = taskAmount;
 }
+
+function countUrgentTasks(tasks) {
+  let urgentCount = 0;
+
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].priority === "urgent") {
+      urgentCount++;
+    }
+  }
+
+  document.getElementById("urgentAmount").textContent = urgentCount;
+  console.log('Urgent Counts:', urgentCount);
+}
+
 
 function showTasks() {
   const todoTasks = countTodoTasks();
@@ -48,6 +66,24 @@ function displayCurrentDate() {
 
   document.getElementById("currentDate").textContent = formattedDate;
 }
+
+function getLoggedInUser() {
+  let user = JSON.parse(localStorage.getItem('loggedInUser'));
+  return user;
+}
+
+function displayUserName() {
+  let user = getLoggedInUser();
+  let summaryNameElement = document.getElementById('summaryName');
+  if (user) {
+      summaryNameElement.textContent = user.name;
+  } else {
+      summaryNameElement.textContent = 'Guest';
+  }
+}
+
+// Rufen Sie die Funktion auf, um den Benutzernamen anzuzeigen
+displayUserName();
 
 
 
