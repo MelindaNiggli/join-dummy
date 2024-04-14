@@ -363,17 +363,19 @@ input::placeholder {
   background-color: white;
   z-index: 10;
   top:9%;
-  left: 200%;   /* 16% toggle */
+  left: 16%;   /* 16% toggle */
   padding: 30px 74px;
   border-radius:30px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 4px 0px #0000001A;  
 }
 
-#blockcontainer {
-  
+.slidein {
+  animation: slideInFromRight 0.25s ease;
 }
 
+.slideout {
+  animation: slideOutToRight 0.25s ease;
+}
 
 .task-and-close-container {
   display: flex;
@@ -426,5 +428,14 @@ input::placeholder {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

@@ -118,16 +118,26 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-function toggleFloatingAddTask() {
+function toggleFloatingAddTask() {  
   let container = document.getElementById('blockcontainer');  
   let floatingcontainer = document.getElementById('add-task-container');  
-  container.classList.toggle('d-none');  
-  if (!container.classList.contains('d-none')) {
-    floatingcontainer.style.left = '16%';
-  } else {
-    floatingcontainer.style.left = '200%'; 
+  if (container.classList.contains('d-none')) {
+    container.classList.toggle('d-none');
+    floatingcontainer.classList.toggle('slidein');    
+  } else {    
+    floatingcontainer.classList.toggle('slideout'); 
+    setTimeout(toggleBlock,200);       
   }
 }
+
+function toggleBlock() {
+  let container = document.getElementById('blockcontainer');
+  let floatingcontainer = document.getElementById('add-task-container'); 
+  container.classList.toggle('d-none');
+  floatingcontainer.classList.remove('slidein');
+  floatingcontainer.classList.remove('slideout');
+}
+
 
 function updateTodoTasks() {
   const count = document.getElementById('task_todo').children.length;
