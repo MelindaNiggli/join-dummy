@@ -341,14 +341,17 @@ input::placeholder {
 }
 
 .task-details {
+  position: absolute;
   width: 525px;
   height: 931px;
-  top: -3975px;
-  left: 154px;
+  top: 210px;
+  left: 625px;
   padding: 48px 40px 48px 40px;
   gap: 24px;
   border-radius: 30px 30px 30px 30px;
   background-color: white;
+  position: fixed;
+  animation: slideInFromRight 0.25s ease;
 }
 
 .d-none {
@@ -378,7 +381,6 @@ input::placeholder {
 }
 
 .task-details-header {
-  font-family: Inter;
   font-size: 61px;
   font-weight: 700;
   line-height: 73.2px;
@@ -386,7 +388,6 @@ input::placeholder {
 }
 
 .task-details-text {
-  font-family: Inter;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
@@ -396,4 +397,34 @@ input::placeholder {
 .task-date {
   width: 445px;
   height: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  padding-top: 16px;
+}
+
+.task-priority {
+  height: 32px;
+  gap: 10px;
+  font-size: 20px;
+  padding-top: 24px;
+}
+
+.close-task{
+  cursor: pointer;
+}
+
+.task-assigned {
+  padding-top: 24px;
+  font-size: 20px;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

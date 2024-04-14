@@ -176,10 +176,10 @@ function openTaskInfo(index) {
         </div>
         <h2 class="task-details-header">${task.title}</h2>
         <p class="task-details-text">${task.description}</p>
-        <p class="task-date">Due Date: 6/16/2024</p>
-        <p>Priority: Urgent <img src="./img/${task.priority}.png" alt="priority">
+        <div class="task-date">Due Date: 6/16/2024</div>
+        <div class="task-priority">Priority: Urgent <img src="./img/${task.priority}.png" alt="priority"></div>
         <div>
-          <p>Assigned to: </p>
+          <div class="task-assigned">Assigned to: </div>
         </div>
       </div>
     </div>
