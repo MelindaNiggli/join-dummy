@@ -34,8 +34,6 @@ function menuSelected(menuitem) {
     }
     menuSelected(document.title);
     displayCurrentDate(); 
-    updateSummaryCounts();
-    displayCurrentDate();
   }
 
   function getInitials(user) {
