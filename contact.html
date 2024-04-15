@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="./css/contact.css">
     <script src="./js/storage.js"></script>
     <script src="./js/script.js"></script>
-    <script src="./js/contact.js"></script>
+    <script src="./js/contact.js"></script>      <!-- Für Apple-Geräte -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon-180x180.png">
+    <!-- Für Browser -->
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon//favicon-32x32.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="[PFAD ZUM ICON]/favicon-96x96.png">
+    <!-- Für Windows Metro -->
+    <meta name="msapplication-square310x310logo" content="./favicon//mstile-310x310.png">
+    <meta name="msapplication-TileColor" content="[HEXFARBE (z.B. #000000)]">
 </head>
 
 
@@ -39,12 +46,9 @@
         <div id="userInfoDetails"></div>
     </div>
 </main>
-
-
-
     <!-- ADD CONTACT OVERLAY -->
     <div class="overlay" id="overlay">
-        <div id="addContact">
+        <div id="addContact" class="addContact">
             <div class="wrapper-left">
                 <img src="./img/join-logo-weiss.svg" alt="logo">
                 <div class="text">
@@ -58,7 +62,7 @@
                 <div class="badge">
                     <img src="./img/person(1).svg" alt="person">
                 </div>
-                <form id="saveUser" onsubmit="saveUser(); return false">
+                <form id="saveUser"  class="saveUser" onsubmit="saveUser(); return false">
                     <div class="wrapper-input-field">
                         <div class="wrapper-input">
                             <input type="text" placeholder="Name" id="nameUser" required>
@@ -80,9 +84,15 @@
                     </div>  
                 </form>
             </div>
-        
         </div>
     </div>
+
+    <div class="overlayEdit" id="overlayEdit">
+        <div id="editContact"></div>
+    </div>
+
+
+
 </div>
 </body>
 </html>
