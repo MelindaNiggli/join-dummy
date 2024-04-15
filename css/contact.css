@@ -29,12 +29,15 @@ button {
 	font-weight: 700;
 	background: var(--join-black);
 	border-radius: 10px;
-	padding: 12px 0px 12px 0px;
+	padding: 16px 0;
 	border: none;
 }
 
 button img {
     margin-left: 16px;
+}
+a.phone { 
+    color: var(--join-black)!important;
 }
 
 .heading{
@@ -90,6 +93,7 @@ span.linie {
     color: #007CEE;
     font-weight: 400;
 }
+
 .contactUser {
 	display: flex;
 	width: 100%;
@@ -314,4 +318,14 @@ span.linie {
 	top: 100px;
 	right: 77px;
 	position: absolute;
+}
+
+/* UPDATE */
+
+.badge.edit {
+	font-size: 47px;
+	color: var(--white);
+    box-shadow: 0px 0px 4px #0000001A;
+    border: 3px solid var(--white);
+    margin-right: 72px;
 }

@@ -18,6 +18,9 @@ async function clearExistingUsers() {
 
 let contactUsers = [];
 
+/**** SAVE USER TO LIST ****/
+
+
 function addNewContact() {
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
@@ -32,7 +35,6 @@ function addNewContact() {
     }, 1); 
 }
 
-/*****SAVE USER *****/
 
 async function saveUser(){
     // Zuerst laden Sie die vorhandenen Benutzer aus dem Remote-Speicher
@@ -101,6 +103,8 @@ function closeContact() {
 }
 
 
+/**** CONTACT LIST ****/
+
 async function loadContactUsers() {
     try {
         let contactUsers = JSON.parse(await getItem('contactUsers'));
@@ -160,6 +164,8 @@ function TemplateContactUsers(contact, index,firstTwoChars, capitalizedWord) {
 }
 
 
+/**** SHOW USER INFORMATION RIGHT ****/
+
 async function showUserInfo(name, email, color, phone, index) {
     await loadContactUsers(); // Aktualisieren der Benutzerliste
     const container = document.getElementById('userInfoDetails');
@@ -200,7 +206,6 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
         <div id="userInfoSide">
         <div id="ProfileBadge${index}" class="profileBadge big" style="background-color: ${color};"> <p>${firstTwoChars}</p></div>
         
-                
         <div class="wrapperFlex">
             <p id="nameContact" class="nameAside">${capitalizedWord}</p>
             <div class="editeDeleteWrapper">
@@ -222,8 +227,8 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
             <a href="mailto:${email}">${email}</a>
         </div>
         <div class="wrapperP">
-            <p>Phone</p>
-            <a href="tel:${phone}">${phone}</a>
+            <p >Phone</p>
+            <a class="phone" href="tel:${phone}">${phone}</a>
         </div>
         </div>
 
@@ -231,17 +236,23 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
 }
 
 
-function messageSuccessfully(name){
+/**** DELETE USER ****/
+
+
+function messageDeleted(name){
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `User *${name}*  deltetd successfully`;
     msg.style.background = 'var(--join-black)';
     msg.style.padding = '25px';
     msg.style.borderRadius = '20px';
     msg.style.color = 'white';
-    msg.style.fontSize ='20px'
+    msg.style.fontSize ='20px';
+    setTimeout(function() {
+        msg.innerHTML = ""; // Leert den Inhalt der Nachrichtenbox
+    }, 3000); // Löscht die Nachricht nach 3 Sekunden (3000 Millisekunden)
 }
 
-// DELETE USER
+
 async function deleteUser(name) {
     await loadContactUsers();
     try {
@@ -252,16 +263,13 @@ async function deleteUser(name) {
         // Finden des Index des Benutzers, der gelöscht werden soll
         const index = existingUsers.findIndex(user => user.name === name);
         if (index !== -1) {
-            messageSuccessfully(name);
+            messageDeleted(name);
             // Entfernen des Benutzers aus dem Array
             existingUsers.splice(index, 1);
-            
-            // Speichern des aktualisierten Arrays im Remote-Speicher
             await setItem('contactUsers', JSON.stringify(existingUsers));
-
             console.log(`User ${name} deleted successfully.`);
             await loadContactUsers(); // Aktualisieren der Benutzerliste
-            resetForm(); // Zurücksetzen des Formulars
+            resetForm(); 
         } else {
             console.error(`User ${name} not found.`);
         }
@@ -271,11 +279,11 @@ async function deleteUser(name) {
 }
 
 
-//EDIT USER
+/**** UPDATE USER ****/
+
 
 async function editUser(name, email, color, phone) {
     await loadContactUsers();
-
     let overlayEdit = document.getElementById('overlayEdit');
     let containerEdit = document.getElementById('editContact');
     overlayEdit.style.height = '100vh';
@@ -287,17 +295,12 @@ async function editUser(name, email, color, phone) {
     setTimeout(function() {
         containerEdit.style.transform = 'translateX(0px)';
     }, 1);
-
-
-
-
-
     
     const firstTwoChars = firstAndSecondCharUppercase(name); // Hier das Ergebnis von firstCharUppercase verwenden
-    containerEdit.innerHTML = TemplateContainerEdit(name, email, color, phone, firstTwoChars);
+    containerEdit.innerHTML = TemplateContainerUpdate(name, email, color, phone, firstTwoChars);
 }
 
-function TemplateContainerEdit(name, email, color, phone, firstTwoChars) {
+function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
     return `
     <div class="wrapper-left">
         <img src="./img/join-logo-weiss.svg" alt="logo">
@@ -308,7 +311,7 @@ function TemplateContainerEdit(name, email, color, phone, firstTwoChars) {
     </div>
     <div class="wrapper-right">
         <img class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()">
-        <div class="badge" style="background: ${color};">
+        <div class="badge edit " style="background: ${color};">
         <p>${firstTwoChars}</p>
         </div>
         <form class="saveUser" onsubmit="return false;">
@@ -327,7 +330,7 @@ function TemplateContainerEdit(name, email, color, phone, firstTwoChars) {
                 </div>
                 <div class="wrapper-button">
                     <div class="delete">
-                        <button class="cancel" onclick="deleteUser('${name}')">Delete</button>
+                        <button class="cancle" onclick="deleteUser('${name}')">Delete</button>
                         <button class="BT-Black" onclick="updateUser('${name}')">Save<img src="./img/check.svg" alt="check"></button>
                     </div>
                 </div>
@@ -337,6 +340,19 @@ function TemplateContainerEdit(name, email, color, phone, firstTwoChars) {
     `;
 }
 
+function messageSuccessfully(name){
+    const msg =  document.getElementById('messageBox')
+    msg.innerHTML = `User *${name}* updated successfully`;
+    msg.style.background = 'var(--join-black)';
+    msg.style.padding = '25px';
+    msg.style.borderRadius = '20px';
+    msg.style.color = 'white';
+    msg.style.fontSize ='20px'
+
+    setTimeout(function() {
+        msg.innerHTML = ""; // Leert den Inhalt der Nachrichtenbox
+    }, 3000); // Löscht die Nachricht nach 3 Sekunden (3000 Millisekunden)
+}
 
 async function updateUser(name) {
 
@@ -362,6 +378,15 @@ async function updateUser(name) {
          // Save the updated array to remote storage
          await setItem('contactUsers', JSON.stringify(existingUsers));
          await loadContactUsers(); // Aktualisieren der Benutzerliste
+
+         let overlay = document.getElementById('overlayEdit');
+         let container = document.getElementById('editContact');
+         container.style.transform = 'translateX(1600px)';
+         setTimeout(function() {
+             overlay.style.display = 'none';
+         }, 500); 
+
+         messageSuccessfully(name);
     } else {
         console.log('User not found!');
     }
@@ -369,10 +394,10 @@ async function updateUser(name) {
 
 
 function closeUpdate() {
-    let overlayEdit = document.getElementById('overlayEdit');
-    let containerUpdate = document.getElementById('addContact');
-    containerUpdate.style.transform = 'translateX(1600px)';
+    let overlay = document.getElementById('overlayEdit');
+    let container = document.getElementById('editContact');
+    container.style.transform = 'translateX(1600px)';
     setTimeout(function() {
-        overlayEdit.style.display = 'none';
+        overlay.style.display = 'none';
     }, 500); 
 }
