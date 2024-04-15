@@ -1,6 +1,6 @@
 
 async function init(){
-    loadContactUsers();
+    await loadContactUsers();
     // Rufe die Funktion auf, um alle Benutzer zu löschen
     // Für den Reset : await clearExistingUsers();
 }
@@ -10,10 +10,8 @@ async function init(){
 async function clearExistingUsers() {
     // Setze die Benutzerliste auf ein leeres Array
     let existingUsers = [];
-
     // Speichere die geleerte Benutzerliste
     await setItem('contactUsers', existingUsers);
-
     console.log('Alle Benutzer erfolgreich gelöscht.');
 }
 
@@ -162,7 +160,8 @@ function TemplateContactUsers(contact, index,firstTwoChars, capitalizedWord) {
 }
 
 
-function showUserInfo(name, email,color,phone,index) {
+async function showUserInfo(name, email, color, phone, index) {
+    await loadContactUsers(); // Aktualisieren der Benutzerliste
     const container = document.getElementById('userInfoDetails');
     if (container.style.transform === 'translateX(0px)') {
         container.style.transform = 'translateX(1100px)';
@@ -177,19 +176,26 @@ function showUserInfo(name, email,color,phone,index) {
         }, 1);
     }
     // Die ersten zwei Buchtaben gross
-    const string = name;
-    const firstTwoChars = string.slice(0, 2).toUpperCase();
-
+    const firstTwoChars = firstAndSecondCharUppercase(name);
     // Erster Buchstabe des Namens gross
+    const capitalizedWord = firstCharUppercase(name);
+    container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord);
+}
+
+function firstAndSecondCharUppercase(name) {
+    // Die ersten zwei Buchtaben gross
+    const string = name;
+    return string.slice(0, 2).toUpperCase();
+}
+
+function firstCharUppercase(name) {
     const firstLetter = name.charAt(0).toUpperCase();
     const restOfWord = name.slice(1);
-    const capitalizedWord = firstLetter + restOfWord;
-    
-    container.innerHTML = TemplateSideConatct(index, color,email,name, phone,firstTwoChars, capitalizedWord);
+    return firstLetter + restOfWord;
 }
 
 
-function TemplateSideConatct(index,color,email,name,phone,firstTwoChars, capitalizedWord){
+function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitalizedWord){
     return`
         <div id="userInfoSide">
         <div id="ProfileBadge${index}" class="profileBadge big" style="background-color: ${color};"> <p>${firstTwoChars}</p></div>
@@ -198,7 +204,7 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars, capital
         <div class="wrapperFlex">
             <p id="nameContact" class="nameAside">${capitalizedWord}</p>
             <div class="editeDeleteWrapper">
-                <div class="edit" onclick="editUser('${name}')">
+                <div class="edit" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
                     <img src="./img/edit.svg" alt="edit icon">
                     <p>Edit</p>
                 </div>
@@ -267,6 +273,106 @@ async function deleteUser(name) {
 
 //EDIT USER
 
-async function editUser(){
+async function editUser(name, email, color, phone) {
+    await loadContactUsers();
+
+    let overlayEdit = document.getElementById('overlayEdit');
+    let containerEdit = document.getElementById('editContact');
+    overlayEdit.style.height = '100vh';
+    overlayEdit.style.position = 'absolute';
+    containerEdit.style.display = 'flex';
+    containerEdit.style.transform = 'translateX(1100px)';
+    overlayEdit.style.display = 'flex';
+
+    setTimeout(function() {
+        containerEdit.style.transform = 'translateX(0px)';
+    }, 1);
+
+
+
+
+
     
+    const firstTwoChars = firstAndSecondCharUppercase(name); // Hier das Ergebnis von firstCharUppercase verwenden
+    containerEdit.innerHTML = TemplateContainerEdit(name, email, color, phone, firstTwoChars);
+}
+
+function TemplateContainerEdit(name, email, color, phone, firstTwoChars) {
+    return `
+    <div class="wrapper-left">
+        <img src="./img/join-logo-weiss.svg" alt="logo">
+        <div class="text">
+            <h1>Edit contact</h1>
+            <span class="linie"></span>
+        </div>
+    </div>
+    <div class="wrapper-right">
+        <img class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()">
+        <div class="badge" style="background: ${color};">
+        <p>${firstTwoChars}</p>
+        </div>
+        <form class="saveUser" onsubmit="return false;">
+            <div class="wrapper-input-field">
+                <div class="wrapper-input">
+                    <input type="text" id="userInputUpdate" placeholder="Name" value="${name}" required>
+                    <img src="./img/person.svg" alt="Person Icon" req>
+                </div>
+                <div class="wrapper-input">
+                    <input type="email" id="emailInputUpdate" placeholder="Email" value="${email}" required>
+                    <img src="./img/mail.svg" alt="Email Icon">
+                </div>
+                <div class="wrapper-input">
+                    <input type="phone" id="phoneInputUpdate" placeholder="Phone" value="${phone}" required>
+                    <img src="./img/call.svg" alt="Phone Icon">
+                </div>
+                <div class="wrapper-button">
+                    <div class="delete">
+                        <button class="cancel" onclick="deleteUser('${name}')">Delete</button>
+                        <button class="BT-Black" onclick="updateUser('${name}')">Save<img src="./img/check.svg" alt="check"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    `;
+}
+
+
+async function updateUser(name) {
+
+    console.log(name);
+    // Get data from input fields
+    const nameInput = document.getElementById('userInputUpdate').value;
+    const email = document.getElementById('emailInputUpdate').value;
+    const phone = document.getElementById('phoneInputUpdate').value;
+
+    // Load existing users from storage
+    let existingUsers = await getItem('contactUsers');
+    existingUsers = JSON.parse(existingUsers) || [];
+
+    // Find the user to update by iterating through the array
+    let userToUpdate = existingUsers.find(user => user.name === name);
+    
+    if (userToUpdate) {
+        // Update user data
+        userToUpdate.name = nameInput;
+        userToUpdate.email = email;
+        userToUpdate.phone = phone;
+
+         // Save the updated array to remote storage
+         await setItem('contactUsers', JSON.stringify(existingUsers));
+         await loadContactUsers(); // Aktualisieren der Benutzerliste
+    } else {
+        console.log('User not found!');
+    }
+}
+
+
+function closeUpdate() {
+    let overlayEdit = document.getElementById('overlayEdit');
+    let containerUpdate = document.getElementById('addContact');
+    containerUpdate.style.transform = 'translateX(1600px)';
+    setTimeout(function() {
+        overlayEdit.style.display = 'none';
+    }, 500); 
 }

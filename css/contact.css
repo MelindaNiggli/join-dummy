@@ -146,10 +146,10 @@ span.linie {
     padding: 16px;
 }
 
-#saveUser {
+.saveUser {
      Width: 422px;
 }
-#saveUser input {
+.saveUser input {
     width: 100%;
     border: none;
     font-size: 20px;
@@ -180,7 +180,7 @@ span.linie {
 	width: 214px !important;
 }
 
-.overlay {
+.overlay, .overlayEdit {
 	position: static;
 	background-color: rgba(0, 0, 0, 0.094);
 	top: 0;
@@ -190,6 +190,42 @@ span.linie {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#userInfoDetails{
+    margin-left: 55px;
+    margin-top: 32px;
+    justify-content: space-between;
+    transform: translateX(1100px);
+    -webkit-transform: translateX(1100px);
+    -moz-transform: translateX(1100px);
+    -ms-transform: translateX(1100px);
+    -o-transform: translateX(1100px);
+    transition: transform 0.3s ease-in-out;
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition: transform 0.3s ease-in-out;
+    -ms-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+}
+
+#addContact, #editContact {
+   position: relative;
+   width: 1212px;
+   height: 592px;
+   border-radius: 30px;
+   background: white;
+   display: none;
+   justify-content: space-between;
+   transform: translateX(0px);
+   transition: transform 0.3s ease-in-out;
+   -webkit-transition: transform 0.3s ease-in-out;
+   -moz-transition: transform 0.3s ease-in-out;
+   -ms-transition: transform 0.3s ease-in-out;
+   -o-transition: transform 0.3s ease-in-out;
+   -webkit-transform: translateX(0px);
+   -moz-transform: translateX(0px);
+   -ms-transform: translateX(0px);
+   -o-transform: translateX(0px);
 }
 
 .close {
@@ -224,38 +260,6 @@ span.linie {
 #userInfoSide {
 	display: flex;
 	align-items: center;
-}
-
-#userInfoDetails{
-     margin-left: 55px;
-     margin-top: 32px;
-     justify-content: space-between;
-     transform: translateX(1100px);
-     -webkit-transform: translateX(1100px);
-     -moz-transform: translateX(1100px);
-     -ms-transform: translateX(1100px);
-     -o-transform: translateX(1100px);
-     transition: transform 0.3s ease-in-out;
-     -webkit-transition: transform 0.3s ease-in-out;
-     -moz-transition: transform 0.3s ease-in-out;
-     -ms-transition: transform 0.3s ease-in-out;
-     -o-transition: transform 0.3s ease-in-out;
-}
-
-#addContact {
-    position: relative;
-    width: 1212px;
-    height: 592px;
-    border-radius: 30px;
-    background: white;
-    display: none;
-    justify-content: space-between;
-    transform: translateX(0px);
-    transition: transform 0.3s ease-in-out;
-    -webkit-transition: transform 0.3s ease-in-out;
-    -moz-transition: transform 0.3s ease-in-out;
-    -ms-transition: transform 0.3s ease-in-out;
-    -o-transition: transform 0.3s ease-in-out;
 }
 
 .nameAside{

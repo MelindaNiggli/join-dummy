@@ -39,12 +39,9 @@
         <div id="userInfoDetails"></div>
     </div>
 </main>
-
-
-
     <!-- ADD CONTACT OVERLAY -->
     <div class="overlay" id="overlay">
-        <div id="addContact">
+        <div id="addContact" class="addContact">
             <div class="wrapper-left">
                 <img src="./img/join-logo-weiss.svg" alt="logo">
                 <div class="text">
@@ -58,7 +55,7 @@
                 <div class="badge">
                     <img src="./img/person(1).svg" alt="person">
                 </div>
-                <form id="saveUser" onsubmit="saveUser(); return false">
+                <form id="saveUser"  class="saveUser" onsubmit="saveUser(); return false">
                     <div class="wrapper-input-field">
                         <div class="wrapper-input">
                             <input type="text" placeholder="Name" id="nameUser" required>
@@ -80,9 +77,15 @@
                     </div>  
                 </form>
             </div>
-        
         </div>
     </div>
+
+    <div class="overlayEdit" id="overlayEdit">
+        <div id="editContact"></div>
+    </div>
+
+
+
 </div>
 </body>
 </html>
