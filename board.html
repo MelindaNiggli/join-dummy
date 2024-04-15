@@ -98,7 +98,11 @@
       <div id="task-details-container" class="task-details-container"></div>
     </main>
     <div id="blockcontainer" class="details d-none" onclick="toggleFloatingAddTask()">
-      <div include-html="./templates/add_task_template.html" id="add-task-container"></div>
+      <div include-html="./templates/add_task_template.html" id="add-task-container">
+        <div class="relative">
+          <div class="roundicon" id="floating-x"><img src="./img/add.png" alt="x"></div>
+        </div>
+      </div>
     </div>    
   </body>
 </html>
