@@ -51,13 +51,7 @@ function menuSelected(menuitem) {
     this.subtasks = subtasks,
     this.priority = priority,
     this.assigned = assigned  
-}
-
-async function init(){
-  loadUsers();
-  loadTasks();
-
-}
+  }
 
 async function loadTasks() {  
   try {
@@ -75,8 +69,7 @@ async function loadUsers(){
   }
 }
 
-async function init(){
-  await includeHTML();
+async function init(){ 
   await loadUsers();
   await loadTasks();
   updateTaskCounts(tasks);

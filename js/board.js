@@ -43,9 +43,9 @@ function renderTaskHTML(task,index) {
       </div>
       <div class="barbox" id="bar${index}">
         <div class="barcontainer">
-          <div class="bar" style="width: ${calcBar(task,index)}%;"></div>
+          <div class="bar" style="width: ${calcBar(task)}%;"></div>
         </div>
-        <span>${task.subtasks[0]}/${task.subtasks.length - 1}&nbspSubtasks</span>
+        <span>${calcChecked(task)}/${task.subtasks.length}&nbspSubtasks</span>
       </div>
       <div class="flex between wide">
         <div class="flex wrapper" id="userbox${index}">        
@@ -57,9 +57,18 @@ function renderTaskHTML(task,index) {
 }
 
 function calcBar(task) {
-  let subtasks = task.subtasks.length - 1;  
-  let done = task.subtasks[0];
-  return (subtasks === 0) ? 0 : ((done / subtasks) * 100);  
+  let length = task.subtasks.length;  
+  let done = calcChecked(task);
+  return (length === 0) ? 0 : ((done / length) * 100);  
+}
+
+function calcChecked(task) {
+  let done = 0;
+  for (let i = 0; i < task.subtasks.length; i++) {
+    const checked = task.subtasks[i][1];
+    done += checked;
+  }
+  return done;
 }
 
 function showAssigned(task,assigned,index) {
@@ -204,8 +213,7 @@ function openTaskInfo(index) {
 function renderInfoAssigned(index) {
   let container = document.getElementById('info-assigned');
   let assigned = tasks[index].assigned;
-  container.innerHTML = '';
-  let length = assigned.length > 10 ? 10 : assigned.length;
+  container.innerHTML = '';  
   for (let i = 0; i < assigned.length; i++) {
     const user = assigned[i][0];
     const usercolor = assigned[i][1];
@@ -215,6 +223,16 @@ function renderInfoAssigned(index) {
       <span>${user}</span>
     </div>
     `;  
+  }
+}
+
+function renderInfoSubtasks(index) {
+  let container = document.getElementById('info-subtasks');
+  let subtasks = tasks[index].subtasks;
+  container.innerHTML = '';
+  for (let i = 1; i < subtasks.length; i++) {
+    const subtask = subtasks[i];
+        
   }
 
 }
