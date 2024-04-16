@@ -35,7 +35,7 @@ function emptyColumns() {
 
 function renderTaskHTML(task,index) {
     return `
-    <div onclick="openTaskInfo(${index})" id="id${index}" class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
+    <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index})" id="id${index}" class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -190,13 +190,33 @@ function openTaskInfo(index) {
         <div class="task-priority">Priority: Urgent <img src="./img/${task.priority}.png" alt="priority"></div>
         <div class="task-assigned">
           <span>Assigned to: </span>
-          <div id="info-assigned"><div>
+          <div id="info-assigned"></div>
         </div> 
-        <div>
-          <span>Subtasks </span>       
+        <div class="task-assigned">
+          <span>Subtasks</span>
+          <div id="info-subtasks"></div>    
+        </div>   
       </div>
     </div>
   `;
+}
+
+function renderInfoAssigned(index) {
+  let container = document.getElementById('info-assigned');
+  let assigned = tasks[index].assigned;
+  container.innerHTML = '';
+  let length = assigned.length > 10 ? 10 : assigned.length;
+  for (let i = 0; i < assigned.length; i++) {
+    const user = assigned[i][0];
+    const usercolor = assigned[i][1];
+    container.innerHTML += `
+    <div class="flex gap-s">
+      <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(user)}</div>
+      <span>${user}</span>
+    </div>
+    `;  
+  }
+
 }
 
 function hideDetailsContainer() {
