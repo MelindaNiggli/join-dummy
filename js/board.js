@@ -35,7 +35,8 @@ function emptyColumns() {
 
 function renderTaskHTML(task,index) {
     return `
-    <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index})" id="id${index}" class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
+    <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index}),renderInfoSubtasks(${index})" id="id${index}" 
+       class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -204,7 +205,18 @@ function openTaskInfo(index) {
         <div class="task-assigned">
           <span>Subtasks</span>
           <div id="info-subtasks"></div>    
-        </div>   
+        </div>
+        <div class="info-buttons-container">
+          <div class="info-button-delete">
+            <img src="./img/delete.svg" alt="delete">
+            Delete
+          </div>
+          <img src="./img/VectorLinie.svg" alt="divider">
+          <div class="info-button-edit">
+            <img src="./img/edit.svg" alt="edit">
+            Edit
+          </div>
+        </div>     
       </div>
     </div>
   `;
@@ -230,11 +242,18 @@ function renderInfoSubtasks(index) {
   let container = document.getElementById('info-subtasks');
   let subtasks = tasks[index].subtasks;
   container.innerHTML = '';
-  for (let i = 1; i < subtasks.length; i++) {
-    const subtask = subtasks[i];
-        
+  for (st of subtasks) {
+    container.innerHTML += `
+    <div class="flex gap-s info-st-img">
+      <img src="./img/${checkChecked(st)}.svg" alt="checkbox">
+      ${st[0]}
+    </div>    
+    `;        
   }
+}
 
+function checkChecked(st) {
+  return st[1] == 0 ? 'checkbox' : 'checkedbox';  
 }
 
 function hideDetailsContainer() {
