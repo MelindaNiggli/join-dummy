@@ -84,7 +84,7 @@ function showAssigned(task, assigned, index) {
           left += 24;
       }
   }
-  if (task.subtasks.length == 1) {
+  if (task.subtasks.length == 0) {
       document.getElementById(`bar${index}`).style.display = 'none';
   }
 };
@@ -156,34 +156,16 @@ function openTaskInfo(index, id, color, zIndex, left) {
   details.innerHTML = '';
 
   details.innerHTML = `
-    <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
+    <div id="detailsContainer" class="details">
       <div class="task-details">
-<<<<<<< HEAD
-        <div class="task-container">
-          <div class="task-and-close-container">
-            <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
-            <img src="./img/x.png" class="close-task">
-          </div>
-          <h1 class="task-details-header">${task.title}</h1>
-          <p class="task-details-text">${task.description}</p>
-          <div class="task-date">Due Date:<p>${task.date}</p></div>
-          <div class="task-priority">Priority: <p>${task.priority}</p> <img class="prio-image" src="./img/${task.priority}.svg" alt="priority"></div>
-          <div class="task-assigned">Assigned to: ${task.assigned}
-            <div class="assigned-users"></div>
-          </div>
-          <div class="subtasks">
-            <p>Subtasks</p>
-            ${task.subtask}
-          </div>
-=======
         <div class="task-and-close-container">
           <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
-          <img src="./img/x.png" class="close-task">
+          <img src="./img/x.png" class="close-task" onclick="hideDetailsContainer()">
         </div>
         <h2 class="task-details-header">${task.title}</h2>
         <p class="task-details-text">${task.description}</p>
-        <div class="task-date">Due Date: 6/16/2024</div>
-        <div class="task-priority">Priority: Urgent <img src="./img/${task.priority}.png" alt="priority"></div>
+        <div class="task-date">Due Date: ${task.date}</div>
+        <div class="task-priority">Priority: ${capitalizeString(task.priority)} <img src="./img/${task.priority}.png" alt="priority"></div>
         <div class="task-assigned">
           <span>Assigned to: </span>
           <div id="info-assigned"></div>
@@ -191,7 +173,6 @@ function openTaskInfo(index, id, color, zIndex, left) {
         <div class="task-assigned">
           <span>Subtasks</span>
           <div id="info-subtasks"></div>    
->>>>>>> 3d8a10f14d6e496a7d017701c060a52c9ffaddeb
         </div>
         <div class="info-buttons-container">
           <div class="info-button-delete">
@@ -208,8 +189,10 @@ function openTaskInfo(index, id, color, zIndex, left) {
     </div>
   `;
 }
-<<<<<<< HEAD
-=======
+
+function capitalizeString(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 function renderInfoAssigned(index) {
   let container = document.getElementById('info-assigned');
@@ -231,9 +214,10 @@ function renderInfoSubtasks(index) {
   let container = document.getElementById('info-subtasks');
   let subtasks = tasks[index].subtasks;
   container.innerHTML = '';
-  for (st of subtasks) {
+  for (let i = 0; i < subtasks.length; i++) {
+    const st = subtasks[i];
     container.innerHTML += `
-    <div class="flex gap-s info-st-img">
+    <div class="flex gap-s info-st-img" id="st${i}" onclick="toggleInfoSubtask(${index},${i},${st[1]})">
       <img src="./img/${checkChecked(st)}.svg" alt="checkbox">
       ${st[0]}
     </div>    
@@ -245,7 +229,15 @@ function checkChecked(st) {
   return st[1] == 0 ? 'checkbox' : 'checkedbox';  
 }
 
->>>>>>> 3d8a10f14d6e496a7d017701c060a52c9ffaddeb
+async function toggleInfoSubtask(taskindex,subtaskindex,subtaskchecked) {
+  let subcheck = subtaskchecked;
+  subcheck == 0 ? subcheck = 1 : subcheck = 0;
+  tasks[taskindex].subtasks[subtaskindex][1] = subcheck;
+  await setItem('taskobject',JSON.stringify(tasks));
+  renderInfoSubtasks(taskindex);
+  updateTasks();
+}
+
 function hideDetailsContainer() {
   document.getElementById('detailsContainer').classList.add('d-none');
   document.getElementById('detailsContainer').innerHTML = '';
