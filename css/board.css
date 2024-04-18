@@ -397,6 +397,7 @@ input::placeholder {
 }
 
 .task-date {
+  display: flex;
   width: 445px;
   height: 24px;
   font-size: 20px;
@@ -404,9 +405,12 @@ input::placeholder {
   line-height: 24px;
   text-align: left;
   padding-top: 16px;
+  gap: 16px;
 }
 
 .task-priority {
+  display: flex;
+  align-items: center;
   height: 32px;
   gap: 10px;
   font-size: 20px;
@@ -420,6 +424,39 @@ input::placeholder {
 .task-assigned {
   padding-top: 24px;
   font-size: 20px;
+}
+
+.assigned-users {
+  display: flex;
+  flex-direction: column; /* Stellt die Flex-Box auf vertikale Ausrichtung */
+  align-items: flex-start; /* Linksbündige Ausrichtung */
+  gap: 10px; /* Abstand zwischen den Elementen */
+}
+
+.usertag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+}
+
+.task-container {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    box-sizing: border-box;
+    color: #2A3647;
+    max-height: calc(80% - 80px);
+}
+
+.prio-image {
+  width: 17px;
+  height: 12px;
 }
 
 @keyframes slideInFromRight {

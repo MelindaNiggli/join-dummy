@@ -62,18 +62,20 @@ function calcBar(task) {
   return (subtasks === 0) ? 0 : ((done / subtasks) * 100);  
 }
 
-function showAssigned(task,assigned,index) {
+function showAssigned(task, assigned, index) {
   let container = document.getElementById(`userbox${index}`);
   let length = (assigned.length > 5) ? 5 : assigned.length;
   let left = 0;
   for (let i = 0; i < length; i++) {
-    const user = assigned[i];
-    let id = getInitials(user[0]);
-    container.innerHTML += renderAssigned(id, user[1], i, left); 
-    left += 24;  
+      const user = assigned[i];
+      if (user && user[0]) { // Prüfen, ob user und user[0] existieren
+          let id = getInitials(user[0]);
+          container.innerHTML += renderAssigned(id, user[1], i, left); 
+          left += 24;
+      }
   }
   if (task.subtasks.length == 1) {
-    document.getElementById(`bar${index}`).style.display = 'none';
+      document.getElementById(`bar${index}`).style.display = 'none';
   }
 };
 
@@ -138,41 +140,7 @@ function toggleBlock() {
   floatingcontainer.classList.remove('slideout');
 }
 
-
-function updateTodoTasks() {
-  const count = document.getElementById('task_todo').children.length;
-  taskCounts['todo'] = count;
-  console.log(`todo has ${count} tasks.`);
-}
-
-function updateProgressTasks() {
-  const count = document.getElementById('task_progress').children.length;
-  taskCounts['progress'] = count;
-  console.log(`progress has ${count} tasks.`);
-}
-
-function updateFeedbackTasks() {
-  const count = document.getElementById('task_feedback').children.length;
-  taskCounts['feedback'] = count;
-  console.log(`feedback has ${count} tasks.`);
-}
-
-function updateDoneTasks() {
-  const count = document.getElementById('task_done').children.length;
-  taskCounts['done'] = count;
-  console.log(`done has ${count} tasks.`);
-}
-
-function updateAllTasks() {
-  updateTodoTasks();
-  updateProgressTasks();
-  updateFeedbackTasks();
-  updateDoneTasks();
-
-  displayTaskSummary();
-}
-
-function openTaskInfo(index) {
+function openTaskInfo(index, id, color, zIndex, left) {
   let task = tasks[index];
   let details = document.getElementById('task-details-container');
   details.innerHTML = '';
@@ -180,28 +148,28 @@ function openTaskInfo(index) {
   details.innerHTML = `
     <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
       <div class="task-details">
-        <div class="task-and-close-container">
-          <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
-          <img src="./img/x.png" class="close-task">
-        </div>
-        <h2 class="task-details-header">${task.title}</h2>
-        <p class="task-details-text">${task.description}</p>
-        <div class="task-date">Due Date: 6/16/2024</div>
-        <div class="task-priority">Priority: Urgent <img src="./img/${task.priority}.png" alt="priority"></div>
-        <div>
-          <div class="task-assigned">Assigned to: </div>
+        <div class="task-container">
+          <div class="task-and-close-container">
+            <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
+            <img src="./img/x.png" class="close-task">
+          </div>
+          <h1 class="task-details-header">${task.title}</h1>
+          <p class="task-details-text">${task.description}</p>
+          <div class="task-date">Due Date:<p>${task.date}</p></div>
+          <div class="task-priority">Priority: <p>${task.priority}</p> <img class="prio-image" src="./img/${task.priority}.svg" alt="priority"></div>
+          <div class="task-assigned">Assigned to: ${task.assigned}
+            <div class="assigned-users"></div>
+          </div>
+          <div class="subtasks">
+            <p>Subtasks</p>
+            ${task.subtask}
+          </div>
         </div>
       </div>
     </div>
   `;
 }
-
 function hideDetailsContainer() {
   document.getElementById('detailsContainer').classList.add('d-none');
   document.getElementById('detailsContainer').innerHTML = '';
 }
-
-
-
-
-
