@@ -6,14 +6,37 @@
     <title>Join-Board</title>
     <link rel="stylesheet" href="./css/root.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
-    <link rel="stylesheet" href="./css/board.css" />    
+    <link rel="stylesheet" href="./css/board.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicon/apple-touch-icon-180x180.png"
+    />
+    <!-- Für Browser -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./favicon//favicon-32x32.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="[PFAD ZUM ICON]/favicon-96x96.png"
+    />
+    <!-- Für Windows Metro -->
+    <meta
+      name="msapplication-square310x310logo"
+      content="./favicon//mstile-310x310.png"
+    />
+    <meta name="msapplication-TileColor" content="[HEXFARBE (z.B. #000000)]" />
     <script src="./js/board.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/addtask.js"></script>
     <script src="./js/summary.js"></script>
   </head>
-  <body onload="includeHTML();init();updateTasks()">
+  <body onload="includeHTML();updateTasks();displayUserMenu()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>
     <main>
@@ -30,12 +53,12 @@
               />
               <div class="flex between searchimg">
                 <img src="./img/VectorLinie.svg" alt="bar" />
-                <div id="searchcontainer" class="flex center">
+                <div id="searchcontainer" class="flex center pad">
                   <img src="./img/search.svg" alt="search" />
                 </div>
               </div>
             </div>
-            <button onclick="toggleFloatingAddTask()">
+            <button id="add-task-button" onclick="toggleFloatingAddTask()">
               Add&nbsptask<span>+</span>
             </button>
           </div>
@@ -45,7 +68,12 @@
         <div class="taskpit flex">
           <div class="flex between wide columnhead">
             <span class="taskhead">To do</span>
-            <img src="./img/plusbutton.svg" alt="add" />
+            <img
+              src="./img/plusbutton.svg"
+              alt="add"
+              class="add-task-plus"
+              onclick="toggleFloatingAddTask()"
+            />
           </div>
           <div
             id="task_todo"
@@ -58,7 +86,12 @@
         <div class="taskpit flex wrapper">
           <div class="flex between wide columnhead">
             <span class="taskhead">In progress</span>
-            <img src="./img/plusbutton.svg" alt="add" />
+            <img
+              src="./img/plusbutton.svg"
+              alt="add"
+              class="add-task-plus"
+              onclick="toggleFloatingAddTask()"
+            />
           </div>
           <div
             id="task_progress"
@@ -71,7 +104,12 @@
         <div class="taskpit flex">
           <div class="flex between wide columnhead">
             <span class="taskhead">Await&nbspfeedback</span>
-            <img src="./img/plusbutton.svg" alt="add" />
+            <img
+              src="./img/plusbutton.svg"
+              alt="add"
+              class="add-task-plus"
+              onclick="toggleFloatingAddTask()"
+            />
           </div>
           <div
             id="task_feedback"
@@ -84,7 +122,7 @@
         <div class="taskpit flex">
           <div class="flex between wide columnhead">
             <span class="taskhead">Done</span>
-            <img src="./img/plusbutton.svg" alt="add" />
+            <div></div>
           </div>
           <div
             id="task_done"
@@ -97,8 +135,16 @@
       </div>
       <div id="task-details-container" class="task-details-container"></div>
     </main>
-    <div id="blockcontainer" class="details d-none" onclick="toggleFloatingAddTask()">
-      <div include-html="./templates/add_task_template.html" id="add-task-container"></div>
-    </div>    
+    <div id="blockcontainer" class="details d-none">
+      <div id="add-task-container">
+        <div
+          class="roundicon"
+          id="floating-x"
+          onclick="toggleFloatingAddTask()">
+          <img src="./img/x.png" alt="x" />
+        </div>
+        <div include-html="./templates/add_task_template.html"></div>
+      </div>
+    </div>
   </body>
 </html>

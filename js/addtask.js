@@ -113,7 +113,7 @@ function checkSubtask(id) {
   let iconboxcheck = document.getElementById(
     `created-subtasks-iconbox${id}`
   ).nextElementSibling;
-  subtasks[id] = field.value;
+  subtasks[id][0] = field.value;
   field.value = `• ${field.value}`;  
   field.disabled = true;
   iconboxedit.classList.toggle("invis");
@@ -143,7 +143,6 @@ async function createTask() {
   let title = document.getElementById('title').value;
   let description = document.getElementById('description').value;
   let date = document.getElementById('duedate').value;
-  subtasks.unshift(0);  
   let tasktoadd = new Task (category, label, title, description, date, subtasks, priority, assigned);  
   tasks.push(tasktoadd);   
   await setItem('taskobject',JSON.stringify(tasks));  
@@ -170,7 +169,7 @@ async function clearAddTask(event) {
   assigned = [];
   subtasks = [];
   /* users = [];
-  await setItem('users', JSON.stringify(users)); */
+  await setItem('users', JSON.stringify(users)); */ 
   /* tasks = []; 
   await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
@@ -179,7 +178,7 @@ async function clearAddTask(event) {
 
 function assignSubtask() {
   let task = document.getElementById("subtasks").value;
-  subtasks.push(task);
+  subtasks.push([task,0]);
   renderSubtasks();
 }
 
@@ -187,9 +186,8 @@ function renderSubtasks() {
   let container = document.getElementById("created-subtasks-container");
   container.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
-    const task = subtasks[i];
-    const index = subtasks.indexOf(task);
-    container.innerHTML += displaySubtask(task,index);
+    const task = subtasks[i][0];    
+    container.innerHTML += displaySubtask(task,i);
   }
 }
 

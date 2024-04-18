@@ -35,7 +35,8 @@ function emptyColumns() {
 
 function renderTaskHTML(task,index) {
     return `
-    <div onclick="openTaskInfo(${index})" id="id${index}" class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
+    <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index}),renderInfoSubtasks(${index})" id="id${index}" 
+       class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
       <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
       <div class="flex column gap-ss">
         <h3 class="start">${task.title}</h3>
@@ -43,9 +44,9 @@ function renderTaskHTML(task,index) {
       </div>
       <div class="barbox" id="bar${index}">
         <div class="barcontainer">
-          <div class="bar" style="width: ${calcBar(task,index)}%;"></div>
+          <div class="bar" style="width: ${calcBar(task)}%;"></div>
         </div>
-        <span>${task.subtasks[0]}/${task.subtasks.length - 1}&nbspSubtasks</span>
+        <span>${calcChecked(task)}/${task.subtasks.length}&nbspSubtasks</span>
       </div>
       <div class="flex between wide">
         <div class="flex wrapper" id="userbox${index}">        
@@ -57,9 +58,18 @@ function renderTaskHTML(task,index) {
 }
 
 function calcBar(task) {
-  let subtasks = task.subtasks.length - 1;  
-  let done = task.subtasks[0];
-  return (subtasks === 0) ? 0 : ((done / subtasks) * 100);  
+  let length = task.subtasks.length;  
+  let done = calcChecked(task);
+  return (length === 0) ? 0 : ((done / length) * 100);  
+}
+
+function calcChecked(task) {
+  let done = 0;
+  for (let i = 0; i < task.subtasks.length; i++) {
+    const checked = task.subtasks[i][1];
+    done += checked;
+  }
+  return done;
 }
 
 function showAssigned(task, assigned, index) {
@@ -148,6 +158,7 @@ function openTaskInfo(index, id, color, zIndex, left) {
   details.innerHTML = `
     <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
       <div class="task-details">
+<<<<<<< HEAD
         <div class="task-container">
           <div class="task-and-close-container">
             <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
@@ -164,11 +175,77 @@ function openTaskInfo(index, id, color, zIndex, left) {
             <p>Subtasks</p>
             ${task.subtask}
           </div>
+=======
+        <div class="task-and-close-container">
+          <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
+          <img src="./img/x.png" class="close-task">
         </div>
+        <h2 class="task-details-header">${task.title}</h2>
+        <p class="task-details-text">${task.description}</p>
+        <div class="task-date">Due Date: 6/16/2024</div>
+        <div class="task-priority">Priority: Urgent <img src="./img/${task.priority}.png" alt="priority"></div>
+        <div class="task-assigned">
+          <span>Assigned to: </span>
+          <div id="info-assigned"></div>
+        </div> 
+        <div class="task-assigned">
+          <span>Subtasks</span>
+          <div id="info-subtasks"></div>    
+>>>>>>> 3d8a10f14d6e496a7d017701c060a52c9ffaddeb
+        </div>
+        <div class="info-buttons-container">
+          <div class="info-button-delete">
+            <img src="./img/delete.svg" alt="delete">
+            Delete
+          </div>
+          <img src="./img/VectorLinie.svg" alt="divider">
+          <div class="info-button-edit">
+            <img src="./img/edit.svg" alt="edit">
+            Edit
+          </div>
+        </div>     
       </div>
     </div>
   `;
 }
+<<<<<<< HEAD
+=======
+
+function renderInfoAssigned(index) {
+  let container = document.getElementById('info-assigned');
+  let assigned = tasks[index].assigned;
+  container.innerHTML = '';  
+  for (let i = 0; i < assigned.length; i++) {
+    const user = assigned[i][0];
+    const usercolor = assigned[i][1];
+    container.innerHTML += `
+    <div class="flex gap-s">
+      <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(user)}</div>
+      <span>${user}</span>
+    </div>
+    `;  
+  }
+}
+
+function renderInfoSubtasks(index) {
+  let container = document.getElementById('info-subtasks');
+  let subtasks = tasks[index].subtasks;
+  container.innerHTML = '';
+  for (st of subtasks) {
+    container.innerHTML += `
+    <div class="flex gap-s info-st-img">
+      <img src="./img/${checkChecked(st)}.svg" alt="checkbox">
+      ${st[0]}
+    </div>    
+    `;        
+  }
+}
+
+function checkChecked(st) {
+  return st[1] == 0 ? 'checkbox' : 'checkedbox';  
+}
+
+>>>>>>> 3d8a10f14d6e496a7d017701c060a52c9ffaddeb
 function hideDetailsContainer() {
   document.getElementById('detailsContainer').classList.add('d-none');
   document.getElementById('detailsContainer').innerHTML = '';
