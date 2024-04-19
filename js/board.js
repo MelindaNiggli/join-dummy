@@ -150,17 +150,15 @@ function toggleBlock() {
   floatingcontainer.classList.remove('slideout');
 }
 
-function openTaskInfo(index, id, color, zIndex, left) {
+function openTaskInfo(index) {
   let task = tasks[index];
-  let details = document.getElementById('task-details-container');
-  details.innerHTML = '';
-
+  let details = document.getElementById('task-details-container');  
   details.innerHTML = `
     <div id="detailsContainer" class="details">
-      <div class="task-details">
+      <div id="task-details">
         <div class="task-and-close-container">
           <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
-          <img src="./img/x.png" class="close-task" onclick="hideDetailsContainer()">
+          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
         </div>
         <h2 class="task-details-header">${task.title}</h2>
         <p class="task-details-text">${task.description}</p>
@@ -175,12 +173,12 @@ function openTaskInfo(index, id, color, zIndex, left) {
           <div id="info-subtasks"></div>    
         </div>
         <div class="info-buttons-container">
-          <div class="info-button-delete">
+          <div class="info-button-delete" onclick="removeTask(${index})">
             <img src="./img/delete.svg" alt="delete">
             Delete
           </div>
           <img src="./img/VectorLinie.svg" alt="divider">
-          <div class="info-button-edit">
+          <div class="info-button-edit" onclick="openTaskEdit(${index})">
             <img src="./img/edit.svg" alt="edit">
             Edit
           </div>
@@ -188,6 +186,8 @@ function openTaskInfo(index, id, color, zIndex, left) {
       </div>
     </div>
   `;
+  let container = document.getElementById('task-details');
+  container.classList.add('slidein');
 }
 
 function capitalizeString(str) {
@@ -229,6 +229,13 @@ function checkChecked(st) {
   return st[1] == 0 ? 'checkbox' : 'checkedbox';  
 }
 
+async function removeTask(index) {
+  hideDetailsContainer();
+  tasks.splice(index,1);
+  await setItem('taskobject',JSON.stringify(tasks));
+  updateTasks();
+  }
+
 async function toggleInfoSubtask(taskindex,subtaskindex,subtaskchecked) {
   let subcheck = subtaskchecked;
   subcheck == 0 ? subcheck = 1 : subcheck = 0;
@@ -238,7 +245,87 @@ async function toggleInfoSubtask(taskindex,subtaskindex,subtaskchecked) {
   updateTasks();
 }
 
+function closeTaskInfo() {
+  let container = document.getElementById('task-details');
+  container.classList.remove('slidein');
+  container.classList.add('slideout');
+  setTimeout(hideDetailsContainer,200);
+}
+
 function hideDetailsContainer() {
-  document.getElementById('detailsContainer').classList.add('d-none');
-  document.getElementById('detailsContainer').innerHTML = '';
+  document.getElementById('task-details').classList.remove('slideout');
+  document.getElementById('detailsContainer').classList.add('d-none');  
+}
+
+function openTaskEdit(index) {
+  let task = tasks[index];
+  subtasks = tasks[index].subtasks;
+  assigned = tasks[index].assigned;
+  let details = document.getElementById('task-details-container');  
+  details.innerHTML = `
+  <div id="detailsContainer" class="details">
+    <div id="task-details">
+      <div class="task-and-close-container">
+        <div></div>
+        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+      </div>
+      <div class="task-bucket">        
+        <div class="taskbranch">
+            <span>Title</span>
+            <input type="text" id="title" placeholder="Enter a title" maxlength="40" value="${task.title}" required>
+          </div>
+          <div class="taskbranch">
+            <span>Description</span>
+            <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description" maxlength="105">${task.description}</textarea>
+          </div>
+          <div class="taskbranch">
+            <span>Due date</span>
+            <input type="date" id="duedate" value="${task.date}"required>
+          </div>
+          <div class="taskbranch">
+            <span>Prio</span>
+            <div class="buttonbox">
+              <button class="priobutton" id="urgent" onclick="selectPrio(id, event)">Urgent <img src="./img/upTask.svg" alt="urgent"></button>
+              <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id, event)">Medium <img src="./img/medium.svg" alt="medium"></button>
+              <button class="priobutton" id="low" onclick="selectPrio(id, event)">Low <img src="./img/downTask.svg" alt="low"></button>
+            </div>
+          </div>
+          <div class="taskbranch">
+            <span>Assigned to</span>
+            <div class="wrapper">
+              <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
+              <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
+              <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
+              </div>   
+            </div>                     
+            <div id="tag-container" class="flex gap-ss"></div>
+          </div>
+          <div class="taskbranch">
+          <span>Subtasks</span>
+          <div class="relative">             
+            <input type="text" id="subtasks" placeholder="Add new subtask" disabled>             
+            <div class="iconcontainer">
+              <div class="invis" id="subtask-active-icons">
+                <div class="x-icon flex" onclick="clearInput()"><img src="./img/close.svg" alt="x"></div>                
+                <img src="./img/vertbar.png" alt="divider">
+                <div class="x-icon flex" onclick="assignSubtask(), clearInput()"><img src="./img/checksmall.png" alt="check"></div>
+              </div>
+              <div class="x-icon flex pad" onclick="toggleSubtasksInput()"><img src="./img/add.svg" alt="plus"></div>
+            </div>
+            <div id="created-subtasks-container">                           
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex between wide">
+        <div></div>
+        <div class="info-ok-button">Ok<img src="./img/check.svg" alt="check">
+      </div>
+    </div>
+  </div>  
+  `;
+  selectPrio(task.priority,event);
+  displayUserMenu();
+  renderAssignedUsers()
+  renderSubtasks();
 }
