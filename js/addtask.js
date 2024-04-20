@@ -20,9 +20,18 @@ function renderDropboxUser(user,color,index) {
         <div class="usertag flex a-center j-center" style="background-color:${color}">${getInitials(user)}</div>
         <span>${user}</span>
       </div> 
-   <div class="assigned-check"> </div>                 
+   <div class=${setCheckedUser(user,color)}> </div>                 
    </div>
   `;
+}
+
+function setCheckedUser(user,color) {
+  for (let item of assigned) {
+    if (item[0] == user && item[1] == color) {
+      return "assigned-checked";
+    }    
+  }
+  return "assigned-check";  
 }
 
 function selectPrio(prio, event) {
