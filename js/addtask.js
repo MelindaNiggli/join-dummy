@@ -62,6 +62,7 @@ function checkUser(id) {
     assigned.push([checkeduser,checkedusercolor]);
   }
   container.lastElementChild.classList.toggle("assigned-checked");
+  container.lastElementChild.classList.toggle("assigned-check");
   renderAssignedUsers();
 }
 
