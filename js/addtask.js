@@ -59,7 +59,7 @@ function checkUser(id) {
   let container = document.getElementById(`c${id}`);
   let checkeduser = allclients[id].name;
   let checkedusercolor = allclients[id].color;
-  let index = assigned.indexOf(checkeduser);
+  let index = assigned.findIndex(t => t.includes(checkeduser) && t.includes(checkedusercolor));
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
   } else {
