@@ -288,3 +288,16 @@ main * {
   color: var(--white);
 }
 
+
+@media only screen and (max-width: 767px) {
+
+    .headline-container,.summary-board-container{
+      position: static!important;
+    }
+    .headline-container{
+      flex-direction: column;
+      width: 100%!important;
+      height: 100%!important;
+    }
+  
+}  
