@@ -347,6 +347,6 @@ async function saveEditTask(index) {
   task.assigned = assigned;
   task.subtasks = subtasks;
   await setItem('taskobject',JSON.stringify(tasks));  
-  animateCreatedTask();
+  setTimeout(reload(),500);
 }
 
