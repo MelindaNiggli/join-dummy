@@ -1,11 +1,13 @@
 let assigned = [];
 let subtasks = [];
 let priority = "medium";
+let chosencolumn = 'todo';
 
 async function displayUserMenu() {  
   await loadUsers();
   await loadTasks();
   let dropbox = document.getElementById('drop-menu-assigned');
+  dropbox.innerHTML = '';
   for (let i = 0; i < users.length; i++) {
     const user = users[i].name;
     const color = users[i].color;
@@ -143,12 +145,12 @@ function checkRequired() {
     category.style.borderColor = "red";
     category.style.borderWidth = "2px";
   } else {
-    createTask();
+    createTask(chosencolumn);
   }
 }
 
-async function createTask() {
-  let category = "todo";
+async function createTask(column) {
+  let category = column;
   let label = document.getElementById('category-input').value;
   let title = document.getElementById('title').value;
   let description = document.getElementById('description').value;
@@ -180,10 +182,11 @@ async function clearAddTask(event) {
   subtasks = [];
   /* users = [];
   await setItem('users', JSON.stringify(users)); */ 
-  /* tasks = []; 
+  /* tasks.splice(7,1);
   await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
   selectPrio("medium", event);
+  displayUserMenu();
 }
 
 function assignSubtask() {

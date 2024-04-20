@@ -93,6 +93,7 @@ header {
   justify-content: space-between;
   box-sizing: border-box;
   position: relative;
+  background-color: var(--white);
   z-index: 1;
   margin-left:232px;
   padding:20px 40px 20px 116px;

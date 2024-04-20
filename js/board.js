@@ -1,5 +1,6 @@
 let columns = ['todo','progress','feedback','done'];
 
+
 async function updateTasks() {
   await loadTasks();
   emptyColumns();
@@ -130,7 +131,8 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-function toggleFloatingAddTask() {  
+function toggleFloatingAddTask(column) {  
+  chosencolumn = column;
   let container = document.getElementById('blockcontainer');  
   let floatingcontainer = document.getElementById('add-task-container');  
   if (container.classList.contains('d-none')) {
