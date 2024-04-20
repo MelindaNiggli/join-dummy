@@ -22,6 +22,10 @@
   flex-direction: column;
 }
 
+.pad {
+  padding:10px !important;
+}
+
 h1 {
   margin: 0;
   font-size: 61px;
@@ -35,7 +39,7 @@ span {
 
 #maincontent {
   margin-top: 48px;
-  /* margin-bottom: 20px; */
+  padding:0 5px;
   height:524px;
   overflow: hidden;
 }
@@ -235,6 +239,7 @@ textarea {
   max-height: 178px;
   overflow-y: auto;
   padding-top: 24px;
+  box-shadow: 0px 0px 4px 1px #0000001a;
 }
 
 .dropbox {
