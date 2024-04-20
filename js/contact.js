@@ -227,8 +227,8 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
             <a href="mailto:${email}">${email}</a>
         </div>
         <div class="wrapperP">
-            <p >Phone</p>
-            <a class="phone" href="tel:${phone}">${phone}</a>
+            <p>Phone</p>
+            <a class="phone" href="tel:${phone}">+41(0)${phone}</a>
         </div>
         </div>
 
