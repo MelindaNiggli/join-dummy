@@ -1,5 +1,7 @@
 let users = [];
 let tasks = [];
+let contacts = [];
+let allclients = [];
 
 /** 
  * Adding selectedMenu / selectedImg effects to the selected menu element
@@ -51,11 +53,7 @@ function menuSelected(menuitem) {
     this.subtasks = subtasks,
     this.priority = priority,
     this.assigned = assigned  
-<<<<<<< HEAD
 }
-=======
-  }
->>>>>>> a6dd024ed12d7e833a3197543627b16693eed7db
 
 async function loadTasks() {  
   try {
@@ -67,13 +65,21 @@ async function loadTasks() {
 
 async function loadUsers(){
   try {
-      users = JSON.parse(await getItem('users'));
+    users = JSON.parse(await getItem('users'));
   } catch(e){
-      console.error('Loading error:', e);
+    console.error('Loading error:', e);
   }
 }
 
-async function init(){ 
+async function loadContacts() {
+  try {
+    contacts = JSON.parse(await getItem('contactUsers'));
+  } catch(e){
+    console.error('Loading error:', e);
+  }  
+}
+
+async function init() { 
   await loadUsers();
   await loadTasks();
   updateTaskCounts(tasks);

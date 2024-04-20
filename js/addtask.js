@@ -6,11 +6,13 @@ let chosencolumn = 'todo';
 async function displayUserMenu() {  
   await loadUsers();
   await loadTasks();
+  await loadContacts();
+  allclients = [...users,...contacts];
   let dropbox = document.getElementById('drop-menu-assigned');
   dropbox.innerHTML = '';
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i].name;
-    const color = users[i].color;
+  for (let i = 0; i < allclients.length; i++) {
+    const user = allclients[i].name;
+    const color = allclients[i].color;
     dropbox.innerHTML += renderDropboxUser(user,color,i);
   }
 }
@@ -55,8 +57,8 @@ function toggleDrop(id) {
 
 function checkUser(id) {
   let container = document.getElementById(`c${id}`);
-  let checkeduser = users[id].name;
-  let checkedusercolor = users[id].color;
+  let checkeduser = allclients[id].name;
+  let checkedusercolor = allclients[id].color;
   let index = assigned.indexOf(checkeduser);
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
