@@ -1,3 +1,16 @@
+
+function render(){
+    loadAnimation();
+}
+async function loadUsers(){
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch(e){
+        console.error('Loading error:', e);
+    }
+  }
+
+  let users = [];
 function loadAnimation() {
     let logo = document.getElementById('logoImg');
     let logoWrapper = document.getElementById('logo');
@@ -9,18 +22,14 @@ function loadAnimation() {
         logo.style.transition = 'top 1s ease-in, left 1s ease-in, width 1s ease-in';
         logo.style.width = '100.03px';
         logo.style.transform = '';
-
         if (window.innerWidth <= 767) {
-            logoWrapper.style.background = 'var(--join-black)'; // Hintergrundfarbe während der Animation
+            logoWrapper.style.background = 'var(--join-black)'; 
         }
-
-        // Rufe deine JavaScript-Funktion auf
-        init();
+        loadUsers();
     }, 800); // 1000 Millisekunden = 1 Sekunde
 
     setTimeout(function() {
         ContentLogin();
-       
         if (window.innerWidth <= 767) {
             logo.style.backgroundImage = 'url(img/join-logo.svg)'; // Pfad zum neuen Hintergrundbild
             logoWrapper.style.background = 'transparent'; // Hintergrundfarbe während der Animation
@@ -73,17 +82,42 @@ function ContentLogin(){
 
 }
 
-function login(){
 
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
-    let user = users.find( u => u.email == email.value && u.password == password.value);
-    console.log(user);
+async function loadUsers(){
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch(e){
+        console.error('Loading error:', e);
+    }
+}
+
+// Das Passwort hashen
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+async function login(){
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+
+    // Hash das eingegebene Passwort
+    let hashedPassword = await hashPassword(password);
+
+    // Suche nach dem Benutzer in der Datenbank
+    let user = users.find(u => u.email === email && u.password === hashedPassword);
+    
     if(user){
         window.location.href = 'summary.html';
-    }   
-
+    } else {
+        console.log("Benutzer nicht gefunden oder Passwort falsch.");
+    }
 }
+
 
 function resetForm() {
     nameUser.value = '';

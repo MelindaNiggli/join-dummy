@@ -53,12 +53,6 @@ function menuSelected(menuitem) {
     this.assigned = assigned  
 }
 
-async function init(){
-  loadUsers();
-  loadTasks();
-
-}
-
 async function loadTasks() {  
   try {
     tasks = JSON.parse(await getItem('taskobject'));

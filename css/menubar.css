@@ -8,7 +8,6 @@ body {
 
 #menubar {
   position:fixed;
-  top:0;
   left:0;
   display: flex;
   align-items: center;
@@ -20,7 +19,6 @@ body {
   padding: 64px 0px 64px 0px;
   background-color: #2a3647;
   position: fixed;
-  top: 0;
 }
 
 #menulogo {

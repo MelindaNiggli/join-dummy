@@ -106,3 +106,44 @@ h1 {
   background: #CDCDCD;
   border-radius: 10px;  
 }
+
+@media only screen and (max-width: 767px) {
+
+  #menubar {
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 80px!important;
+    padding: 0px !important;
+    align-items: center!important;
+  }
+
+  #menubar #menulogo {
+    display: none;
+  }
+  
+  nav {
+    flex-direction: row!important;
+    margin: 0px 25px !important;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+  }
+  #menubar a:not(#headend a) {
+    flex-direction: column !important;
+    padding: 8px!important;
+    height: 100%;
+    border-radius: 16px!important;
+    -webkit-border-radius: 16px!important;
+    -moz-border-radius: 16px!important;
+    -ms-border-radius: 16px!important;
+    -o-border-radius: 16px!important;
+    justify-content: center;
+    min-width: 80px;
+}
+
+  #policies{
+    display: none!important;
+  }
+}
+
