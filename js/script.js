@@ -103,6 +103,15 @@ async function loadUsers() {
     }
 }
 
+function openPopUp() {
+    let popupContainer = document.getElementById("popupContainer");
+    if (popupContainer.style.display === "block") {
+      popupContainer.style.display = "none";
+    } else {
+      popupContainer.style.display = "block";
+    }
+  }
+
 /**
  * Initializes the application by loading users and tasks, and updating task counts.
  * @async
