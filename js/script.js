@@ -77,6 +77,17 @@ function Task(category, label, title, description, date, subtasks, priority, ass
     this.subtasks = subtasks,
     this.priority = priority,
     this.assigned = assigned  
+<<<<<<< HEAD
+  }
+
+async function loadTasks() {  
+  try {
+    tasks = JSON.parse(await getItem('taskobject'));
+  } catch(e){
+    console.error('Loading error:', e);
+  }
+=======
+>>>>>>> 538048dd7fbe8b3c0db1342b4297b850496bbcf7
 }
 
 /**
