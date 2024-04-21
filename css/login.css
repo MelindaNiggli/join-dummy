@@ -1,9 +1,4 @@
-body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    position: relative;
-  }
+
   
 a{
     text-decoration: none;
@@ -14,10 +9,13 @@ button{
 body {
     background: var(--bg);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
+    position: relative;
 }
+
 #wrapperLogin {
 	display: flex;
 	align-items: center;

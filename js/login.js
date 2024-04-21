@@ -78,8 +78,8 @@ function ContentLogin() {
             </div>
         </div>  
         <div class="wrapper-button">
-            <button onclick="">Log in</button>
-            <button>Guest Log in</button>
+            <button>Log in</button>
+            <button  onclick="guestLogin()">Guest Log in</button>
         </div>
     </form>    
     <div class="wrapper-sing-up"> 
@@ -125,6 +125,11 @@ async function login() {
     } else {
         console.log("User not found or incorrect password.");
     }
+}
+
+
+function guestLogin(){
+    window.location.href = 'summary.html';
 }
 
 /**
