@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+  displayUserName();
+});
+
 /**
  * Updates the task counts for each status and displays them.
  * @param {Array} tasks - The array of tasks.
@@ -100,15 +104,17 @@ function getLoggedInUser() {
 function displayUserName() {
   let user = getLoggedInUser();
   let summaryNameElement = document.getElementById('summaryName');
-  if (user) {
-      summaryNameElement.textContent = user.name;
+  if (summaryNameElement) {
+      if (user) {
+          summaryNameElement.textContent = user.name;
+      } else {
+          summaryNameElement.textContent = 'Guest';
+      }
   } else {
-      summaryNameElement.textContent = 'Guest';
+      console.error('Summary name element not found.');
   }
 }
 
-// Call the function to display the username.
-displayUserName();
 
 
 
