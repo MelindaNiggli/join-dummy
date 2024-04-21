@@ -82,7 +82,7 @@ h1 {
   transition: all 0.1s ease-in-out;
 }
 
-#add-task-button:hover {
+#add-task-button:hover, .info-ok-button:hover {
   cursor: pointer;
   box-shadow: 0px 4px 4px 0px #00000040;
   background-color: var(--join-blue);
@@ -342,7 +342,7 @@ input::placeholder {
   align-items: center;
 }
 
-.task-details {
+#task-details {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -350,11 +350,19 @@ input::placeholder {
   max-height: 870px;
   top: 20px;
   left: 625px;
-  padding: 48px 40px;
+  padding: 48px 35px;
   gap: 24px;
   border-radius: 30px 30px 30px 30px;
-  background-color: white;
-  animation: slideInFromRight 0.25s ease;
+  background-color: white;  
+}
+
+.task-bucket {  
+  display: flex;
+  flex-direction: column;
+  width:102%;
+  gap: 24px;
+  max-height:700px;
+  overflow-y: auto;
 }
 
 .d-none {
@@ -412,8 +420,7 @@ input::placeholder {
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
-  text-align: left;
-  padding-top: 16px;
+  text-align: left;  
   gap: 16px;
 }
 
@@ -441,17 +448,6 @@ input::placeholder {
   flex-direction: column; /* Stellt die Flex-Box auf vertikale Ausrichtung */
   align-items: flex-start; /* Linksbündige Ausrichtung */
   gap: 10px; /* Abstand zwischen den Elementen */
-}
-
-.usertag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  color: white;
-  font-weight: bold;
 }
 
 .task-container {
@@ -494,6 +490,24 @@ input::placeholder {
   align-self: flex-end;
   align-items: center;
   gap: 8px;
+}
+
+.info-ok-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:24px;
+  gap: 10px;
+  width:89px;
+  height: 57px;
+  padding: 8px 16px 8px 16px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  background-color: var(--join-black);
+  border: 1px solid var(--join-black);
+  border-radius: 10px;
+  transition: all 0.1s ease-in-out;
 }
 
 .info-button-edit:hover,

@@ -9,6 +9,8 @@ let users = [];
  * @type {Array}
  */
 let tasks = [];
+let contacts = [];
+let allclients = [];
 
 /**
  * Adds selectedMenu / selectedImg effects to the selected menu element.
@@ -74,7 +76,7 @@ function Task(category, label, title, description, date, subtasks, priority, ass
     this.date = date,
     this.subtasks = subtasks,
     this.priority = priority,
-    this.assigned = assigned
+    this.assigned = assigned  
 }
 
 /**

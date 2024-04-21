@@ -4,10 +4,6 @@
  */
 let columns = ['todo','progress','feedback','done'];
 
-/**
- * Updates the tasks displayed on the board.
- * @async
- */
 async function updateTasks() {
   await loadTasks();
   emptyColumns();
@@ -169,7 +165,9 @@ function removeHighlight(id) {
 /**
  * Toggles the visibility of the floating add task container.
  */
-function toggleFloatingAddTask() {  
+
+function toggleFloatingAddTask(column) {  
+  chosencolumn = column;
   let container = document.getElementById('blockcontainer');  
   let floatingcontainer = document.getElementById('add-task-container');  
   if (container.classList.contains('d-none')) {
@@ -177,13 +175,11 @@ function toggleFloatingAddTask() {
     floatingcontainer.classList.toggle('slidein');    
   } else {    
     floatingcontainer.classList.toggle('slideout'); 
-    setTimeout(toggleBlock,200);       
+    setTimeout(toggleBlock,200);  
+    setTimeout(reload,400);    
   }
 }
 
-/**
- * Toggles the visibility of a block element.
- */
 function toggleBlock() {
   let container = document.getElementById('blockcontainer');
   let floatingcontainer = document.getElementById('add-task-container'); 
@@ -231,9 +227,10 @@ function renderInfoSubtasks(index) {
   let container = document.getElementById('info-subtasks');
   let subtasks = tasks[index].subtasks;
   container.innerHTML = '';
-  for (st of subtasks) {
+  for (let i = 0; i < subtasks.length; i++) {
+    const st = subtasks[i];
     container.innerHTML += `
-    <div class="flex gap-s info-st-img">
+    <div class="flex gap-s info-st-img" id="st${i}" onclick="toggleInfoSubtask(${index},${i},${st[1]})">
       <img src="./img/${checkChecked(st)}.svg" alt="checkbox">
       ${st[0]}
     </div>    
@@ -254,8 +251,95 @@ function checkChecked(st) {
  * Hides the task details container.
  */
 function hideDetailsContainer() {
-  document.getElementById('detailsContainer').classList.add('d-none');
-  document.getElementById('detailsContainer').innerHTML = '';
+  document.getElementById('task-details').classList.remove('slideout');
+  document.getElementById('detailsContainer').classList.add('d-none');  
+}
+
+function openTaskEdit(index) {
+  let task = tasks[index];
+  subtasks = tasks[index].subtasks;
+  assigned = tasks[index].assigned;
+  let details = document.getElementById('task-details-container');  
+  details.innerHTML = `
+  <div id="detailsContainer" class="details">
+    <div id="task-details">
+      <form action="javascript:void(0);" onsubmit="saveEditTask(${index})">
+        <div class="task-and-close-container">
+          <div></div>
+          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+        </div>
+        <div class="task-bucket">        
+          <div class="taskbranch">
+              <span>Title</span>
+              <input type="text" id="title" placeholder="Enter a title" maxlength="40" value="${task.title}" required>
+            </div>
+            <div class="taskbranch">
+              <span>Description</span>
+              <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description" maxlength="105">${task.description}</textarea>
+            </div>
+            <div class="taskbranch">
+              <span>Due date</span>
+              <input type="date" id="duedate" value="${task.date}"required>
+            </div>
+            <div class="taskbranch">
+              <span>Prio</span>
+              <div class="buttonbox">
+                <button class="priobutton" id="urgent" onclick="selectPrio(id, event)">Urgent <img src="./img/upTask.svg" alt="urgent"></button>
+                <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id, event)">Medium <img src="./img/medium.svg" alt="medium"></button>
+                <button class="priobutton" id="low" onclick="selectPrio(id, event)">Low <img src="./img/downTask.svg" alt="low"></button>
+              </div>
+            </div>
+            <div class="taskbranch">
+              <span>Assigned to</span>
+              <div class="wrapper">
+                <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
+                <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
+                <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
+                </div>   
+              </div>                     
+              <div id="tag-container" class="flex gap-ss"></div>
+            </div>
+            <div class="taskbranch">
+            <span>Subtasks</span>
+            <div class="relative">             
+              <input type="text" id="subtasks" placeholder="Add new subtask" disabled>             
+              <div class="iconcontainer">
+                <div class="invis" id="subtask-active-icons">
+                  <div class="x-icon flex" onclick="clearInput()"><img src="./img/close.svg" alt="x"></div>                
+                  <img src="./img/vertbar.png" alt="divider">
+                  <div class="x-icon flex" onclick="assignSubtask(), clearInput()"><img src="./img/checksmall.png" alt="check"></div>
+                </div>
+                <div class="x-icon flex pad" onclick="toggleSubtasksInput()"><img src="./img/add.svg" alt="plus"></div>
+              </div>
+              <div id="created-subtasks-container">                           
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex between wide">
+          <div></div>
+          <button class="info-ok-button" type="submit">Ok<img src="./img/check.svg" alt="check"></button>
+        </div>
+      </form>
+    </div>
+  </div>  
+  `;
+  selectPrio(task.priority,event);
+  displayUserMenu();
+  renderAssignedUsers()
+  renderSubtasks();
+}
+
+async function saveEditTask(index) {
+  let task = tasks[index];
+  task.title = document.getElementById('title').value;
+  task.description = document.getElementById('description').value;
+  task.date = document.getElementById('duedate').value;
+  task.priority = priority;
+  task.assigned = assigned;
+  task.subtasks = subtasks;
+  await setItem('taskobject',JSON.stringify(tasks));  
+  setTimeout(reload(),500);
 }
 
 /**

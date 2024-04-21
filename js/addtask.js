@@ -15,6 +15,7 @@ let subtasks = [];
  * @type {string}
  */
 let priority = "medium";
+let chosencolumn = 'todo';
 
 /**
  * Displays the user menu dropdown.
@@ -23,10 +24,13 @@ let priority = "medium";
 async function displayUserMenu() {  
   await loadUsers();
   await loadTasks();
+  await loadContacts();
+  allclients = [...users,...contacts];
   let dropbox = document.getElementById('drop-menu-assigned');
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i].name;
-    const color = users[i].color;
+  dropbox.innerHTML = '';
+  for (let i = 0; i < allclients.length; i++) {
+    const user = allclients[i].name;
+    const color = allclients[i].color;
     dropbox.innerHTML += renderDropboxUser(user,color,i);
   }
 }
@@ -45,16 +49,20 @@ function renderDropboxUser(user,color,index) {
         <div class="usertag flex a-center j-center" style="background-color:${color}">${getInitials(user)}</div>
         <span>${user}</span>
       </div> 
-   <div class="assigned-check"> </div>                 
+   <div class=${setCheckedUser(user,color)}> </div>                 
    </div>
   `;
 }
 
-/**
- * Handles the selection of priority for the task.
- * @param {string} prio - The selected priority ('urgent', 'medium', or 'low').
- * @param {Event} event - The event object.
- */
+function setCheckedUser(user,color) {
+  for (let item of assigned) {
+    if (item[0] == user && item[1] == color) {
+      return "assigned-checked";
+    }    
+  }
+  return "assigned-check";  
+}
+
 function selectPrio(prio, event) {
   event.preventDefault();
   document
@@ -82,15 +90,16 @@ function toggleDrop(id) {
  */
 function checkUser(id) {
   let container = document.getElementById(`c${id}`);
-  let checkeduser = users[id].name;
-  let checkedusercolor = users[id].color;
-  let index = assigned.indexOf(checkeduser);
+  let checkeduser = allclients[id].name;
+  let checkedusercolor = allclients[id].color;
+  let index = assigned.findIndex(t => t.includes(checkeduser) && t.includes(checkedusercolor));
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
   } else {
     assigned.push([checkeduser,checkedusercolor]);
   }
   container.lastElementChild.classList.toggle("assigned-checked");
+  container.lastElementChild.classList.toggle("assigned-check");
   renderAssignedUsers();
 }
 
@@ -199,15 +208,15 @@ function checkRequired() {
     category.style.borderColor = "red";
     category.style.borderWidth = "2px";
   } else {
-    createTask();
+    createTask(chosencolumn);
   }
 }
 
 /**
  * Creates a new task.
  */
-async function createTask() {
-  let category = "todo";
+async function createTask(column) {
+  let category = column;
   let label = document.getElementById('category-input').value;
   let title = document.getElementById('title').value;
   let description = document.getElementById('description').value;
@@ -246,10 +255,11 @@ async function clearAddTask(event) {
   subtasks = [];
   /* users = [];
   await setItem('users', JSON.stringify(users)); */ 
-  /* tasks = []; 
+  /* tasks.splice(7,1);
   await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
   selectPrio("medium", event);
+  displayUserMenu();
 }
 
 /**
