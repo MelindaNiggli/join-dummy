@@ -380,7 +380,7 @@ function renderTaskHTML(task,index) {
 function renderTaskInfoHTML(task){
   return `
   <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
-    <div class="task-details">
+    <div id="task-details" class="task-details">
       <div class="task-and-close-container">
         <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
         <img src="./img/x.png" class="close-task">

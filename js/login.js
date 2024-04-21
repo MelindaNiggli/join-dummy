@@ -1,16 +1,30 @@
-
-function render(){
+/**
+ * Function to render the initial animation and load users data
+ */
+function render() {
     loadAnimation();
 }
-async function loadUsers(){
+
+/**
+ * Function to load users data from storage
+ */
+async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
-    } catch(e){
+    } catch(e) {
         console.error('Loading error:', e);
     }
-  }
+}
 
-  let users = [];
+/**
+ * Array to store user data
+ * @type {Object[]}
+ */
+let users = [];
+
+/**
+ * Function to animate the logo and load users data
+ */
 function loadAnimation() {
     let logo = document.getElementById('logoImg');
     let logoWrapper = document.getElementById('logo');
@@ -26,24 +40,24 @@ function loadAnimation() {
             logoWrapper.style.background = 'var(--join-black)'; 
         }
         loadUsers();
-    }, 800); // 1000 Millisekunden = 1 Sekunde
+    }, 800);
 
     setTimeout(function() {
         ContentLogin();
         if (window.innerWidth <= 767) {
-            logo.style.backgroundImage = 'url(img/join-logo.svg)'; // Pfad zum neuen Hintergrundbild
-            logoWrapper.style.background = 'transparent'; // Hintergrundfarbe während der Animation
+            logo.style.backgroundImage = 'url(img/join-logo.svg)';
+            logoWrapper.style.background = 'transparent';
         }
-    }, 1000); // 1000 Millisekunden = 1 Sekunde
+    }, 1000);
 }
 
-function ContentLogin(){
-
+/**
+ * Function to render login content
+ */
+function ContentLogin() {
     let content = document.getElementById('wrapperLogin');
 
-    content.innerHTML += 
-    `
-
+    content.innerHTML += `
     <form id="formLogin" onsubmit="login(); return false">
         <div class="wrapper-heading">
             <h1>Log in</h1>
@@ -69,29 +83,21 @@ function ContentLogin(){
         </div>
     </form>    
     <div class="wrapper-sing-up"> 
-    <p>Not a Join user?</p>
-    <a href="./registartion.html">Sign up</a>
-</div>
+        <p>Not a Join user?</p>
+        <a href="./registartion.html">Sign up</a>
+    </div>
     <footer>
         <a href="./privacy.html">Privacy Policy</a>
         <a href="./legal.html">Legal Notice</a>
     </footer>
     `;
- 
- 
-
 }
 
-
-async function loadUsers(){
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch(e){
-        console.error('Loading error:', e);
-    }
-}
-
-// Das Passwort hashen
+/**
+ * Function to hash a password using SHA-256 algorithm
+ * @param {string} password - The password to be hashed
+ * @returns {Promise<string>} - The hashed password
+ */
 async function hashPassword(password) {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
@@ -101,24 +107,29 @@ async function hashPassword(password) {
     return hashHex;
 }
 
-async function login(){
+/**
+ * Function to handle user login
+ */
+async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
 
-    // Hash das eingegebene Passwort
+    // Hash the entered password
     let hashedPassword = await hashPassword(password);
 
-    // Suche nach dem Benutzer in der Datenbank
+    // Search for the user in the database
     let user = users.find(u => u.email === email && u.password === hashedPassword);
     
-    if(user){
+    if(user) {
         window.location.href = 'summary.html';
     } else {
-        console.log("Benutzer nicht gefunden oder Passwort falsch.");
+        console.log("User not found or incorrect password.");
     }
 }
 
-
+/**
+ * Function to reset the registration form
+ */
 function resetForm() {
     nameUser.value = '';
     email.value = '';
