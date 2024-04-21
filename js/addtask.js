@@ -1,18 +1,47 @@
+/**
+ * Array to store assigned users for a task.
+ * @type {Array}
+ */
 let assigned = [];
-let subtasks = [];
-let priority = "medium";
 
+/**
+ * Array to store subtasks for a task.
+ * @type {Array}
+ */
+let subtasks = [];
+
+/**
+ * Priority level of the task.
+ * @type {string}
+ */
+let priority = "medium";
+let chosencolumn = 'todo';
+
+/**
+ * Displays the user menu dropdown.
+ * Loads users and tasks before rendering.
+ */
 async function displayUserMenu() {  
   await loadUsers();
   await loadTasks();
+  await loadContacts();
+  allclients = [...users,...contacts];
   let dropbox = document.getElementById('drop-menu-assigned');
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i].name;
-    const color = users[i].color;
+  dropbox.innerHTML = '';
+  for (let i = 0; i < allclients.length; i++) {
+    const user = allclients[i].name;
+    const color = allclients[i].color;
     dropbox.innerHTML += renderDropboxUser(user,color,i);
   }
 }
 
+/**
+ * Renders the HTML structure for a user in the dropdown menu.
+ * @param {string} user - The name of the user.
+ * @param {string} color - The color associated with the user.
+ * @param {number} index - The index of the user.
+ * @returns {string} - The HTML structure for the user in the dropdown menu.
+ */
 function renderDropboxUser(user,color,index) {
   return `
     <div class="flex a-center between dropbox" id="c${index}" onclick="checkUser(${index})">
@@ -45,17 +74,25 @@ function selectPrio(prio, event) {
   priority = prio;
 }
 
+/**
+ * Toggles the visibility of a dropdown menu.
+ * @param {string} id - The ID of the dropdown menu container.
+ */
 function toggleDrop(id) {
   let container = document.getElementById(`${id}`);
   container.firstElementChild.classList.toggle("rotate");
   container.nextElementSibling.classList.toggle("invis");
 }
 
+/**
+ * Handles the selection/deselection of a user in the dropdown menu.
+ * @param {number} id - The ID of the user.
+ */
 function checkUser(id) {
   let container = document.getElementById(`c${id}`);
-  let checkeduser = users[id].name;
-  let checkedusercolor = users[id].color;
-  let index = assigned.indexOf(checkeduser);
+  let checkeduser = allclients[id].name;
+  let checkedusercolor = allclients[id].color;
+  let index = assigned.findIndex(t => t.includes(checkeduser) && t.includes(checkedusercolor));
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
   } else {
@@ -66,6 +103,9 @@ function checkUser(id) {
   renderAssignedUsers();
 }
 
+/**
+ * Renders the tags for the assigned users.
+ */
 function renderAssignedUsers() {
   let container = document.getElementById("tag-container");
   container.innerHTML = "";
@@ -79,11 +119,18 @@ function renderAssignedUsers() {
   }
 }
 
+/**
+ * Selects the category for the task.
+ * @param {string} category - The selected category.
+ */
 function selectCategory(category) {
   toggleDrop("arrowcategory");
   document.getElementById("category-input").value = category;
 }
 
+/**
+ * Toggles the visibility of the subtasks input field.
+ */
 function toggleSubtasksInput() {
   let field = document.getElementById("subtasks");
   let hiddenicons = document.getElementById("subtask-active-icons");
@@ -99,11 +146,18 @@ function toggleSubtasksInput() {
   plusicon.classList.toggle("flex");
 }
 
+/**
+ * Clears the input fields for adding a task.
+ */
 function clearInput() {
   document.getElementById("subtasks").value = "";
   toggleSubtasksInput();
 }
 
+/**
+ * Enables editing of a subtask.
+ * @param {number} id - The ID of the subtask.
+ */
 function editSubtask(id) {
   let field = document.getElementById(`subtasks-input-c${id}`);
   let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
@@ -117,6 +171,10 @@ function editSubtask(id) {
   iconboxcheck.classList.toggle("flex");
 }
 
+/**
+ * Saves the edited subtask.
+ * @param {number} id - The ID of the subtask.
+ */
 function checkSubtask(id) {
   let field = document.getElementById(`subtasks-input-c${id}`);
   let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
@@ -132,23 +190,33 @@ function checkSubtask(id) {
   iconboxcheck.classList.toggle("flex");
 }
 
+/**
+ * Deletes a subtask.
+ * @param {number} id - The ID of the subtask.
+ */
 function deleteSubtask(id) {
   subtasks.splice(id,1);
   renderSubtasks();
 }
 
+/**
+ * Checks if the category field is filled before creating the task.
+ */
 function checkRequired() {
   let category = document.getElementById('category-input');
   if (category.value == "") {
     category.style.borderColor = "red";
     category.style.borderWidth = "2px";
   } else {
-    createTask();
+    createTask(chosencolumn);
   }
 }
 
-async function createTask() {
-  let category = "todo";
+/**
+ * Creates a new task.
+ */
+async function createTask(column) {
+  let category = column;
   let label = document.getElementById('category-input').value;
   let title = document.getElementById('title').value;
   let description = document.getElementById('description').value;
@@ -159,6 +227,9 @@ async function createTask() {
   animateCreatedTask();
 }
 
+/**
+ * Animates the display of the created task and redirects to the board page.
+ */
 function animateCreatedTask() {
   let addedbox = document.getElementById("added-to-board-box");
   addedbox.style.top = "30%";
@@ -167,6 +238,10 @@ function animateCreatedTask() {
   }, 1500);
 }
 
+/**
+ * Clears all input fields for adding a task.
+ * @param {Event} event - The event object.
+ */
 async function clearAddTask(event) {
   event.preventDefault();
   document.getElementById("title").value = "";
@@ -180,18 +255,25 @@ async function clearAddTask(event) {
   subtasks = [];
   /* users = [];
   await setItem('users', JSON.stringify(users)); */ 
-  /* tasks = []; 
+  /* tasks.splice(7,1);
   await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
   selectPrio("medium", event);
+  displayUserMenu();
 }
 
+/**
+ * Adds a subtask to the list of subtasks.
+ */
 function assignSubtask() {
   let task = document.getElementById("subtasks").value;
   subtasks.push([task,0]);
   renderSubtasks();
 }
 
+/**
+ * Renders the list of subtasks.
+ */
 function renderSubtasks() {
   let container = document.getElementById("created-subtasks-container");
   container.innerHTML = "";
@@ -201,6 +283,12 @@ function renderSubtasks() {
   }
 }
 
+/**
+ * Displays a single subtask.
+ * @param {string} task - The subtask.
+ * @param {number} index - The index of the subtask.
+ * @returns {string} - The HTML structure for displaying the subtask.
+ */
 function displaySubtask(task, index) {
   return `
   <div class="relative">

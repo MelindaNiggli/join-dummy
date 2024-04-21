@@ -1,56 +1,83 @@
-let users = [];
-let tasks = [];
-
-/** 
- * Adding selectedMenu / selectedImg effects to the selected menu element
- * @param {string} menuitem using the docTitle and giving it to the function to know what page is active
+/**
+ * Represents the array of users.
+ * @type {Array}
  */
-function menuSelected(menuitem) {  
+let users = [];
+
+/**
+ * Represents the array of tasks.
+ * @type {Array}
+ */
+let tasks = [];
+let contacts = [];
+let allclients = [];
+
+/**
+ * Adds selectedMenu / selectedImg effects to the selected menu element.
+ * @param {string} menuitem - The menu item to be selected.
+ */
+function menuSelected(menuitem) {
     let menupoint = document.getElementById(menuitem);
     menupoint.classList.add("selectedMenu");
     if (menuitem == "Join-Privacy-Policy" || menuitem == "Join-Legal-Notice") {
-      menupoint.style.color = '#cdcdcd';
+        menupoint.style.color = '#cdcdcd';
     } else {
-      menupoint.firstChild.classList.add("selectedImg");
+        menupoint.firstChild.classList.add("selectedImg");
     }
-  }
-  
-  /**
-   * Loading in the templates of the sidemenu and the header
-   * After that calling the menuSelected function to change the appearance of the clicked menu item
-   */
-  
-  async function includeHTML() {
+}
+
+/**
+ * Loads the templates of the sidemenu and the header asynchronously.
+ */
+async function includeHTML() {
     let includeElements = document.querySelectorAll("[include-html]");
     for (let i = 0; i < includeElements.length; i++) {
-      const element = includeElements[i];
-      file = element.getAttribute("include-html"); 
-      let resp = await fetch(file);
-      if (resp.ok) {
-        element.innerHTML = await resp.text();
-      } else {
-        element.innerHTML = "Page not found";
-      }
+        const element = includeElements[i];
+        file = element.getAttribute("include-html");
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = "Page not found";
+        }
     }
     menuSelected(document.title);
-    displayCurrentDate(); 
-  }
+    displayCurrentDate();
+}
 
-  function getInitials(user) {
+/**
+ * Retrieves the initials from a user's full name.
+ * @param {string} user - The full name of the user.
+ * @returns {string} The initials of the user.
+ */
+function getInitials(user) {
     let names = user.split(' ');
-    let firstletter = names[0].charAt(0).toUpperCase();  
+    let firstletter = names[0].charAt(0).toUpperCase();
     return names[1] ? (firstletter + (names[1].charAt(0).toUpperCase())) : firstletter;
-  }
+}
 
-  function Task(category, label, title, description, date, subtasks, priority, assigned) {
+/**
+ * Represents a task object.
+ * @class
+ * @param {string} category - The category of the task.
+ * @param {string} label - The label of the task.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {string} date - The due date of the task.
+ * @param {Array} subtasks - The array of subtasks for the task.
+ * @param {string} priority - The priority of the task.
+ * @param {Array} assigned - The array of users assigned to the task.
+ */
+function Task(category, label, title, description, date, subtasks, priority, assigned) {
     this.category = category,
-    this.label = label,    
+    this.label = label,
     this.title = title,
     this.description = description,
     this.date = date,
     this.subtasks = subtasks,
     this.priority = priority,
     this.assigned = assigned  
+<<<<<<< HEAD
   }
 
 async function loadTasks() {  
@@ -59,19 +86,41 @@ async function loadTasks() {
   } catch(e){
     console.error('Loading error:', e);
   }
+=======
+>>>>>>> 538048dd7fbe8b3c0db1342b4297b850496bbcf7
 }
 
-async function loadUsers(){
-  try {
-      users = JSON.parse(await getItem('users'));
-  } catch(e){
-      console.error('Loading error:', e);
-  }
+/**
+ * Loads tasks from local storage.
+ * @async
+ */
+async function loadTasks() {
+    try {
+        tasks = JSON.parse(await getItem('taskobject'));
+    } catch (e) {
+        console.error('Loading error:', e);
+    }
 }
 
-async function init(){ 
-  await loadUsers();
-  await loadTasks();
-  updateTaskCounts(tasks);
-  countUrgentTasks(tasks)
+/**
+ * Loads users from local storage.
+ * @async
+ */
+async function loadUsers() {
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch (e) {
+        console.error('Loading error:', e);
+    }
+}
+
+/**
+ * Initializes the application by loading users and tasks, and updating task counts.
+ * @async
+ */
+async function init() {
+    await loadUsers();
+    await loadTasks();
+    updateTaskCounts(tasks);
+    countUrgentTasks(tasks);
 }

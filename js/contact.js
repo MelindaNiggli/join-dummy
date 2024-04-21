@@ -243,18 +243,32 @@ async function showUserInfo(name, email, color, phone, index) {
 }
 
 function firstAndSecondCharUppercase(name) {
-    // Die ersten zwei Buchtaben gross
     const string = name;
     return string.slice(0, 2).toUpperCase();
 }
 
+/**
+ * Function to convert the first character of a string to uppercase
+ * @param {string} name - The name string
+ * @returns {string} - The modified string with the first character in uppercase
+ */
 function firstCharUppercase(name) {
     const firstLetter = name.charAt(0).toUpperCase();
     const restOfWord = name.slice(1);
     return firstLetter + restOfWord;
 }
 
-
+/**
+ * Function to generate the HTML template for displaying user information
+ * @param {number} index - The index of the user
+ * @param {string} color - The color associated with the user
+ * @param {string} email - The email of the user
+ * @param {string} name - The name of the user
+ * @param {string} phone - The phone number of the user
+ * @param {string} firstTwoChars - The first two characters of the user's name in uppercase
+ * @param {string} capitalizedWord - The user's name with the first character capitalized
+ * @returns {string} - The HTML template for displaying user information
+ */
 function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitalizedWord){
     return`
         <div id="userInfoSide">
@@ -286,43 +300,46 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
         </div>
         </div>
 
-    `
+    `;
 }
 
-
-/**** DELETE USER ****/
-
-
+/**
+ * Function to display a success message upon deleting a user
+ * @param {string} name - The name of the deleted user
+ */
 function messageDeleted(name){
     const msg =  document.getElementById('messageBox')
-    msg.innerHTML = `User *${name}*  deltetd successfully`;
+    msg.innerHTML = `User *${name}*  deleted successfully`;
     msg.style.background = 'var(--join-black)';
     msg.style.padding = '25px';
     msg.style.borderRadius = '20px';
     msg.style.color = 'white';
     msg.style.fontSize ='20px';
     setTimeout(function() {
-        msg.innerHTML = ""; // Leert den Inhalt der Nachrichtenbox
-    }, 3000); // Löscht die Nachricht nach 3 Sekunden (3000 Millisekunden)
+        msg.innerHTML = ""; // Clears the content of the message box
+    }, 3000); // Clears the message after 3 seconds (3000 milliseconds)
 }
 
-
+/**
+ * Async function to delete a user
+ * @param {string} name - The name of the user to delete
+ */
 async function deleteUser(name) {
     await loadContactUsers();
     try {
-        // Laden der vorhandenen Benutzer
+        // Load existing users
         let existingUsers = await getItem('contactUsers');
        existingUsers = JSON.parse(await getItem('contactUsers'))
 
-        // Finden des Index des Benutzers, der gelöscht werden soll
+        // Find the index of the user to delete
         const index = existingUsers.findIndex(user => user.name === name);
         if (index !== -1) {
             messageDeleted(name);
-            // Entfernen des Benutzers aus dem Array
+            // Remove the user from the array
             existingUsers.splice(index, 1);
             await setItem('contactUsers', JSON.stringify(existingUsers));
             console.log(`User ${name} deleted successfully.`);
-            await loadContactUsers(); // Aktualisieren der Benutzerliste
+            await loadContactUsers(); // Update the user list
             resetForm(); 
         } else {
             console.error(`User ${name} not found.`);
@@ -332,10 +349,13 @@ async function deleteUser(name) {
     }
 }
 
-
-/**** UPDATE USER ****/
-
-
+/**
+ * Async function to edit a user
+ * @param {string} name - The name of the user
+ * @param {string} email - The email of the user
+ * @param {string} color - The color associated with the user
+ * @param {string} phone - The phone number of the user
+ */
 async function editUser(name, email, color, phone) {
     await loadContactUsers();
     let overlayEdit = document.getElementById('overlayEdit');
@@ -350,10 +370,19 @@ async function editUser(name, email, color, phone) {
         containerEdit.style.transform = 'translateX(0px)';
     }, 1);
     
-    const firstTwoChars = firstAndSecondCharUppercase(name); // Hier das Ergebnis von firstCharUppercase verwenden
+    const firstTwoChars = firstAndSecondCharUppercase(name); // Use the result of firstCharUppercase here
     containerEdit.innerHTML = TemplateContainerUpdate(name, email, color, phone, firstTwoChars);
 }
 
+/**
+ * Function to generate the HTML template for editing a user
+ * @param {string} name - The name of the user
+ * @param {string} email - The email of the user
+ * @param {string} color - The color associated with the user
+ * @param {string} phone - The phone number of the user
+ * @param {string} firstTwoChars - The first two characters of the user's name in uppercase
+ * @returns {string} - The HTML template for editing a user
+ */
 function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
     return `
     <div class="wrapper-left">
@@ -394,6 +423,10 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
     `;
 }
 
+/**
+ * Function to display a success message upon updating a user
+ * @param {string} name - The name of the updated user
+ */
 function messageSuccessfully(name){
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `User *${name}* updated successfully`;
@@ -404,12 +437,15 @@ function messageSuccessfully(name){
     msg.style.fontSize ='20px'
 
     setTimeout(function() {
-        msg.innerHTML = ""; // Leert den Inhalt der Nachrichtenbox
-    }, 3000); // Löscht die Nachricht nach 3 Sekunden (3000 Millisekunden)
+        msg.innerHTML = ""; // Clears the content of the message box
+    }, 3000); // Clears the message after 3 seconds (3000 milliseconds)
 }
 
+/**
+ * Async function to update a user
+ * @param {string} name - The name of the user to update
+ */
 async function updateUser(name) {
-
     console.log(name);
     // Get data from input fields
     const nameInput = document.getElementById('userInputUpdate').value;
@@ -431,7 +467,7 @@ async function updateUser(name) {
 
          // Save the updated array to remote storage
          await setItem('contactUsers', JSON.stringify(existingUsers));
-         await loadContactUsers(); // Aktualisieren der Benutzerliste
+         await loadContactUsers(); // Update the user list
 
          let overlay = document.getElementById('overlayEdit');
          let container = document.getElementById('editContact');
@@ -446,7 +482,9 @@ async function updateUser(name) {
     }
 }
 
-
+/**
+ * Function to close the overlay and the user contact edit form
+ */
 function closeUpdate() {
     let overlay = document.getElementById('overlayEdit');
     let container = document.getElementById('editContact');
@@ -455,3 +493,4 @@ function closeUpdate() {
         overlay.style.display = 'none';
     }, 500); 
 }
+

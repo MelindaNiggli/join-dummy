@@ -1,6 +1,20 @@
+/**
+ * Updates the task counts for each status and displays them.
+ * @param {Array} tasks - The array of tasks.
+ */
 function updateTaskCounts(tasks) {
-  const counts = {todo: 0, progress: 0, feedback: 0, done: 0};
+  /**
+   * Object to store the count of tasks in each status.
+   * @type {Object.<string, number>}
+   */
+  const counts = { todo: 0, progress: 0, feedback: 0, done: 0 };
+
+  /**
+   * Total number of tasks.
+   * @type {number}
+   */
   const taskAmount = tasks.length;
+
   tasks.forEach(task => {
     if (task.category === 'todo') counts.todo++;
     else if (task.category === 'progress') counts.progress++;
@@ -17,6 +31,10 @@ function updateTaskCounts(tasks) {
   document.getElementById("taskAmount").textContent = taskAmount;
 }
 
+/**
+ * Counts the number of urgent tasks and displays them.
+ * @param {Array} tasks - The array of tasks.
+ */
 function countUrgentTasks(tasks) {
   let urgentCount = 0;
 
@@ -30,13 +48,9 @@ function countUrgentTasks(tasks) {
   console.log('Urgent Counts:', urgentCount);
 }
 
-
-function showTasks() {
-  const todoTasks = countTodoTasks();
-  const showAmount = document.getElementById('toDoAmount');
-  showAmount.innerHTML += `${todoTasks}`;
-}
-
+/**
+ * Updates the greeting message based on the current time.
+ */
 function updateGreeting() {
   const now = new Date();
   const hour = now.getHours();
@@ -56,8 +70,12 @@ function updateGreeting() {
     greetElement.textContent = greetingText;
   }
 }
+
 updateGreeting();
 
+/**
+ * Displays the current date in the format "Month Day, Year".
+ */
 function displayCurrentDate() {
   const currentDate = new Date();
 
@@ -67,11 +85,18 @@ function displayCurrentDate() {
   document.getElementById("currentDate").textContent = formattedDate;
 }
 
+/**
+ * Retrieves the logged-in user from local storage.
+ * @returns {Object|null} - The logged-in user or null if no user is logged in.
+ */
 function getLoggedInUser() {
   let user = JSON.parse(localStorage.getItem('loggedInUser'));
   return user;
 }
 
+/**
+ * Displays the username in the summary area.
+ */
 function displayUserName() {
   let user = getLoggedInUser();
   let summaryNameElement = document.getElementById('summaryName');
@@ -82,9 +107,8 @@ function displayUserName() {
   }
 }
 
-// Rufen Sie die Funktion auf, um den Benutzernamen anzuzeigen
+// Call the function to display the username.
 displayUserName();
-
 
 
 

@@ -1,3 +1,7 @@
+/**
+ * Array containing predefined colors for user registration
+ * @type {string[]}
+ */
 const colors = [
     '#0038FF',
     '#00BEE8',
@@ -16,18 +20,20 @@ const colors = [
     '#FFE62B'
 ];
 
-// Zufällige Farbe auswählen
+/**
+ * Function to get a random color from the predefined array of colors
+ * @returns {string} - A randomly selected color hex code
+ */
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
 
-
 let color = getRandomColor();
 let registerBtn = document.getElementById('registerBTN').disabled
 
 
-// Das Passwort hashen
+// Hash the password
 async function hashPassword(password) {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
@@ -38,7 +44,7 @@ async function hashPassword(password) {
 }
 
 
-// Fehlermeldungen
+// Error Messages
 //RED
 function red(){
     const msg =  document.getElementById('messageBox');
@@ -50,21 +56,30 @@ function red(){
 }
 
 
-function messageRedPasswort(){
+/**
+ * Function to display a red error message indicating password mismatch
+ */
+function messageRedPasswort() {
     const msg =  document.getElementById('messageBox');
     msg.innerHTML = `It's not the same Password, please try again !`;
     red();
 }
 
 
-function messageRedCheckbox(){
+/**
+ * Function to display a red error message indicating checkbox not checked
+ */
+function messageRedCheckbox() {
     const msg =  document.getElementById('messageBox');
     msg.innerHTML = `Please agree the Checkbox before proceeding!`;
     red();
 }
 
 
-function messageSuccessfully(){
+/**
+ * Function to display success message after successful registration
+ */
+function messageSuccessfully() {
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `You Signed Up successfully`
     msg.style.background = 'var(--join-black)';
@@ -75,20 +90,25 @@ function messageSuccessfully(){
 }
 
 
-function messageEmailRegistered(){
+/**
+ * Function to display a red error message indicating email already registered
+ */
+function messageEmailRegistered() {
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `Email Address Already Registered`
     red();
 }
 
 
-// Add user
+/**
+ * Function to add a user to the system after validation
+ */
 async function addUser() {
     let checkbox = document.getElementById('remember-me');
     const hashedPassword = await hashPassword(password.value);
     const hashedPasswordAgain = await hashPassword(passwordAgain.value);
     
-    // Überprüfen, ob die Checkbox angeklickt wurde und die E-Mail-Adresse bereits registriert ist
+    // Check if checkbox is checked and email is not already registered
     const isEmailRegistered = users.some(user => user.email === email.value);
     
     if (password.value === passwordAgain.value && !checkbox.checked == false && !isEmailRegistered) {
@@ -101,22 +121,24 @@ async function addUser() {
         });
         await setItem('users', JSON.stringify(users));
         resetForm();
-        messageSuccessfully(); // Positive Meldung zur Registrierung
+        messageSuccessfully(); // Positive registration message
     } else { 
         if (!checkbox.checked == true && !isEmailRegistered) {
-            messageRedCheckbox(); // Fehlermeldung Checkbox
+            messageRedCheckbox(); // Checkbox error message
         } 
         if (isEmailRegistered) {
-            messageEmailRegistered(); // Fehlermeldung E-Mail bereits registriert
+            messageEmailRegistered(); // Email already registered error message
         }
         if (password.value !== passwordAgain.value) {
-            messageRedPasswort(); // Fehlermeldung Passwort
+            messageRedPasswort(); // Password error message
         }  
     }
 }
 
 
-// Formulat zurücksenden
+/**
+ * Function to reset the registration form
+ */
 function resetForm() {
     nameUser.value = '';
     email.value = '';
