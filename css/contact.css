@@ -338,7 +338,7 @@ span.linie {
     display: none;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1075px) {
 
     #back {
         display: block!important;
