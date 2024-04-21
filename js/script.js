@@ -103,6 +103,14 @@ async function loadUsers() {
     }
 }
 
+async function loadContacts() {
+    try {
+        contacts = JSON.parse(await getItem('contactUsers'));
+    } catch (e) {
+        console.error('Loading error:', e);
+    }
+}
+
 function openPopUp() {
     let popupContainer = document.getElementById("popupContainer");
     if (popupContainer.style.display === "block") {

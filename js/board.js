@@ -180,6 +180,10 @@ function toggleFloatingAddTask(column) {
   }
 }
 
+function reload() {
+  window.location.reload(); 
+}
+
 function toggleBlock() {
   let container = document.getElementById('blockcontainer');
   let floatingcontainer = document.getElementById('add-task-container'); 
@@ -196,7 +200,13 @@ function openTaskInfo(index) {
   let task = tasks[index];
   let details = document.getElementById('task-details-container');
   details.innerHTML = '';
-  details.innerHTML = renderTaskInfoHTML(task);
+  details.innerHTML = renderTaskInfoHTML(task,index);
+  let container = document.getElementById('task-details');
+  container.classList.add('slidein');
+}
+
+function capitalizeString(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /**
@@ -246,6 +256,30 @@ function renderInfoSubtasks(index) {
 function checkChecked(st) {
   return st[1] == 0 ? 'checkbox' : 'checkedbox';  
 }
+
+async function removeTask(index) {
+  hideDetailsContainer();
+  tasks.splice(index,1);
+  await setItem('taskobject',JSON.stringify(tasks));
+  updateTasks();
+  }
+
+  async function toggleInfoSubtask(taskindex,subtaskindex,subtaskchecked) {
+    let subcheck = subtaskchecked;
+    subcheck == 0 ? subcheck = 1 : subcheck = 0;
+    tasks[taskindex].subtasks[subtaskindex][1] = subcheck;
+    await setItem('taskobject',JSON.stringify(tasks));
+    renderInfoSubtasks(taskindex);
+    updateTasks();
+  }
+
+  function closeTaskInfo() {
+    let container = document.getElementById('task-details');
+    container.classList.remove('slidein');
+    container.classList.add('slideout');
+    setTimeout(hideDetailsContainer,200);
+    setTimeout(reload,400);
+  }
 
 /**
  * Hides the task details container.
@@ -377,18 +411,18 @@ function renderTaskHTML(task,index) {
  * @param {object} task - The task object containing details like title, description, subtasks, etc.
  * @returns {string} - The HTML structure for the task details panel.
  */
-function renderTaskInfoHTML(task){
+function renderTaskInfoHTML(task,index){
   return `
-  <div id="detailsContainer" class="details" onclick="hideDetailsContainer()">
-    <div id="task-details" class="task-details">
+  <div id="detailsContainer" class="details">
+    <div id="task-details">
       <div class="task-and-close-container">
         <div class="${task.label.toLowerCase().split(' ').join('')} flex center">${task.label}</div>
-        <img src="./img/x.png" class="close-task">
+        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
       </div>
       <h2 class="task-details-header">${task.title}</h2>
       <p class="task-details-text">${task.description}</p>
-      <div class="task-date">Due Date: 6/16/2024</div>
-      <div class="task-priority">Priority: Urgent <img src="./img/${task.priority}.png" alt="priority"></div>
+      <div class="task-date">Due Date: ${task.date}</div>
+      <div class="task-priority">Priority: ${capitalizeString(task.priority)} <img src="./img/${task.priority}.png" alt="priority"></div>
       <div class="task-assigned">
         <span>Assigned to: </span>
         <div id="info-assigned"></div>
@@ -398,12 +432,12 @@ function renderTaskInfoHTML(task){
         <div id="info-subtasks"></div>    
       </div>
       <div class="info-buttons-container">
-        <div class="info-button-delete">
-          <img id="subtaskimg" src="./img/delete.svg" alt="delete">
+        <div class="info-button-delete" onclick="removeTask(${index})">
+          <img src="./img/delete.svg" alt="delete">
           Delete
         </div>
         <img src="./img/VectorLinie.svg" alt="divider">
-        <div class="info-button-edit">
+        <div class="info-button-edit" onclick="openTaskEdit(${index})">
           <img src="./img/edit.svg" alt="edit">
           Edit
         </div>
