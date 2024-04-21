@@ -52,6 +52,10 @@ function addNewContact() {
     setTimeout(function() {
         container.style.transform = 'translateX(0px)';
     }, 1); 
+    const closeButton =  document.getElementById('closeNewContact')
+    if (window.innerWidth <= 1075) {
+        closeButton.src= './img/closeWhite.svg';
+    }
 }
 
 
@@ -190,8 +194,9 @@ function back(){
     wrapper.style.zIndex = '-2';
 }
 function more() {
+    console.log('funktioniert')
     const wrapper = document.getElementById('editeDeleteWrapper');
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 1075) {
         wrapper.style.display = 'block';
     } else {
         wrapper.style.display = 'none';
@@ -208,8 +213,10 @@ async function showUserInfo(name, email, color, phone, index) {
     </div>
     <div class="heading">
         <h1>Contacts</h1>
+        <div class="wrapperInnerHeaing">
         <span class="linie"></span>
         <p>Better with a team</p>
+        </div>
     </div>
     <div id="userInfoDetails"></div>
     `
@@ -222,10 +229,7 @@ async function showUserInfo(name, email, color, phone, index) {
         setTimeout(function() {
             container.style.transform = 'translateX(0px)';
         }, 500); 
-        if (window.innerWidth <= 767) {
-
-
-
+        if (window.innerWidth <= 1075) {
             wrapper.innerHTML= '';
         }
     } else {
@@ -372,6 +376,12 @@ async function editUser(name, email, color, phone) {
     
     const firstTwoChars = firstAndSecondCharUppercase(name); // Use the result of firstCharUppercase here
     containerEdit.innerHTML = TemplateContainerUpdate(name, email, color, phone, firstTwoChars);
+
+
+   const closeButton =  document.getElementById('close')
+    if (window.innerWidth <= 1075) {
+        closeButton.src= './img/closeWhite.svg';
+    }
 }
 
 /**
@@ -393,7 +403,7 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
         </div>
     </div>
     <div class="wrapper-right">
-        <img class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()">
+        <img  id="close" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()">
         <div class="badge edit " style="background: ${color};">
         <p>${firstTwoChars}</p>
         </div>

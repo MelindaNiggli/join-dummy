@@ -118,7 +118,7 @@ h1 {
 }
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1075px) {
   main,#main {
     margin-left: 0px!important;
     width: 100%!important;
