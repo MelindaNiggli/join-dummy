@@ -51,11 +51,7 @@ function menuSelected(menuitem) {
     this.subtasks = subtasks,
     this.priority = priority,
     this.assigned = assigned  
-<<<<<<< HEAD
-}
-=======
   }
->>>>>>> a6dd024ed12d7e833a3197543627b16693eed7db
 
 async function loadTasks() {  
   try {

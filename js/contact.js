@@ -3,6 +3,7 @@ async function init(){
     await loadContactUsers();
     // Rufe die Funktion auf, um alle Benutzer zu löschen
     // Für den Reset : await clearExistingUsers();
+    templateWrapperInfo();
 }
 
 
@@ -16,6 +17,24 @@ async function clearExistingUsers() {
 }
 
 
+function templateWrapperInfo(){
+    const wrapper =  document.getElementById('wrapperInfo');
+    wrapper.innerHTML += `
+
+    <div class="heading">
+    <h1>Contacts</h1>
+    <span class="linie"></span>
+    <p>Better with a team</p>
+</div>
+<div id="userInfoDetails"></div>
+    `
+    if (window.innerWidth <= 767) {
+        wrapper.innerHTML = '';
+    }
+  }
+
+
+
 let contactUsers = [];
 
 /**** SAVE USER TO LIST ****/
@@ -25,7 +44,7 @@ function addNewContact() {
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
     overlay.style.height = '100vh';
-    overlay.style.position = 'absolute';
+    overlay.style.position = 'fixed';
     container.style.display = 'flex';
     container.style.transform = 'translateX(1100px)';
     overlay.style.display = 'flex'; 
@@ -164,9 +183,38 @@ function TemplateContactUsers(contact, index,firstTwoChars, capitalizedWord) {
 }
 
 
-/**** SHOW USER INFORMATION RIGHT ****/
+
+function back(){
+    const wrapper =  document.getElementById('wrapperInfo');
+    wrapper.innerHTML ='';
+    wrapper.style.zIndex = '-2';
+}
+function more() {
+    const wrapper = document.getElementById('editeDeleteWrapper');
+    if (window.innerWidth <= 767) {
+        wrapper.style.display = 'block';
+    } else {
+        wrapper.style.display = 'none';
+    }
+}
+
 
 async function showUserInfo(name, email, color, phone, index) {
+    const wrapper =  document.getElementById('wrapperInfo');
+    wrapper.innerHTML = `
+    <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
+    <div  id="back" onclick="back()">
+        <img src="./img/arrow-left-line.svg" alt="">
+    </div>
+    <div class="heading">
+        <h1>Contacts</h1>
+        <span class="linie"></span>
+        <p>Better with a team</p>
+    </div>
+    <div id="userInfoDetails"></div>
+    `
+
+    wrapper.style.zIndex = '0';
     await loadContactUsers(); // Aktualisieren der Benutzerliste
     const container = document.getElementById('userInfoDetails');
     if (container.style.transform === 'translateX(0px)') {
@@ -174,6 +222,12 @@ async function showUserInfo(name, email, color, phone, index) {
         setTimeout(function() {
             container.style.transform = 'translateX(0px)';
         }, 500); 
+        if (window.innerWidth <= 767) {
+
+
+
+            wrapper.innerHTML= '';
+        }
     } else {
         container.style.display = 'block';
         container.style.transform = 'translateX(1100px)';
@@ -185,7 +239,7 @@ async function showUserInfo(name, email, color, phone, index) {
     const firstTwoChars = firstAndSecondCharUppercase(name);
     // Erster Buchstabe des Namens gross
     const capitalizedWord = firstCharUppercase(name);
-    container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord);
+    container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord)
 }
 
 function firstAndSecondCharUppercase(name) {
@@ -208,7 +262,7 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
         
         <div class="wrapperFlex">
             <p id="nameContact" class="nameAside">${capitalizedWord}</p>
-            <div class="editeDeleteWrapper">
+            <div id="editeDeleteWrapper" class="editeDeleteWrapper">
                 <div class="edit" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
                     <img src="./img/edit.svg" alt="edit icon">
                     <p>Edit</p>
