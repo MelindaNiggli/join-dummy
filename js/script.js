@@ -12,6 +12,9 @@ let tasks = [];
 let contacts = [];
 let allclients = [];
 
+let loggedInUser = []; 
+
+
 /**
  * Adds selectedMenu / selectedImg effects to the selected menu element.
  * @param {string} menuitem - The menu item to be selected.
@@ -111,6 +114,19 @@ async function loadContacts() {
     }
 }
 
+
+async function getLoggedInUser() {
+    try {
+        loggedInUser = JSON.parse(await getItem('userInformation'));
+        return loggedInUser; // Rückgabe des abgerufenen Benutzers
+    } catch (e) {
+        console.error('Loading error:', e);
+        return null; // Falls ein Fehler auftritt, wird null zurückgegeben
+    }
+}
+
+ // Aufruf der Funktion, um den Benutzernamen abzurufen und anzuzeigen
+
 function openPopUp() {
     let popupContainer = document.getElementById("popupContainer");
     if (popupContainer.style.display === "block") {
@@ -129,4 +145,6 @@ async function init() {
     await loadTasks();
     updateTaskCounts(tasks);
     countUrgentTasks(tasks);
+    await getLoggedInUser();
+   
 }

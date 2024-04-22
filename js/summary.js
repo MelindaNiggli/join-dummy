@@ -1,3 +1,10 @@
+
+async function renderSummary(){
+  await getAndDisplayUserName()
+}
+
+
+
 /**
  * Updates the task counts for each status and displays them.
  * @param {Array} tasks - The array of tasks.
@@ -89,28 +96,27 @@ function displayCurrentDate() {
  * Retrieves the logged-in user from local storage.
  * @returns {Object|null} - The logged-in user or null if no user is logged in.
  */
-function getLoggedInUser() {
-  let user = JSON.parse(localStorage.getItem('loggedInUser'));
-  return user;
-}
+
 
 /**
  * Displays the username in the summary area.
  */
-function displayUserName() {
-  let user = getLoggedInUser();
-  let summaryNameElement = document.getElementById('summaryName');
-  if (user) {
-      summaryNameElement.textContent = user.name;
-  } else {
-      summaryNameElement.textContent = 'Guest';
+async function getAndDisplayUserName() {
+  try {
+      let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
+      console.log('es geht', users);
+      let summaryNameElement = document.getElementById('summaryName');
+      if (users.length > 0) { // Überprüfen, ob das Array nicht leer ist
+          let user = users[0]; // Den ersten Benutzer im Array
+          if (user && user.userInformation && user.userInformation.name) { // Überprüfen, ob der Benutzer und der Name definiert sind
+              summaryNameElement.textContent = user.userInformation.name;
+          } else {
+              summaryNameElement.textContent = 'Gast';
+          }
+      } else {
+          summaryNameElement.textContent = 'Gast';
+      }
+  } catch (error) {
+      console.error('Fehler beim Abrufen des Benutzernamens:', error);
   }
 }
-
-// Call the function to display the username.
-displayUserName();
-
-
-
-
-

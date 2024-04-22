@@ -440,6 +440,7 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
 function messageSuccessfully(name){
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `User *${name}* updated successfully`;
+    msg.style.display = 'block';
     msg.style.background = 'var(--join-black)';
     msg.style.padding = '25px';
     msg.style.borderRadius = '20px';
@@ -448,7 +449,9 @@ function messageSuccessfully(name){
 
     setTimeout(function() {
         msg.innerHTML = ""; // Clears the content of the message box
-    }, 3000); // Clears the message after 3 seconds (3000 milliseconds)
+        msg.style.display = 'none';
+    }, 1000); // Clears the message after 3 seconds (3000 milliseconds)
+    showUserInfo();
 }
 
 /**
@@ -487,8 +490,11 @@ async function updateUser(name) {
          }, 500); 
 
          messageSuccessfully(name);
+         showUserInfo();
+         
     } else {
         console.log('User not found!');
+
     }
 }
 

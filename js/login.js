@@ -109,7 +109,12 @@ async function hashPassword(password) {
 
 /**
  * Function to handle user login
+ * 
  */
+
+let loggedInUser = []; 
+
+// Funktion zum Anmelden des Benutzers
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -121,11 +126,21 @@ async function login() {
     let user = users.find(u => u.email === email && u.password === hashedPassword);
     
     if(user) {
-        window.location.href = 'summary.html';
+        console.log('hello', user);
+        // loggedInUser = user; // Store the logged-in user data
+
+        loggedInUser.push({
+            userInformation: user
+        });
+         await setItem('userInformation', JSON.stringify(loggedInUser));
+       window.location.href = 'summary.html';
     } else {
         console.log("User not found or incorrect password.");
     }
 }
+
+
+
 
 
 function guestLogin(){
