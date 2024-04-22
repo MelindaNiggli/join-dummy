@@ -170,8 +170,8 @@ main {
 .popupContent {
   
   position: absolute; /* Absolut positioniert innerhalb des relativen Elements */
-  top: 35px; /* 100% Abstand vom oberen Rand des relativen Elements */
-  left: -163px; /* Links ausgerichtet */
+  top: 49px; /* 100% Abstand vom oberen Rand des relativen Elements */
+  left: -200px; /* Links ausgerichtet */
   background-color: #2A3647;
   color: #CDCDCD;
   font-size: 16px;
@@ -179,7 +179,7 @@ main {
   padding: 10px;
   border-radius: 20px 0 20px 20px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
 .popupContent a {

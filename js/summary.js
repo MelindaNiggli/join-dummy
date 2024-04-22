@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 
 async function renderSummary(){
   await getAndDisplayUserName()
 }
 
 
+=======
+document.addEventListener('DOMContentLoaded', function() {
+  displayUserName();
+  displayCurrentDate(tasks)
+});
+>>>>>>> 7f033750253fdc6e8bbb60446a29e8fb98c9c62c
 
 /**
  * Updates the task counts for each status and displays them.
@@ -50,9 +57,11 @@ function countUrgentTasks(tasks) {
       urgentCount++;
     }
   }
+  
 
   document.getElementById("urgentAmount").textContent = urgentCount;
   console.log('Urgent Counts:', urgentCount);
+  return urgentCount;
 }
 
 /**
@@ -80,16 +89,32 @@ function updateGreeting() {
 
 updateGreeting();
 
-/**
- * Displays the current date in the format "Month Day, Year".
- */
-function displayCurrentDate() {
-  const currentDate = new Date();
+function displayCurrentDate(tasks) {
+  // Zähle die Anzahl der dringenden Aufgaben
+  const urgentCount = countUrgentTasks(tasks);
 
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = currentDate.toLocaleDateString('en-US', options);
+  if (urgentCount > 0) {
+    // Filtere Aufgaben mit Priorität "urgent"
+    const urgentTasks = tasks.filter(task => task.priority === 'urgent');
 
-  document.getElementById("currentDate").textContent = formattedDate;
+    console.log('Urgent Tasks:', urgentTasks);
+
+    // Wähle das Datum der ersten "urgent" Aufgabe aus
+    const firstUrgentTaskDate = urgentTasks[0].date;
+
+    // Formatieren des Datums
+    const formattedDate = firstUrgentTaskDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Einsetzen des formatierten Datums in das Element mit der ID "currentDate"
+    document.getElementById("currentDate").textContent = formattedDate;
+  } else {
+    // Wenn keine "urgent" Aufgaben vorhanden sind, gib eine entsprechende Meldung aus
+    document.getElementById("currentDate").textContent = "No urgent tasks found.";
+  }
 }
 
 /**

@@ -45,7 +45,6 @@ async function includeHTML() {
         }
     }
     menuSelected(document.title);
-    displayCurrentDate();
 }
 
 /**
