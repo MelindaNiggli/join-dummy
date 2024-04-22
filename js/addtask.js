@@ -255,7 +255,7 @@ async function clearAddTask(event) {
   subtasks = [];
   /* users = [];
   await setItem('users', JSON.stringify(users)); */ 
-  /* tasks.splice(7,1);
+  /* tasks.splice(6,1);
   await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
   selectPrio("medium", event);
@@ -280,6 +280,14 @@ function renderSubtasks() {
   for (let i = 0; i < subtasks.length; i++) {
     const task = subtasks[i][0];    
     container.innerHTML += displaySubtask(task,i);
+  }
+}
+
+function checkEnter(event) {  
+  event.preventDefault();
+  if (event.key === 'Enter' || event.keyCode === 13) {    
+    assignSubtask();   
+    clearInput(); 
   }
 }
 
