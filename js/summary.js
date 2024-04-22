@@ -1,16 +1,11 @@
-<<<<<<< HEAD
 
 async function renderSummary(){
   await getAndDisplayUserName()
 }
 
-
-=======
 document.addEventListener('DOMContentLoaded', function() {
-  displayUserName();
-  displayCurrentDate(tasks)
+ displayCurrentDate(tasks)
 });
->>>>>>> 7f033750253fdc6e8bbb60446a29e8fb98c9c62c
 
 /**
  * Updates the task counts for each status and displays them.
