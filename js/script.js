@@ -11,7 +11,6 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let allclients = [];
-
 let loggedInUser = []; 
 
 
@@ -45,6 +44,8 @@ async function includeHTML() {
         }
     }
     menuSelected(document.title);
+    await getLoggedInUser(); 
+    showLoggedUser();
 }
 
 /**
@@ -124,6 +125,12 @@ async function getLoggedInUser() {
     }
 }
 
+function showLoggedUser() {
+    let usercontainer = document.getElementById('headeruser').firstElementChild;
+    let currentuser = loggedInUser[0].userInformation.name;
+    usercontainer.innerHTML = `${getInitials(currentuser)}`;
+}
+
  // Aufruf der Funktion, um den Benutzernamen abzurufen und anzuzeigen
 
 function openPopUp() {
@@ -144,6 +151,5 @@ async function init() {
     await loadTasks();
     updateTaskCounts(tasks);
     countUrgentTasks(tasks);
-    await getLoggedInUser();
-   
+    await getLoggedInUser();      
 }

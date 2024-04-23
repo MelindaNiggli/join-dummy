@@ -139,12 +139,19 @@ async function login() {
     }
 }
 
-
-
-
-
-function guestLogin(){
+async function guestLogin(){
     window.location.href = 'summary.html';
+    let user = {
+        name: 'Guest User',
+        email: 'no@email.com',
+        password: undefined,
+        passwordAgain: undefined,
+        color: '#0038FF'
+    }
+    loggedInUser.push({
+        userInformation: user
+    });     
+    await setItem('userInformation', JSON.stringify(loggedInUser));
 }
 
 /**
