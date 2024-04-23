@@ -309,7 +309,7 @@ function openTaskEdit(index) {
   details.innerHTML = `
   <div id="detailsContainer" class="details">
     <div id="task-details">
-      <form action="javascript:void(0);" onsubmit="saveEditTask(${index})">
+      <form action="javascript:void(0);" onsubmit="saveEditTask(${index})" onkeydown="return event.key != 'Enter';">
         <div class="task-and-close-container">
           <div></div>
           <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
@@ -348,7 +348,7 @@ function openTaskEdit(index) {
             <div class="taskbranch">
             <span>Subtasks</span>
             <div class="relative">             
-              <input type="text" id="subtasks" placeholder="Add new subtask" disabled>             
+              <input type="text" id="subtasks" placeholder="Add new subtask" onkeyup="checkEnter(event)" disabled>             
               <div class="iconcontainer">
                 <div class="invis" id="subtask-active-icons">
                   <div class="x-icon flex" onclick="clearInput()"><img src="./img/close.svg" alt="x"></div>                
@@ -429,27 +429,29 @@ function renderTaskInfoHTML(task, index) {
   return `
   <div id="detailsContainer" class="details">
     <div id="task-details">
-      <div class="task-and-close-container">
-        <div class="${task.label
-          .toLowerCase()
-          .split(" ")
-          .join("")} flex center">${task.label}</div>
-        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
-      </div>
-      <h2 class="task-details-header">${task.title}</h2>
-      <p class="task-details-text">${task.description}</p>
-      <div class="task-date">Due Date: ${task.date}</div>
-      <div class="task-priority">Priority: ${capitalizeString(
-        task.priority
-      )} <img src="./img/${task.priority}.png" alt="priority"></div>
-      <div class="task-assigned">
-        <span>Assigned to: </span>
-        <div id="info-assigned"></div>
-      </div> 
-      <div class="task-assigned">
-        <span>Subtasks</span>
-        <div id="info-subtasks"></div>    
-      </div>
+      <div class="task-bucket">
+        <div class="task-and-close-container">
+          <div class="${task.label
+            .toLowerCase()
+            .split(" ")
+            .join("")} flex center">${task.label}</div>
+          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+        </div>
+        <h2 class="task-details-header">${task.title}</h2>
+        <p class="task-details-text">${task.description}</p>
+        <div class="task-date">Due Date: ${task.date}</div>
+        <div class="task-priority">Priority: ${capitalizeString(
+          task.priority
+        )} <img src="./img/${task.priority}.png" alt="priority"></div>
+        <div class="task-assigned">
+          <span>Assigned to: </span>
+          <div id="info-assigned"></div>
+        </div> 
+        <div class="task-assigned">
+          <span>Subtasks</span>
+          <div id="info-subtasks"></div>    
+        </div>
+      </div>  
       <div class="info-buttons-container">
         <div class="info-button-delete" onclick="removeTask(${index})">
           <img src="./img/delete.svg" alt="delete">

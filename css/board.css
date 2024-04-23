@@ -238,6 +238,7 @@ input::placeholder {
   font-size: 16px;
   color: #2a3647;
   font-weight: 700;
+  word-break: break-word; 
 }
 
 .taskbox p {
@@ -245,6 +246,7 @@ input::placeholder {
   font-size: 16px;
   font-weight: 400;
   color: #a8a8a8;
+  word-break: break-word;  
 }
 
 .userstory {
@@ -415,6 +417,7 @@ input::placeholder {
   font-weight: 700;
   line-height: 73.2px;
   text-align: left;
+  word-break: break-word;
 }
 
 .task-details-text {
@@ -422,6 +425,7 @@ input::placeholder {
   font-weight: 400;
   line-height: 24px;
   text-align: left;
+  word-break: break-word;
 }
 
 .task-date {
