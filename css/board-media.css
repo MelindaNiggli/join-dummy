@@ -1,0 +1,16 @@
+@media (max-width:1400px) {
+    #task_todo, #task_progress, #task_feedback, #task_done {
+      flex-direction:row;
+      justify-content: flex-start;
+      overflow-x:auto;
+    }
+    #board {
+      flex-direction:column;
+    }
+    .taskpit {
+        width:auto;
+    }
+    .columnhead {
+      align-self: flex-start;
+    }
+}

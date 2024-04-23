@@ -429,14 +429,14 @@ function renderTaskInfoHTML(task, index) {
   return `
   <div id="detailsContainer" class="details">
     <div id="task-details">
-      <div class="task-bucket">
-        <div class="task-and-close-container">
-          <div class="${task.label
-            .toLowerCase()
-            .split(" ")
-            .join("")} flex center">${task.label}</div>
-          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
-        </div>
+      <div class="task-and-close-container">
+        <div class="${task.label
+          .toLowerCase()
+          .split(" ")
+          .join("")} flex center">${task.label}</div>
+        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+      </div>
+      <div class="task-bucket">       
         <h2 class="task-details-header">${task.title}</h2>
         <p class="task-details-text">${task.description}</p>
         <div class="task-date">Due Date: ${task.date}</div>
