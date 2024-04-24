@@ -13,4 +13,28 @@
     .columnhead {
       align-self: flex-start;
     }
+    header {
+      position:fixed;
+      top:0;
+    }
+    main {
+      margin-top:96px;
+      padding-bottom:140px;
+      height:auto;
+    }
+    .searchwrapper {
+      left:-175px;
+      top:55px;
+    }
+    #add-task-button {
+      position:relative;
+      left:-400px;
+      width:auto;
+    }
+    h1 {
+      font-size:47px !important;
+    }
+    .add-button-text {
+      display:none;
+    }
 }
