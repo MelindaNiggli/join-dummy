@@ -8,7 +8,8 @@
       flex-direction:column;
     }
     .taskpit {
-        width:auto;
+      /* width:auto; 
+      max-width: calc(100vw-15%); */
     }
     .columnhead {
       align-self: flex-start;
@@ -23,12 +24,12 @@
       height:auto;
     }
     .searchwrapper {
-      left:-175px;
-      top:55px;
+      left:-135px;
+      top:75px;
     }
     #add-task-button {
       position:relative;
-      left:-400px;
+      left:-223px;
       width:auto;
     }
     h1 {
@@ -36,5 +37,21 @@
     }
     .add-button-text {
       display:none;
+    }
+    #findtask {      
+      width: 260px;      
+    }
+    #boardheader {
+      padding: 0px 84px 0px calc(8%+8px);
+    }
+    .board-head-container {
+      justify-content: flex-start;
+      max-width: 57px;
+    }
+    #board {
+      margin-top:40px;
+    }
+    #task-burger {
+      display:inline;
     }
 }

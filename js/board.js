@@ -398,9 +398,17 @@ function renderTaskHTML(task, index) {
   return `
   <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index}),renderInfoSubtasks(${index})" id="id${index}" 
      class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
-    <div class="${task.label.toLowerCase().split(" ").join("")} flex center">${
-    task.label
-  }</div>
+    <div class="flex between wide burger-wrapper">
+      <div class="${task.label.toLowerCase().split(" ").join("")} flex center">${task.label}</div>
+      <img src="./img/dots.png" alt="move" id="task-burger" onclick="toggleTaskBurger()">
+      <div id="taskpopup">        
+        <p>Move to:</p>
+        <p>To do</p>
+        <p>In progress</p>
+        <p>Await&nbspfeedback</p>
+        <p>Done</p>        
+      </div>
+    </div>
     <div class="flex column gap-ss">
       <h3 class="start">${task.title}</h3>
       <p class="start">${task.description}</p>

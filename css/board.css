@@ -189,6 +189,13 @@ input::placeholder {
   width: 276px;
 }
 
+.board-head-container {
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap:32px;
+}
+
 .add-task-plus:hover {
   cursor: pointer;
   filter: brightness(0) saturate(100%) invert(56%) sepia(74%) saturate(1080%)
@@ -296,11 +303,16 @@ input::placeholder {
 }
 
 .userbox {
+  position:relative;
   height: 32px;
   width: 136px;
 }
 
-.usertag {
+#userbox {
+  position: relative;
+}
+
+.usertag {  
   border-radius: 50%;
   border: 2px solid white;
   color: white;
@@ -483,6 +495,37 @@ input::placeholder {
 .prio-image {
   width: 17px;
   height: 12px;
+}
+
+#task-burger {
+  display:none;
+  height: 6px;
+  width: 25px;
+}
+
+.burger-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
+#taskpopup {
+  position: absolute; 
+  display: none;
+  width:150px;
+  top: 25px; 
+  left: 80px; 
+  background-color: #2A3647;
+  color: #CDCDCD;
+  padding: 10px;
+  border-radius: 20px 0 20px 20px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+#taskpopup p {
+  position: relative;
+  padding:5px;
+  z-index: 15;
 }
 
 #info-assigned {
