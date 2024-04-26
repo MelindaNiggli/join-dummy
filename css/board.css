@@ -508,24 +508,37 @@ input::placeholder {
   z-index: 3;
 }
 
-#taskpopup {
-  position: absolute; 
-  display: none;
+.taskpopup {
+  position: absolute;   
   width:150px;
-  top: 25px; 
-  left: 80px; 
+  top: 27px; 
+  left: 78px; 
   background-color: #2A3647;
   color: #CDCDCD;
-  padding: 10px;
+  padding: 0px;
   border-radius: 20px 0 20px 20px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.2s ease-in-out;
 }
 
-#taskpopup p {
-  position: relative;
-  padding:5px;
-  z-index: 15;
+.task-burger-divider {
+  height: 1px;
+  width:100%;
+  background-color: #CDCDCD;
+}
+
+.taskpopup p {
+  padding:7px 10px;  
+}
+
+.paddot {
+  padding: 10px 0px;
+}
+
+
+.taskpopup p:hover:not(:first-child) {
+  background-color: #2A3E59;
+  border-radius: 20px;
 }
 
 #info-assigned {

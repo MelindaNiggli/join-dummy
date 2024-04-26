@@ -388,6 +388,12 @@ async function saveEditTask(index) {
   setTimeout(reload(), 500);
 }
 
+function toggleTaskBurger(index,event) {
+  event.stopPropagation();
+  let popupcontainer = document.getElementById(`taskpopup${index}`);
+  popupcontainer.classList.toggle('d-none');
+}
+
 /**
  * Renders the HTML structure for a task box.
  * @param {object} task - The task object containing details like title, description, subtasks, etc.
@@ -400,9 +406,10 @@ function renderTaskHTML(task, index) {
      class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
     <div class="flex between wide burger-wrapper">
       <div class="${task.label.toLowerCase().split(" ").join("")} flex center">${task.label}</div>
-      <img src="./img/dots.png" alt="move" id="task-burger" onclick="toggleTaskBurger()">
-      <div id="taskpopup">        
+      <div class="flex center paddot" onclick="toggleTaskBurger(${index},event)"><img src="./img/dots.png" alt="move" id="task-burger"></div>
+      <div id="taskpopup${index}"  class="taskpopup d-none">        
         <p>Move to:</p>
+        <div class="task-burger-divider"></div>
         <p>To do</p>
         <p>In progress</p>
         <p>Await&nbspfeedback</p>
