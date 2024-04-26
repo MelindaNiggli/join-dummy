@@ -141,6 +141,7 @@ async function login() {
     } 
 }
 
+<<<<<<< HEAD
 
 // Gast-Login
 function guestLogin() {
@@ -148,7 +149,21 @@ function guestLogin() {
     // Lösche das "loggedIn"-Cookie, um den Gastmodus zu aktivieren
     document.cookie = 'loggedIn=false';
     // Leite den Benutzer auf die Zusammenfassungsseite weiter
+=======
+async function guestLogin(){
+>>>>>>> a108f6e16cfc82900a5f4f9971637e42dfac4342
     window.location.href = 'summary.html';
+    let user = {
+        name: 'Guest User',
+        email: 'no@email.com',
+        password: undefined,
+        passwordAgain: undefined,
+        color: '#0038FF'
+    }
+    loggedInUser.push({
+        userInformation: user
+    });     
+    await setItem('userInformation', JSON.stringify(loggedInUser));
 }
 
 

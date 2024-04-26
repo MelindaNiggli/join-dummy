@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/root.css" />
     <link rel="stylesheet" href="./css/menubar.css" />
     <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/board-media.css">
     <link rel="icon" href="./img/join-logo.svg" sizes="any" type="image/svg+xml">
     <script src="./js/logout.js"></script>
     <link
@@ -36,23 +37,24 @@
       <div id="boardheader" class="flex">
         <div class="flex between wide">
           <h1>Board</h1>
-          <div class="flex between gap">
-            <div class="wrapper">
+          <div class="board-head-container">
+            <div class="wrapper searchwrapper">                             
               <input
                 type="text"
                 placeholder="Find Task"
                 id="findtask"
                 onkeyup="filterTasks()"
               />
+              <span id="notfound" class="absolute d-none">*Keine&nbspErgebnisse&nbspgefunden</span>                 
               <div class="flex between searchimg">
                 <img src="./img/VectorLinie.svg" alt="bar" />
                 <div id="searchcontainer" class="flex center pad">
                   <img src="./img/search.svg" alt="search" />
                 </div>
-              </div>
+              </div>             
             </div>
             <button id="add-task-button" onclick="toggleFloatingAddTask('todo')">
-              Add&nbsptask<span>+</span>
+              <span class="add-button-text">Add&nbsptask</span><span>+</span>
             </button>
           </div>
         </div>
