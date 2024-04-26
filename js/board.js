@@ -394,6 +394,15 @@ function toggleTaskBurger(index,event) {
   popupcontainer.classList.toggle('d-none');
 }
 
+async function burgerMoveTo(category,index,event) {
+  event.stopPropagation();
+  tasks[index]["category"] = category;
+  await setItem("taskobject", JSON.stringify(tasks));
+  updateTasks();
+}
+
+
+
 /**
  * Renders the HTML structure for a task box.
  * @param {object} task - The task object containing details like title, description, subtasks, etc.
@@ -410,10 +419,10 @@ function renderTaskHTML(task, index) {
       <div id="taskpopup${index}"  class="taskpopup d-none">        
         <p>Move to:</p>
         <div class="task-burger-divider"></div>
-        <p>To do</p>
-        <p>In progress</p>
-        <p>Await&nbspfeedback</p>
-        <p>Done</p>        
+        <p onclick="burgerMoveTo('todo',${index},event)">To do</p>
+        <p onclick="burgerMoveTo('progress',${index},event)">In progress</p>
+        <p onclick="burgerMoveTo('feedback',${index},event)">Await&nbspfeedback</p>
+        <p onclick="burgerMoveTo('done',${index},event)">Done</p>        
       </div>
     </div>
     <div class="flex column gap-ss">
