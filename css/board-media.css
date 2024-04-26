@@ -5,6 +5,7 @@
   #task_done {
     flex-direction: row;
     justify-content: flex-start;
+    align-items: flex-start;
     overflow-x: auto;
   }
   #board {

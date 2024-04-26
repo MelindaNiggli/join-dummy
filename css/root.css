@@ -73,7 +73,7 @@ h1 {
   position:relative;
 }
 
-.invis {
+.invis, .d-none {
   display: none;
 }
 
@@ -118,7 +118,7 @@ h1 {
   width:calc(100vw - 232px);
   height:calc(100vh - 96px);  
   background-color: var(--bg);
-  padding: 70px 185px 79px 10%;
+  padding: 70px 0px 79px 10%;
 }
 
 

@@ -372,7 +372,6 @@ img {
 }
 
 #added-to-board-box {
-  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
