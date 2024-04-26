@@ -149,17 +149,6 @@ function guestLogin() {
     document.cookie = 'loggedIn=false';
     // Leite den Benutzer auf die Zusammenfassungsseite weiter
     window.location.href = 'summary.html';
-    let user = {
-        name: 'Guest User',
-        email: 'no@email.com',
-        password: undefined,
-        passwordAgain: undefined,
-        color: '#0038FF'
-    }
-    loggedInUser.push({
-        userInformation: user
-    });     
-    await setItem('userInformation', JSON.stringify(loggedInUser));
 }
 
 
