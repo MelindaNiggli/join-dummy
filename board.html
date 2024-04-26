@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/menubar.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="icon" href="./img/join-logo.svg" sizes="any" type="image/svg+xml">
+    <script src="./js/logout.js"></script>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -28,7 +29,7 @@
     <script src="./js/addtask.js"></script>
     <script src="./js/summary.js"></script>
   </head>
-  <body onload="includeHTML();updateTasks();displayUserMenu()">
+  <body onload="includeHTML();updateTasks();displayUserMenu();session()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>
     <main>

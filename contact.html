@@ -10,6 +10,7 @@
     <script src="./js/storage.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/contact.js"></script>
+    <script src="./js/logout.js"></script>
     <!-- Für Apple-Geräte -->
     <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon-180x180.png">
     <!-- Für Browser -->
@@ -21,7 +22,7 @@
 </head>
 
 
-<body id="contacts" onload="includeHTML();init()">
+<body id="contacts" onload="includeHTML();init();session()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>   
    

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/menubar.css">
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/privacy.css">
+    <script src="./js/logout.js"></script>
     <script src="./js/script.js"></script>
     <!-- Für Apple-Geräte -->
     <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon-180x180.png">
@@ -17,7 +18,7 @@
     <meta name="msapplication-square310x310logo" content="./favicon/mstile-310x310.png">
     <meta name="msapplication-TileColor" content="#303030">
 </head>
-<body onload="includeHTML()">
+<body onload="includeHTML();session()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>  
     <main class="privacy-main">
