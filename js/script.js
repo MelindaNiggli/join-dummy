@@ -143,7 +143,6 @@ async function getLoggedInUser() {
     return document.cookie.includes('loggedIn=true');
 }
 
-<<<<<<< HEAD
 // Funktion zum Abrufen und Anzeigen des Benutzernamens
 async function getAndDisplayUserName() {
     try {
@@ -166,13 +165,6 @@ async function getAndDisplayUserName() {
     }
 }
   
-=======
-function showLoggedUser() {
-    let usercontainer = document.getElementById('headeruser').firstElementChild;
-    let currentuser = loggedInUser[0].userInformation.name;
-    usercontainer.innerHTML = `${getInitials(currentuser)}`;
-}
->>>>>>> a108f6e16cfc82900a5f4f9971637e42dfac4342
 
  // Aufruf der Funktion, um den Benutzernamen abzurufen und anzuzeigen
 
@@ -197,17 +189,10 @@ async function init() {
     await loadTasks();
     updateTaskCounts(tasks);
     countUrgentTasks(tasks);
-<<<<<<< HEAD
     getAndDisplayUserName();
-
-   
 }
 
 
 
 
 
-=======
-    await getLoggedInUser();      
-}
->>>>>>> a108f6e16cfc82900a5f4f9971637e42dfac4342
