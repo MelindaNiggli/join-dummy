@@ -2,8 +2,6 @@
  * Represents the array of users.
  * @type {Array}
  */
-let users = [];
-
 /**
  * Represents the array of tasks.
  * @type {Array}
@@ -11,7 +9,7 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let allclients = [];
-//let loggedInUser = []; 
+let loggedInUser = []; 
 
 
 /**
@@ -44,7 +42,6 @@ async function includeHTML() {
         }
     }
     menuSelected(document.title);
-    await getLoggedInUser(); 
 }
 
 /**
@@ -152,7 +149,6 @@ async function getLoggedInUser() {
     return document.cookie.includes('loggedIn=true');
 }
 
-
 /**
  *  Funktion zum Abrufen und Anzeigen des Benutzernamens
  * 
@@ -232,7 +228,7 @@ async function init() {
     await loadTasks();
     updateTaskCounts(tasks);
     countUrgentTasks(tasks);
-    getAndDisplayUserName();
+    getLoggedInUser();
 }
 
 

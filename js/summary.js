@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  getAndDisplayUserName();
+
   displayCurrentDate();
 });
 /**
@@ -91,30 +91,3 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', options);
 }
 
-
-
-/**
- * Retrieves the logged-in user from local storage.
- * @returns {Object|null} - The logged-in user or null if no user is logged in.
- */
-function getLoggedInUser() {
-  return loggedInUser.length > 0 ? loggedInUser[0] : null;
-}
-
-/**
- * Displays the username in the summary area.
- */
-async function getAndDisplayUserName() {
-  try {
-    let loggedInUser = getLoggedInUser(); // Benutzer aus dem Array abrufen
-    let summaryNameElement = document.getElementById('summaryName');
-    if (loggedInUser) { // Überprüfen, ob ein Benutzer angemeldet ist
-      const name = loggedInUser.userInformation.name; // Namen des Benutzers abrufen
-      summaryNameElement.textContent = name; // Den Namen im HTML-Dokument anzeigen
-    } else {
-      summaryNameElement.textContent = 'Guest'; // Wenn kein Benutzer angemeldet ist, "Gast" anzeigen
-    }
-  } catch (error) {
-    console.error('Fehler beim Abrufen des Benutzernamens:', error);
-  }
-}

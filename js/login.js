@@ -2,7 +2,7 @@
  * Array to store user data
  * @type {Object[]}
  */
-// let users = [];
+ let users = [];
 
 /**
  * Function to render the initial animation and load users data
@@ -21,7 +21,6 @@ async function loadUsers() {
         console.error('Loading error:', e);
     }
 }
-
 
 
 /**
