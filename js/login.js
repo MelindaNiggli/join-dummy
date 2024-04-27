@@ -135,22 +135,24 @@ async function login() {
         loggedInUser.push({
             userInformation: user
         });
-        document.cookie = 'loggedIn=true';
+        // Setze das Cookie "loggedIn" mit einem Pfad von "/", dem Attribut "SameSite=None" und "secure"
+        document.cookie = 'loggedIn=true; path=/; SameSite=None; secure';
         await setItem('userInformation', JSON.stringify(loggedInUser));
-        window.location.href = 'summary.html'; // Umleitung nach Abschluss von getLoggedInUser()
+        window.location.href = 'summary.html'; 
     } 
 }
 
 
-// Gast-Login
+/**
+ * Function to handle guest login
+ * 
+ */
 function guestLogin() {
     loggedInUser = []; // Setze die loggedInUser-Variable zurück
     // Lösche das "loggedIn"-Cookie, um den Gastmodus zu aktivieren
-    document.cookie = 'loggedIn=false';
-    // Leite den Benutzer auf die Zusammenfassungsseite weiter
+    document.cookie = 'loggedIn=false; path=/; SameSite=None; secure'; // Cookie auf false setzen
     window.location.href = 'summary.html';
 }
-
 
 function resetForm() {
     nameUser.value = '';

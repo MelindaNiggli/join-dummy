@@ -115,7 +115,7 @@ header span {
   justify-content: center;
 }
 
-#headeruser span {
+#headeruser  {
   font-size: 18px;
   color:#29ABE2;
   font-weight: bold;
