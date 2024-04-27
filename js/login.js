@@ -1,6 +1,9 @@
 /**
  * Function to render the initial animation and load users data
  */
+
+
+
 function render() {
     loadAnimation();
 }
@@ -79,7 +82,7 @@ function ContentLogin() {
         </div>  
         <div class="wrapper-button">
             <button>Log in</button>
-            <button  onclick="guestLogin()">Guest Log in</button>
+            <button type="button"  onclick="guestLogin()">Guest Log in</button>
         </div>
     </form>    
     <div class="wrapper-sing-up"> 
@@ -92,6 +95,8 @@ function ContentLogin() {
     </footer>
     `;
 }
+
+
 
 /**
  * Function to hash a password using SHA-256 algorithm
@@ -114,7 +119,6 @@ async function hashPassword(password) {
 
 let loggedInUser = []; 
 
-// Funktion zum Anmelden des Benutzers
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -125,35 +129,34 @@ async function login() {
     // Search for the user in the database
     let user = users.find(u => u.email === email && u.password === hashedPassword);
     
+    
     if(user) {
         console.log('hello', user);
-        // loggedInUser = user; // Store the logged-in user data
-
         loggedInUser.push({
             userInformation: user
         });
-         await setItem('userInformation', JSON.stringify(loggedInUser));
-       window.location.href = 'summary.html';
-    } else {
-        console.log("User not found or incorrect password.");
-    }
+        document.cookie = 'loggedIn=true';
+        await setItem('userInformation', JSON.stringify(loggedInUser));
+        window.location.href = 'summary.html'; // Umleitung nach Abschluss von getLoggedInUser()
+    } 
 }
 
 
-
-
-
-function guestLogin(){
+// Gast-Login
+function guestLogin() {
+    loggedInUser = []; // Setze die loggedInUser-Variable zurück
+    // Lösche das "loggedIn"-Cookie, um den Gastmodus zu aktivieren
+    document.cookie = 'loggedIn=false';
+    // Leite den Benutzer auf die Zusammenfassungsseite weiter
     window.location.href = 'summary.html';
 }
 
-/**
- * Function to reset the registration form
- */
+
 function resetForm() {
     nameUser.value = '';
     email.value = '';
     password.value = '';
     passwordAgain = '';
     registerBtn.disabled = false;
+
 }

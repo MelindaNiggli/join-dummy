@@ -1,0 +1,21 @@
+@media only screen and (max-width: 1375px) {
+  #maincontent {
+    flex-direction: column;
+    overflow: auto;
+    align-items: center;
+  }
+  form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .divider {
+    display:none;
+  }
+  #main {
+    margin-top: 96px;
+    
+    height: auto;
+  }
+  
+}

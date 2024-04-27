@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   displayUserName();
   displayCurrentDate(tasks)
@@ -119,20 +122,22 @@ function getLoggedInUser() {
 /**
  * Displays the username in the summary area.
  */
-function displayUserName() {
-  let user = getLoggedInUser();
-  let summaryNameElement = document.getElementById('summaryName');
-  if (summaryNameElement) {
-      if (user) {
-          summaryNameElement.textContent = user.name;
+async function getAndDisplayUserName() {
+  try {
+      let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
+      console.log('es geht', users);
+      let summaryNameElement = document.getElementById('summaryName');
+      if (users.length > 0) { // Überprüfen, ob das Array nicht leer ist
+          let user = users[0]; // Den ersten Benutzer im Array
+          if (user && user.userInformation && user.userInformation.name) { // Überprüfen, ob der Benutzer und der Name definiert sind
+              summaryNameElement.textContent = user.userInformation.name;
+          } else {
+              summaryNameElement.textContent = 'Gast';
+          }
       } else {
-          summaryNameElement.textContent = 'Guest';
+          summaryNameElement.textContent = 'Gast';
       }
+  } catch (error) {
+      console.error('Fehler beim Abrufen des Benutzernamens:', error);
   }
 }
-
-
-
-
-
-

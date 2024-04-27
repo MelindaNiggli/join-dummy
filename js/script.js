@@ -11,7 +11,6 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let allclients = [];
-
 let loggedInUser = []; 
 
 
@@ -45,6 +44,8 @@ async function includeHTML() {
         }
     }
     menuSelected(document.title);
+    await getLoggedInUser(); 
+    showLoggedUser();
 }
 
 /**
@@ -114,6 +115,18 @@ async function loadContacts() {
 }
 
 
+
+
+async function logout() {
+    try {
+      loggedInUser = []; // Clear the logged in user data
+      //await removeItem('userInformation'); // Remove user information from storage
+      window.location.href = 'index.html'; // Redirect to the login page
+    } catch (error) {
+      console.error("An error occurred during logout:", error);
+    }
+  }
+
 async function getLoggedInUser() {
     try {
         loggedInUser = JSON.parse(await getItem('userInformation'));
@@ -122,7 +135,36 @@ async function getLoggedInUser() {
         console.error('Loading error:', e);
         return null; // Falls ein Fehler auftritt, wird null zurückgegeben
     }
+  }
+  
+
+  function isLoggedIn() {
+    // Überprüfen, ob ein Cookie mit dem Namen "loggedIn" vorhanden ist
+    return document.cookie.includes('loggedIn=true');
 }
+
+// Funktion zum Abrufen und Anzeigen des Benutzernamens
+async function getAndDisplayUserName() {
+    try {
+        if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
+            let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
+            let summaryNameElement = document.getElementById('summaryName');
+            let user = users[0]; // Den ersten Benutzer im Array
+            if (user && user.userInformation && user.userInformation.name) {
+                summaryNameElement.textContent = user.userInformation.name;
+            } else {
+                summaryNameElement.textContent = 'Gast';
+            }
+        } else {
+            // Leere das Summary-Element, da kein Benutzer angemeldet ist
+            let summaryNameElement = document.getElementById('summaryName');
+            summaryNameElement.textContent = 'Gast';
+        }
+    } catch (error) {
+        console.error('Fehler beim Abrufen des Benutzernamens:', error);
+    }
+}
+  
 
  // Aufruf der Funktion, um den Benutzernamen abzurufen und anzuzeigen
 
@@ -135,6 +177,9 @@ function openPopUp() {
     }
   }
 
+
+
+  
 /**
  * Initializes the application by loading users and tasks, and updating task counts.
  * @async
@@ -144,6 +189,10 @@ async function init() {
     await loadTasks();
     updateTaskCounts(tasks);
     countUrgentTasks(tasks);
-    await getLoggedInUser();
-   
+    getAndDisplayUserName();
 }
+
+
+
+
+

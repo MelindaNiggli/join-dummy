@@ -13,7 +13,6 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  box-sizing: border-box;
   width:  232px;
   height: 100vh;
   padding: 64px 0px 64px 0px;
@@ -91,7 +90,7 @@ header {
   box-sizing: border-box;
   position: relative;
   background-color: var(--white);
-  z-index: 1;
+  z-index: 20;
   margin-left:232px;
   padding:20px 40px 20px 116px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
@@ -104,6 +103,7 @@ header span {
 }
 
 #headend {
+  position:relative;
   gap:16px;  
 }
 
@@ -140,7 +140,6 @@ header span {
 main {
   flex-grow: 1;
   margin-left:232px;  
-  width:calc(100vw - 232px);
   height:calc(100vh - 96px);  
   background-color: var(--bg);
 }
@@ -162,21 +161,24 @@ main {
   margin-bottom: 10px;
 }
 
-.popupContainer {
-  display: none;
-  position: relative;
+#popupContainer {
+  display: none;  
+}
+
+#popupContainer p:hover {
+  background-color: #2A3E59;
+  border-radius: 20px;
 }
 
 .popupContent {
-  
-  position: absolute; /* Absolut positioniert innerhalb des relativen Elements */
-  top: 49px; /* 100% Abstand vom oberen Rand des relativen Elements */
-  left: -200px; /* Links ausgerichtet */
+    position: absolute; /* Absolut positioniert innerhalb des relativen Elements */
+  top: 76px; /* 100% Abstand vom oberen Rand des relativen Elements */
+  left: -94px; /* Links ausgerichtet */
   background-color: #2A3647;
   color: #CDCDCD;
   font-size: 16px;
   font-weight: 400;
-  padding: 10px;
+  padding: 10px 0px;
   border-radius: 20px 0 20px 20px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.2s ease-in-out;

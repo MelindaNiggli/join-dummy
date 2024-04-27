@@ -1,0 +1,76 @@
+@media (max-width: 1520px) {
+  #task_todo,
+  #task_progress,
+  #task_feedback,
+  #task_done {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: auto;
+  }
+  #board {
+    flex-direction: column;
+  }
+  .taskpit {
+    width: auto;
+  }
+  .columnhead {
+    align-self: flex-start;
+  }
+  main {
+    margin-top: 96px;
+    padding-bottom: 140px;
+    height: auto;
+  }
+  header {
+    position: fixed;
+    top: 0;
+  }
+  #task-burger {
+    display: inline;
+  }
+}
+
+@media (max-width: 1250px) {
+  #add-task-button {
+    position: relative;
+    left: -523px;
+    width: auto;
+  }
+  .searchwrapper {
+    left: -323px;
+    top: 75px;
+  }
+  .board-head-container {
+    justify-content: flex-start;
+    max-width: 57px;
+  }
+  #boardheader {
+    padding: 0px 84px 0px calc(8%+8px);
+  }
+  #board {
+    margin-top: 40px;
+    padding: 0px 0px 0px 8%;
+  }
+}
+
+@media (max-width: 635px) {
+  .taskpit {
+    width:100%;
+  }
+  #add-task-button {    
+    left: -223px;    
+  }
+  .searchwrapper {
+    left: -135px;    
+  }
+  h1 {
+    font-size: 47px !important;
+  }
+  .add-button-text {
+    display: none;
+  }
+  #findtask {
+    width: 260px;
+  }
+}

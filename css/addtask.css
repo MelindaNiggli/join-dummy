@@ -32,10 +32,10 @@ h1 {
   cursor: default;
 }
 
-span {
+/* span {
   cursor: default;
   font-size: 20px;
-}
+} */
 
 #maincontent {
   margin-top: 48px;
@@ -253,9 +253,9 @@ textarea {
   background-color: white;
 }
 
-.dropbox span {
+/* .dropbox span {
   cursor: pointer;
-}
+} */
 
 #assigned-input {
   position: relative;
@@ -372,7 +372,6 @@ img {
 }
 
 #added-to-board-box {
-  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;

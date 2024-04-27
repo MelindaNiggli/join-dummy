@@ -388,6 +388,21 @@ async function saveEditTask(index) {
   setTimeout(reload(), 500);
 }
 
+function toggleTaskBurger(index,event) {
+  event.stopPropagation();
+  let popupcontainer = document.getElementById(`taskpopup${index}`);
+  popupcontainer.classList.toggle('d-none');
+}
+
+async function burgerMoveTo(category,index,event) {
+  event.stopPropagation();
+  tasks[index]["category"] = category;
+  await setItem("taskobject", JSON.stringify(tasks));
+  updateTasks();
+}
+
+
+
 /**
  * Renders the HTML structure for a task box.
  * @param {object} task - The task object containing details like title, description, subtasks, etc.
@@ -398,9 +413,18 @@ function renderTaskHTML(task, index) {
   return `
   <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index}),renderInfoSubtasks(${index})" id="id${index}" 
      class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
-    <div class="${task.label.toLowerCase().split(" ").join("")} flex center">${
-    task.label
-  }</div>
+    <div class="flex between wide burger-wrapper">
+      <div class="${task.label.toLowerCase().split(" ").join("")} flex center">${task.label}</div>
+      <div class="flex center paddot" onclick="toggleTaskBurger(${index},event)"><img src="./img/dots.png" alt="move" id="task-burger"></div>
+      <div id="taskpopup${index}"  class="taskpopup d-none">        
+        <p>Move to:</p>
+        <div class="task-burger-divider"></div>
+        <p onclick="burgerMoveTo('todo',${index},event)">To do</p>
+        <p onclick="burgerMoveTo('progress',${index},event)">In progress</p>
+        <p onclick="burgerMoveTo('feedback',${index},event)">Await&nbspfeedback</p>
+        <p onclick="burgerMoveTo('done',${index},event)">Done</p>        
+      </div>
+    </div>
     <div class="flex column gap-ss">
       <h3 class="start">${task.title}</h3>
       <p class="start">${task.description}</p>
@@ -429,14 +453,14 @@ function renderTaskInfoHTML(task, index) {
   return `
   <div id="detailsContainer" class="details">
     <div id="task-details">
-      <div class="task-bucket">
-        <div class="task-and-close-container">
-          <div class="${task.label
-            .toLowerCase()
-            .split(" ")
-            .join("")} flex center">${task.label}</div>
-          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
-        </div>
+      <div class="task-and-close-container">
+        <div class="${task.label
+          .toLowerCase()
+          .split(" ")
+          .join("")} flex center">${task.label}</div>
+        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+      </div>
+      <div class="task-bucket">       
         <h2 class="task-details-header">${task.title}</h2>
         <p class="task-details-text">${task.description}</p>
         <div class="task-date">Due Date: ${task.date}</div>
