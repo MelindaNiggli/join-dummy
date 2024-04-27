@@ -33,10 +33,6 @@ function templateWrapperInfo(){
     }
   }
 
-
-
-let contactUsers = [];
-
 /**** SAVE USER TO LIST ****/
 
 
@@ -130,41 +126,46 @@ function closeContact() {
 
 async function loadContactUsers() {
     try {
-        let contactUsers = JSON.parse(await getItem('contactUsers'));
+        // Daten laden
+        contactUsers = JSON.parse(await getItem('contactUsers'));
 
-        // Kontakte alphabetisch nach Namen sortieren
-        contactUsers.sort((a, b) => a.name.localeCompare(b.name));
+        // Überprüfen, ob Daten geladen wurden
+        if (contactUsers && contactUsers.length > 0) {
+            // Kontakte alphabetisch nach Namen sortieren
+            contactUsers.sort((a, b) => a.name.localeCompare(b.name));
 
-        // Vorhandene Kontaktliste löschen
-        const allUsersContainer = document.getElementById('allUsers');
-        allUsersContainer.innerHTML = '';
+            // Vorhandene Kontaktliste löschen
+            const allUsersContainer = document.getElementById('allUsers');
+            allUsersContainer.innerHTML = '';
 
-        // Durch sortierte Kontakte iterieren und sie anzeigen
-        contactUsers.forEach((contact, index) => {
-            // Erstes Zeichen für die Gruppierung erhalten
-            const firstChar = contact.name.charAt().toUpperCase();
+            // Durch sortierte Kontakte iterieren und sie anzeigen
+            contactUsers.forEach((contact, index) => {
+                // Erstes Zeichen für die Gruppierung erhalten
+                const firstChar = contact.name.charAt().toUpperCase();
 
-            // Falls das erste Zeichen vom vorherigen abweicht, ein neues Gruppierungselement hinzufügen
-            const previousChar = index > 0 ? contactUsers[index - 1].name.charAt(0) : '';
-            if (firstChar !== previousChar) {
-                allUsersContainer.innerHTML += `
-                    <p class="Buchstabe">${firstChar}</p>
-                    <span class="linie"></span>
-                `;
-            }
+                // Falls das erste Zeichen vom vorherigen abweicht, ein neues Gruppierungselement hinzufügen
+                const previousChar = index > 0 ? contactUsers[index - 1].name.charAt(0) : '';
+                if (firstChar !== previousChar) {
+                    allUsersContainer.innerHTML += `
+                        <p class="Buchstabe">${firstChar}</p>
+                        <span class="linie"></span>
+                    `;
+                }
 
-            // Die ersten zwei Buchtaben gross
-            const string = contact.name;
-            const firstTwoChars = string.slice(0, 2).toUpperCase();
+                // Die ersten zwei Buchstaben groß
+                const firstTwoChars = contact.name.slice(0, 2).toUpperCase();
 
-            // Erster Buchstabe des Namens gross
-            const firstLetter = string.charAt(0).toUpperCase();
-            const restOfWord = string.slice(1);
-            const capitalizedWord = firstLetter + restOfWord;
+                // Erster Buchstabe des Namens groß
+                const capitalizedWord = contact.name.charAt(0).toUpperCase() + contact.name.slice(1);
 
-            // Kontakt Template anzeigen
-            allUsersContainer.innerHTML +=  TemplateContactUsers(contact, index, firstTwoChars, capitalizedWord);
-        });
+                // Kontakt Template anzeigen
+                allUsersContainer.innerHTML += TemplateContactUsers(contact, index, firstTwoChars, capitalizedWord);
+            });
+        } else {
+            // Zeige eine Nachricht an, wenn keine Kontaktbenutzer vorhanden sind
+            const allUsersContainer = document.getElementById('allUsers');
+            allUsersContainer.innerHTML = '<p>Keine Kontaktbenutzer vorhanden</p>';
+        }
     } catch (e) {
         console.log('Fehler:', e);
     }

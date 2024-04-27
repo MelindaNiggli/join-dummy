@@ -348,8 +348,9 @@ span.linie {
 }
 
 
-
-
+#contactList button:hover {
+	background: var(--join-blue);
+}
 
 
 @media only screen and (max-width: 1075px) {
@@ -383,7 +384,9 @@ span.linie {
         padding: 12px;
         box-shadow: 0 4px  4px 0px #00000040;
 }
-
+#contactList button:hover, .more:hover{
+    background: var(--join-blue);
+}
 
 .editeDeleteWrapper {
 	position: fixed;

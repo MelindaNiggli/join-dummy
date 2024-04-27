@@ -178,27 +178,33 @@ async function getAndDisplayUserName() {
     }
 }
 
-
 /**
- * Funktion bei dem der Benutzername im Header steht
+ * Funktion bei dem der Benutzername im Header steht und der Benutzer wird in Conatct gepusht
  * 
  */
 
-
 async function getAndDisplayUserNameHeader() {
     try {
-        if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
-            let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
-            let headerShortName = document.getElementById('headeruser')
-            let user = users[0]; // Den ersten Benutzer im Array
+        if (isLoggedIn()) {
+            let users = await getLoggedInUser();
+            let headerShortName = document.getElementById('headeruser');
+            let user = users[0];
             if (user && user.userInformation && user.userInformation.name) {
+                // Benutzerinformationen im Local Storage abrufen
+                let storedUsers = JSON.parse(await getItem('contactUsers')) || [];
+                // Überprüfen, ob der Benutzer bereits in der Liste vorhanden ist
+                let userExists = storedUsers.some(existingUser => existingUser.email === user.userInformation.email);
+                if (!userExists) {
+                    // Neuen Benutzer nur hinzufügen, wenn er noch nicht in der Liste ist
+                    storedUsers.push(user.userInformation);
+                    // Aktualisierte Benutzerdaten im Local Storage speichern
+                    await setItem('contactUsers', JSON.stringify(storedUsers));
+                }
                 headerShortName.textContent = user.userInformation.name.slice(0, 2).toUpperCase();
             } else {
-                // Falls kein Benutzername vorhanden ist, setze "Gast"
                 headerShortName.textContent = 'Gu';
             }
         } else {
-            // Leere das Summary-Element, da kein Benutzer angemeldet ist
             headerShortName.textContent = 'Gu';
         }
     } catch (error) {

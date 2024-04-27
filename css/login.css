@@ -248,6 +248,15 @@ footer a {
   }
 
 
+
+  .wrapper-button button:first-child:hover, .BT-Black:hover, .wrapper-sing-up a:hover {
+	background: var(--join-blue)!important;
+    border-color: var(--join-blue);
+}
+
+.wrapper-button button:hover{
+    border-color: var(--join-blue);
+}
   @media only screen and (max-width: 767px) {
 
     #logoImg  {
