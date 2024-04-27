@@ -11,7 +11,7 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let allclients = [];
-let loggedInUser = []; 
+//let loggedInUser = []; 
 
 
 /**
@@ -45,7 +45,6 @@ async function includeHTML() {
     }
     menuSelected(document.title);
     await getLoggedInUser(); 
-    showLoggedUser();
 }
 
 /**
