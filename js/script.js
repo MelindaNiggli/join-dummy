@@ -183,6 +183,8 @@ async function getAndDisplayUserName() {
  * Funktion bei dem der Benutzername im Header steht
  * 
  */
+
+
 async function getAndDisplayUserNameHeader() {
     try {
         if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
