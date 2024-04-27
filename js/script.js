@@ -114,7 +114,10 @@ async function loadContacts() {
 }
 
 
-
+/**
+ * Logout Funktion
+ * 
+ */
 
 async function logout() {
     try {
@@ -126,6 +129,11 @@ async function logout() {
     }
   }
 
+
+/**
+ * Holt die eingelogten Benutzer
+ * 
+ */
 async function getLoggedInUser() {
     try {
         loggedInUser = JSON.parse(await getItem('userInformation'));
@@ -136,13 +144,21 @@ async function getLoggedInUser() {
     }
   }
   
-
+/**
+ *  Überprüft, ob ein Cookie mit dem Namen "loggedIn" vorhanden ist
+ * 
+ */
   function isLoggedIn() {
-    // Überprüfen, ob ein Cookie mit dem Namen "loggedIn" vorhanden ist
     return document.cookie.includes('loggedIn=true');
 }
 
-// Funktion zum Abrufen und Anzeigen des Benutzernamens
+
+/**
+ *  Funktion zum Abrufen und Anzeigen des Benutzernamens
+ * 
+ */
+
+
 async function getAndDisplayUserName() {
     try {
         if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
@@ -155,7 +171,6 @@ async function getAndDisplayUserName() {
                 summaryNameElement.textContent = 'Gast';
             }
         } else {
-            // Leere das Summary-Element, da kein Benutzer angemeldet ist
             let summaryNameElement = document.getElementById('summaryName');
             summaryNameElement.textContent = 'Gast';
         }
@@ -163,9 +178,35 @@ async function getAndDisplayUserName() {
         console.error('Fehler beim Abrufen des Benutzernamens:', error);
     }
 }
-  
 
- // Aufruf der Funktion, um den Benutzernamen abzurufen und anzuzeigen
+
+/**
+ * Funktion bei dem der Benutzername im Header steht
+ * 
+ */
+
+
+async function getAndDisplayUserNameHeader() {
+    try {
+        if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
+            let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
+            let headerShortName = document.getElementById('headeruser')
+            let user = users[0]; // Den ersten Benutzer im Array
+            if (user && user.userInformation && user.userInformation.name) {
+                headerShortName.textContent = user.userInformation.name.slice(0, 2).toUpperCase();
+            } else {
+                // Falls kein Benutzername vorhanden ist, setze "Gast"
+                headerShortName.textContent = 'Gu';
+            }
+        } else {
+            // Leere das Summary-Element, da kein Benutzer angemeldet ist
+            headerShortName.textContent = 'Gu';
+        }
+    } catch (error) {
+        console.error('Fehler beim Abrufen des Benutzernamens:', error);
+    }
+}
+
 
 function openPopUp() {
     let popupContainer = document.getElementById("popupContainer");
@@ -176,9 +217,6 @@ function openPopUp() {
     }
   }
 
-
-
-  
 /**
  * Initializes the application by loading users and tasks, and updating task counts.
  * @async

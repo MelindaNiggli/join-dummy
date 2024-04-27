@@ -103,8 +103,11 @@ header span {
 }
 
 #headend {
-  position:relative;
-  gap:16px;  
+  position:relative;    
+}
+
+#headend img {
+  margin-right: 16px;
 }
 
 #headeruser {
@@ -115,7 +118,7 @@ header span {
   justify-content: center;
 }
 
-#headeruser span {
+#headeruser  {
   font-size: 18px;
   color:#29ABE2;
   font-weight: bold;
@@ -171,7 +174,7 @@ main {
 }
 
 .popupContent {
-    position: absolute; /* Absolut positioniert innerhalb des relativen Elements */
+  position: absolute; /* Absolut positioniert innerhalb des relativen Elements */
   top: 76px; /* 100% Abstand vom oberen Rand des relativen Elements */
   left: -94px; /* Links ausgerichtet */
   background-color: #2A3647;
