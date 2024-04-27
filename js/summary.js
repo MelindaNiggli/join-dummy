@@ -1,10 +1,6 @@
-
-async function renderSummary(){
-  await getAndDisplayUserName()
-}
-
 document.addEventListener('DOMContentLoaded', function() {
- displayCurrentDate(tasks)
+  displayUserName();
+  displayCurrentDate(tasks)
 });
 
 /**
@@ -92,13 +88,12 @@ function displayCurrentDate(tasks) {
     // Filtere Aufgaben mit Priorität "urgent"
     const urgentTasks = tasks.filter(task => task.priority === 'urgent');
 
-    console.log('Urgent Tasks:', urgentTasks);
 
     // Wähle das Datum der ersten "urgent" Aufgabe aus
     const firstUrgentTaskDate = urgentTasks[0].date;
 
     // Formatieren des Datums
-    const formattedDate = firstUrgentTaskDate.toLocaleDateString('en-US', {
+    const formattedDate = new Date(firstUrgentTaskDate).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -116,27 +111,28 @@ function displayCurrentDate(tasks) {
  * Retrieves the logged-in user from local storage.
  * @returns {Object|null} - The logged-in user or null if no user is logged in.
  */
-
+function getLoggedInUser() {
+  let user = JSON.parse(localStorage.getItem('loggedInUser'));
+  return user;
+}
 
 /**
  * Displays the username in the summary area.
  */
-async function getAndDisplayUserName() {
-  try {
-      let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
-      console.log('es geht', users);
-      let summaryNameElement = document.getElementById('summaryName');
-      if (users.length > 0) { // Überprüfen, ob das Array nicht leer ist
-          let user = users[0]; // Den ersten Benutzer im Array
-          if (user && user.userInformation && user.userInformation.name) { // Überprüfen, ob der Benutzer und der Name definiert sind
-              summaryNameElement.textContent = user.userInformation.name;
-          } else {
-              summaryNameElement.textContent = 'Gast';
-          }
+function displayUserName() {
+  let user = getLoggedInUser();
+  let summaryNameElement = document.getElementById('summaryName');
+  if (summaryNameElement) {
+      if (user) {
+          summaryNameElement.textContent = user.name;
       } else {
-          summaryNameElement.textContent = 'Gast';
+          summaryNameElement.textContent = 'Guest';
       }
-  } catch (error) {
-      console.error('Fehler beim Abrufen des Benutzernamens:', error);
   }
 }
+
+
+
+
+
+
