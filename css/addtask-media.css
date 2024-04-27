@@ -3,19 +3,62 @@
     flex-direction: column;
     overflow: auto;
     align-items: center;
+    margin-bottom:20px;
   }
   form {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;    
   }
   .divider {
-    display:none;
+    display: none;
   }
   #main {
-    margin-top: 96px;
-    
     height: auto;
   }
-  
+  #foot {
+    width:440px;
+  }
+  .clear {
+    display:none;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  #main {
+    margin-top: 96px;  
+    padding: 38px 0px 0px 0px;
+    align-items: center;  
+  }
+  #maincontent {
+    height: 500px;
+    margin-top:25px;
+  }
+  h1 {
+    font-size:47px;
+  }  
+}
+
+@media only screen and (max-width: 500px) {
+  input:not(#findtask), textarea, .taskbranch, #maincontent, .left-add, .right-add, #foot  {
+    width:100% !important;
+  }  
+  .priobutton {
+    width: 90px;
+    height: 45px;  
+    font-size: 14px;  
+  }
+  .createtask {
+    font-size: 16px;  
+    padding: 14px 20px;
+    width: unset;
+    height: unset;
+  }   
+  .requiredspan {
+    font-size: 14px;
+  }  
+  #maincontent {
+    height: 520px;
+  } 
+
 }

@@ -23,7 +23,7 @@
 }
 
 .pad {
-  padding:10px !important;
+  padding: 10px !important;
 }
 
 h1 {
@@ -39,8 +39,8 @@ h1 {
 
 #maincontent {
   margin-top: 48px;
-  padding:0 5px;
-  height:524px;
+  padding: 0 5px;
+  height: 524px;
   overflow: hidden;
 }
 
@@ -67,7 +67,7 @@ h1 {
   align-self: flex-end;
 }
 
-input:not([type="checkbox"],.created-subtasks-input) {
+input:not([type="checkbox"], .created-subtasks-input) {
   width: 440px;
   height: 48px;
   border-radius: 10px;
@@ -92,25 +92,27 @@ textarea:focus {
   color: black;
 }
 
-input:not(#assigned-input,#category-input)::placeholder,
+input:not(#assigned-input, #category-input)::placeholder,
 textarea::placeholder {
   color: #d1d1d1;
 }
 
-#assigned-input::placeholder, #category-input::placeholder {
+#assigned-input::placeholder,
+#category-input::placeholder {
   color: black;
 }
 
 textarea {
-	width: 440px;
-	height: 120px;
-	border-radius: 10px;
-	padding: 18px 16px;
-	border-color: #d1d1d1;
-	font-family: "inter", sans-serif;
-	font-size: 20px;
-	resize: none;
-	border: 1px solid #d1d1d1;
+  width: 440px;
+  height: 120px;
+  max-width: 100%;
+  border-radius: 10px;
+  padding: 18px 16px;
+  border-color: #d1d1d1;
+  font-family: "inter", sans-serif;
+  font-size: 20px;
+  resize: none;
+  border: 1px solid #d1d1d1;
 }
 
 .divider {
@@ -187,10 +189,10 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;  
-  gap:1px;
+  position: absolute;
+  gap: 1px;
   top: 8px;
-  right: 16px; 
+  right: 16px;
 }
 
 .roundicon {
@@ -205,7 +207,8 @@ textarea {
   transition: all 0.1s ease-in-out;
 }
 
-.roundicon:hover,.x-icon:hover {
+.roundicon:hover,
+.x-icon:hover {
   border-radius: 50%;
   background-color: #eeeeee;
   cursor: pointer;
@@ -213,14 +216,14 @@ textarea {
 
 .x-icon {
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   padding: 4px;
-  gap: 16px;  
+  gap: 16px;
   transition: all 0.1s ease-in-out;
 }
 
-#subtask-active-icons {  
-  gap:2px;
+#subtask-active-icons {
+  gap: 2px;
 }
 
 .rotate {
@@ -228,10 +231,10 @@ textarea {
 }
 
 .relative {
-  position:relative;
+  position: relative;
 }
 
-.drop-menu {  
+.drop-menu {
   background-color: white;
   border-radius: 10px;
   top: 35px;
@@ -249,7 +252,8 @@ textarea {
   border-radius: 10px;
 }
 
-#category-input:disabled, #subtasks:disabled {
+#category-input:disabled,
+#subtasks:disabled {
   background-color: white;
 }
 
@@ -268,54 +272,54 @@ textarea {
 }
 
 .assigned-check {
-  background-image: url('../img/checkbox.png');
-  width:24px;
-  height:24px; 
+  background-image: url("../img/checkbox.png");
+  width: 24px;
+  height: 24px;
 }
 
 .assigned-checked {
-  background-image: url('../img/checkedbox.png'); 
-  position:relative;
-  top:-1px;
-  width:24px;
-  height:24px;
+  background-image: url("../img/checkedbox.png");
+  position: relative;
+  top: -1px;
+  width: 24px;
+  height: 24px;
 }
 
-.subtasks-iconbox {  
-  gap:2px;
+.subtasks-iconbox {
+  gap: 2px;
 }
 
 #created-subtasks-container {
-  max-height:100px;
+  max-height: 100px;
   overflow-y: auto;
 }
 
 .created-subtasks-input {
-  border-top:none;
-  border-left:none;
-  border-right:none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 1px solid var(--join-blue);
   border-radius: 0px;
-  margin-top:4px;
-  margin-bottom:4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   width: 440px;
-  height: 40px;  
+  height: 40px;
   font-size: 20px;
   padding: 12px 21px;
   color: black;
 }
 
 .created-subtasks-input:focus {
-  outline:none;
+  outline: none;
 }
 
 .created-subtasks-input:disabled {
-  border-bottom:none;  
+  border-bottom: none;
 }
 
 .created-subtasks-input:disabled:hover {
-  border-radius:10px;
-  background-color: #EEEEEE;
+  border-radius: 10px;
+  background-color: #eeeeee;
 }
 
 .clear {
@@ -354,7 +358,7 @@ img {
   gap: 10px;
   height: 56px;
   width: 183px;
-  padding: 8px 16px 8px 16px;
+  padding: 8px 16px;
   color: white;
   font-size: 21px;
   font-weight: 700;
@@ -366,31 +370,37 @@ img {
 
 .createtask:hover {
   cursor: pointer;
-  box-shadow: 0px 4px 4px 0px #00000040;
-  background-color: var(--join-blue);
-  border: none;
+}
+
+@media (min-width: 501px) {
+  .createtask:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background-color: var(--join-blue);
+    border: none;
+  }
 }
 
 #added-to-board-box {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top:150%;
-  left:30%;
-  gap:32px;
-  width:326px;
-  height:74px;
+  top: 150%;
+  left: 30%;
+  gap: 32px;
+  width: 326px;
+  height: 74px;
   border-radius: 15px;
-  padding:22px 30.5px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
+  padding: 22px 30.5px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
   background-color: var(--join-black);
-  color:white;
+  color: white;
   transition: all 0.1s ease-in-out;
 }
 
 #added-to-board-box img {
-  width:30px;
-  height:30px;
+  width: 30px;
+  height: 30px;
 }
 
 #foot {

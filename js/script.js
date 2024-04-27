@@ -11,7 +11,7 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let allclients = [];
-let loggedInUser = []; 
+//let loggedInUser = []; 
 
 
 /**
@@ -44,6 +44,7 @@ async function includeHTML() {
         }
     }
     menuSelected(document.title);
+    await getLoggedInUser(); 
 }
 
 /**
@@ -179,7 +180,7 @@ async function getAndDisplayUserName() {
 }
 
 /**
- * Funktion bei dem der Benutzername im Header steht und der Benutzer wird in Conatct gepusht
+ * Funktion bei der, der Benutzername im Header steht und der Benutzer wird in Conatct gepusht
  * 
  */
 

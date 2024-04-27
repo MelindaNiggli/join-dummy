@@ -1,9 +1,12 @@
 /**
+ * Array to store user data
+ * @type {Object[]}
+ */
+// let users = [];
+
+/**
  * Function to render the initial animation and load users data
  */
-
-
-
 function render() {
     loadAnimation();
 }
@@ -19,11 +22,7 @@ async function loadUsers() {
     }
 }
 
-/**
- * Array to store user data
- * @type {Object[]}
- */
-let users = [];
+
 
 /**
  * Function to animate the logo and load users data
