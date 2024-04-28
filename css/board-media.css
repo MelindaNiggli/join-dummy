@@ -23,7 +23,7 @@
     height: auto;
   }
   header {
-    position: fixed;    
+    position: fixed;
     top: 0;
   }
   #task-burger {
@@ -54,18 +54,53 @@
   }
   #add-task-container {
     top: 105px;
+    left: 10%;
+  }
+  #task-details {
+    top: 105px;
+    gap: 16px;    
+    max-height: 720px;
+  }
+  .task-date {
+    width: 100%;
+  }
+  .task-bucket {
+    gap: 16px;
+  }
+  #info-assigned, #info-subtasks {
+    gap: 8px;
+  }  
+  .task-details-header {
+    font-size:  36px;
+    line-height: unset;
+  }
+  .task-details-text, .task-date, .task-priority, #task-details span, div {
+    font-size: 16px;
+  }
+  .info-st-img img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 750px) {
+  #add-task-container {
+    padding: 30px 20px;
+  }
+  #floating-x {
+    right: 5px;    
   }
 }
 
 @media (max-width: 635px) {
   .taskpit {
-    width:100%;
+    width: 100%;
   }
-  #add-task-button {    
-    left: -223px;    
+  #add-task-button {
+    left: -223px;
   }
   .searchwrapper {
-    left: -135px;    
+    left: -135px;
   }
   h1 {
     font-size: 47px !important;
@@ -75,5 +110,27 @@
   }
   #findtask {
     width: 260px;
+  }
+  #add-task-container {    
+    padding: 30px 5px;
+    left: 5%;
+  }
+}
+
+@media (max-width: 500px) {
+  #add-task-container {
+    left: 20%;
+  }
+}
+
+@media (max-width: 430px) {
+  #add-task-container {
+    left: 5%;
+  }
+}
+
+@media (max-width: 350px) {
+  #add-task-container {
+    left: 0.5%;
   }
 }

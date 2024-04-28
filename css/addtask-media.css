@@ -22,6 +22,9 @@
   .clear {
     display:none;
   }
+  .requiredspan {
+    align-self: center;
+  }
 }
 
 @media only screen and (max-width: 1250px) {
@@ -39,7 +42,7 @@
   }  
   #added-to-board-box {
     left:30%;
-  }
+  }  
 }
 
 @media only screen and (max-width: 500px) {

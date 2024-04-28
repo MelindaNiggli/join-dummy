@@ -208,8 +208,10 @@ function toggleBlock() {
  * @param {number} index - The index of the task.
  */
 function openTaskInfo(index) {
+  let bodycontainer = document.body;
   let task = tasks[index];
   let details = document.getElementById("task-details-container");
+  bodycontainer.style.overflow = 'hidden';
   details.innerHTML = "";
   details.innerHTML = renderTaskInfoHTML(task, index);
   let container = document.getElementById("task-details");
@@ -289,7 +291,9 @@ async function toggleInfoSubtask(taskindex, subtaskindex, subtaskchecked) {
 }
 
 function closeTaskInfo() {
+  let bodycontainer = document.body;
   let container = document.getElementById("task-details");
+  bodycontainer.style.overflow = 'auto';
   container.classList.remove("slidein");
   container.classList.add("slideout");
   setTimeout(hideDetailsContainer, 200);
