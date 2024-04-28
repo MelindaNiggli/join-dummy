@@ -305,21 +305,12 @@ main * {
     }
 
     .headline-container {
-        display: inline;
         flex-direction: column;
         align-items: flex-start;
-        left: 0;
-        gap: 8px;
-        margin-left: 24px;
     }
 
     .line {
         display: none;
-    }
-
-    .summary-board-container {
-        position: unset;
-        margin-top: -100px;
     }
 
     .summary-headline {
@@ -341,44 +332,17 @@ main * {
         background-color: var(--join-blue);
         border-radius: 10px;
         margin-top: 8px;
+        margin-bottom: 16px;
     }
 }
 
-@media only screen and (max-width: 600px) {
-
-    .to-do-left {
-        width: 210px;
-        margin-left: 48px;
-    }
-
-    .to-do-right {
-        width: 210px;
-        padding-right: 24px;
-    }
-
-    .date-container {
-        width: 453px;
-        margin-left: 48px;
-    }
-
-    .task-container {
-        width: 453px;
-        margin-left: 48px;
-    }
-  }
-
   @media only screen and (max-width: 460px) {
-    .summary-board-container {
-        gap: 24px;
-    }
 
     .todo-container {
         display: flex;
         justify-content: center !important;
         width: 560px;
         gap: 32px;
-        opacity: 0px;
-        margin-left: -26px;
     }
     
     .to-do-img {
