@@ -361,7 +361,7 @@ input::placeholder {
 
 .details {
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9;
+  z-index: 30;
   position: fixed;
   left: 0;
   right: 0;
@@ -376,6 +376,7 @@ input::placeholder {
   position: absolute;
   display: flex;
   flex-direction: column;
+  z-index: 50;
   width: 525px;
   max-height: 870px;
   top: 20px;

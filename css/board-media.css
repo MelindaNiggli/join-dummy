@@ -23,7 +23,7 @@
     height: auto;
   }
   header {
-    position: fixed;
+    position: fixed;    
     top: 0;
   }
   #task-burger {
@@ -51,6 +51,9 @@
   #board {
     margin-top: 40px;
     padding: 0px 0px 0px 8%;
+  }
+  #add-task-container {
+    top: 105px;
   }
 }
 

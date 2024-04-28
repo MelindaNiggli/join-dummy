@@ -175,14 +175,17 @@ function removeHighlight(id) {
  */
 
 function toggleFloatingAddTask(column) {
-  chosencolumn = column;
+  let maincontainer = document.body;
   let container = document.getElementById("blockcontainer");
   let floatingcontainer = document.getElementById("add-task-container");
+  chosencolumn = column;  
   if (container.classList.contains("d-none")) {
-    container.classList.toggle("d-none");
+    container.classList.toggle("d-none");    
     floatingcontainer.classList.toggle("slidein");
+    maincontainer.style.overflow = 'hidden';
   } else {
-    floatingcontainer.classList.toggle("slideout");
+    floatingcontainer.classList.toggle("slideout"); 
+    maincontainer.style.overflow = 'auto';   
     setTimeout(toggleBlock, 200);
     setTimeout(reload, 400);
   }
