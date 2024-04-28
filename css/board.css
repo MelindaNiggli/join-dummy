@@ -312,14 +312,14 @@ input::placeholder {
 #userbox {
   position: relative;
 }
-
-.usertag {  
-  border-radius: 50%;
-  border: 2px solid white;
-  color: white;
-  width: 32px;
-  height: 32px;
-  font-size: 12px;
+.usertag {
+	border-radius: 50%;
+	border: 2px solid white;
+	color: white;
+	width: 32px;
+	height: 32px;
+	font-size: 12px;
+	justify-content: center;
 }
 
 #ut1 {

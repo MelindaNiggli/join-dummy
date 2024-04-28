@@ -319,7 +319,7 @@ function openTaskEdit(index) {
       <form action="javascript:void(0);" onsubmit="saveEditTask(${index})" onkeydown="return event.key != 'Enter';">
         <div class="task-and-close-container">
           <div></div>
-          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+          <img src="./img/close.svg" class="close-task" onclick="closeTaskInfo()">
         </div>
         <div class="task-bucket">        
           <div class="taskbranch">
@@ -465,7 +465,7 @@ function renderTaskInfoHTML(task, index) {
           .toLowerCase()
           .split(" ")
           .join("")} flex center">${task.label}</div>
-        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+        <img src="./img/close.svg" class="close-task" onclick="closeTaskInfo()">
       </div>
       <div class="task-bucket">       
         <h2 class="task-details-header">${task.title}</h2>
