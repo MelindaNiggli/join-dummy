@@ -37,6 +37,9 @@
   h1 {
     font-size:47px;
   }  
+  #added-to-board-box {
+    left:30%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -60,5 +63,19 @@
   #maincontent {
     height: 520px;
   } 
+  .drop-menu {
+    width:100%;
+  }
+  #tag-container {
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  #added-to-board-box {    
+    width: 280px;
+    left:2%;
+    padding:10px 5px;
+    gap:16px;
+  }
 
 }

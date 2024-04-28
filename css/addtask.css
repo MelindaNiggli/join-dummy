@@ -386,7 +386,8 @@ img {
   justify-content: center;
   position: absolute;
   top: 150%;
-  left: 30%;
+  left: calc(30% + 232px);
+  z-index: 100;
   gap: 32px;
   width: 326px;
   height: 74px;

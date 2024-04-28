@@ -233,7 +233,7 @@ async function createTask(column) {
 function animateCreatedTask() {
   let addedbox = document.getElementById("added-to-board-box");
   addedbox.style.display = 'flex';
-  setTimeout(() => {addedbox.style.top = "30%";},200);
+  setTimeout(() => {addedbox.style.top = "40%";},200);
   setTimeout(() => {
     window.location.href = "board.html";
   }, 1500);
