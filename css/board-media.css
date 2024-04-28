@@ -29,6 +29,9 @@
   #task-burger {
     display: inline;
   }
+  .task-and-close-container {
+    width:100%;
+  }
 }
 
 @media (max-width: 1250px) {
@@ -61,7 +64,12 @@
     gap: 16px;    
     max-height: 720px;
   }
-  .task-date {
+  .task-details-header {
+    font-size:  36px;
+    line-height: unset;
+  }
+
+  /* .task-date {
     width: 100%;
   }
   .task-bucket {
@@ -69,18 +77,20 @@
   }
   #info-assigned, #info-subtasks {
     gap: 8px;
-  }  
-  .task-details-header {
-    font-size:  36px;
-    line-height: unset;
-  }
+  }    
   .task-details-text, .task-date, .task-priority, #task-details span, div {
     font-size: 16px;
   }
   .info-st-img img {
     width: 16px;
     height: 16px;
-  }
+  } */
+}
+
+@media (max-width: 1100px) {
+  #task-details {
+    left: 20%;
+  } 
 }
 
 @media (max-width: 750px) {
@@ -90,6 +100,9 @@
   #floating-x {
     right: 5px;    
   }
+  #task-details {
+    left: 15%;
+  } 
 }
 
 @media (max-width: 635px) {
@@ -115,12 +128,24 @@
     padding: 30px 5px;
     left: 5%;
   }
+  #task-details {
+    width: 80%;
+    left: 10%;
+    padding: 28px 15px;
+  } 
+  .task-date {
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
   #add-task-container {
     left: 20%;
   }
+  #task-details {
+    width: 90%;
+    left: 5%;    
+  } 
 }
 
 @media (max-width: 430px) {
@@ -133,4 +158,8 @@
   #add-task-container {
     left: 0.5%;
   }
+  #task-details {
+    width: 94%;
+    left: 3%;    
+  } 
 }
