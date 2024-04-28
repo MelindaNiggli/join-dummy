@@ -288,16 +288,134 @@ main * {
   color: var(--white);
 }
 
+.line-mobile {
+    display: none;
+}
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1250px) {
 
-    .headline-container,.summary-board-container{
-      position: static!important;
+    .summary-greet-container {
+        display: none;
     }
-    .headline-container{
-      flex-direction: column;
-      width: 100%!important;
-      height: 100%!important;
+}
+
+@media only screen and (max-width: 950px) {
+    .body {
+        overflow: hidden;
     }
-  
-}  
+
+    .headline-container {
+        display: inline;
+        flex-direction: column;
+        align-items: flex-start;
+        left: 0;
+        gap: 8px;
+        margin-left: 24px;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .summary-board-container {
+        position: unset;
+        margin-top: -100px;
+    }
+
+    .summary-headline {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
+
+    .headline-text {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+    }
+
+    .line-mobile {
+        display: block;
+        width: 90px;
+        height: 3px;
+        background-color: var(--join-blue);
+        border-radius: 10px;
+        margin-top: 8px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .to-do-left {
+        width: 210px;
+        margin-left: 48px;
+    }
+
+    .to-do-right {
+        width: 210px;
+        padding-right: 24px;
+    }
+
+    .date-container {
+        width: 453px;
+        margin-left: 48px;
+    }
+
+    .task-container {
+        width: 453px;
+        margin-left: 48px;
+    }
+  }
+
+  @media only screen and (max-width: 460px) {
+    .summary-board-container {
+        gap: 24px;
+    }
+
+    .todo-container {
+        display: flex;
+        justify-content: center !important;
+        width: 560px;
+        gap: 32px;
+        opacity: 0px;
+        margin-left: -26px;
+    }
+    
+    .to-do-img {
+        height: 56px;
+    }
+
+    .to-do-right, .to-do-left {
+        width: 142px;
+        padding-right: 44px;
+        height: 110px;
+    }
+
+    .date-container {
+        width: 323px;
+        margin-left: 116px;
+        gap: 12px;
+        padding-left: 8px;
+        height: 110px;
+    }
+
+    .task-container {
+        width: 323px;
+        margin-left: 116px;
+        height: 110px;
+    }
+
+    .task {
+        height: 110px;
+    }
+
+    .textColor {
+        font-size: 14px;
+        margin-top: -16px;
+        padding-bottom: 8px;
+    }
+
+    .number {
+        font-size: 47px;
+    }
+  }
