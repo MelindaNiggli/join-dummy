@@ -140,11 +140,8 @@ async function login() {
         await setItem('userInformation', JSON.stringify(loggedInUser));
         window.location.href = 'summary.html'; 
     }else{
-        console.log('fehlerhaft')
         message.innerHTML = `Wrong password Ups! Try again.`;
-        message.style.color = '#FF8190';
-        message.style.fontSize = '12px';
-        message.style.marginTop = '5px';
+        message.style.display = 'flex';
         border.style.margin = '0p 0px 8px 0 !important';
         border.style.borderColor = '#FF8190';
     }

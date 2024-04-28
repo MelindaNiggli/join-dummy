@@ -284,7 +284,7 @@ footer a:hover {
 #MessageCheckBox{
     border: 1px solid #FF8190;
 }
-#MessageCheckBox, #messagePW, #MessageEmail{
+#MessageCheckBox, #messagePW, #MessageEmail {
     display: none;
     color: #FF8190;
     font-size: 12px;

@@ -122,6 +122,16 @@ header span {
   font-size: 18px;
   color:#29ABE2;
   font-weight: bold;
+  transform: translateX(200%);
+  transition: transform 0.25s ease-in;
+  -webkit-transition: transform 0.25s ease-in;
+  -moz-transition: transform 0.25s ease-in;
+  -ms-transition: transform 0.25s ease-in;
+  -o-transition: transform 0.25s ease-in;
+  -webkit-transform: translateX(200%);
+  -moz-transform: translateX(200%);
+  -ms-transform: translateX(200%);
+  -o-transform: translateX(200%);
 }
 
 #headeruser:hover {

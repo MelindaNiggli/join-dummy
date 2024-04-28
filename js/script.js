@@ -197,12 +197,10 @@ async function getAndDisplayUserNameHeader() {
                     // Aktualisierte Benutzerdaten im Local Storage speichern
                     await setItem('contactUsers', JSON.stringify(storedUsers));
                 }
-                headerShortName.textContent = user.userInformation.name.slice(0, 2).toUpperCase();
-            } else {
-                headerShortName.textContent = 'Gu';
-            }
-        } else {
-            headerShortName.textContent = 'Gu';
+                headerShortName.innerHTML = user.userInformation.name.slice(0, 2).toUpperCase();
+                headerShortName.style.transform = 'translateX(0)';
+
+            } 
         }
     } catch (error) {
         console.error('Fehler beim Abrufen des Benutzernamens:', error);
@@ -224,11 +222,11 @@ function openPopUp() {
  * @async
  */
 async function init() {
+    await getLoggedInUser();
     await loadUsers();
     await loadTasks();
     updateTaskCounts(tasks);
     countUrgentTasks(tasks);
-    getLoggedInUser();
 }
 
 
