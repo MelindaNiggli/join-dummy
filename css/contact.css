@@ -261,6 +261,10 @@ span.linie {
 .edit,.delete{
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+.edit:hover, .delete:hover {
+    color: var(--join-blue);
 }
 .edit {
     margin-right: 16px;
@@ -313,6 +317,9 @@ span.linie {
     color: var(--join-link);
     display: block;
 }
+.wrapperE a:hover, .wrapperP a:hover{
+color: var(--join-blue)!important;
+}
 .wrapperE{
     margin-bottom: 22px;
 }
@@ -351,6 +358,7 @@ span.linie {
 #contactList button:hover {
 	background: var(--join-blue);
 }
+
 
 
 @media only screen and (max-width: 1075px) {
@@ -409,6 +417,7 @@ span.linie {
 .edit, .delete {
     padding: 10px!important;
 }
+
 .heading {
 	margin-top: 48px;
 	margin-left: 16px;

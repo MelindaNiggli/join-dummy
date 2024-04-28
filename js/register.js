@@ -44,25 +44,17 @@ async function hashPassword(password) {
 }
 
 
-// Error Messages
-//RED
-function red(){
-    const msg =  document.getElementById('messageBox');
-    msg.style.backgroundColor= '#29abe2';
-    msg.style.padding = '25px';
-    msg.style.borderRadius = '20px';
-    msg.style.color = 'white';
-    msg.style.fontSize ='20px'
-}
 
 
 /**
  * Function to display a red error message indicating password mismatch
  */
 function messageRedPasswort() {
-    const msg =  document.getElementById('messageBox');
+    const msg =  document.getElementById('messagePW');
+    const input = document.getElementById('wrapperInputPW')
     msg.innerHTML = `It's not the same Password, please try again !`;
-    red();
+    msg.style.display = 'flex';
+    input.style.margin = '0 0 8px 0 ';
 }
 
 
@@ -70,9 +62,9 @@ function messageRedPasswort() {
  * Function to display a red error message indicating checkbox not checked
  */
 function messageRedCheckbox() {
-    const msg =  document.getElementById('messageBox');
+    const msg =  document.getElementById('MessageCheckBox');
     msg.innerHTML = `Please agree the Checkbox before proceeding!`;
-    red();
+    msg.style.display = 'flex';
 }
 
 
@@ -94,9 +86,11 @@ function messageSuccessfully() {
  * Function to display a red error message indicating email already registered
  */
 function messageEmailRegistered() {
-    const msg =  document.getElementById('messageBox')
-    msg.innerHTML = `Email Address Already Registered`
-    red();
+    const msg =  document.getElementById('MessageEmail');
+    const input = document.getElementById('wrapperInputEmail')
+    msg.innerHTML = `Email Address Already Registered`;
+    msg.style.display = 'flex';
+    input.style.margin = '0 0 5px 0 ';
 }
 
 

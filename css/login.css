@@ -14,6 +14,11 @@ body {
     position: relative;
 }
 
+input:focus ~ .wrapper-input {
+    border: 3px solid #555!important;
+}
+
+
 #wrapperLogin {
 	display: flex;
 	align-items: center;
@@ -94,7 +99,6 @@ form {
 }
 .wrapper-input {
     display: flex;
-    margin-bottom: 24px;
 }
 .wrapper-heading {
     display: flex;
@@ -141,6 +145,7 @@ input::placeholder{
     border-radius: 8px;
     border: 1px solid var(--join-black);
     padding: 11.5px 24px;
+    font-weight: 700;
 }
 .wrapper-button button:first-child, .BT-Black  {
     background: var(--join-black) !important;
@@ -161,8 +166,19 @@ footer a {
     font-size: 16px;
     color: #A8A8A8;
 }
+footer a:hover {
+    color: var(--join-blue);
+}
 
 /* Checkmark */
+.checkbox {
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.checkbox:hover{
+    color: var(--join-blue);
+}
 .checkbox input[type="checkbox"] {
     display: none; /* Verstecke das natürliche Checkbox-Element */
 }
@@ -216,10 +232,15 @@ footer a {
 .checkbox {
 	color: #A8A8A8;
 	text-align: center;
+    margin-top: 24px;
 }
 #registration .wrapper-button {
 	display: flex;
 	justify-content: center;
+}
+
+#registration .wrapper-input {
+	margin-bottom: 24px;
 }
 #messageBox {
 	top: 100px;
@@ -256,7 +277,21 @@ footer a {
 
 .wrapper-button button:hover{
     border-color: var(--join-blue);
+    color: var(--join-blue);
 }
+
+/* Fehlermeldungen */
+#MessageCheckBox{
+    border: 1px solid #FF8190;
+}
+#MessageCheckBox, #messagePW, #MessageEmail{
+    display: none;
+    color: #FF8190;
+    font-size: 12px;
+    margin-bottom: 24px;
+}
+
+
   @media only screen and (max-width: 767px) {
 
     #logoImg  {
@@ -296,7 +331,7 @@ body {
 }
 button, .wrapper-sing-up a{
     font-size: 16px !important;
-    font-weight: 700;
+    font-weight: 700!important;
     border-radius: 8px ;
     -webkit-border-radius: 8px ;
     -moz-border-radius: 8px ;

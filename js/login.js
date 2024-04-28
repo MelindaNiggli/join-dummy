@@ -69,10 +69,11 @@ function ContentLogin() {
                 <input type="email" placeholder="Email" id="email" required> 
                 <img src="./img/mail.svg" alt="Email Icon">
             </div>
-            <div class="wrapper-input">
+            <div id="pwInput" class="wrapper-input">
                 <input type="password" placeholder="Password" id="password" required>
                 <img src="./img/lock.svg" alt="Schloss Icon">
             </div>
+            <p id="messagePW"></p>
             <div class="checkbox">
                 <input type="checkbox" id="remember-me">
                 <label for="remember-me">Remember Me</label>
@@ -120,13 +121,14 @@ let loggedInUser = [];
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
+    let message = document.getElementById('messagePW');
+    let border = document.getElementById('pwInput');
 
     // Hash the entered password
     let hashedPassword = await hashPassword(password);
 
     // Search for the user in the database
     let user = users.find(u => u.email === email && u.password === hashedPassword);
-    
     
     if(user) {
         console.log('hello', user);
@@ -137,7 +139,15 @@ async function login() {
         document.cookie = 'loggedIn=true; path=/; SameSite=None; secure';
         await setItem('userInformation', JSON.stringify(loggedInUser));
         window.location.href = 'summary.html'; 
-    } 
+    }else{
+        console.log('fehlerhaft')
+        message.innerHTML = `Wrong password Ups! Try again.`;
+        message.style.color = '#FF8190';
+        message.style.fontSize = '12px';
+        message.style.marginTop = '5px';
+        border.style.margin = '0p 0px 8px 0 !important';
+        border.style.borderColor = '#FF8190';
+    }
 }
 
 

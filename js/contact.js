@@ -263,6 +263,22 @@ function firstCharUppercase(name) {
     return firstLetter + restOfWord;
 }
 
+
+
+function EditHover(){
+    document.getElementById('editimg').src = './img/edit-blue.svg';
+}
+function EditHoverOut(){
+    document.getElementById('editimg').src = './img/edit.svg';
+}
+function DeleteHover(){
+    document.getElementById('deleteImg').src = './img/delete-blue.svg';
+}
+function DeleteHoverOut(){
+    document.getElementById('deleteImg').src = './img/delete.svg';
+}
+
+
 /**
  * Function to generate the HTML template for displaying user information
  * @param {number} index - The index of the user
@@ -282,12 +298,12 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
         <div class="wrapperFlex">
             <p id="nameContact" class="nameAside">${capitalizedWord}</p>
             <div id="editeDeleteWrapper" class="editeDeleteWrapper">
-                <div class="edit" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
-                    <img src="./img/edit.svg" alt="edit icon">
+                <div class="edit" onmouseover="EditHover()"  onmouseout="EditHoverOut()"  onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
+                    <img id="editimg" src="./img/edit.svg" alt="edit icon">
                     <p>Edit</p>
                 </div>
-                <div class="delete" onclick="deleteUser('${name}')">
-                    <img src="./img/delete.svg" alt="delete icon">
+                <div class="delete" onmouseover="DeleteHover()"  onmouseout="DeleteHoverOut()" onclick="deleteUser('${name}')">
+                    <img id="deleteImg" src="./img/delete.svg" alt="delete icon">
                     <p>Delete</p>
                 </div>
             </div>
