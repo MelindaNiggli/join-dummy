@@ -426,6 +426,11 @@ input::placeholder {
   animation: slideOutToRight 0.25s;
 }
 
+.assigned-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
 .task-and-close-container {
   display: flex;
   justify-content: space-between;

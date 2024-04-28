@@ -344,7 +344,7 @@ function openTaskEdit(index) {
             </div>
             <div class="taskbranch">
               <span>Assigned to</span>
-              <div class="wrapper">
+              <div class="assigned-wrapper">
                 <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
                 <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
                 <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
