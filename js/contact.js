@@ -28,7 +28,7 @@ function templateWrapperInfo(){
 </div>
 <div id="userInfoDetails"></div>
     `
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 1057) {
         wrapper.innerHTML = '';
     }
   }
@@ -277,7 +277,19 @@ function DeleteHover(){
 function DeleteHoverOut(){
     document.getElementById('deleteImg').src = './img/delete.svg';
 }
+function Update(){
+    document.getElementById('updateDeleteImg').src = './img/delete-blue.svg';
+}
+function UpdateHoverOut(){
+    document.getElementById('updateDeleteImg').src = './img/delete.svg';
+}
 
+function ButtonHover(){
+    document.getElementById('BTC').src = './img/close-blue.svg';
+}
+function ButtonHoverOut(){
+    document.getElementById('BTC').src = './img/iconoir_cancel.svg';
+}
 
 /**
  * Function to generate the HTML template for displaying user information
@@ -395,7 +407,7 @@ async function editUser(name, email, color, phone) {
     containerEdit.innerHTML = TemplateContainerUpdate(name, email, color, phone, firstTwoChars);
 
 
-   const closeButton =  document.getElementById('close')
+   const closeButton =  document.getElementById('closeImg')
     if (window.innerWidth <= 1075) {
         closeButton.src= './img/closeWhite.svg';
     }
@@ -420,7 +432,7 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
         </div>
     </div>
     <div class="wrapper-right">
-        <img  id="close" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()">
+        <div id="close"><img  id="closeImg" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()"></div>
         <div class="badge edit " style="background: ${color};">
         <p>${firstTwoChars}</p>
         </div>
@@ -440,7 +452,7 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
                 </div>
                 <div class="wrapper-button">
                     <div class="delete">
-                        <button class="cancle" onclick="deleteUser('${name}')">Delete</button>
+                        <button class="cancle" onmouseover="Update()" onmouseout="UpdateHoverOut()" onclick="deleteUser('${name}')"><img id="updateDeleteImg" src="./img/delete.svg" alt="delete icon">Delete</button>
                         <button class="BT-Black" onclick="updateUser('${name}')">Save<img src="./img/check.svg" alt="check"></button>
                     </div>
                 </div>

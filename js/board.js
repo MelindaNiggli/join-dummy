@@ -208,8 +208,10 @@ function toggleBlock() {
  * @param {number} index - The index of the task.
  */
 function openTaskInfo(index) {
+  let bodycontainer = document.body;
   let task = tasks[index];
   let details = document.getElementById("task-details-container");
+  bodycontainer.style.overflow = 'hidden';
   details.innerHTML = "";
   details.innerHTML = renderTaskInfoHTML(task, index);
   let container = document.getElementById("task-details");
@@ -289,7 +291,9 @@ async function toggleInfoSubtask(taskindex, subtaskindex, subtaskchecked) {
 }
 
 function closeTaskInfo() {
+  let bodycontainer = document.body;
   let container = document.getElementById("task-details");
+  bodycontainer.style.overflow = 'auto';
   container.classList.remove("slidein");
   container.classList.add("slideout");
   setTimeout(hideDetailsContainer, 200);
@@ -315,7 +319,7 @@ function openTaskEdit(index) {
       <form action="javascript:void(0);" onsubmit="saveEditTask(${index})" onkeydown="return event.key != 'Enter';">
         <div class="task-and-close-container">
           <div></div>
-          <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+          <img src="./img/close.svg" class="close-task" onclick="closeTaskInfo()">
         </div>
         <div class="task-bucket">        
           <div class="taskbranch">
@@ -340,7 +344,7 @@ function openTaskEdit(index) {
             </div>
             <div class="taskbranch">
               <span>Assigned to</span>
-              <div class="wrapper">
+              <div class="assigned-wrapper">
                 <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
                 <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
                 <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
@@ -461,7 +465,7 @@ function renderTaskInfoHTML(task, index) {
           .toLowerCase()
           .split(" ")
           .join("")} flex center">${task.label}</div>
-        <img src="./img/x.png" class="close-task" onclick="closeTaskInfo()">
+        <img src="./img/close.svg" class="close-task" onclick="closeTaskInfo()">
       </div>
       <div class="task-bucket">       
         <h2 class="task-details-header">${task.title}</h2>
