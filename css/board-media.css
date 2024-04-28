@@ -63,10 +63,14 @@
     top: 105px;
     gap: 16px;    
     max-height: 720px;
+    padding: 35px;
   }
   .task-details-header {
     font-size:  36px;
     line-height: unset;
+  }
+  .task-bucket {
+    max-height: 570px;
   }
 
   /* .task-date {
@@ -129,8 +133,8 @@
     left: 5%;
   }
   #task-details {
-    width: 80%;
-    left: 10%;
+    width: 481px;
+    left: 2%;
     padding: 28px 15px;
   } 
   .task-date {
@@ -145,6 +149,9 @@
   #task-details {
     width: 90%;
     left: 5%;    
+  }
+  .relative, .assigned-wrapper {
+    width:100%;
   } 
 }
 
@@ -159,7 +166,7 @@
     left: 0.5%;
   }
   #task-details {
-    width: 94%;
-    left: 3%;    
+    width: 98%;
+    left: 1%;    
   } 
 }
