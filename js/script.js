@@ -221,7 +221,9 @@ function openPopUp() {
 async function init() {
     await getLoggedInUser();
     await loadUsers();
-    await loadTasks();    
+    await loadTasks(); 
+    updateTaskCounts(tasks);
+    countUrgentTasks(tasks);   
 }
 
 

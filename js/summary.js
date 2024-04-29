@@ -68,6 +68,7 @@ function updateGreeting() {
   }
 }
 
+updateGreeting();
 
 async function displayCurrentDate() {
   const urgentCount = countUrgentTasks(); // Verwende die vorhandene Funktion, um die Anzahl der dringenden Aufgaben zu erhalten
@@ -95,16 +96,4 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', options);
 }
 
-/**
- * Initializes the application by loading users and tasks, and updating task counts.
- */
-async function initSummary() {
-  await getLoggedInUser();
-  await loadUsers();
-  await loadTasks();
-  updateTaskCounts(tasks);
-  countUrgentTasks(tasks);
-  updateGreeting();
-  displayCurrentDate()
-}
 
