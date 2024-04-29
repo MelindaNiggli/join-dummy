@@ -81,9 +81,7 @@ async function displayCurrentDate() {
     const earliestDate = tasks
       .filter(task => task.priority === "urgent") // Filtere die dringenden Aufgaben
       .map(task => new Date(task.date)) // Wandle das Fälligkeitsdatum in ein Date-Objekt um
-      .reduce((a, b) => (a < b ? a : b)); // Finde das früheste Datum
-
-    console.log('Frühestes Datum:', earliestDate); // Hinzugefügte console.log für das früheste Datum
+      .reduce((a, b) => (a < b ? a : b)); // Finde das früheste Datum    
 
     const deadlineElement = document.getElementById("currentDate");
     deadlineElement.textContent = formatDate(earliestDate);

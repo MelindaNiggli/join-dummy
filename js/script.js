@@ -38,6 +38,7 @@ async function includeHTML() {
         }
     }
     menuSelected(document.title);
+    getAndDisplayUserNameHeader();
 }
 
 /**
@@ -194,10 +195,13 @@ async function getAndDisplayUserNameHeader() {
                     // Aktualisierte Benutzerdaten im Local Storage speichern
                     await setItem('contactUsers', JSON.stringify(storedUsers));
                 }
-                headerShortName.innerHTML = user.userInformation.name.slice(0, 2).toUpperCase();
+                headerShortName.innerHTML = getInitials(user.userInformation.name);
                 headerShortName.style.transform = 'translateX(0)';
             } 
-        }
+        } else {
+            let headerShortName = document.getElementById('headeruser');
+            headerShortName.style.transform = 'translateX(0)';
+        }        
     } catch (error) {
         console.error('Fehler beim Abrufen des Benutzernamens:', error);
     }
