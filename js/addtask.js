@@ -54,6 +54,11 @@ function renderDropboxUser(user,color,index) {
   `;
 }
 
+/**
+ * Checking if the selected User is in assigned, then returning the matching css class
+ * @param {string} user - the user which is checked in the dropdown
+ * @param {string} color - the matching color of the user
+ */
 function setCheckedUser(user,color) {
   for (let item of assigned) {
     if (item[0] == user && item[1] == color) {
@@ -62,7 +67,11 @@ function setCheckedUser(user,color) {
   }
   return "assigned-check";  
 }
-
+/**
+ * setting the desired priority to be displayed as selected button, avoiding form submitting
+ * @param {string} prio - input for the desired priority for the function
+ * @param {string} event - event catching
+ */
 function selectPrio(prio, event) {
   event.preventDefault();
   document
@@ -135,7 +144,6 @@ function toggleSubtasksInput() {
   let field = document.getElementById("subtasks");
   let hiddenicons = document.getElementById("subtask-active-icons");
   let plusicon = hiddenicons.nextElementSibling;
-
   field.disabled ? (field.disabled = false) : (field.disabled = true);
   if (field.disabled == false) {
     field.focus();
@@ -283,7 +291,10 @@ function renderSubtasks() {
     container.innerHTML += displaySubtask(task,i);
   }
 }
-
+/**
+ * When writing the subtask, checking if enter is pressed to save the subtask
+ * @param {string} event - Event Object
+ */
 function checkEnter(event) {  
   event.preventDefault();
   if (event.key === 'Enter' || event.keyCode === 13) {    

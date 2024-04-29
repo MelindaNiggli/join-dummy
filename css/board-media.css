@@ -36,12 +36,8 @@
 
 @media (max-width: 1250px) {
 
-  .details {
-    position: absolute;
+  .details {    
     z-index: 100;
-  }
-  #task-details{
-    position: static;
   }
   #add-task-button {
     position: relative;
@@ -80,23 +76,6 @@
   .task-bucket {
     max-height: 570px;
   }
-
-  /* .task-date {
-    width: 100%;
-  }
-  .task-bucket {
-    gap: 16px;
-  }
-  #info-assigned, #info-subtasks {
-    gap: 8px;
-  }    
-  .task-details-text, .task-date, .task-priority, #task-details span, div {
-    font-size: 16px;
-  }
-  .info-st-img img {
-    width: 16px;
-    height: 16px;
-  } */
 }
 
 @media (max-width: 1100px) {

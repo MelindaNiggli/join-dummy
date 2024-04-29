@@ -1,9 +1,8 @@
-/**
- * Represents the task categories.
- * @type {Array.<string>}
- */
 let columns = ["todo", "progress", "feedback", "done"];
 
+/**
+ * Updates the board of tasks setting emptycolumns
+ */
 async function updateTasks() {
   await loadTasks();
   emptyColumns();
@@ -103,14 +102,9 @@ function filterTasks() {
       found++;
       let container = document.getElementById(`task_${task.category}`);
       container.innerHTML += renderTaskHTML(task, i);
-      showAssigned(task, task.assigned, i);
-    }
+      showAssigned(task, task.assigned, i);}
   }
-  if (found === 0) {    
-    alert.classList.remove('d-none');
-  } else {
-    alert.classList.add('d-none');
-  }
+  (found === 0) ? alert.classList.remove('d-none') : alert.classList.add('d-none');  
   setNoTaskBox();
 }
 
@@ -173,7 +167,6 @@ function removeHighlight(id) {
 /**
  * Toggles the visibility of the floating add task container.
  */
-
 function toggleFloatingAddTask(column) {
   let maincontainer = document.body;
   let container = document.getElementById("blockcontainer");
@@ -191,10 +184,16 @@ function toggleFloatingAddTask(column) {
   }
 }
 
+/**
+ * Function to reload the page
+ */
 function reload() {
   window.location.reload();
 }
 
+/**
+ * Function to toggle the block container
+ */
 function toggleBlock() {
   let container = document.getElementById("blockcontainer");
   let floatingcontainer = document.getElementById("add-task-container");
@@ -210,14 +209,18 @@ function toggleBlock() {
 function openTaskInfo(index) {
   let bodycontainer = document.body;
   let task = tasks[index];
-  let details = document.getElementById("task-details-container");
-  bodycontainer.style.overflow = 'hidden';
+  let details = document.getElementById("task-details-container");  
   details.innerHTML = "";
   details.innerHTML = renderTaskInfoHTML(task, index);
   let container = document.getElementById("task-details");
   container.classList.add("slidein");
+  bodycontainer.style.overflow = 'hidden';
 }
 
+/**
+ * Function to capitalize the first letter of a string
+ * @param {string} str - string to be capitalized
+ */
 function capitalizeString(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -235,9 +238,7 @@ function renderInfoAssigned(index) {
     const usercolor = assigned[i][1];
     container.innerHTML += `
     <div class="flex gap-s">
-      <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(
-      user
-    )}</div>
+      <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(user)}</div>
       <span>${user}</span>
     </div>
     `;
@@ -255,9 +256,7 @@ function renderInfoSubtasks(index) {
   for (let i = 0; i < subtasks.length; i++) {
     const st = subtasks[i];
     container.innerHTML += `
-    <div class="flex gap-s info-st-img" id="st${i}" onclick="toggleInfoSubtask(${index},${i},${
-      st[1]
-    })">
+    <div class="flex gap-s info-st-img" id="st${i}" onclick="toggleInfoSubtask(${index},${i},${st[1]})">
       <img src="./img/${checkChecked(st)}.svg" alt="checkbox">
       ${st[0]}
     </div>    
@@ -274,6 +273,10 @@ function checkChecked(st) {
   return st[1] == 0 ? "checkbox" : "checkedbox";
 }
 
+/**
+ * Function to remove a task from the board and saving the task object to remote storage
+ * @param {number} index - index of the task
+ */
 async function removeTask(index) {
   hideDetailsContainer();
   tasks.splice(index, 1);
@@ -281,6 +284,12 @@ async function removeTask(index) {
   updateTasks();
 }
 
+/**
+ * Function to toggle the subtask (done or not done)
+ * @param {number} taskindex - index of the maintask
+ * @param {number} subtaskindex - index of the subtask of the main task
+ * @param {number} subtaskchecked - value if the subtask is done or not
+ */
 async function toggleInfoSubtask(taskindex, subtaskindex, subtaskchecked) {
   let subcheck = subtaskchecked;
   subcheck == 0 ? (subcheck = 1) : (subcheck = 0);
@@ -290,6 +299,9 @@ async function toggleInfoSubtask(taskindex, subtaskindex, subtaskchecked) {
   updateTasks();
 }
 
+/**
+ * Function to close the task info container 
+ */
 function closeTaskInfo() {
   let bodycontainer = document.body;
   let container = document.getElementById("task-details");
@@ -308,81 +320,10 @@ function hideDetailsContainer() {
   document.getElementById("detailsContainer").classList.add("d-none");
 }
 
-function openTaskEdit(index) {
-  let task = tasks[index];
-  subtasks = tasks[index].subtasks;
-  assigned = tasks[index].assigned;
-  let details = document.getElementById("task-details-container");
-  details.innerHTML = `
-  <div id="detailsContainer" class="details">
-    <div id="task-details">
-      <form action="javascript:void(0);" onsubmit="saveEditTask(${index})" onkeydown="return event.key != 'Enter';">
-        <div class="task-and-close-container">
-          <div></div>
-          <img src="./img/close.svg" class="close-task" onclick="closeTaskInfo()">
-        </div>
-        <div class="task-bucket">        
-          <div class="taskbranch">
-              <span>Title</span>
-              <input type="text" id="title" placeholder="Enter a title" maxlength="40" value="${task.title}" required>
-            </div>
-            <div class="taskbranch">
-              <span>Description</span>
-              <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description" maxlength="105">${task.description}</textarea>
-            </div>
-            <div class="taskbranch">
-              <span>Due date</span>
-              <input type="date" id="duedate" value="${task.date}"required>
-            </div>
-            <div class="taskbranch">
-              <span>Prio</span>
-              <div class="buttonbox">
-                <button class="priobutton" id="urgent" onclick="selectPrio(id, event)">Urgent <img src="./img/upTask.svg" alt="urgent"></button>
-                <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id, event)">Medium <img src="./img/medium.svg" alt="medium"></button>
-                <button class="priobutton" id="low" onclick="selectPrio(id, event)">Low <img src="./img/downTask.svg" alt="low"></button>
-              </div>
-            </div>
-            <div class="taskbranch">
-              <span>Assigned to</span>
-              <div class="assigned-wrapper">
-                <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
-                <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
-                <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
-                </div>   
-              </div>                     
-              <div id="tag-container" class="flex gap-ss"></div>
-            </div>
-            <div class="taskbranch">
-            <span>Subtasks</span>
-            <div class="relative">             
-              <input type="text" id="subtasks" placeholder="Add new subtask" onkeyup="checkEnter(event)" disabled>             
-              <div class="iconcontainer">
-                <div class="invis" id="subtask-active-icons">
-                  <div class="x-icon flex" onclick="clearInput()"><img src="./img/close.svg" alt="x"></div>                
-                  <img src="./img/vertbar.png" alt="divider">
-                  <div class="x-icon flex" onclick="assignSubtask(), clearInput()"><img src="./img/checksmall.png" alt="check"></div>
-                </div>
-                <div class="x-icon flex pad" onclick="toggleSubtasksInput()"><img src="./img/add.svg" alt="plus"></div>
-              </div>
-              <div id="created-subtasks-container">                           
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex between wide">
-          <div></div>
-          <button class="info-ok-button" type="submit">Ok<img src="./img/check.svg" alt="check"></button>
-        </div>
-      </form>
-    </div>
-  </div>  
-  `;
-  selectPrio(task.priority, event);
-  displayUserMenu();
-  renderAssignedUsers();
-  renderSubtasks();
-}
-
+/**
+ * Saving the changes of the edit task feature
+ * @param {number} index - index of the task
+ */
 async function saveEditTask(index) {
   let task = tasks[index];
   task.title = document.getElementById("title").value;
@@ -395,106 +336,27 @@ async function saveEditTask(index) {
   setTimeout(reload(), 500);
 }
 
+/**
+ * toggling the task burger menu in responsive mode, stoping the opentaskinfo function
+ * with an event stopPropagation
+ * @param {number} index - index of the task
+ * @param {event} event - event object
+ */
 function toggleTaskBurger(index,event) {
   event.stopPropagation();
   let popupcontainer = document.getElementById(`taskpopup${index}`);
   popupcontainer.classList.toggle('d-none');
 }
 
+/**
+ * function to move a task via burger menu to another category
+ * @param {string} category - user-selected category
+ * @param {number} index - index of the task
+ * @param {event} event - event object
+ */
 async function burgerMoveTo(category,index,event) {
   event.stopPropagation();
   tasks[index]["category"] = category;
   await setItem("taskobject", JSON.stringify(tasks));
   updateTasks();
-}
-
-
-
-/**
- * Renders the HTML structure for a task box.
- * @param {object} task - The task object containing details like title, description, subtasks, etc.
- * @param {number} index - The index of the task.
- * @returns {string} - The HTML structure for the task box.
- */
-function renderTaskHTML(task, index) {
-  return `
-  <div onclick="openTaskInfo(${index}),renderInfoAssigned(${index}),renderInfoSubtasks(${index})" id="id${index}" 
-     class="taskbox task" draggable="true" ondragstart="dragStart(${index})" ondragover="">
-    <div class="flex between wide burger-wrapper">
-      <div class="${task.label.toLowerCase().split(" ").join("")} flex center">${task.label}</div>
-      <div class="flex center paddot" onclick="toggleTaskBurger(${index},event)"><img src="./img/dots.png" alt="move" id="task-burger"></div>
-      <div id="taskpopup${index}"  class="taskpopup d-none">        
-        <p>Move to:</p>
-        <div class="task-burger-divider"></div>
-        <p onclick="burgerMoveTo('todo',${index},event)">To do</p>
-        <p onclick="burgerMoveTo('progress',${index},event)">In progress</p>
-        <p onclick="burgerMoveTo('feedback',${index},event)">Await&nbspfeedback</p>
-        <p onclick="burgerMoveTo('done',${index},event)">Done</p>        
-      </div>
-    </div>
-    <div class="flex column gap-ss">
-      <h3 class="start">${task.title}</h3>
-      <p class="start">${task.description}</p>
-    </div>
-    <div class="barbox" id="bar${index}">
-      <div class="barcontainer">
-        <div class="bar" style="width: ${calcBar(task)}%;"></div>
-      </div>
-      <span>${calcChecked(task)}/${task.subtasks.length}&nbspSubtasks</span>
-    </div>
-    <div class="flex between wide">
-      <div class="flex wrapper" id="userbox${index}">        
-      </div>
-    <img src="./img/${task.priority}.png" alt="priority">
-    </div>              
-  </div> 
-  `;
-}
-
-/**
- * Renders the HTML structure for the task details panel.
- * @param {object} task - The task object containing details like title, description, subtasks, etc.
- * @returns {string} - The HTML structure for the task details panel.
- */
-function renderTaskInfoHTML(task, index) {
-  return `
-  <div id="detailsContainer" class="details">
-    <div id="task-details">
-      <div class="task-and-close-container">
-        <div class="${task.label
-          .toLowerCase()
-          .split(" ")
-          .join("")} flex center">${task.label}</div>
-        <img src="./img/close.svg" class="close-task" onclick="closeTaskInfo()">
-      </div>
-      <div class="task-bucket">       
-        <h2 class="task-details-header">${task.title}</h2>
-        <p class="task-details-text">${task.description}</p>
-        <div class="task-date">Due Date: ${task.date}</div>
-        <div class="task-priority">Priority: ${capitalizeString(
-          task.priority
-        )} <img src="./img/${task.priority}.png" alt="priority"></div>
-        <div class="task-assigned">
-          <span>Assigned to: </span>
-          <div id="info-assigned"></div>
-        </div> 
-        <div class="task-assigned">
-          <span>Subtasks</span>
-          <div id="info-subtasks"></div>    
-        </div>
-      </div>  
-      <div class="info-buttons-container">
-        <div class="info-button-delete" onclick="removeTask(${index})">
-          <img src="./img/delete.svg" alt="delete">
-          Delete
-        </div>
-        <img src="./img/VectorLinie.svg" alt="divider">
-        <div class="info-button-edit" onclick="openTaskEdit(${index})">
-          <img src="./img/edit.svg" alt="edit">
-          Edit
-        </div>
-      </div>     
-    </div>
-  </div>
-`;
 }
