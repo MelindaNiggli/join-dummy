@@ -11,12 +11,11 @@
     <script src="./js/script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
-    <script src="./js/addtask.js"></script>
-    <script src="./js/summary.js"></script>
+    <script src="./js/addtask.js"></script>    
     <script src="./js/logout.js"></script>
     <script src="./js/login.js"></script>
   </head>
-  <body onload="includeHTML();init();getAndDisplayUserNameHeader();getAndDisplayUserName()">
+  <body onload="includeHTML();initSummary();getAndDisplayUserNameHeader();getAndDisplayUserName()">
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>
     <main>
@@ -26,7 +25,6 @@
         <p class="headline-text">Key Metrics at a Glance</p>
         <div class="line-mobile"></div>
       </div>
-
       <div class="summary-board-container">
         <div class="todo-container">
           <div class="to-do">

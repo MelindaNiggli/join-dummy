@@ -1,7 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-  displayCurrentDate();
-});
 /**
  * Updates the task counts for each status and displays them.
  * @param {Array} tasks - The array of tasks.
@@ -63,8 +59,6 @@ function updateGreeting() {
   }
 }
 
-updateGreeting();
-
 function displayCurrentDate() {
   const urgentCount = countUrgentTasks(tasks); // Verwende die vorhandene Funktion, um die Anzahl der dringenden Aufgaben zu erhalten
   const deadlineCountElement = document.getElementById("urgentAmount");
@@ -89,5 +83,18 @@ function displayCurrentDate() {
 function formatDate(date) {
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   return new Date(date).toLocaleDateString('en-US', options);
+}
+
+/**
+ * Initializes the application by loading users and tasks, and updating task counts.
+ */
+async function initSummary() {
+  await getLoggedInUser();
+  await loadUsers();
+  await loadTasks();
+  updateTaskCounts(tasks);
+  countUrgentTasks(tasks);
+  updateGreeting();
+  displayCurrentDate()
 }
 
