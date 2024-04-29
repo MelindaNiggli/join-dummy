@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-  displayCurrentDate();
+document.addEventListener('DOMContentLoaded', async function() {
+  await init()
+  await displayCurrentDate();
 });
 /**
  * Updates the task counts for each status and displays them.
@@ -28,7 +28,7 @@ function updateTaskCounts(tasks) {
  * Counts the number of urgent tasks and displays them.
  * @param {Array} tasks - The array of tasks.
  */
-function countUrgentTasks(tasks) {
+function countUrgentTasks() {
   let urgentCount = 0;
 
   for (let i = 0; i < tasks.length; i++) {
@@ -36,7 +36,12 @@ function countUrgentTasks(tasks) {
       urgentCount++;
     }
   }
-  document.getElementById("urgentAmount").textContent = urgentCount;
+
+  const urgentAmountElement = document.getElementById("urgentAmount");
+  if (urgentAmountElement) {
+    urgentAmountElement.textContent = urgentCount;
+  }
+
   return urgentCount;
 }
 
@@ -65,8 +70,9 @@ function updateGreeting() {
 
 updateGreeting();
 
-function displayCurrentDate() {
-  const urgentCount = countUrgentTasks(tasks); // Verwende die vorhandene Funktion, um die Anzahl der dringenden Aufgaben zu erhalten
+
+async function displayCurrentDate() {
+  const urgentCount = countUrgentTasks(); // Verwende die vorhandene Funktion, um die Anzahl der dringenden Aufgaben zu erhalten
   const deadlineCountElement = document.getElementById("urgentAmount");
   if (deadlineCountElement) {
     deadlineCountElement.textContent = urgentCount;
