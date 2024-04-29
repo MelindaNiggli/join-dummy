@@ -1,8 +1,4 @@
 /**
- * Represents the array of users.
- * @type {Array}
- */
-/**
  * Represents the array of tasks.
  * @type {Array}
  */
@@ -79,7 +75,7 @@ function Task(category, label, title, description, date, subtasks, priority, ass
 }
 
 /**
- * Loads tasks from local storage.
+ * Loads tasks from remote storage
  * @async
  */
 async function loadTasks() {
@@ -91,7 +87,7 @@ async function loadTasks() {
 }
 
 /**
- * Loads users from local storage.
+ * Loads users from remote storage
  * @async
  */
 async function loadUsers() {
@@ -102,6 +98,10 @@ async function loadUsers() {
     }
 }
 
+/**
+ * Loads Contacts from remote storage
+ * 
+ */
 async function loadContacts() {
     try {
         contacts = JSON.parse(await getItem('contactUsers'));
@@ -153,8 +153,6 @@ async function getLoggedInUser() {
  *  Funktion zum Abrufen und Anzeigen des Benutzernamens
  * 
  */
-
-
 async function getAndDisplayUserName() {
     try {
         if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
@@ -179,7 +177,6 @@ async function getAndDisplayUserName() {
  * Funktion bei der, der Benutzername im Header steht und der Benutzer wird in Conatct gepusht
  * 
  */
-
 async function getAndDisplayUserNameHeader() {
     try {
         if (isLoggedIn()) {
@@ -199,7 +196,6 @@ async function getAndDisplayUserNameHeader() {
                 }
                 headerShortName.innerHTML = user.userInformation.name.slice(0, 2).toUpperCase();
                 headerShortName.style.transform = 'translateX(0)';
-
             } 
         }
     } catch (error) {
@@ -207,7 +203,9 @@ async function getAndDisplayUserNameHeader() {
     }
 }
 
-
+/**
+ * Toggles the header popup menu
+ */
 function openPopUp() {
     let popupContainer = document.getElementById("popupContainer");
     if (popupContainer.style.display === "block") {
@@ -219,7 +217,6 @@ function openPopUp() {
 
 /**
  * Initializes the application by loading users and tasks, and updating task counts.
- * @async
  */
 async function init() {
     await getLoggedInUser();
