@@ -1,7 +1,6 @@
 
 async function init(){
     await loadContactUsers();
-    // Rufe die Funktion auf, um alle Benutzer zu löschen
     // Für den Reset : await clearExistingUsers();
     templateWrapperInfo();
 }
@@ -61,23 +60,7 @@ async function saveUser(){
     existingUsers = existingUsers ? JSON.parse(existingUsers) : [];
 
     // Array mit verfügbaren Farben
-    const colors = [
-        '#0038FF',
-        '#00BEE8',
-        '#1FD7C1',
-        '#6E52FF',
-        '#9327FF', 
-        '#C3FF2B',
-        '#FC71FF',
-        '#FF4646',
-        '#FF5EB3',
-        '#FF745E',
-        '#FF7A00',
-        '#FFA35E',
-        '#FFBB2B',
-        '#FFC701',
-        '#FFE62B'
-    ];
+    const colors = ['#0038FF','#00BEE8','#1FD7C1','#6E52FF','#9327FF', '#C3FF2B','#FC71FF','#FF4646','#FF5EB3','#FF745E','#FF7A00','#FFA35E','#FFBB2B','#FFC701','#FFE62B'];
 
     // Zufällige Farbe auswählen
     const color = colors[Math.floor(Math.random() * colors.length)];
@@ -92,8 +75,8 @@ async function saveUser(){
 
     // Speichern des aktualisierte Arrays im Remote-Speicher
     await setItem('contactUsers', JSON.stringify(existingUsers));
-
     await loadContactUsers();
+    messageSuccessfullyCreated();
     resetForm();
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
@@ -103,6 +86,25 @@ async function saveUser(){
     }, 500); 
 }
     
+
+function messageSuccessfullyCreated(){
+    const msg =  document.getElementById('messageBoxCreated')
+    msg.innerHTML = `Contact succesfully created `;
+    msg.style.display = 'block';
+    msg.style.background = 'var(--join-black)';
+    msg.style.padding = '25px';
+    msg.style.borderRadius = '20px';
+    msg.style.color = 'white';
+    msg.style.fontSize ='20px'
+
+    setTimeout(function() {
+        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transform = 'translateX(1000%)';
+    }, 1000); // Clears the message after 3 seconds (3000 milliseconds)
+
+}
+
+
 
 // Zurücksetzen des Formulars
 function resetForm(){
@@ -349,8 +351,10 @@ function messageDeleted(name){
     msg.style.color = 'white';
     msg.style.fontSize ='20px';
     setTimeout(function() {
-        msg.innerHTML = ""; // Clears the content of the message box
-    }, 3000); // Clears the message after 3 seconds (3000 milliseconds)
+        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transform = 'translateX(1000%)';
+    }, 1000); // Clears the message after 3 seconds (3000 milliseconds)
+    showUserInfo();
 }
 
 /**
@@ -464,11 +468,10 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
 
 /**
  * Function to display a success message upon updating a user
- * @param {string} name - The name of the updated user
  */
-function messageSuccessfully(name){
+function messageSuccessfully(){
     const msg =  document.getElementById('messageBox')
-    msg.innerHTML = `User *${name}* updated successfully`;
+    msg.innerHTML = `User updated successfully`;
     msg.style.display = 'block';
     msg.style.background = 'var(--join-black)';
     msg.style.padding = '25px';
@@ -477,8 +480,8 @@ function messageSuccessfully(name){
     msg.style.fontSize ='20px'
 
     setTimeout(function() {
-        msg.innerHTML = ""; // Clears the content of the message box
-        msg.style.display = 'none';
+        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transform = 'translateX(1000%)';
     }, 1000); // Clears the message after 3 seconds (3000 milliseconds)
     showUserInfo();
 }

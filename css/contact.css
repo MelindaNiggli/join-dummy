@@ -347,7 +347,7 @@ color: var(--join-blue)!important;
 
 }
 
-#messageBox {
+#messageBox, #messageBoxCreated {
 	top: 100px;
 	right: 77px;
 	position: absolute;
