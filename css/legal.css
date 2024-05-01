@@ -1,6 +1,6 @@
 .legal-main {
   padding-inline: 80px;
-  padding-top: 100px;
+  padding-top: 100px;  
   background-color: white;
 }
 
@@ -36,6 +36,11 @@
   color: var(--join-blue) !important;
 }
 
+.main-content {
+  padding-bottom: 40px;
+}
+
+
 .main-content ul {
   padding-left: 20px;
 }
@@ -53,4 +58,33 @@
   gap: 0px;
   opacity: 0px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1250px) {
+  .legal-main {    
+    padding-top: 120px;    
+  }
+  .main-content {
+    padding-bottom: 120px;
+  }
+  .legal-headline {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .headline {
+    font-size: 47px;
+  }
+  .legal-main {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}
+
+@media only screen and (max-width: 383px) {
+  .headline {
+    line-height: unset;
+    margin-bottom: 40px;
+  }
 }
