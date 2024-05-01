@@ -19,6 +19,7 @@ body {
 .task {
   box-shadow: 0px 0px 4px #0000001a;
 }
+
 .to-do-left,
 .to-do-right,
 .task {
@@ -317,17 +318,70 @@ main * {
   }  
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 810px) {
+  .headline-container,
   .summary-board-container {
-    position: unset;
+    left: 10%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .summary-board-container {
+    position: static;
+  }
+  .headline-container {
+    position: relative;
+    left: -4%;
+  }
+  .headline-container {
+    top: unset;
+    gap: 12px;
   }
 
-  .summary-headline {
+  .date-line {
+    height: 68px;
+  }
+
+  .to-do-img,
+  .date-left img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .date-right {
     width: unset;
-    font-size: 47px;
-    line-height: 56.4px;
-    align-items: center;
-    display: flex;
+    height: 57px;
+    gap: 13px;
+  }
+
+  .actual-date {
+    width: unset;
+    font-size: 16px;
+  }
+
+  .date-text {
+    font-size: 14px;
+    width: unset;
+  }
+
+  .headline-container {
+    flex-direction: column;
+    align-items: flex-start;
+    width: unset;
+  }
+
+  .summary-board-container {
+    width: unset;
+    margin-top: 40px;
+  }
+
+  .line {
+    display: none;
+  }
+
+    .summary-headline {
+        font-size: 47px;
+        line-height: 56.4px;
     }
 
   .headline-text {
@@ -337,37 +391,13 @@ main * {
     text-align: left;
   }
 
-  .headline-container {
-    width: unset;
-  }
-
-
-}
-
-@media only screen and (max-width: 500px) {
-  main {
-    justify-content: space-evenly;
-  }
-  .headline-container {
-    width: unset;
-    height: unset;
-    position: unset;
-    flex-direction: column;
-    gap: 0;
-    margin-top: -40px;
-    align-items: flex-start;
-  }
-
-  .line {
-    display: none;
-  }
-
-  .summary-board-container {
-    width: unset;
-    height: unset;
-    position: unset;
-    gap: 10px;
-    padding-bottom: 24px;
+  .line-mobile {
+    display: flex;
+    width: 90px;
+    min-height: 3px;
+    background-color: var(--join-blue);
+    border-radius: 10px;
+    margin-top: 8px;
   }
 
   .todo-container {
@@ -382,33 +412,38 @@ main * {
   }
 
   .to-do-img {
-    height: 40px;
+    height: 56px;
   }
 
-  .to-do-right,
+  .to-do-right {
+    width: 142px;
+    padding-right: 44px;
+    height: 110px;
+  }
+
   .to-do-left {
     width: 142px;
-    padding: 16px 24px;
-    height: 90px;
-    gap: 10px;
+    padding-right: 24px;
+    height: 110px;
   }
 
   .date-container {
-    width: 323px;
+    width: 312px;
     gap: 12px;
-    padding: 8px;
-    height: 90px;
+    padding-left: 24px;
+    height: 110px;
   }
 
   .task-container {
-    width: 323px;
+    width: 312px;
     height: 110px;
-    gap: 20px;
+    gap: unset;
+    justify-content: space-between;
   }
 
   .task {
-    height: 90px;
-    padding: 12px;
+    height: 110px;
+    width: 90px;
   }
 
   .textColor {
@@ -422,16 +457,14 @@ main * {
   }
 
   .number {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 47px;
+    line-height: unset;
   }
 
-  .line-mobile {
-    display: block;
-    width: 90px;
-    height: 3px;
-    background-color: var(--join-blue);
-    border-radius: 10px;
-    margin-top: 8px;
+  .to-do-left:hover,
+  .to-do-right:hover,
+  .date-container:hover,
+  .task:hover {
+    transform: scale(1.02);
   }
 }
