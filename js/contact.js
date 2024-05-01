@@ -479,7 +479,6 @@ async function updateUser(name) {
         userToUpdate.name = nameInput;
         userToUpdate.email = email;
         userToUpdate.phone = phone;
-
          await setItem('contactUsers', JSON.stringify(existingUsers));  // Save the updated array to remote storage
          await loadContactUsers(); // Update the user list
          overlayTransform();
@@ -489,6 +488,7 @@ async function updateUser(name) {
     } else {
         console.log('User not found!');
     }
+
 }
 /**** FUNCTION TO CLOSE THE OVERLAY AND THE CONTACT USER EDIT FORM ****/
 function closeUpdate() {
