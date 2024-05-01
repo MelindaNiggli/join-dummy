@@ -35,8 +35,12 @@ button {
 	border-radius: 10px;
 	padding: 16px 0;
 	border: none;
+    cursor: POINTER;
 }
 
+.BT-Black,.contactUser, .cancle, .close{
+    cursor: pointer;
+}
 button.BT-Black:hover {
 	background: var(--join-blue);
 }
@@ -348,9 +352,24 @@ color: var(--join-blue)!important;
 }
 
 #messageBox, #messageBoxCreated {
-	top: 100px;
-	right: 77px;
-	position: absolute;
+    top: 100px;
+    right: 77px;
+    position: absolute;
+    background: var(--join-black);
+    padding: 25px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    color: white;
+    font-size: 20px;
+    display: block;
+    transform: translateX(1000%);
+    -webkit-transform: translateX(1000%);
+    -moz-transform: translateX(1000%);
+    -ms-transform: translateX(1000%);
+    -o-transform: translateX(1000%);
 }
 
 /* UPDATE */

@@ -75,7 +75,7 @@ main * {
   left: 328px;
   gap: 28px;
   display: flex;
-  flex-direction: column; /* Elemente untereinander anordnen */
+  flex-direction: column; 
 }
 
 .summary-greet-container {
@@ -317,27 +317,18 @@ main * {
   }
 }
 
-@media only screen and (max-width: 950px) {
-  .body {
-    overflow: hidden;
-  }
-  .headline-container {
-    top: 150px;
-  }
-
-  .headline-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .line {
-    display: none;
+@media only screen and (max-width: 1000px) {
+  .summary-board-container {
+    position: unset;
   }
 
   .summary-headline {
+    width: unset;
     font-size: 47px;
     line-height: 56.4px;
-  }
+    align-items: center;
+    display: flex;
+    }
 
   .headline-text {
     font-size: 20px;
@@ -346,52 +337,74 @@ main * {
     text-align: left;
   }
 
-  .line-mobile {
-    display: block;
-    width: 90px;
-    height: 3px;
-    background-color: var(--join-blue);
-    border-radius: 10px;
-    margin-top: 8px;
-    margin-bottom: 16px;
+  .headline-container {
+    width: unset;
   }
+
+
 }
 
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width: 500px) {
+  main {
+    justify-content: space-evenly;
+  }
+  .headline-container {
+    width: unset;
+    height: unset;
+    position: unset;
+    flex-direction: column;
+    gap: 0;
+    margin-top: -40px;
+    align-items: flex-start;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .summary-board-container {
+    width: unset;
+    height: unset;
+    position: unset;
+    gap: 10px;
+    padding-bottom: 24px;
+  }
+
   .todo-container {
     display: flex;
     justify-content: center !important;
-    width: 560px;
+    width: unset;
     gap: 32px;
   }
 
   .to-do-img {
-    height: 56px;
+    height: 40px;
   }
 
   .to-do-right,
   .to-do-left {
     width: 142px;
-    padding-right: 44px;
-    height: 110px;
+    padding: 16px 24px;
+    height: 90px;
+    gap: 10px;
   }
 
   .date-container {
     width: 323px;
-    margin-left: 116px;
     gap: 12px;
-    padding-left: 8px;
-    height: 110px;
+    padding: 8px;
+    height: 90px;
   }
 
   .task-container {
     width: 323px;
-    margin-left: 116px;
     height: 110px;
+    gap: 20px;
   }
 
   .task {
-    height: 110px;
+    height: 90px;
+    padding: 12px;
   }
 
   .textColor {
@@ -401,6 +414,16 @@ main * {
   }
 
   .number {
-    font-size: 47px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .line-mobile {
+    display: block;
+    width: 90px;
+    height: 3px;
+    background-color: var(--join-blue);
+    border-radius: 10px;
+    margin-top: 8px;
   }
 }

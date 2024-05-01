@@ -1,7 +1,6 @@
-/**
- * Array containing predefined colors for user registration
- * @type {string[]}
- */
+
+/**** ARRAY CONTAINING PREDIFENED COLORS FOR USER REGISTRATION ****/
+// @type {string[]}
 const colors = [
     '#0038FF',
     '#00BEE8',
@@ -20,10 +19,8 @@ const colors = [
     '#FFE62B'
 ];
 
-/**
- * Function to get a random color from the predefined array of colors
- * @returns {string} - A randomly selected color hex code
- */
+/**** FUNCTION TO GET RANDOM COLOR FROM THE PREDEFINED ARRAY OF COLORS ****/
+// @returns {string} - A randomly selected color hex code
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
@@ -43,12 +40,7 @@ async function hashPassword(password) {
     return hashHex;
 }
 
-
-
-
-/**
- * Function to display a red error message indicating password mismatch
- */
+/**** FUNCTION TO DISPLAY A ERROR MESSAGE ****/
 function messageRedPasswort() {
     const msg =  document.getElementById('messagePW');
     const input = document.getElementById('wrapperInputPW')
@@ -57,20 +49,15 @@ function messageRedPasswort() {
     input.style.margin = '0 0 8px 0 ';
 }
 
+/**** FUNCTION TO DISPLAY A ERROR MESSAGE INDICATING CHJECKBOX NOT CHECKED ****/
 
-/**
- * Function to display a red error message indicating checkbox not checked
- */
 function messageRedCheckbox() {
     const msg =  document.getElementById('MessageCheckBox');
     msg.innerHTML = `Please agree the Checkbox before proceeding!`;
     msg.style.display = 'flex';
 }
 
-
-/**
- * Function to display success message after successful registration
- */
+/**** FUNCTION TO DISPLAY SUCCES MESSAGE AFTER SUCCESSFUL REGISTRATION ****/
 function messageSuccessfully() {
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `You Signed Up successfully`
@@ -81,10 +68,7 @@ function messageSuccessfully() {
     msg.style.fontSize ='20px'
 }
 
-
-/**
- * Function to display a red error message indicating email already registered
- */
+/**** FUNCTION TO DISPLAY A ERROR MESSAGE INDICATIONG EMAIL ALREADY REGISTERED****/
 function messageEmailRegistered() {
     const msg =  document.getElementById('MessageEmail');
     const input = document.getElementById('wrapperInputEmail')
@@ -93,10 +77,7 @@ function messageEmailRegistered() {
     input.style.margin = '0 0 5px 0 ';
 }
 
-
-/**
- * Function to add a user to the system after validation
- */
+/**** FUNCTION TO ADD A USER TO THE SYSTEM AFTER VALIDATION****/
 async function addUser() {
     let checkbox = document.getElementById('remember-me');
     const hashedPassword = await hashPassword(password.value);
@@ -129,10 +110,7 @@ async function addUser() {
     }
 }
 
-
-/**
- * Function to reset the registration form
- */
+/**** FUNCTION TO RESET THE VALIDATION FORM ****/
 function resetForm() {
     nameUser.value = '';
     email.value = '';
