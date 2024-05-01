@@ -70,7 +70,6 @@ function updateGreeting() {
 
 updateGreeting();
 
-
 async function displayCurrentDate() {
   const urgentCount = countUrgentTasks(); // Verwende die vorhandene Funktion, um die Anzahl der dringenden Aufgaben zu erhalten
   const deadlineCountElement = document.getElementById("urgentAmount");
@@ -82,9 +81,7 @@ async function displayCurrentDate() {
     const earliestDate = tasks
       .filter(task => task.priority === "urgent") // Filtere die dringenden Aufgaben
       .map(task => new Date(task.date)) // Wandle das Fälligkeitsdatum in ein Date-Objekt um
-      .reduce((a, b) => (a < b ? a : b)); // Finde das früheste Datum
-
-    console.log('Frühestes Datum:', earliestDate); // Hinzugefügte console.log für das früheste Datum
+      .reduce((a, b) => (a < b ? a : b)); // Finde das früheste Datum    
 
     const deadlineElement = document.getElementById("currentDate");
     deadlineElement.textContent = formatDate(earliestDate);
@@ -96,4 +93,5 @@ function formatDate(date) {
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   return new Date(date).toLocaleDateString('en-US', options);
 }
+
 

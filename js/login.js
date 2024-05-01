@@ -115,9 +115,6 @@ async function hashPassword(password) {
  * Function to handle user login
  * 
  */
-
-let loggedInUser = []; 
-
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
