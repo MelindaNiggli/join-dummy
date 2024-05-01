@@ -74,7 +74,7 @@ main * {
   left: 328px;
   gap: 28px;
   display: flex;
-  flex-direction: column; /* Elemente untereinander anordnen */
+  flex-direction: column; 
 }
 
 .summary-greet-container {
@@ -378,10 +378,10 @@ main * {
     display: none;
   }
 
-  .summary-headline {
-    font-size: 47px;
-    line-height: 56.4px;
-  }
+    .summary-headline {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
 
   .headline-text {
     font-size: 20px;
