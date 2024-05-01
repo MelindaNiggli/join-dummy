@@ -100,10 +100,14 @@ function messageSuccessfullyCreated(){
     const msg =  document.getElementById('messageBoxCreated')
     msg.innerHTML = `Contact succesfully created `;
     msg.style.transform = 'translateX(0%)';
+    msg.style.display = 'block';
     setTimeout(function() {
-        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transition = 'transform ease-in 1s';
         msg.style.transform = 'translateX(1000%)';
-    }, 2000); // Clears the message after 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+            msg.style.display = 'none';
+        }, 1); // Wait for the transition to complete before hiding the message box
+    }, 2000); 
 }
 
 /**** OVERLAY TRANSFORM  ****/
@@ -266,6 +270,15 @@ function ButtonHover(){document.getElementById('BTC').src = './img/close-blue.sv
 function ButtonHoverOut(){document.getElementById('BTC').src = './img/iconoir_cancel.svg';}
 
 
+function hoverClose(){if (window.innerWidth >= 1075) {document.getElementById('closeImg').src = './img/closeWhite.svg';}}
+function hoverCloseOut(){if (window.innerWidth >= 1075) {document.getElementById('closeImg').src = './img/close.svg';}}
+function hoverNewClose(){if (window.innerWidth >= 1075) {document.getElementById('closeImgNew').src = './img/closeWhite.svg';}}
+function hoverNewCloseOut(){if (window.innerWidth >= 1075) {document.getElementById('closeImgNew').src = './img/close.svg';}}
+
+
+
+
+
 
 /**** FUNCTION TO GENERATE THE HTML FOR DISPLAYING USER INFORMATION****/
 /*
@@ -315,19 +328,20 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
 
 /**** DELETED MESSAGE ****/
 function messageDeleted(name){
-    const msg =  document.getElementById('messageBox')
-    msg.innerHTML = `User *${name}*  deleted successfully`;
-    msg.style.background = 'var(--join-black)';
-    msg.style.padding = '25px';
-    msg.style.borderRadius = '20px';
-    msg.style.color = 'white';
-    msg.style.fontSize ='20px';
+    const msg = document.getElementById('messageBox');
+    msg.innerHTML = `User *${name}* deleted successfully`;
+    msg.style.display = 'block';
+    msg.style.transform = 'translateX(0%)';
     setTimeout(function() {
-        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transition = 'transform ease-in 1s';
         msg.style.transform = 'translateX(1000%)';
+        setTimeout(function() {
+            msg.style.display = 'none';
+        }, 1); // Wait for the transition to complete before hiding the message box
     }, 2000); 
     showUserInfo();
 }
+
 
 /**** DELETED CONTACT FUNCTION ****/
 // @param {string} name - The name of the user to delete
@@ -403,7 +417,7 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
         </div>
     </div>
     <div class="wrapper-right">
-        <div id="close"><img  id="closeImg" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()"></div>
+        <div id="close"  onmouseover="hoverClose()"  onmouseout="hoverCloseOut()"><img  id="closeImg" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()"></div>
         <div class="badge edit " style="background: ${color};">
         <p>${firstTwoChars}</p>
         </div>
@@ -438,9 +452,13 @@ function messageSuccessfully(){
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `User updated successfully`;
     msg.style.transform = 'translateX(0%)';
+    msg.style.display = 'block';
     setTimeout(function() {
-        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transition = 'transform ease-in 1s';
         msg.style.transform = 'translateX(1000%)';
+        setTimeout(function() {
+            msg.style.display = 'none';
+        }, 1); // Wait for the transition to complete before hiding the message box
     }, 2000); 
     showUserInfo();
 }
