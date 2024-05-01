@@ -80,8 +80,8 @@ function ContentLogin() {
         <a href="./registartion.html">Sign up</a>
     </div>
     <footer>
-        <a href="./privacy.html">Privacy Policy</a>
-        <a href="./legal.html">Legal Notice</a>
+        <a href="./saveprivacy.html">Privacy Policy</a>
+        <a href="./savelegal.html">Legal Notice</a>
     </footer>
     `;
 }
