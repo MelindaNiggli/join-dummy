@@ -82,7 +82,7 @@ span.linie {
 
 .profileBadge {
 	height: 42px;
-	width: 42px;
+	min-width: 42px;
 	font-size: 12px;
 	color: white;
 	border-radius: 50%;

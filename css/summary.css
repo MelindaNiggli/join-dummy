@@ -7,7 +7,6 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 625px;
   height: 73px;
   top: 206px;
   left: 328px;
@@ -187,7 +186,7 @@ main * {
 }
 
 .date-line {
-  width: 2px;
+  min-width: 2px;
   height: 102.02px;
   display: block;
   background-color: rgba(209, 209, 209, 1);
@@ -310,24 +309,69 @@ main * {
   .headline-container {
     top: 120px;
     left: 20%;
+    width: 560px;
   }
   .summary-board-container {
     top: 249px;
     left: 20%;
+  }  
+}
+
+@media only screen and (max-width: 810px) {
+  .headline-container,
+  .summary-board-container {
+    left: 10%;
   }
 }
 
-@media only screen and (max-width: 950px) {
-  .body {
-    overflow: hidden;
+@media only screen and (max-width: 650px) {
+  .summary-board-container {
+    position: static;
   }
   .headline-container {
-    top: 150px;
+    position: relative;
+    left: -4%;
+  }
+  .headline-container {
+    top: unset;
+    gap: 12px;
+  }
+
+  .date-line {
+    height: 68px;
+  }
+
+  .to-do-img,
+  .date-left img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .date-right {
+    width: unset;
+    height: 57px;
+    gap: 13px;
+  }
+
+  .actual-date {
+    width: unset;
+    font-size: 16px;
+  }
+
+  .date-text {
+    font-size: 14px;
+    width: unset;
   }
 
   .headline-container {
     flex-direction: column;
     align-items: flex-start;
+    width: unset;
+  }
+
+  .summary-board-container {
+    width: unset;
+    margin-top: 40px;
   }
 
   .line {
@@ -347,51 +391,58 @@ main * {
   }
 
   .line-mobile {
-    display: block;
+    display: flex;
     width: 90px;
-    height: 3px;
+    min-height: 3px;
     background-color: var(--join-blue);
     border-radius: 10px;
     margin-top: 8px;
-    margin-bottom: 16px;
   }
-}
 
-@media only screen and (max-width: 460px) {
   .todo-container {
     display: flex;
-    justify-content: center !important;
-    width: 560px;
-    gap: 32px;
+    width: 312px;
+    gap: unset;
+  }
+
+  .to-do {
+    gap: unset;
+    width: 100%;
   }
 
   .to-do-img {
     height: 56px;
   }
 
-  .to-do-right,
-  .to-do-left {
+  .to-do-right {
     width: 142px;
     padding-right: 44px;
     height: 110px;
   }
 
+  .to-do-left {
+    width: 142px;
+    padding-right: 24px;
+    height: 110px;
+  }
+
   .date-container {
-    width: 323px;
-    margin-left: 116px;
+    width: 312px;
     gap: 12px;
-    padding-left: 8px;
+    padding-left: 24px;
     height: 110px;
   }
 
   .task-container {
-    width: 323px;
-    margin-left: 116px;
+    width: 312px;
     height: 110px;
+    gap: unset;
+    justify-content: space-between;
   }
 
   .task {
     height: 110px;
+    width: 90px;
   }
 
   .textColor {
@@ -400,7 +451,19 @@ main * {
     padding-bottom: 8px;
   }
 
+  .min-width {
+    min-width: 50px;
+  }
+
   .number {
     font-size: 47px;
+    line-height: unset;
+  }
+
+  .to-do-left:hover,
+  .to-do-right:hover,
+  .date-container:hover,
+  .task:hover {
+    transform: scale(1.02);
   }
 }
