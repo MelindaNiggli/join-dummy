@@ -75,7 +75,7 @@ main * {
   left: 328px;
   gap: 28px;
   display: flex;
-  flex-direction: column; /* Elemente untereinander anordnen */
+  flex-direction: column; 
 }
 
 .summary-greet-container {
@@ -338,15 +338,38 @@ main * {
     background-color: var(--join-blue);
     border-radius: 10px;
     margin-top: 8px;
-    margin-bottom: 16px;
   }
 }
 
 @media only screen and (max-width: 460px) {
+  main {
+    justify-content: space-evenly;
+  }
+  .headline-container {
+    width: unset;
+    height: unset;
+    position: unset;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .summary-board-container {
+    width: unset;
+    height: unset;
+    position: unset;
+    gap: 10px
+    /* margin-top: 56px; */
+  }
+
   .todo-container {
     display: flex;
     justify-content: center !important;
-    width: 560px;
+    width: unset;
     gap: 32px;
   }
 
@@ -363,7 +386,7 @@ main * {
 
   .date-container {
     width: 323px;
-    margin-left: 116px;
+    /* margin-left: 116px; */
     gap: 12px;
     padding-left: 8px;
     height: 110px;
@@ -371,8 +394,9 @@ main * {
 
   .task-container {
     width: 323px;
-    margin-left: 116px;
+    /* margin-left: 116px; */
     height: 110px;
+    gap: 24px;
   }
 
   .task {
