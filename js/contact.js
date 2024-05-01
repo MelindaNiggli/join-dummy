@@ -1,22 +1,18 @@
-
+/**** FUNCRTION TO INITALIZIEZE THE APLICATION****/
 async function init(){
     await loadContactUsers();
-    // Rufe die Funktion auf, um alle Benutzer zu löschen
-    // Für den Reset : await clearExistingUsers();
     templateWrapperInfo();
+     // Für den Reset : await clearExistingUsers();
 }
 
-
-// RESET FUNKTION UM ALLES ZU LÖCHEN
+/**** RESET FUNCTION TO CLEAR ALL ****/
 async function clearExistingUsers() {
-    // Setze die Benutzerliste auf ein leeres Array
-    let existingUsers = [];
-    // Speichere die geleerte Benutzerliste
-    await setItem('contactUsers', existingUsers);
+    let existingUsers = [];// Setze die Benutzerliste auf ein leeres Array
+    await setItem('contactUsers', existingUsers); // Speichere die geleerte Benutzerliste
     console.log('Alle Benutzer erfolgreich gelöscht.');
 }
 
-
+/**** HTML TEMPLATE WRAPPER INFO RIGHT  ****/
 function templateWrapperInfo(){
     const wrapper =  document.getElementById('wrapperInfo');
     wrapper.innerHTML += `
@@ -33,9 +29,7 @@ function templateWrapperInfo(){
     }
   }
 
-/**** SAVE USER TO LIST ****/
-
-
+/**** SAVE CONTACT TO LIST ****/
 function addNewContact() {
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
@@ -54,34 +48,15 @@ function addNewContact() {
     }
 }
 
-
+/****  SAVE CONTACT  ****/
 async function saveUser(){
     // Zuerst laden Sie die vorhandenen Benutzer aus dem Remote-Speicher
     let existingUsers = await getItem('contactUsers');
     existingUsers = existingUsers ? JSON.parse(existingUsers) : [];
-
     // Array mit verfügbaren Farben
-    const colors = [
-        '#0038FF',
-        '#00BEE8',
-        '#1FD7C1',
-        '#6E52FF',
-        '#9327FF', 
-        '#C3FF2B',
-        '#FC71FF',
-        '#FF4646',
-        '#FF5EB3',
-        '#FF745E',
-        '#FF7A00',
-        '#FFA35E',
-        '#FFBB2B',
-        '#FFC701',
-        '#FFE62B'
-    ];
-
+    const colors = ['#0038FF','#00BEE8','#1FD7C1','#6E52FF','#9327FF', '#C3FF2B','#FC71FF','#FF4646','#FF5EB3','#FF745E','#FF7A00','#FFA35E','#FFBB2B','#FFC701','#FFE62B'];
     // Zufällige Farbe auswählen
     const color = colors[Math.floor(Math.random() * colors.length)];
-
    // Neuen User Pushen 
     existingUsers.push({
         name: nameUser.value,
@@ -89,11 +64,10 @@ async function saveUser(){
         phone: phoneUser.value,
         color: color
     });
-
     // Speichern des aktualisierte Arrays im Remote-Speicher
     await setItem('contactUsers', JSON.stringify(existingUsers));
-
     await loadContactUsers();
+    messageSuccessfullyCreated();
     resetForm();
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
@@ -101,10 +75,19 @@ async function saveUser(){
     setTimeout(function() {
         overlay.style.display = 'none';
     }, 500); 
-}
-    
 
-// Zurücksetzen des Formulars
+    // Überprüfen, ob ein Element für den Anfangsbuchstaben bereits vorhanden ist
+    const firstChar = nameUser.value.charAt(0).toUpperCase();
+    const existingCharElement = document.querySelector(`.Buchstabe[data-char="${firstChar}"]`);
+    if (!existingCharElement) {
+        const allUsersContainer = document.getElementById('allUsers');
+        allUsersContainer.innerHTML += `<p class="Buchstabe" data-char="${firstChar}">${firstChar}</p><span class="linie"></span>`;
+    }
+}
+
+
+
+/**** RESET FORM ****/
 function resetForm(){
     nameUser.value = '';
     emailUser.value = '';
@@ -112,6 +95,29 @@ function resetForm(){
 }
 
 
+/**** MESSAGE ADD CONTACT  ****/
+function messageSuccessfullyCreated(){
+    const msg =  document.getElementById('messageBoxCreated')
+    msg.innerHTML = `Contact succesfully created `;
+    msg.style.transform = 'translateX(0%)';
+    setTimeout(function() {
+        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transform = 'translateX(1000%)';
+    }, 2000); // Clears the message after 3 seconds (3000 milliseconds)
+}
+
+/**** OVERLAY TRANSFORM  ****/
+function overlayTransform(){
+    let overlay = document.getElementById('overlayEdit');
+    let container = document.getElementById('editContact');
+    container.style.transform = 'translateX(1600px)';
+    setTimeout(function() {
+        overlay.style.display = 'none';
+    }, 500); 
+}
+
+
+/**** CLOSE CONATCT  ****/
 function closeContact() {
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
@@ -122,47 +128,33 @@ function closeContact() {
 }
 
 
-/**** CONTACT LIST ****/
 
+/**** LOAD CONTACT DATA ****/
 async function loadContactUsers() {
     try {
         // Daten laden
         contactUsers = JSON.parse(await getItem('contactUsers'));
-
-        // Überprüfen, ob Daten geladen wurden
-        if (contactUsers && contactUsers.length > 0) {
-            // Kontakte alphabetisch nach Namen sortieren
-            contactUsers.sort((a, b) => a.name.localeCompare(b.name));
-
-            // Vorhandene Kontaktliste löschen
+        if (contactUsers && contactUsers.length > 0) { // Überprüfen, ob Daten geladen wurden
+            contactUsers.sort((a, b) => a.name.localeCompare(b.name)); // Kontakte alphabetisch nach Namen sortieren
             const allUsersContainer = document.getElementById('allUsers');
-            allUsersContainer.innerHTML = '';
-
-            // Durch sortierte Kontakte iterieren und sie anzeigen
-            contactUsers.forEach((contact, index) => {
-                // Erstes Zeichen für die Gruppierung erhalten
-                const firstChar = contact.name.charAt().toUpperCase();
-
-                // Falls das erste Zeichen vom vorherigen abweicht, ein neues Gruppierungselement hinzufügen
-                const previousChar = index > 0 ? contactUsers[index - 1].name.charAt(0) : '';
-                if (firstChar !== previousChar) {
-                    allUsersContainer.innerHTML += `
-                        <p class="Buchstabe">${firstChar}</p>
-                        <span class="linie"></span>
-                    `;
+            allUsersContainer.innerHTML = '';  // Vorhandene Kontaktliste löschen
+            
+            let existingChars = {}; // Objekt zum Verfolgen bereits hinzugefügter Buchstaben-Elemente
+            
+            contactUsers.forEach((contact, index) => {  // Durch sortierte Kontakte iterieren und sie anzeigen
+                const firstChar = contact.name.charAt().toUpperCase(); // Erstes Zeichen für die Gruppierung erhalten
+                
+                // Falls das erste Zeichen noch nicht hinzugefügt wurde, füge es hinzu
+                if (!existingChars[firstChar]) {
+                    allUsersContainer.innerHTML += `<p class="Buchstabe">${firstChar}</p><span class="linie"></span>`;
+                    existingChars[firstChar] = true; // Markiere den Buchstaben als bereits hinzugefügt
                 }
-
-                // Die ersten zwei Buchstaben groß
-                const firstTwoChars = contact.name.slice(0, 2).toUpperCase();
-
-                // Erster Buchstabe des Namens groß
-                const capitalizedWord = contact.name.charAt(0).toUpperCase() + contact.name.slice(1);
-
-                // Kontakt Template anzeigen
-                allUsersContainer.innerHTML += TemplateContactUsers(contact, index, firstTwoChars, capitalizedWord);
+                
+                const firstTwoChars = contact.name.slice(0, 2).toUpperCase(); // Die ersten zwei Buchstaben groß
+                const capitalizedWord = contact.name.charAt(0).toUpperCase() + contact.name.slice(1); // Erster Buchstabe des Namens groß
+                allUsersContainer.innerHTML += TemplateContactUsers(contact, index, firstTwoChars, capitalizedWord);// Kontakt Template anzeigen
             });
-        } else {
-            // Zeige eine Nachricht an, wenn keine Kontaktbenutzer vorhanden sind
+        } else { // Zeige eine Nachricht an, wenn keine Kontaktbenutzer vorhanden sind
             const allUsersContainer = document.getElementById('allUsers');
             allUsersContainer.innerHTML = '<p>Keine Kontaktbenutzer vorhanden</p>';
         }
@@ -172,7 +164,7 @@ async function loadContactUsers() {
 }
 
 
-// Template Contact Users bei der Kontaktliste
+/**** HTML CONTACT LIST ****/
 function TemplateContactUsers(contact, index,firstTwoChars, capitalizedWord) {
     return `
         <div class="contactUser" onclick="showUserInfo('${contact.name}', '${contact.email}','${contact.color}','${contact.phone}','${index}')">
@@ -187,13 +179,14 @@ function TemplateContactUsers(contact, index,firstTwoChars, capitalizedWord) {
     `;
 }
 
-
-
+/**** BACK FUNCTION TO NAVIGATE BACK ****/
 function back(){
     const wrapper =  document.getElementById('wrapperInfo');
     wrapper.innerHTML ='';
     wrapper.style.zIndex = '-2';
 }
+
+/**** MORE BUTTON ****/
 function more() {
     console.log('funktioniert')
     const wrapper = document.getElementById('editeDeleteWrapper');
@@ -205,6 +198,7 @@ function more() {
 }
 
 
+/**** HTML TEMPLATE SHOW CONTACT INFORMATION ****/
 async function showUserInfo(name, email, color, phone, index) {
     const wrapper =  document.getElementById('wrapperInfo');
     wrapper.innerHTML = `
@@ -240,10 +234,9 @@ async function showUserInfo(name, email, color, phone, index) {
             container.style.transform = 'translateX(0px)';
         }, 1);
     }
-    // Die ersten zwei Buchtaben gross
-    const firstTwoChars = firstAndSecondCharUppercase(name);
-    // Erster Buchstabe des Namens gross
-    const capitalizedWord = firstCharUppercase(name);
+
+    const firstTwoChars = firstAndSecondCharUppercase(name);// Die ersten zwei Buchtaben gross
+    const capitalizedWord = firstCharUppercase(name); // Erster Buchstabe des Namens gross
     container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord)
 }
 
@@ -252,11 +245,9 @@ function firstAndSecondCharUppercase(name) {
     return string.slice(0, 2).toUpperCase();
 }
 
-/**
- * Function to convert the first character of a string to uppercase
- * @param {string} name - The name string
- * @returns {string} - The modified string with the first character in uppercase
- */
+
+/**** FIRST CHAR UPPERCASE ****/
+/* @param {string} name - The name string / @returns {string} - The modified string with the first character in uppercase*/
 function firstCharUppercase(name) {
     const firstLetter = name.charAt(0).toUpperCase();
     const restOfWord = name.slice(1);
@@ -264,43 +255,28 @@ function firstCharUppercase(name) {
 }
 
 
+/**** HOVER EFFECTS ****/
+function EditHover(){document.getElementById('editimg').src = './img/edit-blue.svg';}
+function EditHoverOut(){ document.getElementById('editimg').src = './img/edit.svg';}
+function DeleteHover(){document.getElementById('deleteImg').src = './img/delete-blue.svg';}
+function DeleteHoverOut(){document.getElementById('deleteImg').src = './img/delete.svg';}
+function Update(){document.getElementById('updateDeleteImg').src = './img/delete-blue.svg';}
+function UpdateHoverOut(){document.getElementById('updateDeleteImg').src = './img/delete.svg';}
+function ButtonHover(){document.getElementById('BTC').src = './img/close-blue.svg';}
+function ButtonHoverOut(){document.getElementById('BTC').src = './img/iconoir_cancel.svg';}
 
-function EditHover(){
-    document.getElementById('editimg').src = './img/edit-blue.svg';
-}
-function EditHoverOut(){
-    document.getElementById('editimg').src = './img/edit.svg';
-}
-function DeleteHover(){
-    document.getElementById('deleteImg').src = './img/delete-blue.svg';
-}
-function DeleteHoverOut(){
-    document.getElementById('deleteImg').src = './img/delete.svg';
-}
-function Update(){
-    document.getElementById('updateDeleteImg').src = './img/delete-blue.svg';
-}
-function UpdateHoverOut(){
-    document.getElementById('updateDeleteImg').src = './img/delete.svg';
-}
 
-function ButtonHover(){
-    document.getElementById('BTC').src = './img/close-blue.svg';
-}
-function ButtonHoverOut(){
-    document.getElementById('BTC').src = './img/iconoir_cancel.svg';
-}
 
-/**
- * Function to generate the HTML template for displaying user information
- * @param {number} index - The index of the user
- * @param {string} color - The color associated with the user
- * @param {string} email - The email of the user
- * @param {string} name - The name of the user
- * @param {string} phone - The phone number of the user
- * @param {string} firstTwoChars - The first two characters of the user's name in uppercase
- * @param {string} capitalizedWord - The user's name with the first character capitalized
- * @returns {string} - The HTML template for displaying user information
+/**** FUNCTION TO GENERATE THE HTML FOR DISPLAYING USER INFORMATION****/
+/*
+@param {number} index - The index of the user
+@param {string} color - The color associated with the user
+@param {string} email - The email of the user
+@param {string} name - The name of the user
+@param {string} phone - The phone number of the user
+@param {string} firstTwoChars - The first two characters of the user's name in uppercase
+@param {string} capitalizedWord - The user's name with the first character capitalized
+@returns {string} - The HTML template for displaying user information
  */
 function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitalizedWord){
     return`
@@ -336,10 +312,8 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
     `;
 }
 
-/**
- * Function to display a success message upon deleting a user
- * @param {string} name - The name of the deleted user
- */
+
+/**** DELETED MESSAGE ****/
 function messageDeleted(name){
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `User *${name}*  deleted successfully`;
@@ -349,30 +323,27 @@ function messageDeleted(name){
     msg.style.color = 'white';
     msg.style.fontSize ='20px';
     setTimeout(function() {
-        msg.innerHTML = ""; // Clears the content of the message box
-    }, 3000); // Clears the message after 3 seconds (3000 milliseconds)
+        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transform = 'translateX(1000%)';
+    }, 2000); 
+    showUserInfo();
 }
 
-/**
- * Async function to delete a user
- * @param {string} name - The name of the user to delete
- */
+/**** DELETED CONTACT FUNCTION ****/
+// @param {string} name - The name of the user to delete
 async function deleteUser(name) {
     await loadContactUsers();
     try {
-        // Load existing users
-        let existingUsers = await getItem('contactUsers');
+        let existingUsers = await getItem('contactUsers');        // Load existing users
        existingUsers = JSON.parse(await getItem('contactUsers'))
-
-        // Find the index of the user to delete
-        const index = existingUsers.findIndex(user => user.name === name);
+        const index = existingUsers.findIndex(user => user.name === name); // Find the index of the user to delete
         if (index !== -1) {
             messageDeleted(name);
-            // Remove the user from the array
-            existingUsers.splice(index, 1);
+            existingUsers.splice(index, 1); // Remove the user from the array
             await setItem('contactUsers', JSON.stringify(existingUsers));
             console.log(`User ${name} deleted successfully.`);
             await loadContactUsers(); // Update the user list
+            overlayTransform();
             resetForm(); 
         } else {
             console.error(`User ${name} not found.`);
@@ -382,13 +353,13 @@ async function deleteUser(name) {
     }
 }
 
-/**
- * Async function to edit a user
- * @param {string} name - The name of the user
- * @param {string} email - The email of the user
- * @param {string} color - The color associated with the user
- * @param {string} phone - The phone number of the user
- */
+
+/**** EDIT CONTACT FUNCTION ****/
+/* @param {string} name - The name of the user
+    @param {string} email - The email of the user
+    @param {string} color - The color associated with the user
+    @param {string} phone - The phone number of the user
+*/
 async function editUser(name, email, color, phone) {
     await loadContactUsers();
     let overlayEdit = document.getElementById('overlayEdit');
@@ -406,21 +377,21 @@ async function editUser(name, email, color, phone) {
     const firstTwoChars = firstAndSecondCharUppercase(name); // Use the result of firstCharUppercase here
     containerEdit.innerHTML = TemplateContainerUpdate(name, email, color, phone, firstTwoChars);
 
-
    const closeButton =  document.getElementById('closeImg')
     if (window.innerWidth <= 1075) {
         closeButton.src= './img/closeWhite.svg';
     }
 }
 
-/**
- * Function to generate the HTML template for editing a user
- * @param {string} name - The name of the user
- * @param {string} email - The email of the user
- * @param {string} color - The color associated with the user
- * @param {string} phone - The phone number of the user
- * @param {string} firstTwoChars - The first two characters of the user's name in uppercase
- * @returns {string} - The HTML template for editing a user
+
+/**** FUNCTION TO GENERATE TH HTML TEMPLATE FOR EDITING A USER ****/
+/*
+@param {string} name - The name of the user
+@param {string} email - The email of the user
+@param {string} color - The color associated with the user
+@param {string} phone - The phone number of the user
+@param {string} firstTwoChars - The first two characters of the user's name in uppercase
+@returns {string} - The HTML template for editing a user
  */
 function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
     return `
@@ -462,74 +433,46 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
     `;
 }
 
-/**
- * Function to display a success message upon updating a user
- * @param {string} name - The name of the updated user
- */
-function messageSuccessfully(name){
+/**** FUNCTION TO DISPLAY A CUSCESS MESSAGE UPON UPDATING A CONTACT****/
+function messageSuccessfully(){
     const msg =  document.getElementById('messageBox')
-    msg.innerHTML = `User *${name}* updated successfully`;
-    msg.style.display = 'block';
-    msg.style.background = 'var(--join-black)';
-    msg.style.padding = '25px';
-    msg.style.borderRadius = '20px';
-    msg.style.color = 'white';
-    msg.style.fontSize ='20px'
-
+    msg.innerHTML = `User updated successfully`;
+    msg.style.transform = 'translateX(0%)';
     setTimeout(function() {
-        msg.innerHTML = ""; // Clears the content of the message box
-        msg.style.display = 'none';
-    }, 1000); // Clears the message after 3 seconds (3000 milliseconds)
+        msg.style.transition = 'transform ease-in 1s'
+        msg.style.transform = 'translateX(1000%)';
+    }, 2000); 
     showUserInfo();
 }
 
-/**
- * Async function to update a user
- * @param {string} name - The name of the user to update
- */
+/**** FUNCTION TO UPDATE A CONTACT****/
+/* Async function to update a use @param {string} name - The name of the user to update*/
 async function updateUser(name) {
-    console.log(name);
-    // Get data from input fields
     const nameInput = document.getElementById('userInputUpdate').value;
     const email = document.getElementById('emailInputUpdate').value;
     const phone = document.getElementById('phoneInputUpdate').value;
 
-    // Load existing users from storage
-    let existingUsers = await getItem('contactUsers');
+    let existingUsers = await getItem('contactUsers');    // Load existing users from storage
     existingUsers = JSON.parse(existingUsers) || [];
 
-    // Find the user to update by iterating through the array
-    let userToUpdate = existingUsers.find(user => user.name === name);
+    let userToUpdate = existingUsers.find(user => user.name === name);// Find the user to update by iterating through the array
     
-    if (userToUpdate) {
-        // Update user data
+    if (userToUpdate) {     // Update user data
         userToUpdate.name = nameInput;
         userToUpdate.email = email;
         userToUpdate.phone = phone;
 
-         // Save the updated array to remote storage
-         await setItem('contactUsers', JSON.stringify(existingUsers));
+         await setItem('contactUsers', JSON.stringify(existingUsers));  // Save the updated array to remote storage
          await loadContactUsers(); // Update the user list
-
-         let overlay = document.getElementById('overlayEdit');
-         let container = document.getElementById('editContact');
-         container.style.transform = 'translateX(1600px)';
-         setTimeout(function() {
-             overlay.style.display = 'none';
-         }, 500); 
-
+         overlayTransform();
          messageSuccessfully(name);
          showUserInfo();
          
     } else {
         console.log('User not found!');
-
     }
 }
-
-/**
- * Function to close the overlay and the user contact edit form
- */
+/**** FUNCTION TO CLOSE THE OVERLAY AND THE CONTACT USER EDIT FORM ****/
 function closeUpdate() {
     let overlay = document.getElementById('overlayEdit');
     let container = document.getElementById('editContact');

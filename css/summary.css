@@ -317,70 +317,17 @@ main * {
   }  
 }
 
-@media only screen and (max-width: 810px) {
-  .headline-container,
+@media only screen and (max-width: 1000px) {
   .summary-board-container {
-    left: 10%;
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .summary-board-container {
-    position: static;
-  }
-  .headline-container {
-    position: relative;
-    left: -4%;
-  }
-  .headline-container {
-    top: unset;
-    gap: 12px;
+    position: unset;
   }
 
-  .date-line {
-    height: 68px;
-  }
-
-  .to-do-img,
-  .date-left img {
-    height: 40px;
-    width: 40px;
-  }
-
-  .date-right {
+  .summary-headline {
     width: unset;
-    height: 57px;
-    gap: 13px;
-  }
-
-  .actual-date {
-    width: unset;
-    font-size: 16px;
-  }
-
-  .date-text {
-    font-size: 14px;
-    width: unset;
-  }
-
-  .headline-container {
-    flex-direction: column;
-    align-items: flex-start;
-    width: unset;
-  }
-
-  .summary-board-container {
-    width: unset;
-    margin-top: 40px;
-  }
-
-  .line {
-    display: none;
-  }
-
-    .summary-headline {
-        font-size: 47px;
-        line-height: 56.4px;
+    font-size: 47px;
+    line-height: 56.4px;
+    align-items: center;
+    display: flex;
     }
 
   .headline-text {
@@ -390,13 +337,37 @@ main * {
     text-align: left;
   }
 
-  .line-mobile {
-    display: flex;
-    width: 90px;
-    min-height: 3px;
-    background-color: var(--join-blue);
-    border-radius: 10px;
-    margin-top: 8px;
+  .headline-container {
+    width: unset;
+  }
+
+
+}
+
+@media only screen and (max-width: 500px) {
+  main {
+    justify-content: space-evenly;
+  }
+  .headline-container {
+    width: unset;
+    height: unset;
+    position: unset;
+    flex-direction: column;
+    gap: 0;
+    margin-top: -40px;
+    align-items: flex-start;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .summary-board-container {
+    width: unset;
+    height: unset;
+    position: unset;
+    gap: 10px;
+    padding-bottom: 24px;
   }
 
   .todo-container {
@@ -411,38 +382,33 @@ main * {
   }
 
   .to-do-img {
-    height: 56px;
+    height: 40px;
   }
 
-  .to-do-right {
-    width: 142px;
-    padding-right: 44px;
-    height: 110px;
-  }
-
+  .to-do-right,
   .to-do-left {
     width: 142px;
-    padding-right: 24px;
-    height: 110px;
+    padding: 16px 24px;
+    height: 90px;
+    gap: 10px;
   }
 
   .date-container {
-    width: 312px;
+    width: 323px;
     gap: 12px;
-    padding-left: 24px;
-    height: 110px;
+    padding: 8px;
+    height: 90px;
   }
 
   .task-container {
-    width: 312px;
+    width: 323px;
     height: 110px;
-    gap: unset;
-    justify-content: space-between;
+    gap: 20px;
   }
 
   .task {
-    height: 110px;
-    width: 90px;
+    height: 90px;
+    padding: 12px;
   }
 
   .textColor {
@@ -456,14 +422,16 @@ main * {
   }
 
   .number {
-    font-size: 47px;
-    line-height: unset;
+    font-size: 32px;
+    line-height: 40px;
   }
 
-  .to-do-left:hover,
-  .to-do-right:hover,
-  .date-container:hover,
-  .task:hover {
-    transform: scale(1.02);
+  .line-mobile {
+    display: block;
+    width: 90px;
+    height: 3px;
+    background-color: var(--join-blue);
+    border-radius: 10px;
+    margin-top: 8px;
   }
 }

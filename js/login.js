@@ -4,16 +4,12 @@
  */
  let users = [];
 
-/**
- * Function to render the initial animation and load users data
- */
+/**** FUNCTION TO RENDER THE INITAIL ANIMATION AND LOAD USER DATA ****/
 function render() {
     loadAnimation();
 }
 
-/**
- * Function to load users data from storage
- */
+/**** LOAD USER DATA FROM STORAGE  ****/
 async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
@@ -22,10 +18,7 @@ async function loadUsers() {
     }
 }
 
-
-/**
- * Function to animate the logo and load users data
- */
+/**** FUNCTION TO ANIMATE THE LOGO AND LOAD USER DATA  ****/
 function loadAnimation() {
     let logo = document.getElementById('logoImg');
     let logoWrapper = document.getElementById('logo');
@@ -52,9 +45,7 @@ function loadAnimation() {
     }, 1000);
 }
 
-/**
- * Function to render login content
- */
+/**** FUNCTION TO RENDER THE LOGIN CONTACT  ****/
 function ContentLogin() {
     let content = document.getElementById('wrapperLogin');
 
@@ -111,10 +102,7 @@ async function hashPassword(password) {
     return hashHex;
 }
 
-/**
- * Function to handle user login
- * 
- */
+/**** FUNCTION TO HANDLE USER LOGIN  ****/
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -132,7 +120,7 @@ async function login() {
         loggedInUser.push({
             userInformation: user
         });
-        // Setze das Cookie "loggedIn" mit einem Pfad von "/", dem Attribut "SameSite=None" und "secure"
+        // Set the "loggedIn" cookie with a path of "/", attribute "SameSite=None", and "secure"
         document.cookie = 'loggedIn=true; path=/; SameSite=None; secure';
         await setItem('userInformation', JSON.stringify(loggedInUser));
         window.location.href = 'summary.html'; 
@@ -145,17 +133,15 @@ async function login() {
 }
 
 
-/**
- * Function to handle guest login
- * 
- */
+/**** FUNCTION TO HANDLE GUEST LOGIN ****/
 function guestLogin() {
-    loggedInUser = []; // Setze die loggedInUser-Variable zurück
-    // Lösche das "loggedIn"-Cookie, um den Gastmodus zu aktivieren
-    document.cookie = 'loggedIn=false; path=/; SameSite=None; secure'; // Cookie auf false setzen
+    loggedInUser = []; // Reset the loggedInUser variable
+    // Delete the "loggedIn" cookie to activate guest mode
+    document.cookie = 'loggedIn=false; path=/; SameSite=None; secure'; // Set cookie to false
     window.location.href = 'summary.html';
 }
 
+/**** RESET FORM  ****/
 function resetForm() {
     nameUser.value = '';
     email.value = '';

@@ -63,15 +63,3 @@
   padding: 0 !important;
   color: var(--join-blue) !important;
 }
-
-@media only screen and (max-width: 1250px) {
-  .privacy-main {    
-    padding-top: 120px;    
-  }
-  .main-content {
-    padding-bottom: 120px;
-  }
-  .privacy-headline {
-    width: 100%;
-  }
-}
