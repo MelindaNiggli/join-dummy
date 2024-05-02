@@ -468,3 +468,18 @@ main * {
     transform: scale(1.02);
   }
 }
+
+@media screen and (max-width: 540px) {
+
+  .headline-container {
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .summary-board-container {
+    width: unset;
+    margin-top: 32px;
+    gap: 14px;
+    margin-top: 34px;
+  }
+}
