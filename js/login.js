@@ -56,10 +56,11 @@ function ContentLogin() {
             <span class="linie"></span>
         </div>
         <div class="wrapper-input-field">
-            <div class="wrapper-input">
+            <div id="emailInput" class="wrapper-input">
                 <input type="email" placeholder="Email" id="email" required> 
                 <img src="./img/mail.svg" alt="Email Icon">
             </div>
+            <div id="MessageEmail"></div>
             <div id="pwInput" class="wrapper-input">
                 <input type="password" placeholder="Password" id="password" required>
                 <img src="./img/lock.svg" alt="Schloss Icon">
@@ -102,12 +103,15 @@ async function hashPassword(password) {
     return hashHex;
 }
 
+
 /**** FUNCTION TO HANDLE USER LOGIN  ****/
 async function login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     let message = document.getElementById('messagePW');
-    let border = document.getElementById('pwInput');
+    let messageEmail = document.getElementById('MessageEmail');
+    let passwordBorder = document.getElementById('pwInput');
+    let emailBorder = document.getElementById('emailInput');
 
     // Hash the entered password
     let hashedPassword = await hashPassword(password);
@@ -125,10 +129,27 @@ async function login() {
         await setItem('userInformation', JSON.stringify(loggedInUser));
         window.location.href = 'summary.html'; 
     }else{
-        message.innerHTML = `Wrong password Ups! Try again.`;
-        message.style.display = 'flex';
-        border.style.margin = '0p 0px 8px 0 !important';
-        border.style.borderColor = '#FF8190';
+        // Überprüfe, ob die E-Mail falsch ist
+        let userByEmail = users.find(u => u.email === email);
+        if (!userByEmail) {
+            messageEmail.innerHTML = `Wrong Email Ups! Try again.`;
+            messageEmail.style.display = 'flex';
+            emailBorder.style.margin = '0p 0px 8px 0 !important';
+            emailBorder.style.borderColor = '#FF8190';
+        }else{
+            emailBorder.style.borderColor = '#65CC7A';
+            messageEmail.style.display = 'none';
+        }
+        let userByPassword = users.find(u => u.password === hashedPassword)
+        if(!userByPassword){
+            message.innerHTML = `Wrong password Ups! Try again.`;
+            message.style.display = 'flex';
+            passwordBorder.style.margin = '0p 0px 8px 0 !important';
+            passwordBorder.style.borderColor = '#FF8190';
+        }else{
+            passwordBorder.style.borderColor = '#65CC7A';
+            message.style.display = 'none';
+        }
     }
 }
 

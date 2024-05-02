@@ -2,21 +2,16 @@
 /**** ARRAY CONTAINING PREDIFENED COLORS FOR USER REGISTRATION ****/
 // @type {string[]}
 const colors = [
-    '#0038FF',
-    '#00BEE8',
-    '#1FD7C1',
-    '#6E52FF',
-    '#9327FF', 
-    '#C3FF2B',
-    '#FC71FF',
-    '#FF4646',
-    '#FF5EB3',
-    '#FF745E',
     '#FF7A00',
-    '#FFA35E',
-    '#FFBB2B',
-    '#FFC701',
-    '#FFE62B'
+    '#9327FF',
+    '#6E52FF',
+    '#FC71FF',
+    '#FFBB2B', 
+    '#1FD7C1',
+    '#462F8A',
+    '#FF4646',
+    '#00BEE8',
+    '#FF7A00',
 ];
 
 /**** FUNCTION TO GET RANDOM COLOR FROM THE PREDEFINED ARRAY OF COLORS ****/

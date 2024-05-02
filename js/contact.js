@@ -42,8 +42,8 @@ function addNewContact() {
     setTimeout(function() {
         container.style.transform = 'translateX(0px)';
     }, 1); 
-    const closeButton =  document.getElementById('closeNewContact')
-    if (window.innerWidth <= 1075) {
+    const closeButton =  document.getElementById('closeImgNew')
+    if (window.innerWidth <= 1057) {
         closeButton.src= './img/closeWhite.svg';
     }
 }
@@ -171,13 +171,13 @@ async function loadContactUsers() {
 /**** HTML CONTACT LIST ****/
 function TemplateContactUsers(contact, index,firstTwoChars, capitalizedWord) {
     return `
-        <div class="contactUser" onclick="showUserInfo('${contact.name}', '${contact.email}','${contact.color}','${contact.phone}','${index}')">
+        <div class="contactUser" id="name${index}" onclick="showUserInfo('${contact.name}', '${contact.email}','${contact.color}','${contact.phone}','${index}')">
             <div id="ProfileBadge${index}" class="profileBadge" style="background-color: ${contact.color};">
                 <p>${firstTwoChars}</p>
             </div>
             <div id="userInfo">
                 <p id="nameContact">${capitalizedWord}</p>
-                <p id="emailContact">${contact.email}</p>
+                <p class="emailContact" id="${index}">${contact.email}</p>
             </div>
         </div>
     `;
@@ -201,30 +201,23 @@ function more() {
     }
 }
 
+/*** FUNCTION TO FOCUS CONTACT LIST ON USER CLICK ***/
+function onClickFocusUser(index, color) {
+    let contactBadge = document.getElementById('name' + index);
+    let emailBadge = document.getElementById(index);
+    contactBadge.style.border =  `3px solid white`;
+    contactBadge.style.background = color;
+    contactBadge.style.transition = '5s ease-in';
+    contactBadge.style.boxShadow = '0px 0px 4px #0000001a';
+    contactBadge.style.borderRadius = '20px';
+    contactBadge.style.color = 'white';
+    emailBadge.style.color = 'white';
+}
 
-/**** HTML TEMPLATE SHOW CONTACT INFORMATION ****/
-async function showUserInfo(name, email, color, phone, index) {
-    const wrapper =  document.getElementById('wrapperInfo');
-    wrapper.innerHTML = `
-    <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
-    <div  id="back" onclick="back()">
-        <img src="./img/arrow-left-line.svg" alt="">
-    </div>
-    <div class="heading">
-        <h1>Contacts</h1>
-        <div class="wrapperInnerHeaing">
-        <span class="linie"></span>
-        <p>Better with a team</p>
-        </div>
-    </div>
-    <div id="userInfoDetails"></div>
-    `
-
-    wrapper.style.zIndex = '0';
-    await loadContactUsers(); // Aktualisieren der Benutzerliste
-    const container = document.getElementById('userInfoDetails');
+/*** TRANSITION FOR SIDE CONTACT INFORMATION ***/
+function transitionUserInfoDetails(container) {
     if (container.style.transform === 'translateX(0px)') {
-        container.style.transform = 'translateX(1100px)';
+        container.style.transform = 'translateX(1100px)'; 
         setTimeout(function() {
             container.style.transform = 'translateX(0px)';
         }, 500); 
@@ -238,12 +231,37 @@ async function showUserInfo(name, email, color, phone, index) {
             container.style.transform = 'translateX(0px)';
         }, 1);
     }
-
-    const firstTwoChars = firstAndSecondCharUppercase(name);// Die ersten zwei Buchtaben gross
-    const capitalizedWord = firstCharUppercase(name); // Erster Buchstabe des Namens gross
-    container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord)
 }
 
+/**** HTML TEMPLATE SHOW CONTACT INFORMATION ****/
+async function showUserInfo(name, email, color, phone, index) {
+    const wrapper = document.getElementById('wrapperInfo');
+    wrapper.innerHTML = `
+        <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
+        <div id="back" onclick="back()">
+            <img src="./img/arrow-left-line.svg" alt="">
+        </div>
+        <div class="heading">
+            <h1>Contacts</h1>
+            <div class="wrapperInnerHeaing">
+                <span class="linie"></span>
+                <p>Better with a team</p>
+            </div>
+        </div>
+        <div id="userInfoDetails"></div>
+    `;
+    
+    const container = document.getElementById('userInfoDetails'); // Define container variable
+    wrapper.style.zIndex = '0';
+    await loadContactUsers(); // Assuming this is defined elsewhere
+    onClickFocusUser(index, color);
+    transitionUserInfoDetails(container); // Pass container as an argument
+    const firstTwoChars = firstAndSecondCharUppercase(name);
+    const capitalizedWord = firstCharUppercase(name);
+    container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord);
+}
+
+/**** FIRST AND SECOND CHAR UPPERCASE ****/
 function firstAndSecondCharUppercase(name) {
     const string = name;
     return string.slice(0, 2).toUpperCase();
@@ -268,16 +286,10 @@ function Update(){document.getElementById('updateDeleteImg').src = './img/delete
 function UpdateHoverOut(){document.getElementById('updateDeleteImg').src = './img/delete.svg';}
 function ButtonHover(){document.getElementById('BTC').src = './img/close-blue.svg';}
 function ButtonHoverOut(){document.getElementById('BTC').src = './img/iconoir_cancel.svg';}
-
-
 function hoverClose(){if (window.innerWidth >= 1075) {document.getElementById('closeImg').src = './img/closeWhite.svg';}}
 function hoverCloseOut(){if (window.innerWidth >= 1075) {document.getElementById('closeImg').src = './img/close.svg';}}
 function hoverNewClose(){if (window.innerWidth >= 1075) {document.getElementById('closeImgNew').src = './img/closeWhite.svg';}}
 function hoverNewCloseOut(){if (window.innerWidth >= 1075) {document.getElementById('closeImgNew').src = './img/close.svg';}}
-
-
-
-
 
 
 /**** FUNCTION TO GENERATE THE HTML FOR DISPLAYING USER INFORMATION****/
@@ -299,7 +311,7 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
         <div class="wrapperFlex">
             <p id="nameContact" class="nameAside">${capitalizedWord}</p>
             <div id="editeDeleteWrapper" class="editeDeleteWrapper">
-                <div class="edit" onmouseover="EditHover()"  onmouseout="EditHoverOut()"  onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
+                <div class="edit" onmouseover="EditHover()"  onmouseout="EditHoverOut()" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
                     <img id="editimg" src="./img/edit.svg" alt="edit icon">
                     <p>Edit</p>
                 </div>
@@ -367,7 +379,6 @@ async function deleteUser(name) {
     }
 }
 
-
 /**** EDIT CONTACT FUNCTION ****/
 /* @param {string} name - The name of the user
     @param {string} email - The email of the user
@@ -432,12 +443,12 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
                     <img src="./img/mail.svg" alt="Email Icon">
                 </div>
                 <div class="wrapper-input">
-                    <input type="phone" id="phoneInputUpdate" placeholder="Phone" value="${phone}" required>
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phoneInputUpdate" placeholder="Phone" value="${phone}" required>
                     <img src="./img/call.svg" alt="Phone Icon">
                 </div>
                 <div class="wrapper-button">
                     <div class="delete">
-                        <button class="cancle" onmouseover="Update()" onmouseout="UpdateHoverOut()" onclick="deleteUser('${name}')"><img id="updateDeleteImg" src="./img/delete.svg" alt="delete icon">Delete</button>
+                        <button class="cancel" onmouseover="Update()" onmouseout="UpdateHoverOut()" onclick="deleteUser('${name}')"><img id="updateDeleteImg" src="./img/delete.svg" alt="delete icon">Delete</button>
                         <button class="BT-Black" onclick="updateUser('${name}')">Save<img src="./img/check.svg" alt="check"></button>
                     </div>
                 </div>
