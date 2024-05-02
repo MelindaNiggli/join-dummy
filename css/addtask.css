@@ -252,7 +252,11 @@ textarea {
   border-radius: 10px;
 }
 
-#category-input:disabled,
+#category-input:hover, #assigned-input:hover {
+  cursor: pointer;
+}
+
+#category-input,
 #subtasks:disabled {
   background-color: white;
 }

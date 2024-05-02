@@ -15,23 +15,23 @@ let subtasks = [];
  * @type {string}
  */
 let priority = "medium";
-let chosencolumn = 'todo';
+let chosencolumn = "todo";
 
 /**
  * Displays the user menu dropdown.
  * Loads users and tasks before rendering.
  */
-async function displayUserMenu() {  
+async function displayUserMenu() {
   await loadUsers();
   await loadTasks();
   await loadContacts();
-  allclients = [...users,...contacts];
-  let dropbox = document.getElementById('drop-menu-assigned');
-  dropbox.innerHTML = '';
+  allclients = [...users, ...contacts];
+  let dropbox = document.getElementById("drop-menu-assigned");
+  dropbox.innerHTML = "";
   for (let i = 0; i < allclients.length; i++) {
     const user = allclients[i].name;
     const color = allclients[i].color;
-    dropbox.innerHTML += renderDropboxUser(user,color,i);
+    dropbox.innerHTML += renderDropboxUser(user, color, i);
   }
 }
 
@@ -42,14 +42,16 @@ async function displayUserMenu() {
  * @param {number} index - The index of the user.
  * @returns {string} - The HTML structure for the user in the dropdown menu.
  */
-function renderDropboxUser(user,color,index) {
+function renderDropboxUser(user, color, index) {
   return `
     <div class="flex a-center between dropbox" id="c${index}" onclick="checkUser(${index})">
       <div class="flex a-center gap-s">
-        <div class="usertag flex a-center j-center" style="background-color:${color}">${getInitials(user)}</div>
+        <div class="usertag flex a-center j-center" style="background-color:${color}">${getInitials(
+    user
+  )}</div>
         <span>${user}</span>
       </div> 
-   <div class=${setCheckedUser(user,color)}> </div>                 
+   <div class=${setCheckedUser(user, color)}> </div>                 
    </div>
   `;
 }
@@ -59,13 +61,13 @@ function renderDropboxUser(user,color,index) {
  * @param {string} user - the user which is checked in the dropdown
  * @param {string} color - the matching color of the user
  */
-function setCheckedUser(user,color) {
+function setCheckedUser(user, color) {
   for (let item of assigned) {
     if (item[0] == user && item[1] == color) {
       return "assigned-checked";
-    }    
+    }
   }
-  return "assigned-check";  
+  return "assigned-check";
 }
 /**
  * setting the desired priority to be displayed as selected button, avoiding form submitting
@@ -101,11 +103,13 @@ function checkUser(id) {
   let container = document.getElementById(`c${id}`);
   let checkeduser = allclients[id].name;
   let checkedusercolor = allclients[id].color;
-  let index = assigned.findIndex(t => t.includes(checkeduser) && t.includes(checkedusercolor));
+  let index = assigned.findIndex(
+    (t) => t.includes(checkeduser) && t.includes(checkedusercolor)
+  );
   if (container.lastElementChild.classList.contains("assigned-checked")) {
     assigned.splice(index, 1);
   } else {
-    assigned.push([checkeduser,checkedusercolor]);
+    assigned.push([checkeduser, checkedusercolor]);
   }
   container.lastElementChild.classList.toggle("assigned-checked");
   container.lastElementChild.classList.toggle("assigned-check");
@@ -118,12 +122,24 @@ function checkUser(id) {
 function renderAssignedUsers() {
   let container = document.getElementById("tag-container");
   container.innerHTML = "";
-  let length = assigned.length > 10 ? 10 : assigned.length;
+  let length = assigned.length > 6 ? 6 : assigned.length;
   for (let i = 0; i < length; i++) {
     const user = assigned[i][0];
     const usercolor = assigned[i][1];
     container.innerHTML += `
-    <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(user)}</div>
+    <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(
+      user
+    )}</div>
+    `;
+  }
+  renderExtraBubble();
+}
+
+function renderExtraBubble() {
+  let container = document.getElementById("tag-container");
+  if (assigned.length > 6) {
+    container.innerHTML += `
+    <div class="usertag flex a-center j-center" style="background-color:#29abe2">+${assigned.length - 6}</div>
     `;
   }
 }
@@ -144,8 +160,8 @@ function toggleSubtasksInput() {
   let field = document.getElementById("subtasks");
   let hiddenicons = document.getElementById("subtask-active-icons");
   let plusicon = hiddenicons.nextElementSibling;
-  field.disabled ? (field.disabled = false) : (field.disabled = true);
-  if (field.disabled == false) {
+  /* field.disabled ? (field.disabled = false) : (field.disabled = true); */
+  if (!field.focus()) {
     field.focus();
   }
   hiddenicons.classList.toggle("invis");
@@ -160,6 +176,7 @@ function toggleSubtasksInput() {
 function clearInput() {
   document.getElementById("subtasks").value = "";
   toggleSubtasksInput();
+  document.getElementById("subtasks").blur();
 }
 
 /**
@@ -169,8 +186,10 @@ function clearInput() {
 function editSubtask(id) {
   let field = document.getElementById(`subtasks-input-c${id}`);
   let iconboxedit = document.getElementById(`created-subtasks-iconbox${id}`);
-  let iconboxcheck = document.getElementById(`created-subtasks-iconbox${id}`).nextElementSibling; 
-  field.value = field.value.split('').splice(2).join(''); 
+  let iconboxcheck = document.getElementById(
+    `created-subtasks-iconbox${id}`
+  ).nextElementSibling;
+  field.value = field.value.split("").splice(2).join("");
   field.disabled = false;
   field.focus();
   iconboxedit.classList.toggle("invis");
@@ -190,7 +209,7 @@ function checkSubtask(id) {
     `created-subtasks-iconbox${id}`
   ).nextElementSibling;
   subtasks[id][0] = field.value;
-  field.value = `• ${field.value}`;  
+  field.value = `• ${field.value}`;
   field.disabled = true;
   iconboxedit.classList.toggle("invis");
   iconboxedit.classList.toggle("flex");
@@ -203,7 +222,7 @@ function checkSubtask(id) {
  * @param {number} id - The ID of the subtask.
  */
 function deleteSubtask(id) {
-  subtasks.splice(id,1);
+  subtasks.splice(id, 1);
   renderSubtasks();
 }
 
@@ -211,7 +230,7 @@ function deleteSubtask(id) {
  * Checks if the category field is filled before creating the task.
  */
 function checkRequired() {
-  let category = document.getElementById('category-input');
+  let category = document.getElementById("category-input");
   if (category.value == "") {
     category.style.borderColor = "red";
     category.style.borderWidth = "2px";
@@ -225,13 +244,22 @@ function checkRequired() {
  */
 async function createTask(column) {
   let category = column;
-  let label = document.getElementById('category-input').value;
-  let title = document.getElementById('title').value;
-  let description = document.getElementById('description').value;
-  let date = document.getElementById('duedate').value;
-  let tasktoadd = new Task (category, label, title, description, date, subtasks, priority, assigned);  
-  tasks.push(tasktoadd);   
-  await setItem('taskobject',JSON.stringify(tasks));  
+  let label = document.getElementById("category-input").value;
+  let title = document.getElementById("title").value;
+  let description = document.getElementById("description").value;
+  let date = document.getElementById("duedate").value;
+  let tasktoadd = new Task(
+    category,
+    label,
+    title,
+    description,
+    date,
+    subtasks,
+    priority,
+    assigned
+  );
+  tasks.push(tasktoadd);
+  await setItem("taskobject", JSON.stringify(tasks));
   animateCreatedTask();
 }
 
@@ -240,8 +268,10 @@ async function createTask(column) {
  */
 function animateCreatedTask() {
   let addedbox = document.getElementById("added-to-board-box");
-  addedbox.style.display = 'flex';
-  setTimeout(() => {addedbox.style.top = "40%";},200);
+  addedbox.style.display = "flex";
+  setTimeout(() => {
+    addedbox.style.top = "40%";
+  }, 200);
   setTimeout(() => {
     window.location.href = "board.html";
   }, 1500);
@@ -259,11 +289,13 @@ async function clearAddTask(event) {
   document.getElementById("category-input").value = "";
   document.getElementById("subtasks").value = "";
   document.getElementById("tag-container").innerHTML = "";
-  document.querySelectorAll(".assigned-checked").forEach((c) => c.classList.remove("assigned-checked"));
+  document
+    .querySelectorAll(".assigned-checked")
+    .forEach((c) => c.classList.remove("assigned-checked"));
   assigned = [];
   subtasks = [];
   /* users = [];
-  await setItem('users', JSON.stringify(users)); */ 
+  await setItem('users', JSON.stringify(users)); */
   /* tasks.splice(6,1);
   await setItem('taskobject', JSON.stringify(tasks)); */
   renderSubtasks();
@@ -276,8 +308,11 @@ async function clearAddTask(event) {
  */
 function assignSubtask() {
   let task = document.getElementById("subtasks").value;
-  subtasks.push([task,0]);
-  renderSubtasks();
+  if (task !== "") {
+    subtasks.push([task, 0]);
+    document.getElementById("subtasks").blur();
+    renderSubtasks();
+  }
 }
 
 /**
@@ -287,19 +322,19 @@ function renderSubtasks() {
   let container = document.getElementById("created-subtasks-container");
   container.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
-    const task = subtasks[i][0];    
-    container.innerHTML += displaySubtask(task,i);
+    const task = subtasks[i][0];
+    container.innerHTML += displaySubtask(task, i);
   }
 }
 /**
  * When writing the subtask, checking if enter is pressed to save the subtask
  * @param {string} event - Event Object
  */
-function checkEnter(event) {  
+function checkEnter(event) {
   event.preventDefault();
-  if (event.key === 'Enter' || event.keyCode === 13) {    
-    assignSubtask();   
-    clearInput(); 
+  if (event.key === "Enter" || event.keyCode === 13) {
+    assignSubtask();
+    clearInput();
   }
 }
 
@@ -328,3 +363,20 @@ function displaySubtask(task, index) {
   </div>                
   `;
 }
+
+function closeDropDowns(event) {  
+  let assigneddrop = document.getElementById("drop-menu-assigned");
+  let categorydrop = document.getElementById("drop-menu-category");  
+  if (!event.target.closest('#assigned-input') && !event.target.closest('#arrowassigned') && !event.target.closest('.dropbox') &&
+    !assigneddrop.classList.contains("invis")) {
+    toggleDrop("arrowassigned");
+  }
+  if (!event.target.closest('#category-input') && !event.target.closest('#arrowcategory') && !event.target.closest('.dropbox') &&
+    !categorydrop.classList.contains("invis")) {
+    toggleDrop("arrowcategory");
+  }
+}
+
+document.onclick = function (event) {
+  closeDropDowns(event);
+};

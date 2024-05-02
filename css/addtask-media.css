@@ -76,8 +76,7 @@
     width: 100%;
   }
   #tag-container {
-    max-width: 100%;
-    flex-wrap: wrap;
+    max-width: 100%;    
     margin-bottom: 10px;
   }
   #added-to-board-box {
