@@ -32,11 +32,6 @@ h1 {
   cursor: default;
 }
 
-/* span {
-  cursor: default;
-  font-size: 20px;
-} */
-
 #maincontent {
   margin-top: 48px;
   padding: 0 5px;
@@ -260,10 +255,6 @@ textarea {
 #subtasks:disabled {
   background-color: white;
 }
-
-/* .dropbox span {
-  cursor: pointer;
-} */
 
 #assigned-input {
   position: relative;

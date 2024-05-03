@@ -83,8 +83,18 @@ function showAssigned(task, assigned, index) {
     container.innerHTML += renderAssigned(id, user[1], i, left);
     left += 24;
   }
+  renderExtraUsers(assigned, index, left);
   if (task.subtasks.length == 0) {
     document.getElementById(`bar${index}`).style.display = "none";
+  }
+}
+
+function renderExtraUsers(assigned, index, left) {
+  let container = document.getElementById(`userbox${index}`);
+  if (assigned.length > 5) {
+    container.innerHTML += `
+      <div class="usertag absolute flex center" style="background-color:#29abe2;z-index:5;left:${left}px">+${assigned.length - 5}</div>  
+    `;
   }
 }
 
@@ -98,7 +108,7 @@ function filterTasks() {
   emptyColumns();
   for (let i = 0; i < tasks.length; i++) {
     let task = tasks[i];
-    if (task.title.toLowerCase().includes(search.toLowerCase())) {
+    if (task.title.toLowerCase().includes(search.toLowerCase()) || task.description.toLowerCase().includes(search.toLowerCase())) {
       found++;
       let container = document.getElementById(`task_${task.category}`);
       container.innerHTML += renderTaskHTML(task, i);
