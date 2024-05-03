@@ -21,16 +21,14 @@ let chosencolumn = "todo";
  * Displays the user menu dropdown.
  * Loads users and tasks before rendering.
  */
-async function displayUserMenu() {
-  await loadUsers();
+async function displayUserMenu() {  
   await loadTasks();
-  await loadContacts();
-  allclients = [...users, ...contacts];
+  await loadContacts();  
   let dropbox = document.getElementById("drop-menu-assigned");
   dropbox.innerHTML = "";
-  for (let i = 0; i < allclients.length; i++) {
-    const user = allclients[i].name;
-    const color = allclients[i].color;
+  for (let i = 0; i < contacts.length; i++) {
+    const user = contacts[i].name;
+    const color = contacts[i].color;
     dropbox.innerHTML += renderDropboxUser(user, color, i);
   }
 }
@@ -101,8 +99,8 @@ function toggleDrop(id) {
  */
 function checkUser(id) {
   let container = document.getElementById(`c${id}`);
-  let checkeduser = allclients[id].name;
-  let checkedusercolor = allclients[id].color;
+  let checkeduser = contacts[id].name;
+  let checkedusercolor = contacts[id].color;
   let index = assigned.findIndex(
     (t) => t.includes(checkeduser) && t.includes(checkedusercolor)
   );
@@ -248,16 +246,7 @@ async function createTask(column) {
   let title = document.getElementById("title").value;
   let description = document.getElementById("description").value;
   let date = document.getElementById("duedate").value;
-  let tasktoadd = new Task(
-    category,
-    label,
-    title,
-    description,
-    date,
-    subtasks,
-    priority,
-    assigned
-  );
+  let tasktoadd = new Task(category,label,title,description,date,subtasks,priority,assigned);
   tasks.push(tasktoadd);
   await setItem("taskobject", JSON.stringify(tasks));
   animateCreatedTask();

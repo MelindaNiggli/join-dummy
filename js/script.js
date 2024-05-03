@@ -4,7 +4,6 @@
  */
 let tasks = [];
 let contacts = [];
-let allclients = [];
 let loggedInUser = []; 
 
 

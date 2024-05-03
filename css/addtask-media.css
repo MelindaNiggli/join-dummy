@@ -1,14 +1,16 @@
 @media only screen and (max-width: 1375px) {
   #maincontent {
     flex-direction: column;
-    overflow: auto;
+    overflow: unset;
     align-items: center;
     margin-bottom: 20px;
+    height: unset;
   }
   form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow: unset;
   }
   .divider {
     display: none;
@@ -18,6 +20,7 @@
   }
   #foot {
     width: 440px;
+    margin-bottom: 20px;
   }
   .clear {
     display: none;
@@ -31,12 +34,18 @@
   #main {
     margin-top: 96px;
     padding: 38px 0px 0px 0px;
-    align-items: center;
+    align-items: center;  
   }
   #maincontent {
-    height: 500px;
-    margin-top: 25px;
+    padding-bottom: 80px;
   }
+  #foot {
+    position: sticky;
+    bottom: 80px;   
+    padding-bottom: 10px; 
+    z-index: 50;
+    background-color: #f6f7f8;
+  }  
   h1 {
     font-size: 47px;
   }
@@ -62,16 +71,13 @@
   }
   .createtask {
     font-size: 16px;
-    padding: 14px 20px;
+    padding: 10px 16px;
     width: unset;
     height: unset;
   }
   .requiredspan {
     font-size: 14px;
-  }
-  #maincontent {
-    height: 520px;
-  }
+  }  
   .drop-menu {
     width: 100%;
   }
