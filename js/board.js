@@ -75,7 +75,7 @@ function calcChecked(task) {
  */
 function showAssigned(task, assigned, index) {
   let container = document.getElementById(`userbox${index}`);
-  let length = assigned.length > 5 ? 5 : assigned.length;
+  let length = assigned.length > 6 ? 6 : assigned.length;
   let left = 0;
   for (let i = 0; i < length; i++) {
     const user = assigned[i];
@@ -91,9 +91,9 @@ function showAssigned(task, assigned, index) {
 
 function renderExtraUsers(assigned, index, left) {
   let container = document.getElementById(`userbox${index}`);
-  if (assigned.length > 5) {
+  if (assigned.length > 6) {
     container.innerHTML += `
-      <div class="usertag absolute flex center" style="background-color:#29abe2;z-index:5;left:${left}px">+${assigned.length - 5}</div>  
+      <div class="usertag absolute flex center" style="background-color:#29abe2;z-index:5;left:${left}px">+${assigned.length - 6}</div>  
     `;
   }
 }
@@ -177,28 +177,30 @@ function removeHighlight(id) {
 /**
  * Toggles the visibility of the floating add task container.
  */
-function toggleFloatingAddTask(column) {
-  let maincontainer = document.body;
+function toggleFloatingAddTask(column) {  
   let container = document.getElementById("blockcontainer");
   let floatingcontainer = document.getElementById("add-task-container");
+  clearAddTask(event);
   chosencolumn = column;  
-  if (container.classList.contains("d-none")) {
-    container.classList.toggle("d-none");    
-    floatingcontainer.classList.toggle("slidein");
-    maincontainer.style.overflow = 'hidden';
+  if (container.classList.contains('d-none')) {
+    toggleTemplateContainer();
+    container.classList.toggle('d-none');    
+    floatingcontainer.classList.toggle('slidein');
+    document.body.style.overflow = 'hidden';
   } else {
     floatingcontainer.classList.toggle("slideout"); 
-    maincontainer.style.overflow = 'auto';   
-    setTimeout(toggleBlock, 200);
-    setTimeout(reload, 400);
+    document.body.style.overflow = 'auto';   
+    setTimeout(toggleBlock, 200);  
+    setTimeout(toggleTemplateContainer, 350);  
   }
 }
 
 /**
- * Function to reload the page
+ * Function to toggle the template container
  */
-function reload() {
-  window.location.reload();
+function toggleTemplateContainer() {
+  let templatecontainer = document.getElementById('task-template');
+  templatecontainer.classList.toggle('d-none');
 }
 
 /**
@@ -291,6 +293,7 @@ async function removeTask(index) {
   hideDetailsContainer();
   tasks.splice(index, 1);
   await setItem("taskobject", JSON.stringify(tasks));
+  document.body.style.overflow = 'auto'; 
   updateTasks();
 }
 
@@ -318,8 +321,7 @@ function closeTaskInfo() {
   bodycontainer.style.overflow = 'auto';
   container.classList.remove("slidein");
   container.classList.add("slideout");
-  setTimeout(hideDetailsContainer, 200);
-  setTimeout(reload, 400);
+  setTimeout(hideDetailsContainer, 200);  
 }
 
 /**
@@ -336,14 +338,15 @@ function hideDetailsContainer() {
  */
 async function saveEditTask(index) {
   let task = tasks[index];
-  task.title = document.getElementById("title").value;
-  task.description = document.getElementById("description").value;
-  task.date = document.getElementById("duedate").value;
+  task.title = document.getElementById("title-edit").value;
+  task.description = document.getElementById("description-edit").value;
+  task.date = document.getElementById("duedate-edit").value;
   task.priority = priority;
   task.assigned = assigned;
   task.subtasks = subtasks;
-  await setItem("taskobject", JSON.stringify(tasks));
-  setTimeout(reload(), 500);
+  await setItem("taskobject", JSON.stringify(tasks));  
+  updateTasks();
+  closeTaskInfo();  
 }
 
 /**

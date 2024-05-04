@@ -27,7 +27,8 @@
     <script src="./js/board.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/storage.js"></script>
-    <script src="./js/addtask.js"></script>    
+    <script src="./js/addtask.js"></script> 
+    <script src="./js/edittask.js"></script>   
     <script src="./js/templates.js"></script>
   </head>
   <body onload="includeHTML();updateTasks();displayUserMenu();">
@@ -139,7 +140,7 @@
           onclick="toggleFloatingAddTask()">
           <img src="./img/x.png" alt="x" />
         </div>
-        <div include-html="./templates/add_task_template.html"></div>
+        <div include-html="./templates/add_task_template.html" class="d-none" id="task-template"></div>
       </div>
     </div>
   </body>

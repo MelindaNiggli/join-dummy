@@ -111,32 +111,32 @@ function checkUser(id) {
   }
   container.lastElementChild.classList.toggle("assigned-checked");
   container.lastElementChild.classList.toggle("assigned-check");
-  renderAssignedUsers();
+  renderAssignedUsers('tag-container');
 }
 
 /**
  * Renders the tags for the assigned users.
  */
-function renderAssignedUsers() {
-  let container = document.getElementById("tag-container");
-  container.innerHTML = "";
+function renderAssignedUsers(container) {
+  let bucket = document.getElementById(container);
+  bucket.innerHTML = "";
   let length = assigned.length > 6 ? 6 : assigned.length;
   for (let i = 0; i < length; i++) {
     const user = assigned[i][0];
     const usercolor = assigned[i][1];
-    container.innerHTML += `
+    bucket.innerHTML += `
     <div class="usertag flex a-center j-center" style="background-color:${usercolor}">${getInitials(
       user
     )}</div>
     `;
   }
-  renderExtraBubble();
+  renderExtraBubble(container);
 }
 
-function renderExtraBubble() {
-  let container = document.getElementById("tag-container");
+function renderExtraBubble(container) {
+  let bucket = document.getElementById(container);
   if (assigned.length > 6) {
-    container.innerHTML += `
+    bucket.innerHTML += `
     <div class="usertag flex a-center j-center" style="background-color:#29abe2">+${assigned.length - 6}</div>
     `;
   }
@@ -154,11 +154,10 @@ function selectCategory(category) {
 /**
  * Toggles the visibility of the subtasks input field.
  */
-function toggleSubtasksInput() {
-  let field = document.getElementById("subtasks");
-  let hiddenicons = document.getElementById("subtask-active-icons");
-  let plusicon = hiddenicons.nextElementSibling;
-  /* field.disabled ? (field.disabled = false) : (field.disabled = true); */
+function toggleSubtasksInput(inputcontainer) {
+  let field = document.getElementById(inputcontainer);
+  let hiddenicons = field.nextElementSibling.firstElementChild;
+  let plusicon = hiddenicons.nextElementSibling;  
   if (!field.focus()) {
     field.focus();
   }
@@ -171,10 +170,10 @@ function toggleSubtasksInput() {
 /**
  * Clears the input fields for adding a task.
  */
-function clearInput() {
-  document.getElementById("subtasks").value = "";
-  toggleSubtasksInput();
-  document.getElementById("subtasks").blur();
+function clearInput(inputcontainer) {
+  document.getElementById(inputcontainer).value = "";
+  toggleSubtasksInput(inputcontainer);
+  document.getElementById(inputcontainer).blur();
 }
 
 /**
@@ -270,8 +269,8 @@ function animateCreatedTask() {
  * Clears all input fields for adding a task.
  * @param {Event} event - The event object.
  */
-async function clearAddTask(event) {
-  event.preventDefault();
+function clearAddTask(event) {
+  if (event) {event.preventDefault();}
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("duedate").value = "";
@@ -295,11 +294,11 @@ async function clearAddTask(event) {
 /**
  * Adds a subtask to the list of subtasks.
  */
-function assignSubtask() {
-  let task = document.getElementById("subtasks").value;
+function assignSubtask(inputcontainer) {
+  let task = document.getElementById(inputcontainer).value;
   if (task !== "") {
     subtasks.push([task, 0]);
-    document.getElementById("subtasks").blur();
+    document.getElementById(inputcontainer).blur();
     renderSubtasks();
   }
 }
@@ -315,15 +314,16 @@ function renderSubtasks() {
     container.innerHTML += displaySubtask(task, i);
   }
 }
+
 /**
  * When writing the subtask, checking if enter is pressed to save the subtask
  * @param {string} event - Event Object
  */
-function checkEnter(event) {
+function checkEnter(event, inputcontainer) {
   event.preventDefault();
   if (event.key === "Enter" || event.keyCode === 13) {
-    assignSubtask();
-    clearInput();
+    assignSubtask(inputcontainer);
+    clearInput(inputcontainer);
   }
 }
 
@@ -368,4 +368,5 @@ function closeDropDowns(event) {
 
 document.onclick = function (event) {
   closeDropDowns(event);
+  closeDropDownsEdit(event);
 };

@@ -18,47 +18,47 @@ function openTaskEdit(index) {
           <div class="task-bucket">        
             <div class="taskbranch">
                 <span>Title</span>
-                <input type="text" id="title" placeholder="Enter a title" maxlength="40" value="${task.title}" required>
+                <input type="text" id="title-edit" placeholder="Enter a title" maxlength="40" value="${task.title}" required>
               </div>
               <div class="taskbranch">
                 <span>Description</span>
-                <textarea name="" id="description" cols="30" rows="10" placeholder="Enter a description" maxlength="105">${task.description}</textarea>
+                <textarea name="" id="description-edit" cols="30" rows="10" placeholder="Enter a description" maxlength="105">${task.description}</textarea>
               </div>
               <div class="taskbranch">
                 <span>Due date</span>
-                <input type="date" id="duedate" value="${task.date}"required>
+                <input type="date" id="duedate-edit" value="${task.date}"required>
               </div>
               <div class="taskbranch">
                 <span>Prio</span>
                 <div class="buttonbox">
-                  <button class="priobutton" id="urgent" onclick="selectPrio(id, event)">Urgent <img src="./img/upTask.svg" alt="urgent"></button>
-                  <button class="priobutton mediumselect" id="medium" onclick="selectPrio(id, event)">Medium <img src="./img/medium.svg" alt="medium"></button>
-                  <button class="priobutton" id="low" onclick="selectPrio(id, event)">Low <img src="./img/downTask.svg" alt="low"></button>
+                  <button class="priobutton" id="urgent-edit" onclick="selectPrioEdit('urgent', event)">Urgent <img src="./img/upTask.svg" alt="urgent"></button>
+                  <button class="priobutton mediumselect" id="medium-edit" onclick="selectPrioEdit('medium', event)">Medium <img src="./img/medium.svg" alt="medium"></button>
+                  <button class="priobutton" id="low-edit" onclick="selectPrioEdit('low', event)">Low <img src="./img/downTask.svg" alt="low"></button>
                 </div>
               </div>
               <div class="taskbranch">
                 <span>Assigned to</span>
                 <div class="assigned-wrapper">
-                  <input type="text" id="assigned-input" class="wrapper" placeholder="Select contacts to assign">
-                  <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
-                  <div class="invis absolute drop-menu" id="drop-menu-assigned">                   
+                  <input type="text" id="assigned-input-edit" onclick="toggleDrop('arrowassigned-edit')" class="wrapper" placeholder="Select contacts to assign">
+                  <div class="roundicon wrapper" onclick="toggleDrop(id)" id="arrowassigned-edit"><img src="./img/arrow_drop_down.svg" alt="arrow"></div>
+                  <div class="invis absolute drop-menu" id="drop-menu-assigned-edit">                   
                   </div>   
                 </div>                     
-                <div id="tag-container" class="flex gap-ss"></div>
+                <div id="tag-container-edit" class="flex gap-ss"></div>
               </div>
               <div class="taskbranch">
               <span>Subtasks</span>
               <div class="relative">             
-                <input type="text" id="subtasks" placeholder="Add new subtask" onkeyup="checkEnter(event)" disabled>             
+                <input type="text" id="subtasks-edit" onclick="toggleSubtasksInput(id)" placeholder="Add new subtask" onkeyup="checkEnterEdit(event,id)">             
                 <div class="iconcontainer">
-                  <div class="invis" id="subtask-active-icons">
-                    <div class="x-icon flex" onclick="clearInput()"><img src="./img/close.svg" alt="x"></div>                
+                  <div class="invis" id="subtask-active-icons-edit">
+                    <div class="x-icon flex" onclick="clearInput('subtasks-edit')"><img src="./img/close.svg" alt="x"></div>                
                     <img src="./img/vertbar.png" alt="divider">
-                    <div class="x-icon flex" onclick="assignSubtask(), clearInput()"><img src="./img/checksmall.png" alt="check"></div>
+                    <div class="x-icon flex" onclick="assignSubtaskEdit('subtasks-edit'), clearInput('subtasks-edit')"><img src="./img/checksmall.png" alt="check"></div>
                   </div>
-                  <div class="x-icon flex pad" onclick="toggleSubtasksInput()"><img src="./img/add.svg" alt="plus"></div>
+                  <div class="x-icon flex pad" onclick="toggleSubtasksInput('subtasks-edit')"><img src="./img/add.svg" alt="plus"></div>
                 </div>
-                <div id="created-subtasks-container">                           
+                <div id="created-subtasks-container-edit">                           
                 </div>
               </div>
             </div>
@@ -71,10 +71,10 @@ function openTaskEdit(index) {
       </div>
     </div>  
     `;
-    selectPrio(task.priority, event);
-    displayUserMenu();
-    renderAssignedUsers();
-    renderSubtasks();
+    selectPrioEdit(task.priority, event);
+    displayUserMenuEdit();
+    renderAssignedUsers('tag-container-edit');
+    renderSubtasksEdit();
   }
 
   /**
