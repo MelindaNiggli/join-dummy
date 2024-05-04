@@ -366,7 +366,17 @@ function closeDropDowns(event) {
   }
 }
 
+function closeDropDownsEdit(event) {  
+  if (document.getElementById("drop-menu-assigned-edit")) {
+      let assigneddrop = document.getElementById("drop-menu-assigned-edit");    
+      if (!event.target.closest('#assigned-input-edit') && !event.target.closest('#arrowassigned-edit') && !event.target.closest('.dropbox') &&
+      !assigneddrop.classList.contains("invis")) {
+      toggleDrop("arrowassigned-edit");
+      } 
+  }   
+} 
+
 document.onclick = function (event) {
   closeDropDowns(event);
-  closeDropDownsEdit(event);
+  closeDropDownsEdit(event);      
 };

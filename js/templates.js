@@ -125,7 +125,7 @@ function renderTaskHTML(task, index) {
  */
 function renderTaskInfoHTML(task, index) {
     return `
-    <div id="detailsContainer" class="details">
+    <div id="detailsContainer" onclick="closeAddTaskSideClick(event)" class="details">
       <div id="task-details">
         <div class="task-and-close-container">
           <div class="${task.label

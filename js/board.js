@@ -373,3 +373,29 @@ async function burgerMoveTo(category,index,event) {
   await setItem("taskobject", JSON.stringify(tasks));
   updateTasks();
 }
+
+/**
+ * Hides the block container when clicked outside of the add task container
+ * @param {event} event - clickevent
+ */
+function closeAddTaskSideClick(event) {  
+  let blockcontainer = document.getElementById('blockcontainer');
+  if (!blockcontainer.classList.contains('d-none')) {    
+    if (!event.target.closest('#add-task-container')) {
+      toggleFloatingAddTask();
+    }
+  }  
+}
+
+/**
+ * Hides the task-details-container when clicked outside of the task-details
+ * @param {event} event - clickevent
+ */
+function closeTaskInfoSideClick(event) {  
+  let blockcontainer = document.getElementById('detailsContainer');
+  if (!blockcontainer.classList.contains('d-none')) {    
+    if (!event.target.closest('#task-details')) {
+      closeTaskInfo();
+    }
+  }  
+}

@@ -247,7 +247,7 @@ textarea {
   border-radius: 10px;
 }
 
-#category-input:hover, #assigned-input:hover {
+#category-input:hover, #assigned-input:hover, #assigned-input-edit:hover {
   cursor: pointer;
 }
 
