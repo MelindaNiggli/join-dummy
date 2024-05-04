@@ -203,19 +203,26 @@ function back(){
 
 
 /*** FUNCTION TO FOCUS CONTACT LIST ON USER CLICK ***/
-function onClickFocusUser(index, color) {
+async function onClickFocusUser(index, color) {
     if (window.innerWidth >= 1075) {
         let contactBadge = document.getElementById('name' + index);
         let emailBadge = document.getElementById(index);
-        contactBadge.style.border =  `3px solid white`;
-        contactBadge.style.background = color;
-        contactBadge.style.transition = '5s ease-in';
-        contactBadge.style.boxShadow = '0px 0px 4px #0000001a';
-        contactBadge.style.borderRadius = '20px';
-        contactBadge.style.color = 'white';
-        emailBadge.style.color = 'white';
-    }
+        
+        // Überprüfe, ob contactBadge nicht null ist, bevor du darauf zugreifst
+        if (contactBadge) {
+            contactBadge.style.border =  `3px solid white`;
+            contactBadge.style.background = color;
+            contactBadge.style.transition = '5s ease-in';
+            contactBadge.style.boxShadow = '0px 0px 4px #0000001a';
+            contactBadge.style.borderRadius = '20px';
+            contactBadge.style.color = 'white';
+            emailBadge.style.color = 'white';
+        } else {
+            //console.log('Der Kontakt wurde nicht geklickt');
+        }
+    } 
 }
+
 
 /*** TRANSITION FOR SIDE CONTACT INFORMATION ***/
 function transitionUserInfoDetails(container) {
@@ -264,9 +271,9 @@ async function showUserInfo(name, email, color, phone, index) {
         <div id="userInfoDetails"></div>
     `;
     
-    const container = document.getElementById('userInfoDetails'); // Define container variable
+    const container = document.getElementById('userInfoDetails'); 
     wrapper.style.zIndex = '0';
-    await loadContactUsers(); // Assuming this is defined elsewhere
+    await loadContactUsers();
     onClickFocusUser(index, color);
     transitionUserInfoDetails(container); // Pass container as an argument
 
@@ -489,7 +496,7 @@ function messageSuccessfully(){
 
 /**** FUNCTION TO UPDATE A CONTACT****/
 /* Async function to update a use @param {string} name - The name of the user to update*/
-async function updateUser(name) {
+async function updateUser(name, index, color) {
     const nameInput = document.getElementById('userInputUpdate').value;
     const email = document.getElementById('emailInputUpdate').value;
     const phone = document.getElementById('phoneInputUpdate').value;
@@ -508,14 +515,16 @@ async function updateUser(name) {
          overlayTransform();
          messageSuccessfully(name);
          showUserInfo(); 
+    
          const wrapper = document.getElementById('mobileEdit');
          wrapper.style.display = 'none'
          
     } else {
         console.log('User not found!');
     }
-
 }
+
+
 /**** FUNCTION TO CLOSE THE OVERLAY AND THE CONTACT USER EDIT FORM ****/
 function closeUpdate() {
     let overlay = document.getElementById('overlayEdit');
