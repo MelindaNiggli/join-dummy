@@ -3,9 +3,58 @@ main {
   width: calc(100vw - 232px);
   background-color: var(--bg);
   display: flex;
-  overflow: hidden!important;
+  overflow: hidden !important;
   align-items: start;
 }
+
+.edit:hover #editimg {
+  content: url("../img/edit-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+.delete:hover #deleteImg {
+  content: url("../img/delete-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+.cancel:hover #updateDeleteImg {
+  content: url("../img/delete-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+.cancel:hover #BTC {
+  content: url("../img/close-blue.svg");
+}
+.delete:hover #updateDeleteImg {
+  content: url("../img/delete-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+.delete:hover #BTC {
+  content: url("../img/delete-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+#close:hover #closeImg {
+  content: url("../img/closeWhite.svg");
+}
+
+#closeNewContact:hover #closeImgNew {
+  content: url("../img/closeWhite.svg");
+}
+
+.wrapper-input:focus-within {
+  border: 1px solid var(--join-blue);
+}
+
+.wrapper-inputinput:focus {
+  outline: none;
+}
+
+.wrapperButton {
+  display: flex;
+}
+
 #contactList {
   width: 456px;
   background: white;
@@ -86,16 +135,16 @@ span.linie {
 }
 
 .profileBadge {
-	height: 42px;
-	min-width: 42px;
-	font-size: 12px;
-	color: white;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-right: 35px;
-	border: 2px solid var(--white);
+  height: 42px;
+  min-width: 42px;
+  font-size: 12px;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 35px;
+  border: 2px solid var(--white);
 }
 #userInfo #name {
   font-size: 20px;
@@ -195,7 +244,6 @@ span.linie {
   margin-right: 83px;
   border: 3px solid white;
   box-shadow: 0px 0px 4px #0000001a;
-
 }
 .wrapper-right .wrapper-button {
   display: flex;
@@ -254,7 +302,8 @@ span.linie {
   -o-transform: translateX(0px);
 }
 
-#close, #closeNewContact {
+#close,
+#closeNewContact {
   position: absolute;
   top: 35px;
   right: 35px;
@@ -265,7 +314,8 @@ span.linie {
   align-items: center;
   justify-content: center;
 }
-#close:hover, #closeNewContact:hover{
+#close:hover,
+#closeNewContact:hover {
   background-color: var(--join-blue);
   position: absolute;
   padding: 10px;
@@ -411,11 +461,24 @@ span.linie {
   background: var(--join-blue);
 }
 
-@media only screen and (max-width: 1253px) {
+#mobileEdit {
+  display: none;
+  bottom: 106px !important;
+  z-index: 2 !important;
+}
 
-    .cancel{
-        display: none;
-    }
+@media only screen and (max-width: 1253px) {
+  .more {
+    z-index: 1;
+  }
+
+  #editeDeleteWrapper {
+    display: none !important;
+  }
+
+  .cancel {
+    display: none;
+  }
   #allUsers {
     padding: 15px;
   }
@@ -491,7 +554,7 @@ span.linie {
     margin-right: 20px;
   }
   .nameAside {
-    font-size: 36px;
+    font-size: 36px!important;
   }
   .editeDeleteWrapper img {
     margin-right: 5px !important;
@@ -605,37 +668,71 @@ span.linie {
     display: inline-block;
     margin: 30px 0;
   }
+  #userInfoDetails {
+    z-index: -1;
+    padding: 10px;
+    margin: 0 !important;
+  }
 }
-
 
 @media only screen and (max-width: 375px) {
-    .wrapper-right .BT-Black{
-      width: 100% !important;
-    
+    #editContact,
+    #addContact {
+      height: 90% !important;
     }
- 
-    .BT-Black{
-        margin-top: 20px;
+    .wrapper-left {
+      height: 100% !important;
     }
+    #wrapperInfo {
+      overflow: scroll;
+    }
+    .editeDeleteWrapper {
+      bottom: 22px;
+      right: 14px;
+    }
+    .badge.edit,
+    .badge {
+      top: 200px;
+    }
+    .badge {
+      width: 100px;
+      height: 100px;
+    }
+  
     .wrapper-right .wrapper-button {
-        display: flex;
-        flex-direction: column;
+      display: flex;
+      flex-direction: column;
     }
     h1 {
-        font-size: 35px;
-        margin-bottom: 8px;
+      font-size: 35px;
+      margin-bottom: 8px;
     }
     .wrapper-left .text p {
-        font-size: 25px;
-        font-weight: 400;
+      font-size: 17px;
+      font-weight: 400;
     }
     .nameAside {
-        font-size: 31px !important;
-        line-height: 56.4px;
+      font-size: 31px !important;
+      line-height: 56.4px;
+    }
+    .badge.edit {
+      font-size: 38px;
+      color: var(--white);
+    }
+    .wrapper-button {
+      margin-bottom: 12px;
+    }
+  
+    .wrapper-right {
+      margin-right: 0 !important;
+      padding: 15px;
+    }
+  
+    .selected {
+      background-color: red !important;
+    }
+    .wrapper-right .BT-Black{
+      width: 100%!important;
     }
   }
-
-
-  .selected {
-    background-color: red !important;
-}
+  

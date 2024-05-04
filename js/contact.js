@@ -3,6 +3,8 @@ async function init(){
     await loadContactUsers();
     templateWrapperInfo();
      // Für den Reset : await clearExistingUsers();
+     // JavaScript code
+
 }
 
 /**** RESET FUNCTION TO CLEAR ALL ****/
@@ -85,6 +87,13 @@ async function saveUser(){
     }
 }
 
+function onlyNumbers(event){
+    const isNumber = /[0-9]/.test(event.key);
+    // Blockiere die Eingabe, wenn die Taste keine Zahl ist
+    if (!isNumber) {
+        event.preventDefault();
+    }
+}
 
 
 /**** RESET FORM ****/
@@ -109,6 +118,7 @@ function messageSuccessfullyCreated(){
         }, 1); // Wait for the transition to complete before hiding the message box
     }, 2000); 
 }
+
 
 /**** OVERLAY TRANSFORM  ****/
 function overlayTransform(){
@@ -190,28 +200,21 @@ function back(){
     wrapper.style.zIndex = '-2';
 }
 
-/**** MORE BUTTON ****/
-function more() {
-    console.log('funktioniert')
-    const wrapper = document.getElementById('editeDeleteWrapper');
-    if (window.innerWidth <= 1075) {
-        wrapper.style.display = 'block';
-    } else {
-        wrapper.style.display = 'none';
-    }
-}
+
 
 /*** FUNCTION TO FOCUS CONTACT LIST ON USER CLICK ***/
 function onClickFocusUser(index, color) {
-    let contactBadge = document.getElementById('name' + index);
-    let emailBadge = document.getElementById(index);
-    contactBadge.style.border =  `3px solid white`;
-    contactBadge.style.background = color;
-    contactBadge.style.transition = '5s ease-in';
-    contactBadge.style.boxShadow = '0px 0px 4px #0000001a';
-    contactBadge.style.borderRadius = '20px';
-    contactBadge.style.color = 'white';
-    emailBadge.style.color = 'white';
+    if (window.innerWidth >= 1075) {
+        let contactBadge = document.getElementById('name' + index);
+        let emailBadge = document.getElementById(index);
+        contactBadge.style.border =  `3px solid white`;
+        contactBadge.style.background = color;
+        contactBadge.style.transition = '5s ease-in';
+        contactBadge.style.boxShadow = '0px 0px 4px #0000001a';
+        contactBadge.style.borderRadius = '20px';
+        contactBadge.style.color = 'white';
+        emailBadge.style.color = 'white';
+    }
 }
 
 /*** TRANSITION FOR SIDE CONTACT INFORMATION ***/
@@ -238,6 +241,16 @@ async function showUserInfo(name, email, color, phone, index) {
     const wrapper = document.getElementById('wrapperInfo');
     wrapper.innerHTML = `
         <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
+        <div  id="mobileEdit" class="editeDeleteWrapper" >
+            <div class="edit" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}')">
+                <img  src="./img/edit.svg" alt="edit icon">
+                <p>Edit</p>
+            </div>
+            <div class="delete" onclick="deleteUser('${name}')">
+                <img  src="./img/delete.svg" alt="delete icon">
+                <p>Delete</p>
+            </div>
+        </div>
         <div id="back" onclick="back()">
             <img src="./img/arrow-left-line.svg" alt="">
         </div>
@@ -256,9 +269,24 @@ async function showUserInfo(name, email, color, phone, index) {
     await loadContactUsers(); // Assuming this is defined elsewhere
     onClickFocusUser(index, color);
     transitionUserInfoDetails(container); // Pass container as an argument
-    const firstTwoChars = firstAndSecondCharUppercase(name);
-    const capitalizedWord = firstCharUppercase(name);
-    container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord);
+
+    if (name) {
+        const firstTwoChars = firstAndSecondCharUppercase(name);
+        const capitalizedWord = firstCharUppercase(name);
+        container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord);
+    }
+}
+
+
+/**** MORE BUTTON ****/
+function more() {
+    console.log('funktioniert')
+    const wrapper = document.getElementById('mobileEdit');
+    if (window.innerWidth <= 1075) {
+        wrapper.style.display = 'block';
+    } else {
+        wrapper.style.display = 'none';
+    }
 }
 
 /**** FIRST AND SECOND CHAR UPPERCASE ****/
@@ -275,22 +303,6 @@ function firstCharUppercase(name) {
     const restOfWord = name.slice(1);
     return firstLetter + restOfWord;
 }
-
-
-/**** HOVER EFFECTS ****/
-function EditHover(){document.getElementById('editimg').src = './img/edit-blue.svg';}
-function EditHoverOut(){ document.getElementById('editimg').src = './img/edit.svg';}
-function DeleteHover(){document.getElementById('deleteImg').src = './img/delete-blue.svg';}
-function DeleteHoverOut(){document.getElementById('deleteImg').src = './img/delete.svg';}
-function Update(){document.getElementById('updateDeleteImg').src = './img/delete-blue.svg';}
-function UpdateHoverOut(){document.getElementById('updateDeleteImg').src = './img/delete.svg';}
-function ButtonHover(){document.getElementById('BTC').src = './img/close-blue.svg';}
-function ButtonHoverOut(){document.getElementById('BTC').src = './img/iconoir_cancel.svg';}
-function hoverClose(){if (window.innerWidth >= 1075) {document.getElementById('closeImg').src = './img/closeWhite.svg';}}
-function hoverCloseOut(){if (window.innerWidth >= 1075) {document.getElementById('closeImg').src = './img/close.svg';}}
-function hoverNewClose(){if (window.innerWidth >= 1075) {document.getElementById('closeImgNew').src = './img/closeWhite.svg';}}
-function hoverNewCloseOut(){if (window.innerWidth >= 1075) {document.getElementById('closeImgNew').src = './img/close.svg';}}
-
 
 /**** FUNCTION TO GENERATE THE HTML FOR DISPLAYING USER INFORMATION****/
 /*
@@ -311,11 +323,11 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
         <div class="wrapperFlex">
             <p id="nameContact" class="nameAside">${capitalizedWord}</p>
             <div id="editeDeleteWrapper" class="editeDeleteWrapper">
-                <div class="edit" onmouseover="EditHover()"  onmouseout="EditHoverOut()" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
+                <div class="edit"  onclick="editUser('${name}', '${email}','${color}','${phone}','${index}','${firstTwoChars}','${capitalizedWord}')">
                     <img id="editimg" src="./img/edit.svg" alt="edit icon">
                     <p>Edit</p>
                 </div>
-                <div class="delete" onmouseover="DeleteHover()"  onmouseout="DeleteHoverOut()" onclick="deleteUser('${name}')">
+                <div class="delete" onclick="deleteUser('${name}')">
                     <img id="deleteImg" src="./img/delete.svg" alt="delete icon">
                     <p>Delete</p>
                 </div>
@@ -428,7 +440,7 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
         </div>
     </div>
     <div class="wrapper-right">
-        <div id="close"  onmouseover="hoverClose()"  onmouseout="hoverCloseOut()"><img  id="closeImg" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()"></div>
+        <div id="close"><img  id="closeImg" class="close" src="./img/close.svg" alt="close" onclick="closeUpdate()"></div>
         <div class="badge edit " style="background: ${color};">
         <p>${firstTwoChars}</p>
         </div>
@@ -442,13 +454,14 @@ function TemplateContainerUpdate(name, email, color, phone, firstTwoChars) {
                     <input type="email" id="emailInputUpdate" placeholder="Email" value="${email}" required>
                     <img src="./img/mail.svg" alt="Email Icon">
                 </div>
+               
                 <div class="wrapper-input">
-                    <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phoneInputUpdate" placeholder="Phone" value="${phone}" required>
+                    <input type="tel" onkeypress="onlyNumbers(event)" id="phoneInputUpdate" placeholder="Phone" value="${phone}" required>
                     <img src="./img/call.svg" alt="Phone Icon">
                 </div>
                 <div class="wrapper-button">
-                    <div class="delete">
-                        <button class="cancel" onmouseover="Update()" onmouseout="UpdateHoverOut()" onclick="deleteUser('${name}')"><img id="updateDeleteImg" src="./img/delete.svg" alt="delete icon">Delete</button>
+                    <div class="wrapperButton">
+                        <button class="cancel" onclick="deleteUser('${name}')"><img id="updateDeleteImg" src="./img/delete.svg" alt="delete icon">Delete</button>
                         <button class="BT-Black" onclick="updateUser('${name}')">Save<img src="./img/check.svg" alt="check"></button>
                     </div>
                 </div>
@@ -494,7 +507,9 @@ async function updateUser(name) {
          await loadContactUsers(); // Update the user list
          overlayTransform();
          messageSuccessfully(name);
-         showUserInfo();
+         showUserInfo(); 
+         const wrapper = document.getElementById('mobileEdit');
+         wrapper.style.display = 'none'
          
     } else {
         console.log('User not found!');
@@ -506,6 +521,8 @@ function closeUpdate() {
     let overlay = document.getElementById('overlayEdit');
     let container = document.getElementById('editContact');
     container.style.transform = 'translateX(1600px)';
+    const wrapper = document.getElementById('mobileEdit');
+    wrapper.style.display = 'none'
     setTimeout(function() {
         overlay.style.display = 'none';
     }, 500); 

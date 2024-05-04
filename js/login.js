@@ -22,17 +22,8 @@ async function loadUsers() {
 function loadAnimation() {
     let logo = document.getElementById('logoImg');
     let logoWrapper = document.getElementById('logo');
-
     setTimeout(function() {
-        logo.style.position = 'absolute';
-        logo.style.top = '100px';
-        logo.style.left = '77px';
-        logo.style.transition = 'top 1s ease-in, left 1s ease-in, width 1s ease-in';
-        logo.style.width = '100.03px';
-        logo.style.transform = '';
-        if (window.innerWidth <= 767) {
-            logoWrapper.style.background = 'var(--join-black)'; 
-        }
+        logo.classList.add('active')
         loadUsers();
     }, 800);
 
