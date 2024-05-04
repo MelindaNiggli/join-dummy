@@ -675,7 +675,16 @@ span.linie {
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 375px) and (min-height: 812px) {
+    .badge.edit, .badge {
+        top: 292px!important;
+      }
+      .wrapper-left{
+        height: 352px!important;
+      }
+}
+
+@media only screen and (max-width: 375px) and (max-height: 667px){
     #editContact,
     #addContact {
       height: 90% !important;
