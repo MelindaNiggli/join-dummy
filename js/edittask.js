@@ -126,7 +126,8 @@ function renderSubtasksEdit() {
  * Deletes a subtask.
  * @param {number} id - The ID of the subtask.
  */
-function deleteSubtaskEdit(id) {
+function deleteSubtaskEdit(id, event) {
+    event.stopPropagation();
     subtasks.splice(id, 1);
     renderSubtasksEdit();
   }
@@ -169,10 +170,10 @@ function displaySubtaskEdit(task, index) {
         <div id="created-subtasks-iconbox-edit${index}" class="subtasks-iconbox flex">
           <div class="x-icon flex" onclick="editSubtaskEdit(${index})"><img src="./img/littlepen.png" alt="pen"></div>
           <img src="./img/vertbar.png" alt="divider">
-          <div class="x-icon flex" onclick="deleteSubtaskEdit(${index})"><img src="./img/trash.png" alt="trash"></div>
+          <div class="x-icon flex" onclick="deleteSubtaskEdit(${index},event)"><img src="./img/trash.png" alt="trash"></div>
         </div>
         <div class="subtasks-iconbox invis">
-          <div class="x-icon flex" onclick="deleteSubtaskEdit(${index})"><img src="./img/trash.png" alt="trash"></div>
+          <div class="x-icon flex" onclick="deleteSubtaskEdit(${index},event)"><img src="./img/trash.png" alt="trash"></div>
           <img src="./img/vertbar.png" alt="divider">
           <div class="x-icon flex" onclick="checkSubtaskEdit(${index})"><img src="./img/checksmall.png" alt="check"></div>
         </div>

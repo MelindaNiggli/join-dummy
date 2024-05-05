@@ -394,7 +394,7 @@ function closeAddTaskSideClick(event) {
 function closeTaskInfoSideClick(event) {  
   let blockcontainer = document.getElementById('detailsContainer');
   if (!blockcontainer.classList.contains('d-none')) {    
-    if (!event.target.closest('#task-details')) {
+    if (!event.target.closest('#task-details') && !event.target.closest('#created-subtasks-container-edit') ) {
       closeTaskInfo();
     }
   }  

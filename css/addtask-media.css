@@ -1,4 +1,8 @@
 @media only screen and (max-width: 1375px) {
+  #add-task-container {
+    max-height: calc(100vh - 180px);
+    overflow: auto;
+  }
   #maincontent {
     flex-direction: column;
     overflow: unset;
@@ -37,7 +41,7 @@
     align-items: center;
   }
   #maincontent {
-    padding-bottom: 80px;
+    margin-bottom: 80px;
   }
   #foot {
     position: sticky;

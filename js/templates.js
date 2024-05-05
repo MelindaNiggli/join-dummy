@@ -8,7 +8,7 @@ function openTaskEdit(index) {
     assigned = tasks[index].assigned;
     let details = document.getElementById("task-details-container");
     details.innerHTML = `
-    <div id="detailsContainer" class="details">
+    <div id="detailsContainer" onclick="closeTaskInfoSideClick(event)" class="details">
       <div id="task-details">
         <form action="javascript:void(0);" onsubmit="saveEditTask(${index})" onkeydown="return event.key != 'Enter';">
           <div class="task-and-close-container">
