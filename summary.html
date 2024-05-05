@@ -17,10 +17,10 @@
     <script src="./js/login.js"></script>
     <script src="./js/summary.js"></script>
   </head>
-  <body onload="includeHTML();init();getAndDisplayUserName();displayCurrentDate()">
+  <body onload="includeHTML();init();getAndDisplayUserName();displayCurrentDate()" >
     <div include-html="./templates/menubar.html"></div>
     <header include-html="./templates/header.html"></header>
-    <main>      
+    <main id="summary">      
       <div class="headline-container">
         <h1 class="summary-headline">Join&nbsp360</h1>
         <div class="line"></div>
@@ -81,7 +81,7 @@
         </div>
       </div>
       
-      <div class="summary-greet-container">
+      <div class="summary-greet-container" id="summary-greet-container">
         <h2 id="greet" class="summary-greet"></h2>
         <h2 id="summaryName" class="summary-name"></h2>
       </div>

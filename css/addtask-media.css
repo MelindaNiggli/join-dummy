@@ -38,18 +38,18 @@
   #main {
     margin-top: 96px;
     padding: 38px 0px 0px 0px;
-    align-items: center;  
-  }  
+    align-items: center;
+  }
   #maincontent {
     margin-bottom: 80px;
   }
   #foot {
     position: sticky;
-    bottom: 80px;   
-    padding-bottom: 10px; 
+    bottom: 80px;
+    padding-bottom: 10px;
     z-index: 50;
     background-color: #f6f7f8;
-  }  
+  }
   h1 {
     font-size: 47px;
   }
@@ -81,12 +81,12 @@
   }
   .requiredspan {
     font-size: 14px;
-  }  
+  }
   .drop-menu {
     width: 100%;
   }
   #tag-container {
-    max-width: 100%;    
+    max-width: 100%;
     margin-bottom: 10px;
   }
   #added-to-board-box {
