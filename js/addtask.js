@@ -349,6 +349,9 @@ function displaySubtask(task, index) {
   `;
 }
 
+/**
+ * Handles Click Events to close Dropdowns adn Burger-Menus.
+ */
 function closeDropDowns(event) {  
   if (document.getElementById("drop-menu-assigned")) {
     let assigneddrop = document.getElementById("drop-menu-assigned");
@@ -364,6 +367,9 @@ function closeDropDowns(event) {
   }
 }
 
+/**
+ * Handles Click Events to close Dropdown-Menu
+ */
 function closeDropDownsEdit(event) {  
   if (document.getElementById("drop-menu-assigned-edit")) {
       let assigneddrop = document.getElementById("drop-menu-assigned-edit");    
@@ -374,6 +380,9 @@ function closeDropDownsEdit(event) {
   }   
 } 
 
+/**
+ * Handles Click Event to close Burger-Menu.
+ */
 function closeTaskBurgers(event) {
   if (document.getElementById('taskpopup0')) {
     if(!event.target.closest('.paddot')) {
@@ -387,6 +396,9 @@ function closeTaskBurgers(event) {
   }
 }
 
+/**
+ * Handles Click Events to close Dropdowns and Burger-Menus.
+ */
 document.onclick = function (event) {
   closeDropDowns(event);
   closeDropDownsEdit(event);  

@@ -348,10 +348,6 @@ textarea {
   }
 }
 
-img {
-  transition: all 0.1s ease-in-out;
-}
-
 .createtask {
   display: flex;
   align-items: center;
