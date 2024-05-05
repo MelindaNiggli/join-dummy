@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function() {
   await init()
-  await displayCurrentDate();
+  displayCurrentDate();
 });
 /**
  * Updates the task counts for each status and displays them.
@@ -36,12 +36,10 @@ function countUrgentTasks() {
       urgentCount++;
     }
   }
-
   const urgentAmountElement = document.getElementById("urgentAmount");
   if (urgentAmountElement) {
     urgentAmountElement.textContent = urgentCount;
   }
-
   return urgentCount;
 }
 
@@ -70,25 +68,35 @@ function updateGreeting() {
 
 updateGreeting();
 
+/**
+ * Displays the current date and updates the urgent task count.
+ * If there are urgent tasks, it displays the earliest deadline.
+ * @returns {Date | undefined} The earliest deadline date if there are urgent tasks, otherwise undefined.
+ */
 async function displayCurrentDate() {
-  const urgentCount = countUrgentTasks(); // Verwende die vorhandene Funktion, um die Anzahl der dringenden Aufgaben zu erhalten
+  const urgentCount = countUrgentTasks(); 
   const deadlineCountElement = document.getElementById("urgentAmount");
+
   if (deadlineCountElement) {
     deadlineCountElement.textContent = urgentCount;
   }
   if (urgentCount > 0) {
-    // Falls es dringende Aufgaben gibt
     const earliestDate = tasks
-      .filter(task => task.priority === "urgent") // Filtere die dringenden Aufgaben
-      .map(task => new Date(task.date)) // Wandle das Fälligkeitsdatum in ein Date-Objekt um
-      .reduce((a, b) => (a < b ? a : b)); // Finde das früheste Datum    
-
+      .filter(task => task.priority === "urgent") 
+      .map(task => new Date(task.date)) 
+      .reduce((a, b) => (a < b ? a : b));   
     const deadlineElement = document.getElementById("currentDate");
     deadlineElement.textContent = formatDate(earliestDate);
+    
     return earliestDate;
   }
 }
 
+/**
+ * Formats the given date in a human-readable format.
+ * @param {Date} date - The date to format.
+ * @returns {string} The formatted date string.
+ */
 function formatDate(date) {
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
   return new Date(date).toLocaleDateString('en-US', options);
