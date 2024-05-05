@@ -111,7 +111,7 @@ async function login() {
     let user = users.find(u => u.email === email && u.password === hashedPassword);
     
     if(user) {
-        console.log('hello', user);
+        // console.log('hello', user);
         loggedInUser.push({
             userInformation: user
         });

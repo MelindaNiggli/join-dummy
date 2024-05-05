@@ -8,7 +8,7 @@ async function init(){
 async function clearExistingUsers() {
     let existingUsers = [];// Setze die Benutzerliste auf ein leeres Array
     await setItem('contactUsers', existingUsers); // Speichere die geleerte Benutzerliste
-    console.log('Alle Benutzer erfolgreich gelöscht.');
+    // console.log('Alle Benutzer erfolgreich gelöscht.');
 }
 
 /**** HTML TEMPLATE WRAPPER INFO RIGHT  ****/
@@ -146,7 +146,7 @@ async function loadContactUsers() {
             allUsersContainer.innerHTML = '<p>Keine Kontaktbenutzer vorhanden</p>';
         }
     } catch (e) {
-        console.log('Fehler:', e);
+        // console.log('Fehler:', e);
     }
 }
 
@@ -219,11 +219,11 @@ function HtmlTemplateUserInfo(name, email, color, phone, index){
     <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
         <div  id="mobileEdit" class="editeDeleteWrapper" >
             <div class="edit" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}')">
-                <img  src="./img/edit.svg" alt="edit icon">
+                <img class="editimg" src="./img/edit.svg" alt="edit icon">
                 <p>Edit</p>
             </div>
             <div class="delete" onclick="deleteUser('${name}')">
-                <img  src="./img/delete.svg" alt="delete icon">
+                <img  class="deleteimg"src="./img/delete.svg" alt="delete icon">
                 <p>Delete</p>
             </div>
         </div>
@@ -258,7 +258,7 @@ async function showUserInfo(name, email, color, phone, index) {
 
 /**** MORE BUTTON ****/
 function more() {
-    console.log('funktioniert')
+    // console.log('funktioniert')
     const wrapper = document.getElementById('mobileEdit');
     if (window.innerWidth <= 1075) {
         wrapper.style.display = 'block';
@@ -355,7 +355,7 @@ async function deleteUser(name) {
             messageDeleted(name);
             existingUsers.splice(index, 1); // Remove the user from the array
             await setItem('contactUsers', JSON.stringify(existingUsers));
-            console.log(`User ${name} deleted successfully.`);
+            // console.log(`User ${name} deleted successfully.`);
             await loadContactUsers(); // Update the user list
             overlayTransform();
             resetForm(); 
@@ -487,7 +487,7 @@ async function updateUser(name, index, color) {
          const wrapper = document.getElementById('mobileEdit');
          wrapper.style.display = 'none'
 
-         if (window.innerWidth <= 757) {
+         if (window.innerWidth <= 1250) {
             window.location.href = 'contact.html'; 
         }  
     } else {

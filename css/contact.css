@@ -43,6 +43,17 @@ main {
   content: url("../img/closeWhite.svg");
 }
 
+.edit:hover .editimg {
+  content: url("../img/edit-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+.delete:hover .deleteimg {
+  content: url("../img/delete-blue.svg");
+  width: 24px;
+  height: 24px;
+}
+
 .wrapper-input:focus-within {
   border: 1px solid var(--join-blue);
 }

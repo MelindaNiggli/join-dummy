@@ -115,15 +115,15 @@ main * {
 }
 
 .to-do {
-  display: flex; /* Flexbox verwenden */
-  justify-content: space-between; /* Platz zwischen den Containern */
+  display: flex; 
+  justify-content: space-between; 
   gap: 32px;
 }
 
 .to-do-left {
-  display: flex; /* Flexbox verwenden */
+  display: flex; 
   justify-content: center;
-  align-items: center; /* Zentriere Elemente vertikal */
+  align-items: center; 
   width: 264px;
   height: 168px;
   padding: 38px 19px 38px 19px;
@@ -135,8 +135,8 @@ main * {
 }
 
 .to-do-right {
-  display: flex; /* Flexbox verwenden */
-  align-items: center; /* Zentriere Elemente vertikal */
+  display: flex; 
+  align-items: center; 
   justify-content: center;
   width: 264px;
   height: 168px;
