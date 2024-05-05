@@ -90,7 +90,8 @@ header,
 header {
   justify-content: space-between;
   box-sizing: border-box;
-  position: relative;
+  position: sticky;
+  top: 0;
   background-color: var(--white);
   z-index: 20;
   margin-left: 232px;

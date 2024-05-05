@@ -11,6 +11,9 @@
   #board {
     flex-direction: column;
   }
+  #boardheader {
+    padding: 0px 64px 0px calc(8% + 8px);
+  }
   .taskpit {
     width: auto;
   }
@@ -52,11 +55,11 @@
     max-width: 57px;
   }
   #boardheader {
-    padding: 0px 84px 0px calc(8%+8px);
+    padding: 0px 84px 0px 8%;
   }
   #board {
     margin-top: 40px;
-    padding: 0px 0px 0px 8%;
+    padding: 0px 25px 0px 8%;
   }
   #add-task-container {
     top: 105px;
@@ -64,16 +67,16 @@
   }
   #task-details {
     top: 105px;
-    gap: 16px;
-    max-height: 720px;
+    gap: 16px;    
     padding: 35px;
+    max-height: calc(100vh - 180px);
   }
   .task-details-header {
     font-size: 36px;
     line-height: unset;
   }
   .task-bucket {
-    max-height: 570px;
+    max-height: calc(100vh - 340px);
   }
 }
 
@@ -91,8 +94,9 @@
     right: 5px;
   }
   #task-details {
-    left: 15%;
+    left: 15%;    
   }
+  
 }
 
 @media (max-width: 635px) {
@@ -100,10 +104,10 @@
     width: 100%;
   }
   #add-task-button {
-    left: -223px;
+    left: -235px;
   }
   .searchwrapper {
-    left: -135px;
+    left: -147px;
   }
   h1 {
     font-size: 47px !important;
@@ -112,7 +116,7 @@
     display: none;
   }
   #findtask {
-    width: 260px;
+    width: 270px;
   }
   #add-task-container {
     padding: 30px 5px;
@@ -145,7 +149,7 @@
 @media (max-width: 430px) {
   #add-task-container {
     left: 5%;
-  }
+  }  
 }
 
 @media (max-width: 350px) {
@@ -155,5 +159,8 @@
   #task-details {
     width: 98%;
     left: 1%;
+  }
+  #board {    
+    padding: 0px 0px 0px 8%;
   }
 }

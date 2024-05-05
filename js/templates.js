@@ -69,7 +69,7 @@ function openTaskEdit(index) {
           </div>
         </form>
       </div>
-    </div>  
+    </div>
     `;
     selectPrioEdit(task.priority, event);
     displayUserMenuEdit();

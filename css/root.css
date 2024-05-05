@@ -99,7 +99,8 @@ h1 {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -173,7 +174,7 @@ h1 {
   }
 
   header {
-    position: fixed;
+    position: fixed !important;
     z-index: 1 !important;
     width: 100% !important;
     margin: 0px !important;
