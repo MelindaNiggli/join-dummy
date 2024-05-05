@@ -1,464 +1,452 @@
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
 body {
-    background: var(--bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    position: relative;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  position: relative;
 }
 
 input:focus ~ .wrapper-input {
-    border: 3px solid #555!important;
+  border: 3px solid #555 !important;
 }
 
 #wrapperLogin {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
 }
 
-#logoImg  {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    transition:  1s ease-in;
-    -webkit-transition:  1s ease-in;
-    -moz-transition:  1s ease-in;
-    -ms-transition:  1s ease-in;
-    -o-transition:  1s ease-in;
-    transform: 1s ease-in ;
-    -webkit-transform: 1s ease-in ;
-    -moz-transform: 1s ease-in ;
-    -ms-transform: 1s ease-in ;
-    -o-transform: 1s ease-in ;
-    background-image: url(../img/join-logo.svg);
-    width: 200px;
-    height: 200px;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    background-size: contain;
-    display: flex;
-    align-items: center;
-    background-position: center;
+#logoImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  transition: 1s ease-in;
+  -webkit-transition: 1s ease-in;
+  -moz-transition: 1s ease-in;
+  -ms-transition: 1s ease-in;
+  -o-transition: 1s ease-in;
+  transform: 1s ease-in;
+  -webkit-transform: 1s ease-in;
+  -moz-transform: 1s ease-in;
+  -ms-transform: 1s ease-in;
+  -o-transform: 1s ease-in;
+  background-image: url(../img/join-logo.svg);
+  width: 200px;
+  height: 200px;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  background-position: center;
 }
 
-
-.wrapper-sing-up{
-    position: absolute;
-    top: 67px;
-    right: 122px;
-    display: flex;
-    align-items: center
+.wrapper-sing-up {
+  position: absolute;
+  top: 67px;
+  right: 122px;
+  display: flex;
+  align-items: center;
 }
-.wrapper-sing-up  a {
-    background: var(--join-black);
-    padding: 15px 16px;
-    font-size: 16px;
-    color: var(--white);
-    border-radius: 8px;
-    margin-left: 35px;
+.wrapper-sing-up a {
+  background: var(--join-black);
+  padding: 15px 16px;
+  font-size: 16px;
+  color: var(--white);
+  border-radius: 8px;
+  margin-left: 35px;
 }
 h1 {
-
-    font-size: var(--h1);
-    text-align: center;
+  font-size: var(--h1);
+  text-align: center;
 }
 .linie {
-    margin-top: 16px;
-    width: 150px;
-    height: 3px;
-    background: var(--join-blue);
-    display: inline-block
+  margin-top: 16px;
+  width: 150px;
+  height: 3px;
+  background: var(--join-blue);
+  display: inline-block;
 }
 
 form {
-    background-color: var(--white);
-    max-width: 652px;
-    height: 493px;
-    border-radius: 30px;
-    padding: 48px 115px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.03);
+  background-color: var(--white);
+  max-width: 652px;
+  height: 493px;
+  border-radius: 30px;
+  padding: 48px 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.03);
 }
 .wrapper-input {
-    display: flex;
+  display: flex;
 }
 .wrapper-heading {
-    display: flex;
-    flex-direction: column;
-    justify-content: center ;
-    align-items: center;
-    margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
 }
 .wrapper-input {
-    width: 422px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    padding: 12px ;
-    
+  width: 422px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 12px;
 }
-form img{
-    width: 24px;
-    height: 24px;
+form img {
+  width: 24px;
+  height: 24px;
 }
-input{
-    border: none;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 20px;   
+input {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 20px;
 }
-.wrapper-input:focus-within{
-    border: 1px solid var(--join-blue); 
-  }
-  
+.wrapper-input:focus-within {
+  border: 1px solid var(--join-blue);
+}
+
 .wrapper-inputinput:focus {
-    outline: none; 
-  }
-  
+  outline: none;
+}
+
 #pwInput {
-	margin-top: 32px;
+  margin-top: 32px;
 }
-.wrapper-input:last-child
-{
-    margin-bottom: 8px;
+.wrapper-input:last-child {
+  margin-bottom: 8px;
 }
-.wrapper-input-field{
-    margin-bottom: 20px;
+.wrapper-input-field {
+  margin-bottom: 20px;
 }
-input::-webkit-input-placeholder{
-    color: #D1D1D1;
+input::-webkit-input-placeholder {
+  color: #d1d1d1;
 }
-input::-moz-placeholder{
-    color: #D1D1D1;
+input::-moz-placeholder {
+  color: #d1d1d1;
 }
-input:-ms-input-placeholder{
-    color: #D1D1D1;
+input:-ms-input-placeholder {
+  color: #d1d1d1;
 }
-input::-ms-input-placeholder{
-    color: #D1D1D1;
+input::-ms-input-placeholder {
+  color: #d1d1d1;
 }
-input::placeholder{
-    color: #D1D1D1;
+input::placeholder {
+  color: #d1d1d1;
 }
 .wrapper-button button {
-    padding: 10px;
-    font-size: 21px;
-    border-radius: 8px;
-    border: 1px solid var(--join-black);
-    padding: 11.5px 24px;
-    font-weight: 700;
+  padding: 10px;
+  font-size: 21px;
+  border-radius: 8px;
+  border: 1px solid var(--join-black);
+  padding: 11.5px 24px;
+  font-weight: 700;
 }
-.wrapper-button button:first-child, .BT-Black  {
-    background: var(--join-black) !important;
-    color: var(--white) !important;
-    margin-right: 35px;
+.wrapper-button button:first-child,
+.BT-Black {
+  background: var(--join-black) !important;
+  color: var(--white) !important;
+  margin-right: 35px;
 }
-.wrapper-button button:last-child{
-    color: var(--join-black);
-    background: var(--white)
+.wrapper-button button:last-child {
+  color: var(--join-black);
+  background: var(--white);
 }
 footer {
-	position: absolute;
-	bottom: 35px;
-
+  position: absolute;
+  bottom: 35px;
 }
 footer a {
-    padding: 8px;
-    font-size: 16px;
-    color: #A8A8A8;
+  padding: 8px;
+  font-size: 16px;
+  color: #a8a8a8;
 }
 footer a:hover {
-    color: var(--join-blue);
+  color: var(--join-blue);
 }
 
 /* Checkmark */
 .checkbox {
-    margin-top: 24px;
-    margin-bottom: 8px;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
 
-.checkbox:hover{
-    color: var(--join-blue);
+.checkbox:hover {
+  color: var(--join-blue);
 }
 .checkbox input[type="checkbox"] {
-    display: none; /* Verstecke das natürliche Checkbox-Element */
+  display: none; /* Verstecke das natürliche Checkbox-Element */
 }
 .checkbox input[type="checkbox"] + label {
-    position: relative;
-    padding-left: 30px; 
-    cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
 }
 .checkbox input[type="checkbox"] + label::before {
-    content: "";
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--join-black);
-    border-radius: 3px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--join-black);
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .checkbox input[type="checkbox"] + label::before {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    line-height: 20px;
-    text-align: center;
-    border: 2px solid var(--join-black);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px; /* Größe des Hackens anpassen */
-    color: var(--join-black); /* Farbe des Hackens */
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid var(--join-black);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; /* Größe des Hackens anpassen */
+  color: var(--join-black); /* Farbe des Hackens */
 }
 .checkbox input[type="checkbox"]:checked + label::before {
-    content: "\2713"; /* Unicode für ein Häkchen (check mark) */
+  content: "\2713"; /* Unicode für ein Häkchen (check mark) */
 }
-
 
 /* Sign up */
 
-.join-logo-signup{
-    position: absolute!important;
-    width: 100.03px!important;
-    top: 100px!important;
-    left: 77px!important;
+.join-logo-signup {
+  position: absolute !important;
+  width: 100.03px !important;
+  top: 100px !important;
+  left: 77px !important;
 }
 .checkbox span {
-    color: var(--join-blue);
+  color: var(--join-blue);
 }
 .checkbox {
-	color: #A8A8A8;
-	text-align: center;
-    margin-top: 24px;
+  color: #a8a8a8;
+  text-align: center;
+  margin-top: 24px;
 }
 #registration .wrapper-button {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #registration .wrapper-input {
-	margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 #messageBox {
-	top: 100px;
-	right: 77px;
-	position: absolute;
+  top: 100px;
+  right: 77px;
+  position: absolute;
 }
 
 .back {
-    position: absolute;
-    top: 64px;
-    left: 48px;
-    width: 32px;
-    height: 32px;
+  position: absolute;
+  top: 64px;
+  left: 48px;
+  width: 32px;
+  height: 32px;
 }
-#registration  {
-    position: relative !important;
-  }
+#registration {
+  position: relative !important;
+}
 
 #registration {
-    height: 630px !important;
-  }
-
-
-  #registerBTN {
-    margin-top: 34.3px;
-  }
-
-
-
-  .wrapper-button button:first-child:hover, .BT-Black:hover, .wrapper-sing-up a:hover {
-	background: var(--join-blue)!important;
-    border-color: var(--join-blue);
+  height: 630px !important;
 }
 
-.wrapper-button button:hover{
-    border-color: var(--join-blue);
-    color: var(--join-blue);
+#registerBTN {
+  margin-top: 34.3px;
+}
+
+.wrapper-button button:first-child:hover,
+.BT-Black:hover,
+.wrapper-sing-up a:hover {
+  background: var(--join-blue) !important;
+  border-color: var(--join-blue);
+}
+
+.wrapper-button button:hover {
+  border-color: var(--join-blue);
+  color: var(--join-blue);
 }
 
 /* Fehlermeldungen */
-#MessageCheckBox{
-    border: 1px solid #FF8190;
+#MessageCheckBox {
+  border: 1px solid #ff8190;
 }
-#MessageCheckBox, #messagePW, #MessageEmail{
-	display: none;
-	color: #FF8190;
-	font-size: 12px;
-	margin-bottom: 24px;
-	margin-top: 5px;
+#MessageCheckBox,
+#messagePW,
+#MessageEmail {
+  display: none;
+  color: #ff8190;
+  font-size: 12px;
+  margin-bottom: 24px;
+  margin-top: 5px;
 }
-
-
-
 
 /* ANIMATION */
 
-.active{
-    position: absolute!important;
-    top: 100px!important;
-    left: 77px!important;
-    transition: ease-in 1s!important;
-    -webkit-transition: top 1s ease-in, left 1s ease-in, ;
-    -moz-transition: ease-in 1s!important;
-    -ms-transition: ease-in 1s!important;
-    -o-transition: ease-in 1s!important;
-    width: 100px!important;
+.active {
+  position: absolute !important;
+  top: 100px !important;
+  left: 77px !important;
+  transition: ease-in 1s !important;
+  -webkit-transition: top 1s ease-in, left 1s ease-in;
+  -moz-transition: ease-in 1s !important;
+  -ms-transition: ease-in 1s !important;
+  -o-transition: ease-in 1s !important;
+  width: 100px !important;
 }
-  
-  @media only screen and (max-width: 767px) {
-        .active{
-            position: absolute!important;
-            top: 50px!important;
-            left: 50px!important;
-            width: 64px;
-        }
-        
 
-        .wrapper-sing-up {
-            margin-top: 20px !important;
-        }
-
-        #logoImg  {
-    background-image: url(../img/join-logo-weiss.svg);
-        width: 64px ;
-        height: 64px;
-        }
-
-        #registration button {
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        #registration .wrapper-button {
-            align-items: center;
-        }
-
-        .join-logo-signup {
-            top: 37px !important;
-            left: 38px !important;
-    width: 64px !important;
-    height: 64px; }
-
-    .back {
-    margin-right: 39.5px;
-    left: 24px;
-    }
-    form {
-        max-width: 396px!important;
-        padding: 32px 16px;
-        border-radius: 30px;
-    }
-    #registration {
-        height: 70% !important;
-    }
-    #registration .wrapper-input-field{
-        margin-bottom: 0;
-    }
-
-
-    body {
-        align-items: center;
-        padding: 16px;
-
-    }
-    button, .wrapper-sing-up a{
-        font-size: 16px !important;
-        font-weight: 700!important;
-        border-radius: 8px ;
-        -webkit-border-radius: 8px ;
-        -moz-border-radius: 8px ;
-        -ms-border-radius: 8px ;
-        -o-border-radius: 8px ;
-    }
-    .checkbox{
-        text-align: left;
-    }
-    .wrapper-button {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-    .wrapper-button button:first-child {
-        margin-bottom: 21px;
-    }
-    .wrapper-sing-up {
-        margin-top: 57.5px;
-        position: static;
-    }
-
-    .wrapper-button button {
-        width: 100%;
-    }
-    .wrapper-input{
-        width: 100%!important;
-    }
-    h1 {
-        font-size: 47px;
-    }
-
-    #logo {
-            background: var(--join-black);
-            width: 100vw !important;
-            height: 100vh !important;
-            position: absolute;
-
-    }
-    #addContact {
-        height: 500px!important;
-    }
-
-
+@media only screen and (max-width: 767px) {
+  .active {
+    position: absolute !important;
+    top: 50px !important;
+    left: 50px !important;
+    width: 64px;
   }
 
+  .wrapper-sing-up {
+    margin-top: 20px !important;
+  }
 
-  @media only screen and (max-width: 375px) {
-    .active{
-        position: absolute!important;
-        top: 40px!important;
-        left: 40px!important;
-        width: 40px!important;
-    }
-    .wrapper-sing-up{
-        margin: 5px 0 ;
-    }
-   form {
-        height: 100%!important;
-        padding: 15px;
-    }
-    .wrapper-input {
-        padding: 6px;
-    }
-    .wrapper-button button:first-child {
-        margin-bottom: 10px;
-    }
-    .wrapper-button button{
-      padding: 8px;
-    }
-    .join-logo-signup {
-      top: 20px !important;
-      left: 20px !important;
-      width: 40px !important;
-      height: 64px;
-    }  
+  #logoImg {
+    background-image: url(../img/join-logo-weiss.svg);
+    width: 64px;
+    height: 64px;
+  }
+
+  #registration button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #registration .wrapper-button {
+    align-items: center;
+  }
+
+  .join-logo-signup {
+    top: 37px !important;
+    left: 38px !important;
+    width: 64px !important;
+    height: 64px;
+  }
+
+  .back {
+    margin-right: 39.5px;
+    left: 24px;
+  }
+  form {
+    max-width: 396px !important;
+    padding: 32px 16px;
+    border-radius: 30px;
+  }
+  #registration {
+    height: 70% !important;
+  }
+  #registration .wrapper-input-field {
+    margin-bottom: 0;
+  }
+
+  body {
+    align-items: center;
+    padding: 16px;
+  }
+  button,
+  .wrapper-sing-up a {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+  .checkbox {
+    text-align: left;
+  }
+  .wrapper-button {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .wrapper-button button:first-child {
+    margin-bottom: 21px;
+  }
+  .wrapper-sing-up {
+    margin-top: 57.5px;
+    position: static;
+  }
+
+  .wrapper-button button {
+    width: 100%;
+  }
+  .wrapper-input {
+    width: 100% !important;
+  }
+  h1 {
+    font-size: 47px;
+  }
+
+  #logo {
+    background: var(--join-black);
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute;
+  }
+  #addContact {
+    height: 500px !important;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .active {
+    position: absolute !important;
+    top: 40px !important;
+    left: 40px !important;
+    width: 40px !important;
+  }
+  .wrapper-sing-up {
+    margin: 5px 0;
+  }
+  form {
+    height: 100% !important;
+    padding: 15px;
+  }
+  .wrapper-input {
+    padding: 6px;
+  }
+  .wrapper-button button:first-child {
+    margin-bottom: 10px;
+  }
+  .wrapper-button button {
+    padding: 8px;
+  }
+  .join-logo-signup {
+    top: 20px !important;
+    left: 20px !important;
+    width: 40px !important;
+    height: 64px;
+  }
 }

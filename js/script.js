@@ -217,7 +217,6 @@ async function getAndDisplayUserName() {
     }
 }
 
-
 /**
  * Funktion bei der, der Benutzername im Header steht und der Benutzer wird in Conatct gepusht
  * 
