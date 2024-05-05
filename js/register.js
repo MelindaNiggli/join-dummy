@@ -56,11 +56,15 @@ function messageRedCheckbox() {
 function messageSuccessfully() {
     const msg =  document.getElementById('messageBox')
     msg.innerHTML = `You Signed Up successfully`
-    msg.style.background = 'var(--join-black)';
-    msg.style.padding = '25px';
-    msg.style.borderRadius = '20px';
-    msg.style.color = 'white';
-    msg.style.fontSize ='20px'
+    msg.style.transform = 'translateX(0%)';
+    msg.style.display = 'block';
+    setTimeout(function() {
+        msg.style.transition = 'transform ease-in 1s';
+        msg.style.transform = 'translateX(1000%)';
+        setTimeout(function() {
+            msg.style.display = 'none';
+        }, 1); // Wait for the transition to complete before hiding the message box
+    }, 2000); 
 }
 
 /**** FUNCTION TO DISPLAY A ERROR MESSAGE INDICATIONG EMAIL ALREADY REGISTERED****/
@@ -92,6 +96,7 @@ async function addUser() {
         await setItem('users', JSON.stringify(users));
         resetForm();
         messageSuccessfully(); // Positive registration message
+        window.location.href = 'index.html'; 
     } else { 
         if (!checkbox.checked == true && !isEmailRegistered) {
             messageRedCheckbox(); // Checkbox error message

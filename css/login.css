@@ -367,8 +367,15 @@ footer a:hover {
     form {
         max-width: 396px!important;
         padding: 32px 16px;
-        radius: 30px;
+        border-radius: 30px;
     }
+    #registration {
+        height: 70% !important;
+    }
+    #registration .wrapper-input-field{
+        margin-bottom: 0;
+    }
+
 
     body {
         align-items: center;
@@ -435,9 +442,9 @@ footer a:hover {
     .wrapper-sing-up{
         margin: 5px 0 ;
     }
-    form {
-        height: 100%;
-        padding: 20px;
+   form {
+        height: 100%!important;
+        padding: 15px;
     }
     .wrapper-input {
         padding: 6px;
