@@ -27,9 +27,12 @@
   }
   
   @media only screen and (max-width: 650px) {
+    main {
+      margin-top: 96px;
+    }
     .summary-board-container {
       position: static;
-    }
+    }    
     .headline-container {
       position: relative;
       left: -4%;

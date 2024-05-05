@@ -281,11 +281,7 @@ function clearAddTask(event) {
     .querySelectorAll(".assigned-checked")
     .forEach((c) => c.classList.remove("assigned-checked"));
   assigned = [];
-  subtasks = [];
-  /* users = [];
-  await setItem('users', JSON.stringify(users)); */
-  /* tasks.splice(6,1);
-  await setItem('taskobject', JSON.stringify(tasks)); */
+  subtasks = [];  
   renderSubtasks();
   selectPrio("medium", event);
   displayUserMenu();
@@ -354,15 +350,17 @@ function displaySubtask(task, index) {
 }
 
 function closeDropDowns(event) {  
-  let assigneddrop = document.getElementById("drop-menu-assigned");
-  let categorydrop = document.getElementById("drop-menu-category");  
-  if (!event.target.closest('#assigned-input') && !event.target.closest('#arrowassigned') && !event.target.closest('.dropbox') &&
-    !assigneddrop.classList.contains("invis")) {
-    toggleDrop("arrowassigned");
-  }
-  if (!event.target.closest('#category-input') && !event.target.closest('#arrowcategory') && !event.target.closest('.dropbox') &&
-    !categorydrop.classList.contains("invis")) {
-    toggleDrop("arrowcategory");
+  if (document.getElementById("drop-menu-assigned")) {
+    let assigneddrop = document.getElementById("drop-menu-assigned");
+    let categorydrop = document.getElementById("drop-menu-category");  
+    if (!event.target.closest('#assigned-input') && !event.target.closest('#arrowassigned') && !event.target.closest('.dropbox') &&
+      !assigneddrop.classList.contains("invis")) {
+      toggleDrop("arrowassigned");
+    }
+    if (!event.target.closest('#category-input') && !event.target.closest('#arrowcategory') && !event.target.closest('.dropbox') &&
+      !categorydrop.classList.contains("invis")) {
+      toggleDrop("arrowcategory");
+    }
   }
 }
 
@@ -376,7 +374,21 @@ function closeDropDownsEdit(event) {
   }   
 } 
 
+function closeTaskBurgers(event) {
+  if (document.getElementById('taskpopup0')) {
+    if(!event.target.closest('.paddot')) {
+      for (let i = 0; i < tasks.length; i++) {
+        const popup = document.getElementById(`taskpopup${i}`);
+        if (!popup.classList.contains('d-none')) {
+          popup.classList.add('d-none');
+        }        
+      }
+    }
+  }
+}
+
 document.onclick = function (event) {
   closeDropDowns(event);
-  closeDropDownsEdit(event);      
+  closeDropDownsEdit(event);  
+  closeTaskBurgers(event);    
 };

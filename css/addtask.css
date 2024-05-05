@@ -62,6 +62,10 @@ h1 {
   align-self: flex-end;
 }
 
+#subtasks, #subtasks-edit, .created-subtasks-input {
+  padding-right: 100px !important;
+}
+
 input:not([type="checkbox"], .created-subtasks-input) {
   width: 440px;
   height: 48px;
