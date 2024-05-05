@@ -2,9 +2,6 @@
 async function init(){
     await loadContactUsers();
     templateWrapperInfo();
-     // Für den Reset : await clearExistingUsers();
-     // JavaScript code
-
 }
 
 /**** RESET FUNCTION TO CLEAR ALL ****/
@@ -18,17 +15,10 @@ async function clearExistingUsers() {
 function templateWrapperInfo(){
     const wrapper =  document.getElementById('wrapperInfo');
     wrapper.innerHTML += `
-
-    <div class="heading">
-    <h1>Contacts</h1>
-    <span class="linie"></span>
-    <p>Better with a team</p>
-</div>
-<div id="userInfoDetails"></div>
+    <div class="heading"><h1>Contacts</h1><span class="linie"></span><p>Better with a team</p></div>
+    <div id="userInfoDetails"></div>
     `
-    if (window.innerWidth <= 1057) {
-        wrapper.innerHTML = '';
-    }
+    if (window.innerWidth <= 1057) {wrapper.innerHTML = '';}
   }
 
 /**** SAVE CONTACT TO LIST ****/
@@ -45,41 +35,32 @@ function addNewContact() {
         container.style.transform = 'translateX(0px)';
     }, 1); 
     const closeButton =  document.getElementById('closeImgNew')
-    if (window.innerWidth <= 1057) {
-        closeButton.src= './img/closeWhite.svg';
-    }
+    if (window.innerWidth <= 1057) {closeButton.src= './img/closeWhite.svg';}
 }
 
 /****  SAVE CONTACT  ****/
 async function saveUser(){
-    // Zuerst laden Sie die vorhandenen Benutzer aus dem Remote-Speicher
-    let existingUsers = await getItem('contactUsers');
+  
+    let existingUsers = await getItem('contactUsers');  // Load Contacts from Remote Storage
     existingUsers = existingUsers ? JSON.parse(existingUsers) : [];
-    // Array mit verfügbaren Farben
     const colors = ['#0038FF','#00BEE8','#1FD7C1','#6E52FF','#9327FF', '#C3FF2B','#FC71FF','#FF4646','#FF5EB3','#FF745E','#FF7A00','#FFA35E','#FFBB2B','#FFC701','#FFE62B'];
-    // Zufällige Farbe auswählen
-    const color = colors[Math.floor(Math.random() * colors.length)];
-   // Neuen User Pushen 
+    const color = colors[Math.floor(Math.random() * colors.length)];//Select random color
     existingUsers.push({
         name: nameUser.value,
         email: emailUser.value,
         phone: phoneUser.value,
         color: color
     });
-    // Speichern des aktualisierte Arrays im Remote-Speicher
-    await setItem('contactUsers', JSON.stringify(existingUsers));
+    await setItem('contactUsers', JSON.stringify(existingUsers)); // Saving the updated array in remote storage.
     await loadContactUsers();
     messageSuccessfullyCreated();
     resetForm();
     let overlay = document.getElementById('overlay');
     let container = document.getElementById('addContact');
     container.style.transform = 'translateX(1600px)';
-    setTimeout(function() {
-        overlay.style.display = 'none';
-    }, 500); 
+    setTimeout(function() {overlay.style.display = 'none';}, 500); 
 
-    // Überprüfen, ob ein Element für den Anfangsbuchstaben bereits vorhanden ist
-    const firstChar = nameUser.value.charAt(0).toUpperCase();
+    const firstChar = nameUser.value.charAt(0).toUpperCase();// Checking if an element for the initial letter already exists.
     const existingCharElement = document.querySelector(`.Buchstabe[data-char="${firstChar}"]`);
     if (!existingCharElement) {
         const allUsersContainer = document.getElementById('allUsers');
@@ -87,14 +68,13 @@ async function saveUser(){
     }
 }
 
+/****  KEYDOWN FUNCTIONV ,Block input if the key is not a number ****/
 function onlyNumbers(event){
     const isNumber = /[0-9]/.test(event.key);
-    // Blockiere die Eingabe, wenn die Taste keine Zahl ist
-    if (!isNumber) {
+    if (!isNumber) { //    Block input if the key is not a number 
         event.preventDefault();
     }
 }
-
 
 /**** RESET FORM ****/
 function resetForm(){
@@ -102,7 +82,6 @@ function resetForm(){
     emailUser.value = '';
     phoneUser.value = '';
 }
-
 
 /**** MESSAGE ADD CONTACT  ****/
 function messageSuccessfullyCreated(){
@@ -119,7 +98,6 @@ function messageSuccessfullyCreated(){
     }, 2000); 
 }
 
-
 /**** OVERLAY TRANSFORM  ****/
 function overlayTransform(){
     let overlay = document.getElementById('overlayEdit');
@@ -129,7 +107,6 @@ function overlayTransform(){
         overlay.style.display = 'none';
     }, 500); 
 }
-
 
 /**** CLOSE CONATCT  ****/
 function closeContact() {
@@ -141,34 +118,30 @@ function closeContact() {
     }, 500); 
 }
 
-
-
 /**** LOAD CONTACT DATA ****/
 async function loadContactUsers() {
-    try {
-        // Daten laden
+    try { // LOAD DATA
         contactUsers = JSON.parse(await getItem('contactUsers'));
-        if (contactUsers && contactUsers.length > 0) { // Überprüfen, ob Daten geladen wurden
-            contactUsers.sort((a, b) => a.name.localeCompare(b.name)); // Kontakte alphabetisch nach Namen sortieren
+        if (contactUsers && contactUsers.length > 0) { // Check if data has been loaded.
+            contactUsers.sort((a, b) => a.name.localeCompare(b.name)); // Sort contacts alphabetically by name
             const allUsersContainer = document.getElementById('allUsers');
-            allUsersContainer.innerHTML = '';  // Vorhandene Kontaktliste löschen
+            allUsersContainer.innerHTML = '';  //Delete existing contact list
             
-            let existingChars = {}; // Objekt zum Verfolgen bereits hinzugefügter Buchstaben-Elemente
+            let existingChars = {}; // Object to track already added letter elements
             
-            contactUsers.forEach((contact, index) => {  // Durch sortierte Kontakte iterieren und sie anzeigen
-                const firstChar = contact.name.charAt().toUpperCase(); // Erstes Zeichen für die Gruppierung erhalten
+            contactUsers.forEach((contact, index) => { // Iterate through sorted contacts and display them
+                const firstChar = contact.name.charAt().toUpperCase(); // Get first character for grouping
                 
-                // Falls das erste Zeichen noch nicht hinzugefügt wurde, füge es hinzu
-                if (!existingChars[firstChar]) {
+                if (!existingChars[firstChar]) { // If the first character has not been added yet, add it.
                     allUsersContainer.innerHTML += `<p class="Buchstabe">${firstChar}</p><span class="linie"></span>`;
-                    existingChars[firstChar] = true; // Markiere den Buchstaben als bereits hinzugefügt
+                    existingChars[firstChar] = true; // Mark the letter as already added.
                 }
                 
-                const firstTwoChars = contact.name.slice(0, 2).toUpperCase(); // Die ersten zwei Buchstaben groß
-                const capitalizedWord = contact.name.charAt(0).toUpperCase() + contact.name.slice(1); // Erster Buchstabe des Namens groß
-                allUsersContainer.innerHTML += TemplateContactUsers(contact, index, firstTwoChars, capitalizedWord);// Kontakt Template anzeigen
+                const firstTwoChars = contact.name.slice(0, 2).toUpperCase(); // First two letteres uppercase
+                const capitalizedWord = contact.name.charAt(0).toUpperCase() + contact.name.slice(1); // First char uppercase
+                allUsersContainer.innerHTML += TemplateContactUsers(contact, index, firstTwoChars, capitalizedWord);// Show conatct html template
             });
-        } else { // Zeige eine Nachricht an, wenn keine Kontaktbenutzer vorhanden sind
+        } else { 
             const allUsersContainer = document.getElementById('allUsers');
             allUsersContainer.innerHTML = '<p>Keine Kontaktbenutzer vorhanden</p>';
         }
@@ -200,15 +173,13 @@ function back(){
     wrapper.style.zIndex = '-2';
 }
 
-
-
 /*** FUNCTION TO FOCUS CONTACT LIST ON USER CLICK ***/
 async function onClickFocusUser(index, color) {
     if (window.innerWidth >= 1075) {
         let contactBadge = document.getElementById('name' + index);
         let emailBadge = document.getElementById(index);
         
-        // Überprüfe, ob contactBadge nicht null ist, bevor du darauf zugreifst
+        // Check if contactBadge is not null before accessing it.
         if (contactBadge) {
             contactBadge.style.border =  `3px solid white`;
             contactBadge.style.background = color;
@@ -222,7 +193,6 @@ async function onClickFocusUser(index, color) {
         }
     } 
 }
-
 
 /*** TRANSITION FOR SIDE CONTACT INFORMATION ***/
 function transitionUserInfoDetails(container) {
@@ -244,10 +214,9 @@ function transitionUserInfoDetails(container) {
 }
 
 /**** HTML TEMPLATE SHOW CONTACT INFORMATION ****/
-async function showUserInfo(name, email, color, phone, index) {
-    const wrapper = document.getElementById('wrapperInfo');
-    wrapper.innerHTML = `
-        <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
+function HtmlTemplateUserInfo(name, email, color, phone, index){
+    return`
+    <div class="more" onclick="more()"><img src="./img/more_vert.svg" alt="see more"></div>
         <div  id="mobileEdit" class="editeDeleteWrapper" >
             <div class="edit" onclick="editUser('${name}', '${email}','${color}','${phone}','${index}')">
                 <img  src="./img/edit.svg" alt="edit icon">
@@ -268,22 +237,24 @@ async function showUserInfo(name, email, color, phone, index) {
                 <p>Better with a team</p>
             </div>
         </div>
-        <div id="userInfoDetails"></div>
-    `;
-    
+        <div id="userInfoDetails"></div> `
+}
+
+/**** FUNCTION SHOW CONTACT INFORMATION ****/
+async function showUserInfo(name, email, color, phone, index) {
+    const wrapper = document.getElementById('wrapperInfo');
+    wrapper.innerHTML =  HtmlTemplateUserInfo(name, email, color, phone, index);// Kontakt Template anzeigen
     const container = document.getElementById('userInfoDetails'); 
     wrapper.style.zIndex = '0';
     await loadContactUsers();
     onClickFocusUser(index, color);
     transitionUserInfoDetails(container); // Pass container as an argument
-
     if (name) {
         const firstTwoChars = firstAndSecondCharUppercase(name);
         const capitalizedWord = firstCharUppercase(name);
         container.innerHTML = TemplateSideConatct(index, color, email, name, phone, firstTwoChars, capitalizedWord);
     }
 }
-
 
 /**** MORE BUTTON ****/
 function more() {
@@ -301,7 +272,6 @@ function firstAndSecondCharUppercase(name) {
     const string = name;
     return string.slice(0, 2).toUpperCase();
 }
-
 
 /**** FIRST CHAR UPPERCASE ****/
 /* @param {string} name - The name string / @returns {string} - The modified string with the first character in uppercase*/
@@ -352,7 +322,6 @@ function TemplateSideConatct(index,color,email,name,phone,firstTwoChars,capitali
             <a class="phone" href="tel:${phone}">+41(0)${phone}</a>
         </div>
         </div>
-
     `;
 }
 
@@ -379,7 +348,7 @@ function messageDeleted(name){
 async function deleteUser(name) {
     await loadContactUsers();
     try {
-        let existingUsers = await getItem('contactUsers');        // Load existing users
+        let existingUsers = await getItem('contactUsers'); // Load existing users
        existingUsers = JSON.parse(await getItem('contactUsers'))
         const index = existingUsers.findIndex(user => user.name === name); // Find the index of the user to delete
         if (index !== -1) {
@@ -515,15 +484,16 @@ async function updateUser(name, index, color) {
          overlayTransform();
          messageSuccessfully(name);
          showUserInfo(); 
-    
          const wrapper = document.getElementById('mobileEdit');
          wrapper.style.display = 'none'
-         
+
+         if (window.innerWidth <= 757) {
+            window.location.href = 'contact.html'; 
+        }  
     } else {
-        console.log('User not found!');
+        // console.log('User not found!');
     }
 }
-
 
 /**** FUNCTION TO CLOSE THE OVERLAY AND THE CONTACT USER EDIT FORM ****/
 function closeUpdate() {
