@@ -153,25 +153,70 @@ async function getLoggedInUser() {
  *  Funktion zum Abrufen und Anzeigen des Benutzernamens
  * 
  */
+
+async function animationSummary() {
+    if (window.innerWidth <= 1385) {
+        let nameContainer = document.getElementById('summary-greet-container');
+        let summaryContainer = document.querySelector('.summary-board-container');
+        let summaryHeader = document.querySelector('.headline-container');
+        
+        // Set initial styles
+        summaryContainer.style.transition = 'transform 2s ease-in';
+        summaryHeader.style.transition = 'transform 2s ease-in';
+        summaryHeader.style.opacity= '1';
+        summaryHeader.style.display = 'translateX(100%)';
+        summaryContainer.style.transform = 'translateX(1000%)';
+ 
+        nameContainer.style.opacity = '1'; // Show nameContainer
+        nameContainer.style.top = '50%';
+        nameContainer.style.left = '0';
+        nameContainer.style.width = '100%';
+        nameContainer.style.margin = '0';
+        nameContainer.style.padding = '10px';
+        nameContainer.style.textAlign = 'center';
+        
+        // Wait for a short time for the nameContainer to be visible before animating
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        nameContainer.style.opacity = '1';
+        
+        summaryContainer.style.transform = 'translateX(0%)';
+        summaryHeader.style.transform = 'translateX(0%)';
+        
+        // Wait for animation to complete
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Hide nameContainer after animation completes
+        nameContainer.style.transition = 'transform 2s ease-in';
+        nameContainer.style.transform = 'translateX(-1000%)';
+        
+    }
+}
+
+
 async function getAndDisplayUserName() {
     try {
-        if (isLoggedIn()) { // Überprüfe, ob ein Benutzer angemeldet ist
-            let users = await getLoggedInUser(); // Benutzer abrufen und auf das Ergebnis warten
+        if (isLoggedIn()) {
+            let users = await getLoggedInUser();
             let summaryNameElement = document.getElementById('summaryName');
-            let user = users[0]; // Den ersten Benutzer im Array
+            let user = users[0];
             if (user && user.userInformation && user.userInformation.name) {
                 summaryNameElement.textContent = user.userInformation.name;
+                await animationSummary();
             } else {
                 summaryNameElement.textContent = 'Gast';
+                await animationSummary();
             }
         } else {
             let summaryNameElement = document.getElementById('summaryName');
             summaryNameElement.textContent = 'Gast';
+            await animationSummary();
         }
     } catch (error) {
         console.error('Fehler beim Abrufen des Benutzernamens:', error);
     }
 }
+
 
 /**
  * Funktion bei der, der Benutzername im Header steht und der Benutzer wird in Conatct gepusht
